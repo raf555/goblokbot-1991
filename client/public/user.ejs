@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>GoblokBot 1991 - User</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link
+         rel="icon"
+         href="https://i.ibb.co/z6WJ44H/Untitled.png"
+         type="image/png"
+         />
+      <script
+         src="https://code.jquery.com/jquery-3.5.1.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+         />
+      <style type="text/css">
+         body {
+         background-color: #FFFFFF;
+         }
+         .ui.menu .item img.logo {
+         margin-right: 1.5em;
+         }
+         .main.container {
+         margin-top: 7em;
+         }
+         .wireframe {
+         margin-top: 2em;
+         }
+         .ui.footer.segment {
+         margin: 5em 0em 0em;
+         padding: 5em 0em;
+         }
+      </style>
+      <%- include('global/https')-%>
+      <script>
+        $(document).ready(function() {
+          var cd = {};
+           <% for (var i = 0; i < Object.keys(user).length; i++) { %><% if( user[Object.keys(user)[i]].ban == 1 ) { %>cd["<%= user[Object.keys(user)[i]].id %>"] = setInterval(function() {countdown("<%= user[Object.keys(user)[i]].id %>", <%= user[Object.keys(user)[i]].durt %>)}, 1000);<% } %><% } %>
+         var $divs = jQuery("#box div.item");
+         
+         var alphabeticallyOrderedDivs = $divs.sort(function (a, b) {
+             return String.prototype.localeCompare.call($(a).find("div.content h3").text().toLowerCase(),$(b).find("div.content h3").text().toLowerCase());
+         });
+         
+         $("#box").html(alphabeticallyOrderedDivs);
+         $("#search").on("keyup", function() {
+         var value = $(this).val().toLowerCase();
+         $("#box div.item").filter(function() {
+           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $("#userlength").html($('#box div.item:visible').length);
+         });
+         });
+          <% if(admin) { %>
+         $(".ui.checkbox")
+         .checkbox()
+         .checkbox({
+           onChecked: function() {
+             var uid = $(this).val();
+               $.post(
+                   "/api/ban", {
+                     uid:uid
+                   },
+                   function(res, status) {
+                       if (res.result) {
+                           //$("#banstat-" + uid).append('<a class="ui red label" id="'+uid+'">Banned : 10 Menit</a>')
+                           $("#" + uid).html("Banned : 10 Menit");
+                           $("#" + uid).show();
+                           var now = Date.now();
+                            cd[uid] = setInterval(function() {
+                              countdown(uid, now+600000)
+                            }, 1000);
+                       } else {
+                           $('#cek-'+uid).checkbox("set unchecked");
+                       }
+                   }
+               )
+           },
+           onUnchecked: function() {
+             var uid = $(this).val();
+               $.post(
+                   "/api/unban", {
+                     uid:uid
+                   },
+                   function(res, status) {
+                       if (res.result) {
+                           $("#" + uid).hide();
+                           clearInterval(cd[uid]);
+                       } else {
+                           $('#cek-'+uid).checkbox("set checked");
+                       }
+                   }
+               )
+           }
+         });
+          <% } %>
+          function countdown(id, duration){
+            // Get today's date and time
+            var now = Date.now();
+
+            // Find the distance between now and the count down date
+            var distance = duration - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+            var harDisplay = days > 0 ? days + " Hari " : "";
+            var hDisplay = hours > 0 ? hours + " Jam " : "";
+            var mDisplay = minutes > 0 ? minutes + " Menit " : "";
+            var sDisplay = seconds > 0 ? seconds + " Detik " : "";
+            document.getElementById(id).innerHTML = "Banned : "+(harDisplay+hDisplay+mDisplay+sDisplay).slice(0,-1);
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+              clearInterval(cd[id]);
+              $('#'+id).hide();
+              $('#cek-'+id).checkbox("set unchecked");
+            }
+          }
+         });
+            
+      </script>
+   </head>
+   <body>
+      <%- include('global/menu')-%>
+      <div class="pusher">
+         <div class="ui main text container">
+            <div class="ui breadcrumb">
+               <a class="section" href="/">Home</a>
+               <div class="divider">/</div>
+               <a class="section">User</a>
+            </div>
+            <div class="ui divider"></div>
+            <h2 class="ui header">
+               <i class="user icon"></i>
+               <div class="content">
+                  User List
+                  <div class="sub header">User list including their status.</div>
+               </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui middle aligned divided list">
+               <div class="item">
+                  <div class="right floated content">
+                     <div class="ui input">
+                        <input type="text" placeholder="Search anything" id="search" />
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="ui middle aligned divided list">
+               <div class="item">
+                  <% if(admin) { %>
+                  <div class="right floated content">
+                     <h3>
+                        Ban Check
+                     </h3>
+                  </div>
+                  <% } %>
+                  <div class="content">
+                     <h3>
+                        User
+                     </h3>
+                  </div>
+               </div>
+            </div>
+            <div class="ui segment" style="height:500px;overflow-x:scroll">
+               <div class="ui middle aligned divided list" id="box">
+                  <% for (var i = 0; i < Object.keys(user).length; i++) { %>
+                  <div class="item">
+                     <div class="right floated content">
+                        <div class="inline field">
+                           <div class="ui toggle checkbox <% if( user[Object.keys(user)[i]].ban == 1 ) { %>checked<% } %>" id="cek-<%= user[Object.keys(user)[i]].id %>">
+                              <% if(admin) { %>
+                              <input
+                                 type="checkbox"
+                                 tabindex="0"
+                                 class="hidden"
+                                 value="<%= user[Object.keys(user)[i]].id %>"
+                                 <% if( user[Object.keys(user)[i]].ban == 1 ) { %>checked<% } %>
+                                 />
+                              <% } %>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="content" id="banstat-<%= user[Object.keys(user)[i]].id %>">
+                        <h3>
+                          <a href="/user/<%= user[Object.keys(user)[i]].id %>"><%= Object.keys(user)[i] %></a>
+                           <% if( user[Object.keys(user)[i]].ban == 1 ) { %><br>
+                           <a class="ui red label" id="<%= user[Object.keys(user)[i]].id %>">Banned : <%= user[Object.keys(user)[i]].dur %></a>
+                           <% } else { %><br>
+                           <a class="ui red label" id="<%= user[Object.keys(user)[i]].id %>" style="display:none"></a>
+                           <% } %>
+                        </h3>
+                     </div>
+                  </div>
+                  <% } %>
+               </div>
+            </div>
+            <div class="ui middle aligned divided list">
+               <div class="item">
+                  <div class="right floated content">
+                     Showing <span id="userlength"><%= Object.keys(user).length %></span> of <%= Object.keys(user).length %> users.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <%- include('global/footer')-%>
+      </div>
+   </body>
+</html>

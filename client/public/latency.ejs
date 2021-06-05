@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>GoblokBot 1991 - Latency</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link
+         rel="icon"
+         href="https://i.ibb.co/z6WJ44H/Untitled.png"
+         type="image/png"
+         />
+      <script
+         src="https://code.jquery.com/jquery-3.5.1.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+         />
+      <script src="https://fomantic-ui.com/examples/assets/library/iframe.js"></script>
+      <%- include('global/https')-%>
+      <style type="text/css">
+         body {
+         background-color: #FFFFFF;
+         }
+         .ui.menu .item img.logo {
+         margin-right: 1.5em;
+         }
+         .main.container {
+         margin-top: 7em;
+         }
+         .wireframe {
+         margin-top: 2em;
+         }
+         .ui.footer.segment {
+         margin: 5em 0em 0em;
+         padding: 5em 0em;
+         }
+         iframe {
+         border: none;
+         width: calc(100% + 2em);
+         margin: 0em -1em;
+         height: 500px;
+         }
+      </style>
+      <script>
+         $("iframe").iFrameResize({
+           autoResize: true,
+           checkOrigin: false,
+           heightCalculationMethod: "bodyScroll"
+         });
+      </script>
+   </head>
+   <body>
+      <%- include('global/menu')-%>
+      <div id="pusher">
+         <div class="ui main container">
+            <div class="ui breadcrumb">
+               <a class="section" href="/">Home</a>
+               <div class="divider">/</div>
+               <a class="section" onclick="location.href='/latency'">Latency</a>
+            </div>
+            <div class="ui divider"></div>
+            <!--<h1 class="ui header">Semantic UI Fixed Template</h1>-->
+            <p>
+               <iframe
+                  src="/latency/graph?cmd=<%-cmd%>"
+                  width="100%"
+                  height="500"
+                  ></iframe>
+            </p>
+         </div>
+         <%- include('global/footer')-%>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>GoblokBot 1991 - Command</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link
+         rel="icon"
+         href="https://i.ibb.co/z6WJ44H/Untitled.png"
+         type="image/png"
+         />
+      <script
+         src="https://code.jquery.com/jquery-3.5.1.min.js"
+         crossorigin="anonymous"
+         ></script>
+      <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+         />
+      <style type="text/css">
+         body {
+         background-color: #FFFFFF;
+         }
+         .ui.menu .item img.logo {
+         margin-right: 1.5em;
+         }
+         .main.container {
+         margin-top: 7em;
+         }
+         .wireframe {
+         margin-top: 2em;
+         }
+         .ui.footer.segment {
+         margin: 5em 0em 0em;
+         padding: 5em 0em;
+         }
+         .ui.action.input input[type="file"] {
+         display: none;
+         }
+      </style>
+      <%- include('global/https')-%>
+      <script>
+        var sortid = 0;
+        var def;
+        function realsort(nextid){
+          function change(text, u, id){
+              $("#search").val(text);
+              if(id==0){
+                $(".sortbtn").find("i").removeClass("down")
+                $(".sortbtn").find("i").removeClass("up")
+              $(".ui.checkbox")
+                  .checkbox();
+                cekbok();
+              } else {
+                if(u == "up"){
+                  $(".sortbtn").find("i").addClass("up")
+                  $(".sortbtn").find("i").removeClass("down")
+                } else if(u == "down"){
+                  $(".sortbtn").find("i").addClass("down")
+                  $(".sortbtn").find("i").removeClass("up")
+                }
+              }
+          }
+          switch (nextid){
+            case 0:
+              $("#box").html(def);
+              change("", "", 0)
+              return
+            case 1:
+              change("Sorted by: Last added", "down")
+              var list = $('#box');
+              var listItems = list.children('div');
+              list.append(listItems.get().reverse());
+              return
+            case 2:
+              change("Sorted by: Alphabet", "down")
+              $("#box div.itemnye").sort(function (a, b) {
+                   return String.prototype.localeCompare.call($(a).find("div.title").text().toLowerCase().replace(/\s/g, ""),$(b).find("div.title").text().toLowerCase().replace(/\s/g, ""));
+               }).appendTo($("#box"))
+              return
+            case 3:
+              change("Sorted by: Alphabet", "up")
+              $("#box div.itemnye").sort(function (b,a) {
+                   return String.prototype.localeCompare.call($(a).find("div.title").text().toLowerCase().replace(/\s/g, ""),$(b).find("div.title").text().toLowerCase().replace(/\s/g, ""));
+               }).appendTo($("#box"))
+              return
+            default:
+              return
+          }
+        }
+        function sort() {
+          sortid+=1;
+          var len = 4;
+         var nextid = (sortid)%len;
+          realsort(nextid);
+        }
+         function showedit(data/*cmd, obj*/){
+           var cmd = $(data).val();
+         fetch("https://gblkbt1991.glitch.me/api/command/data?cmd="+cmd)
+           .then(function(reqResponse) {
+             return reqResponse.json();
+           })
+           .then(function(res) {
+             $("#editbtn-"+cmd).removeClass("loading");
+             $("#editbtn-"+cmd).addClass("transition");
+             $("#editbtn-"+cmd).addClass("visible");
+             if(res.result){
+               var obj = res.reason;
+               $(".message .close").click();
+               $("#jodol").html("Edit");
+               $("#title").val(obj.title);
+               $("#desc").val(obj.desc);
+               $("#cmd").val(cmd);
+               $("#isedit").val("1");
+               if(obj.sender && obj.sender.name){
+                 $("#sendername").val(obj.sender.name);
+                 $("#senderimg").val(obj.sender.img);
+                 $('#senderdiv').checkbox("check");
+               } else {
+                 $("#sendername").val("");
+                 $("#senderimg").val("");
+                 $('#senderdiv').checkbox("uncheck");
+               }
+               if(obj.type=="text"){
+                 $("#type").val("text").trigger("change");
+                 $("#texttype").val(obj.reply);
+               } else {
+                 $("#type").val("image").trigger("change");
+                 $("#imgtype").val(obj.reply);
+               }
+               $('.ui.basic.modal').modal('show');
+             }
+           })
+           .catch(function(error) {
+             $("#editbtn-"+cmd).removeClass("loading");
+             $("#editbtn-"+cmd).addClass("transition");
+             $("#editbtn-"+cmd).addClass("visible");
+           });
+          }
+         function showadd(){
+           $(".message .close").click();
+           $("#jodol").html("Add New");
+           $("#title").val("");
+           $("#desc").val("");
+           $("#cmd").val("");
+           $("#isedit").val("0");
+           $("#type").val("text").trigger("change");
+           $("#texttype").val("");
+           $("#sendername").val("");
+           $("#senderimg").val("");
+           $('#senderdiv').checkbox("uncheck");
+           $('.ui.basic.modal').modal('show');
+          }
+          function add() {
+            /*if(!/^[a-z0-9]+$/gi.test($("#cmd").val())){
+               $("#addnewcmd").removeClass("loading");
+               $("#result_reason").html("Invalid Command (Alphanumeric only)");
+               $("#result").addClass("warning");
+               $("#result").fadeIn();
+              return false;
+            }*/
+            /*$.post(
+                "/api/command/new", {
+                    title: $("#title").val(),
+                    desc: $("#desc").val(),
+                    cmd: $("#cmd").val().toLowerCase(),
+                    type: $("#type").val(),
+                    text: $("#texttype").val(),
+                    img: $("#imgtype").val(),
+                    image: document.getElementById("fail").files[0],
+                    sendername: $("#sendername").val(),
+                    senderimg: $("#senderimg").val(),
+                    isedit: $("#isedit").val()
+                },
+                function(res, status) {
+                    if (res.result) {
+                        window.location.reload();
+                    } else {
+                        $("#addnewcmd").removeClass("loading");
+                        $("#result_reason").html(res.reason);
+                        $("#result").addClass("warning");
+                        $("#result").fadeIn();
+                    }
+                }
+            ).fail(function(err) {
+                $("#addnewcmd").removeClass("loading");
+                $("#result_reason").html("Failed to add command..");
+                $("#result").addClass("warning");
+                $("#result").fadeIn();
+            });*/
+            if(document.getElementById('fail').files[0] && document.getElementById('fail').files[0].size>3072000){
+                        $("#addnewcmd").removeClass("loading");
+                        $("#result_reason").html("File size excedeed (max 3 MB)");
+                        $("#result").addClass("warning");
+                        $("#result").fadeIn();
+                        return false;
+            }
+           var form = new FormData();
+           form.append("title", $("#title").val());
+           form.append("desc", $("#desc").val());
+           form.append("cmd", $("#cmd").val());
+           form.append("type", $("#type").val());
+           form.append("text", $("#texttype").val());
+           form.append("img", $("#imgtype").val());
+           form.append("image", document.getElementById('fail').files[0]);
+           form.append("sendername", $("#sendername").val());
+           form.append("senderimg", $("#senderimg").val());
+           form.append("isedit", $("#isedit").val());
+         
+           var settings = {
+             "url": "/api/command/new",
+             "method": "POST",
+             "timeout": 0,
+             "processData": false,
+             "mimeType": "multipart/form-data",
+             "contentType": false,
+             "data": form,
+                 xhr        : function ()
+                 {
+                     var jqXHR = null;
+                     if ( window.ActiveXObject )
+                     {
+                         jqXHR = new window.ActiveXObject( "Microsoft.XMLHTTP" );
+                     }
+                     else
+                     {
+                         jqXHR = new window.XMLHttpRequest();
+                     }
+         
+                     //Upload progress
+                     jqXHR.upload.addEventListener( "progress", function ( evt )
+                     {
+                         if ( evt.lengthComputable )
+                         {
+                             var percentComplete = Math.round( (evt.loaded * 100) / evt.total );
+                           if(percentComplete<100) {if(document.getElementById('fail').files[0]) $("#progres").text("Uploading: "+percentComplete+"%");}
+                           else {$("#progres").text("Processing...");}
+                             //Do something with upload progress
+                             //console.log( 'Uploaded percent', percentComplete );
+                         }
+                     }, false );
+         
+                     return jqXHR;
+                 }
+           };
+         
+         
+           $.ajax(settings).done(function (response) {
+             var res = JSON.parse(response);
+             if (res.result) {
+                        window.location.reload();$('.ui.basic.modal').modal('hide');
+                    } else {
+                        $("#addnewcmd").removeClass("loading");
+                        $("#result_reason").html(res.reason);
+                        $("#result").addClass("warning");
+                        $("#result").fadeIn();
+                    }
+                           $("#progres").html("<i class=\"checkmark icon\"></i>Submit</button>");
+           }).fail(function (response) {
+                $("#addnewcmd").removeClass("loading");
+                $("#result_reason").html("Failed to add command..");
+                $("#result").addClass("warning");
+                $("#result").fadeIn();
+                           $("#progres").html("<i class=\"checkmark icon\"></i>Submit</button>");
+           });
+          }
+        function cekbok(){            
+          <% if(admin) { %>
+              $(".ui.checkbox")
+                  .checkbox({
+                      onChecked: function() {
+                        if ($(this).attr("id") == "customsender") return false;
+                          var uid = $(this).val();
+                          $.post(
+                              "/api/command/enable", {
+                                  cmd: uid
+                              },
+                              function(res, status) {
+                                  if (res.result) {
+                                      $("#status-" + uid.replace(/ /g, "\\ ")).html('<a class="ui green label">Active</a>')
+                                      $("#approval-" + uid.replace(/ /g, "\\ ")).hide()
+                                      $("#editbtn-"+ uid.replace(/ /g, "\\ ")).attr("disabled", "disabled");
+                                      $("#delbtni-"+ uid.replace(/ /g, "\\ ")).attr("disabled", "disabled");
+                                  } else {
+                                      $('#cek-'+uid).checkbox("set unchecked");
+                                  }
+                              }
+                          )
+                      },
+                      onUnchecked: function() {
+                        if ($(this).attr("id") == "customsender") return false;
+                          var uid = $(this).val();
+                          $.post(
+                              "/api/command/disable", {
+                                  cmd: uid
+                              },
+                              function(res, status) {
+                                  if (res.result) {
+                                      $("#status-" + uid.replace(/ /g, "\\ ")).html('<a class="ui red label">Inactive</a>')
+                                      $("#approval-" + uid.replace(/ /g, "\\ ")).show();
+                                      $("#editbtn-"+ uid.replace(/ /g, "\\ ")).removeAttr("disabled");
+                                      $("#delbtni-"+ uid.replace(/ /g, "\\ ")).removeAttr("disabled");
+                                  } else {
+                                      $('#cek-'+uid).checkbox("set checked");
+                                  }
+                              }
+                          )
+                      }
+                  });
+          <% } %>
+        }
+          function remove_(obj) {
+            if($("#delc").val().toLowerCase()!=$("#delfitcmd").text().toLowerCase()) {
+            return false;}
+            $('#delbut').addClass('loading');
+            $('#delc').attr('disabled', 'disabled');
+            var cmd = obj;
+            $.post(
+                "/api/command/delete", {
+                    cmd: cmd,
+                    ye: $("#delc").val().toLowerCase()==$("#delfitcmd").text().toLowerCase()
+                },
+                function(res, status) {
+                    if (res.result) {
+                        window.location.reload();
+                    } else {
+                      $('#delc').removeAttr('disabled');
+                        $('#delbut').removeClass('loading');
+                    }
+                }
+            ).fail(function(err) {
+              window.location.reload()
+            });
+            return false;
+          }
+          function showdel(obj, title){
+                    $("#delbut").attr("disabled", "disabled");
+            $("#delc").val("")
+            $('#delbut').attr('onclick','remove_("'+obj.value+'")');
+            $("#delfitnam").html(title);
+            $("#delfitcmd").html(obj.value);
+            $('#delbox').modal('show');
+          }
+          $(document).ready(function() {
+            $(".sortbtn").on("click", function(){
+              return sort();
+            })
+            $("#upfile").click(function() {
+               $(this).parent().find("input:file").click();
+             });
+         
+             $('input:file', '.ui.action.input')
+               .on('change', function(e) {
+                 var name = e.target.files[0].name;
+                 $('input:text', $(e.target).parent()).val(name);
+               });
+            $('#imgtype')
+               .on('change', function(e) {
+                 $("#fail").val("");
+               });
+              // MESSAGE
+              $(".message .close").on("click", function() {
+                  $(".message").removeClass("warning");
+                  $(".message").removeClass("positive");
+                  $("#result").fadeOut();
+              });
+              $(".ui.checkbox")
+                  .checkbox();
+              $('.ui.accordion')
+                  .accordion();
+              $('.ui.checkbox')
+                  .checkbox();
+              $('select.dropdown')
+                  .dropdown();
+            def = document.getElementById("box").innerHTML;
+            cekbok();
+              $("#search").on("keyup keypress blur change", function() {
+                  var value = $(this).val().toLowerCase();
+                  $("#box div.title").filter(function() {
+                      var n = 0;
+                      $('div.ui.accordion div.title').each(function(i, elm) {
+                          if ($(elm).hasClass("active")) {
+                              n = i;
+                              return false;
+                          }
+                      });
+                      $('.ui.accordion').accordion('close', n);
+                      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                      $("#cmdlength").html($('#box div.title:visible').length);
+                  });
+              });
+            $("#delc").on("keyup keypress blur change", function(e) {
+                  if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("delbut").click();
+                    return false;
+                  }
+                  var value = $(this).val().toLowerCase();
+                  var cmd = $("#delfitcmd").text().toLowerCase();
+                  if(value == cmd){
+                    $("#delbut").removeAttr("disabled");
+                  } else {
+                    $("#delbut").attr("disabled", "disabled");
+                  }
+              });
+            
+              $('#type').change(function() {
+                  if ($('#type').val() == 'text') {
+                      $('#textdiv').fadeIn();
+                      $('#imgdiv').hide();
+                      $('#imgtype').val("");
+                      $('#fail').val("");
+                      //$('#failn').val("");
+                  } else {
+                      $('#imgdiv').fadeIn();
+                      $('#textdiv').hide();
+                      $('#texttype').val("");
+                  }
+              }).trigger("change");
+            
+            $('#customsender').change(function() {
+                  if ($('#customsender:checked').length > 0) {
+                    $("#custom1").show();
+                    $("#custom2").show();
+                  } else {
+                    $("#sendername").val("");
+                    $("#senderimg").val("");
+                    $("#custom1").hide();
+                    $("#custom2").hide();
+                  }
+              })
+            /*$('#customsender')
+               .checkbox()
+               .first().checkbox({
+              onChecked: function() {
+                $("#custom1").show();
+                $("#custom2").show();
+               },
+               onUnchecked: function() {
+                $("#custom1").hide();
+                $("#custom2").hide();
+               }
+            });*/
+              $("#addnewcmd").submit(function() {
+                  $("#addnewcmd").addClass("loading");
+                  add();
+                  return false;
+              });
+          });
+                
+      </script>
+   </head>
+   <body>
+      <%- include('global/menu')-%>
+      <div class="pusher">
+         <div class="ui basic modal">
+            <div class="ui icon header">
+               <i class="keyboard icon"></i>
+               <span id="jodol">Add New</span> Command
+            </div>
+            <div class="content">
+               <div class="ui message" style="display:none" id="result">
+                  <i class="close icon"></i>
+                  <div class="header" id="result_reason"></div>
+               </div>
+               <form class="ui form inverted" id="addnewcmd">
+                  <input type="text" id="isedit" val="0" hidden />
+                  <div class="field">
+                     <label for="title">Title</label>
+                     <input type="text" id="title" placeholder="Title" autocomplete="off">
+                  </div>
+                  <div class="field">
+                     <label for="desc">Description</label>
+                     <input type="text" id="desc" placeholder="Description" autocomplete="off">
+                  </div>
+                  <div class="field">
+                     <label for="cmd">Command</label>
+                     <input type="text" id="cmd" placeholder="Command (to trigger)" autocomplete="off">
+                  </div>
+                  <div class="field">
+                     <label for="type">Reply Data Type</label>
+                     <select id="type">
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
+                     </select>
+                  </div>
+                  <div class="field" id="textdiv" style="display:none">
+                     <label for="texttype">Reply Text</label>
+                     <input type="text" id="texttype" placeholder="Text Reply" autocomplete="off">
+                  </div>
+                  <!--<div class="field" id="imgdiv" style="display:none">
+                     <label for="imgtype">Reply Image (URL)</label>
+                     <input type="text" id="imgtype" placeholder="Image URL" autocomplete="off">
+                     </div>-->
+                  <div class="field" id="imgdiv" style="display:none">
+                     <label>Image URL/File</label>
+                     <div class="ui action input">
+                        <input type="text" id="imgtype" placeholder="Image URL" autocomplete="off">
+                        <input type="file" id="fail" accept="image/*" >
+                        <div class="ui icon button" id="upfile">
+                           <i class="attach icon"></i> Choose Image
+                        </div>
+                     </div>
+                  </div>
+                  <div class="ui checkbox field" id="senderdiv">
+                     <input type="checkbox" id="customsender">
+                     <label>Use Custom Sender? (Optional)</label>
+                  </div>
+                  <div class="field" style="display:none" id="custom1">
+                     <label for="cmd">Sender Name</label>
+                     <input type="text" id="sendername" placeholder="Sender Name" autocomplete="off">
+                  </div>
+                  <div class="field" style="display:none" id="custom2">
+                     <label for="cmd">Sender Profile Picture (URL) (Optional)</label>
+                     <input type="text" id="senderimg" placeholder="Sender ProfPic" autocomplete="off">
+                  </div>
+            </div>
+            <div class="actions">
+            <a class="ui red cancel inverted button">
+            <i class="remove icon"></i>
+            Cancel
+            </a>
+            <button class="ui green inverted button" id="progres">
+            <i class="checkmark icon"></i>
+            Submit
+            </button>
+            </div>
+            </form>
+         </div>
+         <div class="ui main text container">
+            <div class="ui breadcrumb">
+               <a class="section" href="/">Home</a>
+               <div class="divider">/</div>
+               <a class="section">Custom Command</a>
+            </div>
+            <div class="ui divider"></div>
+            <h2 class="ui header">
+               <i class="user icon"></i>
+               <div class="content">
+                  Custom Command
+                  <div class="sub header">Command that is not hard coded in the program (added from outside).
+                     <br><i>This only accepts text or image based reply, for advanced feature request, please contact admin.</i>
+                  </div>
+               </div>
+            </h2>
+            <div class="ui divider"></div>
+            <div class="ui middle aligned divided list">
+               <div class="item">
+                  <div class="right floated content">
+                    <div class="ui action input">
+                        <input type="text" placeholder="Search title" id="search" autocomplete="off"/>
+                      <button class="ui icon sortbtn button" style="width:30px" title="Sort">
+                        <i class="sort icon"></i>
+                      </button>
+                    </div>
+                    <div class="ui" style="display:none">
+                      <label for="sortd">Sort by: </label>
+                      <select class="ui compact dropdown" id="sortd">
+                        <option value="1">Last Added (asc)</option>
+                        <option value="0">Last Added (desc)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="content">
+                     <button class="ui primary button" onclick="showadd();">
+                     <i class="icon keyboard"></i>
+                     <% if(admin) { %>Add New<% } else { %>Request New<% } %>
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div class="ui segment" style="height:500px;overflow-x:scroll">
+               <div class="ui styled fluid accordion" id="box">
+                  <% for (var i = 0; i < Object.keys(cmd).length; i++) { %>
+                 <div class="itemnye">
+                  <div class="title">
+                     <i class="dropdown icon"></i>
+                     <%= cmd[Object.keys(cmd)[i]].title %>
+                     <a class="ui yellow header label right floated" id="approval-<%= Object.keys(cmd)[i] %>" style="font-size:10px;<% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>display:none<% } %>">Pending Approval</a>
+                  </div>
+                  <div class="content">
+                     <h4 class="ui header">
+                        Specification
+                        <div class="sub header">Command: <b><%= Object.keys(cmd)[i] %></b></div>
+                        <div class="sub header">Custom Sender: <b><% if(cmd[Object.keys(cmd)[i]].sender && cmd[Object.keys(cmd)[i]].sender.name) { %>Yes<% } else { %>No<% } %></b></div>
+                        <div class="sub header">Reply Type: <b><%= cmd[Object.keys(cmd)[i]].type %></b></div>
+                        <% if(cmd[Object.keys(cmd)[i]].type == "text") { %>
+                        <div class="sub header">Reply Text: <b><%= cmd[Object.keys(cmd)[i]].reply %></b></div>
+                        <% } else if(cmd[Object.keys(cmd)[i]].type == "image") { %>
+                        <div class="sub header">Reply Image:</div>
+                        <% } %>
+                     </h4>
+                     <% if(cmd[Object.keys(cmd)[i]].type == "image") { %>
+                     <img class="ui medium image" src="<%= cmd[Object.keys(cmd)[i]].reply %>">
+                     <% } %>
+                     <h4 class="ui header">
+                        Status <label id="status-<%= Object.keys(cmd)[i] %>"><% if(cmd[Object.keys(cmd)[i]].approved == 1) { %><a class="ui green label">Active</a><% } else { %><a class="ui red label">Inactive</a><% } %></label>
+                        <div class="sub header">
+                           <div class="inline field">
+                              <% if(admin) { %>
+                              <div class="ui toggle checkbox <% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>checked<% } %>" id="cek-<%= Object.keys(cmd)[i] %>">
+                                 <input value="<%= Object.keys(cmd)[i] %>" type="checkbox" tabindex="0" class="hidden" <% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>checked<% } %>>
+                              </div>
+                              <% } %>
+                           </div>
+                           <br>
+                           <% if (cmd[Object.keys(cmd)[i]].requesterid == yourid) { if(cmd[Object.keys(cmd)[i]].approved != 1) { %><b>Please contact Admin to review this request.</b>
+                           <% } else { %><b>Note: To disable this command, please contact Admin.</b><% } } %>
+                        </div>
+                     </h4>
+                     <h4 class="ui header">
+                        Description
+                        <div class="sub header">
+                           <%= cmd[Object.keys(cmd)[i]].desc %>
+                           <br><br>
+                           Requested by <b><%= cmd[Object.keys(cmd)[i]].requester %></b>.
+                        </div>
+                     </h4>
+                    <% function avglat(data) {
+                      var sum = 0;
+                      for (var i = 0; i < data.length; i++){
+                        sum += data[i]
+                      }
+                      return Math.round(((sum/data.length) + Number.EPSILON) * 100) / 100
+                    } %>
+                     <h4 class="ui header">
+                        Usage Stats
+                        <div class="sub header">
+                          <% if(lat[Object.keys(cmd)[i]]) { %>
+                           Command called: <b><%= Object.keys(lat[Object.keys(cmd)[i]]).length-1 %> times</b>.<br>
+                           Avg. Latency: <b><%= lat[Object.keys(cmd)[i]].avg %> ms</b>.<br>
+                           Chart: <a href="/latency?cmd=<%= Object.keys(cmd)[i] %>" target="_blank">Here</a>
+                          <% } else { %>
+                           Command called: <b>0 times</b>.<br>
+                           Average latency: <b>0 ms</b>.
+                          <% } %>
+                        </div>
+                     </h4>
+                     <% if(cmd[Object.keys(cmd)[i]].requesterid == yourid || admin) { %>
+                     <h4 class="ui header">
+                        Edit / Delete
+                        <div class="sub header">
+                           You can edit or delete your request IF AND ONLY IF the request is inactive or not yet approved.
+                           <br><i>Note: if you change the command, it will create new command instead, you can delete the previous one.</i>
+                        </div>
+                     </h4>
+                     <% if(cmd[Object.keys(cmd)[i]].requesterid == yourid) { %>
+                     <button id="editbtn-<%= Object.keys(cmd)[i] %>" class="ui green button" value="<%= Object.keys(cmd)[i] %>" onclick="$('#editbtn-'+this.value).removeClass('transition');$('#editbtn-'+this.value).removeClass('visible');$('#editbtn-'+this.value).addClass('loading');showedit(this);" <% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>disabled<% } %>>Edit</button>
+                     <% } %>
+                     <% if(admin || cmd[Object.keys(cmd)[i]].requesterid == yourid) { %>
+                     <button id="delbtni-<%= Object.keys(cmd)[i] %>" class="ui red button" value="<%= Object.keys(cmd)[i] %>" onclick="showdel(this, '<%= cmd[Object.keys(cmd)[i]].title.replace(/'/g,"\\'") %>');" <% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>disabled<% } %>>Delete</button>
+                     <% } %>
+                     <% } %> 
+                  </div>
+              </div>
+                  <% } %>
+               </div>
+            </div>
+            <div class="ui middle aligned divided list">
+               <div class="item">
+                  <div class="right floated content">
+                     Showing <span id="cmdlength"><%= Object.keys(cmd).length %></span> of <%= Object.keys(cmd).length %> commands.
+                  </div>
+                  <div class="content">
+                     <% if(admin) { %>
+                     <a href="/command/img"><button class="ui primary button">
+                     <i class="image icon"></i>
+                     Image List
+                     </button></a>
+                     <% } %>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <%- include('global/footer')-%>
+      </div>
+      <div class="ui mini modal transition hidden" id="delbox">
+         <div class="header">
+            Delete <b id="delfitnam"></b> Command?
+         </div>
+         <div class="content">
+            <p>Are you sure you want to delete this?<br>Please keep in mind that this action cannot be undone.<br><b><small>Latency record will also be removed.</small></b></p>
+           Command: <b id="delfitcmd"></b>
+           <div class="ui input fluid">
+              <input id="delc" type="text" placeholder="Please rewrite the command before deleting" autocomplete="off">
+            </div>
+         </div>
+         <div class="actions">
+            <div class="ui negative button">
+               No
+            </div>
+            <button class="ui green button" id="delbut" disabled>
+            <i class="checkmark icon"></i>
+            Yes
+            </button>
+         </div>
+      </div>
+   </body>
+</html>

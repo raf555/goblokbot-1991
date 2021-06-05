@@ -1,0 +1,192 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://gamepress.gg/arknights/sites/arknights/files/game-images/skills/skill_icon_skcom_atk_up%5B3%5D.png",
+                "align": "start",
+                "size": "xxs"
+              }
+            ],
+            "width": "50px"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Skill 1: ATK Up γ"
+              },
+              {
+                "type": "text",
+                "text": "Mastery min. E2 Lv1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/m-1_0.png",
+                    "size": "xxs",
+                    "offsetTop": "3px"
+                  }
+                ],
+                "width": "50px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-2_0.png",
+                    "position": "absolute"
+                  },
+                  {
+                    "type": "text",
+                    "text": "8h",
+                    "color": "#ffffff",
+                    "offsetTop": "8px",
+                    "offsetStart": "11px"
+                  }
+                ],
+                "width": "40px",
+                "height": "40px",
+                "offsetTop": "3px",
+                "margin": "sm"
+              }
+            ],
+            "margin": "sm",
+            "height": "45px"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/m-2_0.png",
+                    "size": "xxs",
+                    "offsetTop": "3px"
+                  }
+                ],
+                "width": "50px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-2_0.png",
+                    "position": "absolute"
+                  },
+                  {
+                    "type": "text",
+                    "text": "16h",
+                    "color": "#ffffff",
+                    "offsetTop": "8px",
+                    "offsetStart": "6px"
+                  }
+                ],
+                "width": "40px",
+                "height": "40px",
+                "offsetTop": "3px",
+                "margin": "sm"
+              }
+            ],
+            "height": "45px"
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/m-3_0.png",
+                    "size": "xxs",
+                    "offsetTop": "3px"
+                  }
+                ],
+                "width": "50px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-2_0.png",
+                    "position": "absolute"
+                  },
+                  {
+                    "type": "text",
+                    "text": "24h",
+                    "color": "#ffffff",
+                    "offsetTop": "8px",
+                    "offsetStart": "6px"
+                  }
+                ],
+                "width": "40px",
+                "height": "40px",
+                "offsetTop": "3px",
+                "margin": "sm"
+              }
+            ],
+            "height": "45px"
+          }
+        ],
+        "backgroundColor": "#212121",
+        "margin": "lg"
+      }
+    ]
+  }
+}

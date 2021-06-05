@@ -1,0 +1,162 @@
+{
+  "type": "flex",
+  "altText": "Goblok",
+  "contents": {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://cdn.glitch.com/d62336d4-8f62-47f6-b23f-8fc7535e2607%2Fezgif-7-b91e421cd4f0.png?v=1602125351316",
+      "size": "xl",
+      "aspectRatio": "15:15",
+      "aspectMode": "cover",
+      "action": {
+        "type": "message",
+        "label": "GOBLOK",
+        "text": "@bot send gblk"
+      },
+      "animated": true
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "Goblok",
+          "weight": "bold",
+          "size": "xl",
+          "action": {
+            "type": "message",
+            "label": "action",
+            "text": "@bot send gblk"
+          },
+          "color": "#E0E0E0"
+        },
+        {
+          "type": "box",
+          "layout": "baseline",
+          "margin": "md",
+          "contents": [
+            {
+              "type": "icon",
+              "size": "sm",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            },
+            {
+              "type": "icon",
+              "size": "sm",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            },
+            {
+              "type": "icon",
+              "size": "sm",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            },
+            {
+              "type": "icon",
+              "size": "sm",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            },
+            {
+              "type": "icon",
+              "size": "sm",
+              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+            },
+            {
+              "type": "text",
+              "text": "5.0 GOBLOK",
+              "size": "sm",
+              "color": "#E0E0E0",
+              "margin": "md",
+              "flex": 0,
+              "action": {
+                "type": "message",
+                "label": "action",
+                "text": "@bot send gblk"
+              }
+            }
+          ],
+          "action": {
+            "type": "message",
+            "label": "action",
+            "text": "@bot send gblk"
+          }
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "100%",
+                  "color": "#E0E0E0",
+                  "size": "sm",
+                  "flex": 1,
+                  "action": {
+                    "type": "message",
+                    "label": "action",
+                    "text": "@bot send gblk"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": "Certified Goblok",
+                  "wrap": true,
+                  "color": "#E0E0E0",
+                  "size": "sm",
+                  "flex": 5,
+                  "action": {
+                    "type": "message",
+                    "label": "action",
+                    "text": "@bot send gblk"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "height": "sm",
+          "action": {
+            "type": "message",
+            "label": "GOBLOK",
+            "text": "@bot send gblk"
+          },
+          "color": "#424242"
+        },
+        {
+          "type": "spacer",
+          "size": "sm"
+        }
+      ],
+      "flex": 0
+    },
+    "styles": {
+      "hero": {
+        "backgroundColor": "#222222"
+      },
+      "body": {
+        "backgroundColor": "#222222"
+      },
+      "footer": {
+        "backgroundColor": "#222222"
+      }
+    }
+  }
+}

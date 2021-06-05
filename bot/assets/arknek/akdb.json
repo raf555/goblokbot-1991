@@ -1,0 +1,1042 @@
+{
+  "skadi corrupting heart": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_1012_skadi2.png"
+  },
+  "kaltsit": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_003_kalts.png"
+  },
+  "gladiia": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_474_glady.png"
+  },
+  "passenger": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-04/char_472_pasngr.png"
+  },
+  "ash": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-03/char_456_ash.png"
+  },
+  "dusk": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_2015_dusk.png"
+  },
+  "saga": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_362_saga.png"
+  },
+  "archetto": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-01/char_332_archet.png"
+  },
+  "mountain": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-12/char_264_f12yin_Icon.png"
+  },
+  "mudrock": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-11/char_311_mudrok.png"
+  },
+  "rosmontis": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-11/char_391_rosmon.png"
+  },
+  "blemishine": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-10/char_423_blemsh_1Icon.png"
+  },
+  "surtr": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-09/char_350_surtr.png"
+  },
+  "eunectes": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_416_zumama.png"
+  },
+  "thorns": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_293_thorns_1_Icon.png"
+  },
+  "suzuran": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_358_lisa_Icon.png"
+  },
+  "weedy": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-05/char_400_weedy_1_icon.png"
+  },
+  "w": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-05/char_113_cqbw_1_icon.png"
+  },
+  "phantom": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_250_phatom_1_PFP_1.png"
+  },
+  "bagpipe": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-03/char_222_bpipe.png"
+  },
+  "ceobe": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-02/char_2013_cerber_1_3.png"
+  },
+  "nian": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-01/char_2014_nian_1.png"
+  },
+  "aak": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-01/char_225_haak_1.png"
+  },
+  "blaze": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-12/char_017_huang_1.png"
+  },
+  "mostima": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_213_mostma_1_1.png"
+  },
+  "magallan": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_248_mgllan_1.png"
+  },
+  "hellagur": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_188_helage_1.png"
+  },
+  "schwarz": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_340_shwaz_1.png"
+  },
+  "chen": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_010_chen_1.png"
+  },
+  "skadi": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_263_skadi_1.png"
+  },
+  "silverash": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_172_svrash_1.png"
+  },
+  "saria": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_202_demkni_1.png"
+  },
+  "hoshiguma": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_136_hsguma_1.png"
+  },
+  "nightingale": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_179_cgbird_1.png"
+  },
+  "shining": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_147_shining_1.png"
+  },
+  "angelina": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_291_aglina_1.png"
+  },
+  "eyjafjalla": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_180_amgoat_1.png"
+  },
+  "ifrit": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_134_ifrit_1.png"
+  },
+  "siege": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_112_siege_1.png"
+  },
+  "exusiai": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_103_angel_1.png"
+  },
+  "akafuyu": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_475_akafyu.png"
+  },
+  "toddifons": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-04/char_363_toddi.png"
+  },
+  "heavyrain": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-04/char_304_zebra.png"
+  },
+  "frost": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-03/char_458_rfrost.png"
+  },
+  "blitz": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-03/char_457_blitz.png"
+  },
+  "tachanka": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-03/char_459_tachak.png"
+  },
+  "mrnothing": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_455_nothin.png"
+  },
+  "lava-purgatory": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_1011_lava2_0.png"
+  },
+  "tuye": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-01/char_402_tuye.png"
+  },
+  "iris": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-01/char_338_iris.png"
+  },
+  "robin": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-12/char_451_robin.png"
+  },
+  "kafka": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-12/char_214_kafka_Icon.png"
+  },
+  "amiya guard": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-11/char_1001_amiya2.png"
+  },
+  "whisperain": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-11/char_436_whispr.png"
+  },
+  "aosta": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-10/char_346_aosta_1Icon.png"
+  },
+  "whislash": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-10/char_265_sophia_1Icon.png"
+  },
+  "april": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-09/char_365_aprl.png"
+  },
+  "mint": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-09/char_388_mint.png"
+  },
+  "touch": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_510_amedic.png"
+  },
+  "pith": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_509_acast.png"
+  },
+  "stormeye": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_511_asnipe.png"
+  },
+  "sharp": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_508_aguard.png"
+  },
+  "flint": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_415_flint.png"
+  },
+  "tomimi": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_411_tomimi.png"
+  },
+  "andreana": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_218_cuttle_1_Icon.png"
+  },
+  "chiave": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_349_chiave_1Icon.png"
+  },
+  "beeswax": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_344_beewax_1_Icon.png"
+  },
+  "scene": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_336_folivo_1_Icon.png"
+  },
+  "ayerscarpe": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_294_ayer.png"
+  },
+  "folinic": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_345_folnic.png"
+  },
+  "leonhardt": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_373_lionhd_1_PFP.png"
+  },
+  "absinthe": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_405_absin_1_PFP.png"
+  },
+  "tsukinogi": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/ArtTsukinogiBasePFP.png"
+  },
+  "asbestos": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/ArtAsbestosBasePFP.png"
+  },
+  "elysium": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-05/char_401_elysm_1_icon.png"
+  },
+  "shamare": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_254_vodfox_1_PFP.png"
+  },
+  "sideroca": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_333_sidero_1_PFP.png"
+  },
+  "sesa": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-03/char_379_sesa.png"
+  },
+  "bibeak": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-03/char_252_bibeak.png"
+  },
+  "leizi": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-02/char_306_leizi_1_4.png"
+  },
+  "hung": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-01/char_226_hmau_1.png"
+  },
+  "snowsant": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-01/char_383_snsant_1_10.png"
+  },
+  "greythroat": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-12/char_367_swllow_1.png"
+  },
+  "broca": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-12/char_356_broca_1.png"
+  },
+  "reed": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-12/char_261_sddrag_1.png"
+  },
+  "bison": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_325_bison_1_2.png"
+  },
+  "waai fu": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_243_waaifu_1.png"
+  },
+  "ceylon": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_348_ceylon_1.png"
+  },
+  "flamebringer": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_131_flameb_1_1.png"
+  },
+  "breeze": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_260_breeze_1p.png"
+  },
+  "executor": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_279_excu_1.png"
+  },
+  "astesia": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_274_astesi_1.png"
+  },
+  "glaucus": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_326_glacus_1.png"
+  },
+  "swire": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_308_swire_1.png"
+  },
+  "grani": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_220_grani_1.png"
+  },
+  "nightmare": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_164_nightm_1.png"
+  },
+  "savage": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_230_savage_1.png"
+  },
+  "feater": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_241_panda_1.png"
+  },
+  "manticore": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_215_mantic_1.png"
+  },
+  "sora": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_101_sora_1.png"
+  },
+  "istina": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_195_glassb_1.png"
+  },
+  "pramanix": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_174_slbell_1.png"
+  },
+  "cliffheart": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_173_slchan_1.png"
+  },
+  "firewatch": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_158_milu_1.png"
+  },
+  "provence": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_145_prove_1.png"
+  },
+  "vulcan": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_163_hpsts_1.png"
+  },
+  "croissant": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_201_moeshd_1.png"
+  },
+  "liskarm": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_107_liskam_1.png"
+  },
+  "projekt red": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_144_red_1.png"
+  },
+  "nearl": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_148_nearl_1.png"
+  },
+  "warfarin": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_171_bldsk_1.png"
+  },
+  "silence": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_108_silent_1.png"
+  },
+  "mayer": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_242_otter_1.png"
+  },
+  "skyfire": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_166_skfire_1.png"
+  },
+  "amiya": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_002_amiya_1.png"
+  },
+  "meteorite": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_219_meteo_1.png"
+  },
+  "platinum": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_204_platnm_1.png"
+  },
+  "blue poison": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_129_bluep_1.png"
+  },
+  "specter": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_143_ghost_1.png"
+  },
+  "lappland": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_140_whitew_1.png"
+  },
+  "indra": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_155_tiger_1.png"
+  },
+  "franka": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_106_franka_1.png"
+  },
+  "texas": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_102_texas_1.png"
+  },
+  "zima": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_115_headbr_1.png"
+  },
+  "ptilopsis": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_128_plosis_1.png"
+  },
+  "beanstalk": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-01/char_452_bstalk.png"
+  },
+  "pinecone": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-12/char_440_pinecn.png"
+  },
+  "bubble": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-10/char_381_bubble_1Icon.png"
+  },
+  "arene": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-09/char_271_spikes.png"
+  },
+  "aciddrop": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_366_acdrop.png"
+  },
+  "jaye": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_272_strong_1_Icon.png"
+  },
+  "click": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_328_cammou.png"
+  },
+  "podenco": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_258_podego_1_PFP.png"
+  },
+  "jackie": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-11/char_347_jaksel.png"
+  },
+  "cutter": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_301_cutter_1_PFP.png"
+  },
+  "conviction": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_159_peacok_icon.png"
+  },
+  "utage": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-03/char_337_utage.png"
+  },
+  "purestream": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-03/ArtPurestreamE1PFP.png"
+  },
+  "ambriel": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-12/char_302_glaze_1.png"
+  },
+  "may": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_133_mm_1.png"
+  },
+  "ethan": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_355_ethan_1pRes.png"
+  },
+  "dur nar": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/char_260_durnar_1.png"
+  },
+  "vermeil": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_190_clour_1.png"
+  },
+  "myrtle": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_151_myrtle_1.png"
+  },
+  "sussurro": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_298_susuro_1.png"
+  },
+  "greyy": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_253_greyy_1.png"
+  },
+  "beehunter": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_137_brownb_1.png"
+  },
+  "shaw": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_277_sqrrel_1.png"
+  },
+  "earthspirit": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_183_skgoat_1.png"
+  },
+  "deepcolor": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_110_deepcl_1.png"
+  },
+  "gummy": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_196_sunbr_1.png"
+  },
+  "cuora": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_150_snakek_1.png"
+  },
+  "matterhorn": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_199_yak_1.png"
+  },
+  "perfumer": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_181_flower_1.png"
+  },
+  "gavial": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_187_ccheal_1.png"
+  },
+  "myrrh": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_117_myrrh_1.png"
+  },
+  "rope": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_236_rope_1.png"
+  },
+  "gravel": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_237_gravel_1.png"
+  },
+  "mousse": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_185_frncat_1.png"
+  },
+  "estelle": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_127_estell_1.png"
+  },
+  "frostleaf": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_193_frostl_1.png"
+  },
+  "matoimaru": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_289_gyuki_1.png"
+  },
+  "dobermann": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_130_doberm_1.png"
+  },
+  "vigna": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_290_vigna_1.png"
+  },
+  "scavenger": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_149_scave_1.png"
+  },
+  "courier": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_198_blackd_1.png"
+  },
+  "shirayuki": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_118_yuki_1.png"
+  },
+  "meteor": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_126_shotst_1.png"
+  },
+  "jessica": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_235_jesica_1.png"
+  },
+  "gitano": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_109_fmout_1.png"
+  },
+  "haze": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_141_nights_1.png"
+  },
+  "reserve-operator-caster": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_505_rcast.png"
+  },
+  "reserve-operator-logistics": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_506_rmedic.png"
+  },
+  "reserve-operator-sniper": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_507_rsnipe.png"
+  },
+  "reserve-operator-melee": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_504_rguard.png"
+  },
+  "spot": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_284_spot_1.png"
+  },
+  "popukar": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/char_281_popka_1.png"
+  },
+  "midnight": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_283_midn_1.png"
+  },
+  "catapult": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_282_catap_1.png"
+  },
+  "orchid": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_278_orchid_1.png"
+  },
+  "steward": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_210_stward_1.png"
+  },
+  "ansel": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_212_ansel_1.png"
+  },
+  "hibiscus": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_120_hibisc_1.png"
+  },
+  "lava": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_121_lava_1.png"
+  },
+  "adnachiel": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_211_adnach_1.png"
+  },
+  "kroos": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_124_kroos_1.png"
+  },
+  "beagle": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_122_beagle_1.png"
+  },
+  "cardigan": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_209_ardign_1.png"
+  },
+  "melantha": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_208_melan_1.png"
+  },
+  "plume": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_192_falco_1.png"
+  },
+  "vanilla": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_240_wyvern_1.png"
+  },
+  "fang": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_123_fang_1.png"
+  },
+  "12f": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 2,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_009_12fce_1.png"
+  },
+  "durin": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 2,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_501_durin_1.png"
+  },
+  "rangers": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 2,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_503_rang_1.png"
+  },
+  "noir corne": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_tank.png",
+    "rarity": 2,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_500_noirc_1.png"
+  },
+  "yato": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 2,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_502_nblade_1.png"
+  },
+  "thrm-ex": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 1,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-04/char_376_therex_1_PFP.png"
+  },
+  "castle-3": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 1,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_286_cast3_1.png"
+  },
+  "lancet-2": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 1,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_285_medic2_1.png"
+  },
+  "skadi corrupting-heart": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_1012_skadi2.png"
+  },
+  "blue-poison": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_129_bluep_1.png"
+  },
+  "reserve operator-caster": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_505_rcast.png"
+  },
+  "reserve operator-logistics": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_506_rmedic.png"
+  },
+  "reserve operator-sniper": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_507_rsnipe.png"
+  },
+  "reserve operator-melee": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 3,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_504_rguard.png"
+  },
+  "poca": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_197_poca_1_PFP_0.png"
+  },
+  "rosa": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_197_poca_1_PFP_0.png"
+  }
+}

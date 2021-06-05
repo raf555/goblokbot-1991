@@ -1,0 +1,103 @@
+{
+  "items": [
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "@bot",
+        "text": "@bot"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "gapapa",
+        "text": "gapapa"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "gajadi",
+        "text": "gajadi"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "status",
+        "text": "@bot status"
+      }
+    },
+    {
+      "type": "action",
+      "imageUrl": "https://2.bp.blogspot.com/-eyImLF4Q1Gs/WMSUZ9o3OEI/AAAAAAAAGFU/JLCFLbAVX2sJTBlWmfv3diyw043zAh3DACLcB/s1600/KBBI.png",
+      "action": {
+        "type": "message",
+        "label": "random KBBI",
+        "text": "@bot kbbi"
+      }
+    },
+    {
+      "type": "action",
+      "imageUrl": "https://i.ibb.co/wp1gJ6k/Untitled.png",
+      "action": {
+        "type": "message",
+        "label": "pap jokowi",
+        "text": "@bot pap jokowi"
+      }
+    },
+    {
+      "type": "action",
+      "imageUrl": "https://image.flaticon.com/icons/png/512/124/124010.png",
+      "action": {
+        "type": "message",
+        "label": "pay respect",
+        "text": "@bot pay respect"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "send command",
+        "text": "@bot send command"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "kasi tau",
+        "text": "@bot kasi tau"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "Send random number",
+        "text": "@bot send random number"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "leave group",
+        "text": "@bot leave"
+      }
+    },
+    {
+      "type": "action",
+      "action": {
+        "type": "message",
+        "label": "restart",
+        "text": "@bot restart"
+      }
+    }
+  ]
+}

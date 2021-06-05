@@ -1,0 +1,403 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg//arknights/sites/arknights/files/2019-11/char_213_mostma_1_1.png",
+                    "aspectMode": "cover",
+                    "size": "full"
+                  }
+                ],
+                "cornerRadius": "100px",
+                "width": "72px",
+                "height": "72px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Operator Information",
+                    "size": "sm",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Name: Mostima",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Rarity: 6",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Class: ",
+                    "size": "sm"
+                  }
+                ]
+              }
+            ],
+            "spacing": "xl"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Promotion Materials"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "icon",
+                            "url": "https://gamepress.gg/sites/arknights/files/2019-10/0.png",
+                            "size": "xxl"
+                          },
+                          {
+                            "type": "icon",
+                            "url": "https://www.nicepng.com/png/full/9-97633_right-arrow-white-png-right-arrow-png-white.png",
+                            "size": "xs",
+                            "margin": "xs"
+                          },
+                          {
+                            "type": "icon",
+                            "url": "https://gamepress.gg/sites/arknights/files/2019-10/1.png",
+                            "size": "xxl",
+                            "margin": "xs"
+                          }
+                        ],
+                        "offsetTop": "5px",
+                        "offsetStart": "3px",
+                        "width": "80px"
+                      },
+                      {
+                        "type": "separator"
+                      }
+                    ],
+                    "margin": "sm",
+                    "height": "45px"
+                  },
+                  {
+                    "type": "separator"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "contents": [
+                          {
+                            "type": "icon",
+                            "url": "https://gamepress.gg/sites/arknights/files/2019-10/1.png",
+                            "size": "xxl"
+                          },
+                          {
+                            "type": "icon",
+                            "url": "https://www.nicepng.com/png/full/9-97633_right-arrow-white-png-right-arrow-png-white.png",
+                            "size": "xs",
+                            "margin": "xs"
+                          },
+                          {
+                            "type": "icon",
+                            "url": "https://gamepress.gg/sites/arknights/files/2019-10/2.png",
+                            "size": "xxl",
+                            "margin": "xs"
+                          }
+                        ],
+                        "offsetTop": "5px",
+                        "offsetStart": "3px",
+                        "width": "80px"
+                      },
+                      {
+                        "type": "separator"
+                      }
+                    ],
+                    "height": "45px"
+                  }
+                ],
+                "backgroundColor": "#000000"
+              }
+            ],
+            "margin": "sm"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Pro tip: tap on the material to check craft recipe if available. (except LMD, EXP, and Chip)",
+                "size": "xxs",
+                "margin": "md",
+                "wrap": true,
+                "style": "italic"
+              }
+            ],
+            "margin": "lg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Skill Upgrade Materials"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "1 ➝ 2",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E0 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "margin": "sm",
+                "height": "45px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "2 ➝ 3",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E0 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "height": "45px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "3 ➝ 4",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E0 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "height": "45px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "4 ➝ 5",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E1 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "height": "45px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "5 ➝ 6",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E1 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "height": "45px"
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "6 ➝ 7",
+                        "color": "#ffffff",
+                        "align": "center",
+                        "offsetTop": "5px"
+                      },
+                      {
+                        "type": "text",
+                        "text": "min. E1 lv1",
+                        "size": "xs",
+                        "align": "center",
+                        "color": "#ffffff"
+                      }
+                    ],
+                    "width": "100px"
+                  },
+                  {
+                    "type": "separator"
+                  }
+                ],
+                "height": "45px"
+              }
+            ],
+            "backgroundColor": "#000000"
+          }
+        ]
+      }
+    }
+  ]
+}

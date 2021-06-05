@@ -1,0 +1,62 @@
+      <div class="ui left inverted vertical menu sidebar">
+         <div class="item">
+            <div class="header">Features</div>
+            <div class="menu">
+               <a class="item" href="/?rng" onclick="if(window.location.href == 'https://gblkbt1991.glitch.me' || window.location.href == 'https://gblkbt1991.glitch.me/'){$('.ui.basic.modal').modal('show');$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');return false;}">
+               <i class="random icon"></i>
+               Random Number Generator
+               </a>
+            </div>
+         </div>
+         <div class="item">
+            <div class="header">Bot</div>
+            <div class="menu">
+               <a class="item" href="/command">
+               <i class="keyboard icon"></i>
+               Request New Command
+               </a>
+               <a class="item" href="/latency">
+               <i class="cloud icon"></i>
+               View Bot Latency
+               </a>
+               <a class="item" href="/user">
+               <i class="user icon"></i>
+               View User List
+               </a>
+              <% if(admin||!admin) { %>
+               <a class="item" href="/chat">
+               <i class="inbox icon"></i>
+               View Chat History
+               </a>
+              <% } %>
+            </div>
+         </div>
+         <div class="item">
+            <div class="header">User</div>
+            <div class="menu">
+               <a class="item" href="/user/me">
+               <i class="user icon"></i>
+               Profile
+               </a>
+               <a class="item" href="/auth/logout">
+               <i class="sign-out icon"></i>
+               Logout
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="ui fixed inverted menu">
+         <div class="ui container">
+            <a class="item" onclick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+            <i class="sidebar icon"></i>
+            </a>
+            <a href="/" class="header item">
+            <img
+               class="logo"
+               src="https://i.ibb.co/z6WJ44H/Untitled.png"
+               />
+            GoblokBot 1991
+            </a>
+            <!--<a href="/" class="item">Home</a>-->
+         </div>
+      </div>

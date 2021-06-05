@@ -1,0 +1,357 @@
+{
+  "type": "box",
+  "layout": "vertical",
+  "contents": [
+    {
+      "type": "text",
+      "text": "Leveling Cost"
+    },
+    {
+      "type": "box",
+      "layout": "horizontal",
+      "contents": [
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "icon",
+              "url": "https://gamepress.gg/sites/arknights/files/2019-10/0.png",
+              "size": "xxl"
+            }
+          ],
+          "offsetTop": "7px",
+          "offsetStart": "3px",
+          "width": "40px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "1 to 50",
+                  "color": "#ffffff",
+                  "size": "xs"
+                }
+              ],
+              "offsetTop": "20px"
+            }
+          ],
+          "width": "50px"
+        },
+        {
+          "type": "separator"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-5_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files//game-images/items/EXP_PLAYER.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "24400",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-4_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/game-images/items/GOLD.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "26719",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        }
+      ],
+      "margin": "sm",
+      "height": "55px",
+      "backgroundColor": "#000000"
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "box",
+      "layout": "horizontal",
+      "contents": [
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "icon",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/1.png",
+              "size": "xxl"
+            }
+          ],
+          "offsetTop": "7px",
+          "offsetStart": "3px",
+          "width": "40px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "1 to 70",
+                  "color": "#ffffff",
+                  "size": "xs"
+                }
+              ],
+              "offsetTop": "20px"
+            }
+          ],
+          "width": "50px"
+        },
+        {
+          "type": "separator"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-5_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files//game-images/items/EXP_PLAYER.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "215000",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-4_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/game-images/items/GOLD.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "205228",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        }
+      ],
+      "height": "55px",
+      "backgroundColor": "#000000"
+    },
+    {
+      "type": "separator"
+    },
+    {
+      "type": "box",
+      "layout": "horizontal",
+      "contents": [
+        {
+          "type": "box",
+          "layout": "baseline",
+          "contents": [
+            {
+              "type": "icon",
+              "url": "https://gamepress.gg/sites/arknights/files/2019-10/2.png",
+              "size": "xxl"
+            }
+          ],
+          "offsetTop": "7px",
+          "offsetStart": "3px",
+          "width": "40px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "1 to 80",
+                  "color": "#ffffff",
+                  "size": "xs"
+                }
+              ],
+              "offsetTop": "20px"
+            }
+          ],
+          "width": "50px"
+        },
+        {
+          "type": "separator"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-5_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files//game-images/items/EXP_PLAYER.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "495000",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-4_0.png",
+              "position": "absolute"
+            },
+            {
+              "type": "image",
+              "url": "https://gamepress.gg/arknights/sites/arknights/files/game-images/items/GOLD.png"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "447378",
+                  "color": "#ffffff",
+                  "size": "xxs"
+                }
+              ],
+              "position": "absolute",
+              "backgroundColor": "#000000",
+              "offsetTop": "35px"
+            }
+          ],
+          "width": "50px",
+          "height": "50px",
+          "margin": "sm",
+          "offsetTop": "3px"
+        }
+      ],
+      "height": "55px",
+      "backgroundColor": "#000000"
+    }
+  ],
+  "margin": "sm"
+}
