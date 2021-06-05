@@ -1,0 +1,101 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg//arknights/sites/arknights/files/2019-11/char_213_mostma_1_1.png",
+                    "aspectMode": "cover",
+                    "size": "full"
+                  }
+                ],
+                "cornerRadius": "100px",
+                "width": "72px",
+                "height": "72px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Operator Information",
+                    "size": "sm",
+                    "weight": "bold"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Name: Mostima",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Rarity: 6",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "text": "Class: ",
+                    "size": "sm"
+                  }
+                ]
+              }
+            ],
+            "spacing": "xl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Statistics"
+              },
+              {
+                "type": "text",
+                "text": "does not include trust and potential bonus",
+                "size": "xxs",
+                "style": "italic"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": []
+              }
+            ],
+            "margin": "sm"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": []
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": []
+      }
+    }
+  ]
+}

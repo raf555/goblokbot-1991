@@ -1,0 +1,1173 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GoblokBot 1991",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "command list",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Fitur Umum",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Cara Pakai: @bot [insert keyword]",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true,
+                "align": "center"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1. Mention @bot",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0,
+                    "action": {
+                      "type": "message",
+                      "label": "action",
+                      "text": "@bot"
+                    }
+                  }
+                ],
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "2. Bot Anti Spam",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "3. Menjawab Salam",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0,
+                    "action": {
+                      "type": "message",
+                      "label": "action",
+                      "text": "assalamualaikum"
+                    }
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "4. Menjawab Panggilan \"teman\"",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0,
+                    "action": {
+                      "type": "message",
+                      "label": "action",
+                      "text": "teman"
+                    }
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "5. Bold Konversi Kalimat",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ bold -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot bold ini tebel"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "6. Italic Konversi Kalimat",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ italic -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot italic ini miring"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "7. Menjawab Saran",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ mending mana -- apa -- ] / [ pilih mana -- atau -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot mending beli apa ngga"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "8. Menjawab Pertanyaan Ya / Tidak",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ apakah -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot apakah bot keren?"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "9. Urban Dictionary",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ ud -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot ud bot"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "10. Definisi dari KBBI",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ kbbi -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot kbbi kaos"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programmed using: Node.JS",
+            "color": "#aaaaaa",
+            "size": "xxs",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "Powered by: Glitch",
+            "size": "xxs",
+            "color": "#aaaaaa",
+            "flex": 0,
+            "align": "end",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://glitch.com/"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": true
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GoblokBot 1991",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "command list",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Fitur Umum (2)",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Cara Pakai: @bot [insert keyword]",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true,
+                "align": "center"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "11. Info Anime / Search Anime",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xxl"
+              },
+              {
+                "type": "text",
+                "text": "[ mal -- / anime --]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot anime re zero"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "12. Youtube (Top Search, Random, Search)",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0,
+                    "wrap": true
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ yt -- / ytr -- / yts --]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot yt viano gaming"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "13. Love Calculator",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ lc -- dan --]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot lc okky dan vhina"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "14. Pay Respect",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ pay respect ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot pay respect"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "15. PAP",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ pap -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot pap jokowi"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "16. Status dan Umur Bot",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ status ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot status"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programmed using: Node.JS",
+            "color": "#aaaaaa",
+            "size": "xxs",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "Powered by: Glitch",
+            "size": "xxs",
+            "color": "#aaaaaa",
+            "flex": 0,
+            "align": "end",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://glitch.com/"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": true
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GoblokBot 1991",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "command list",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Fitur Send",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Cara Pakai: @bot [insert keyword]",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true,
+                "align": "center"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1. Send Goblok",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xxl"
+              },
+              {
+                "type": "text",
+                "text": "[ send gblk / goblok ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send gblk"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "2. Send Ban List",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send banlist ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send banlist"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "3. Send Kurs Mata Uang",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send kurs -- to -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send kurs USD to IDR"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "4. Send Random Number",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send random number ] / [ send random number between -- and -- ]",
+                "size": "xxs",
+                "align": "end",
+                "wrap": true,
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send random number"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "5. Send Nude",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send nude ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send nude"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "6. Send Command",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send command ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send command"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "7. Send Kata / Kalimat",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ send -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send hehe"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programmed using: Node.JS",
+            "color": "#aaaaaa",
+            "size": "xxs",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "Powered by: Glitch",
+            "size": "xxs",
+            "color": "#aaaaaa",
+            "flex": 0,
+            "align": "end",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://glitch.com/"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": true
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GoblokBot 1991",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "command list",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Fitur Lainnya",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Cara Pakai: kirim keyword",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true,
+                "align": "center"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1. Informasi COVID-19 - Indonesia",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xxl"
+              },
+              {
+                "type": "text",
+                "text": "[ !c ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "!c"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programmed using: Node.JS",
+            "color": "#aaaaaa",
+            "size": "xxs",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "Powered by: Glitch",
+            "size": "xxs",
+            "color": "#aaaaaa",
+            "flex": 0,
+            "align": "end",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://glitch.com/"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": true
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "GoblokBot 1991",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "command list",
+            "size": "xs",
+            "color": "#aaaaaa",
+            "wrap": true
+          },
+          {
+            "type": "separator",
+            "margin": "xxl"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "Fitur Khusus Admin",
+                "align": "center"
+              },
+              {
+                "type": "text",
+                "text": "Cara Pakai: kirim keyword",
+                "size": "xxs",
+                "color": "#aaaaaa",
+                "wrap": true,
+                "align": "center"
+              },
+              {
+                "type": "separator",
+                "margin": "xxl"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "1. Ban/Unban user / pap keyword",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xxl"
+              },
+              {
+                "type": "text",
+                "text": "[ @bot ban/unban -- || @bot ban/unban pap -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot ban pap riko"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "2. Restart",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ @bot restart/reboot ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot restart"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "3. Turn On/Off Bot / Pap",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ @bot turn on/off || @bot turn on/off pap ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot turn off pap 1 jam"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "4. Leave Group",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ @bot leave ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot leave"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "5. Send History Chat",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ @bot send chat by -- at -- -- ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "@bot send chat by admin at 00.00 0"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "6. Send Line Gift Code",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ lgc ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "lgc"
+                }
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "7. Send Sisa Line Gift Code",
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                  }
+                ],
+                "margin": "xs"
+              },
+              {
+                "type": "text",
+                "text": "[ sisalgc ]",
+                "size": "xxs",
+                "align": "end",
+                "action": {
+                  "type": "message",
+                  "label": "action",
+                  "text": "sisalgc"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Programmed using: Node.JS",
+            "color": "#aaaaaa",
+            "size": "xxs",
+            "align": "start"
+          },
+          {
+            "type": "text",
+            "text": "Powered by: Glitch",
+            "size": "xxs",
+            "color": "#aaaaaa",
+            "flex": 0,
+            "align": "end",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "https://glitch.com/"
+            }
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": true
+        }
+      }
+    }
+  ]
+}

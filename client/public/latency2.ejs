@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>canvas{
+
+  width:100% !important;
+  height:500px !important;
+
+}</style>
+      <script
+         src="https://code.jquery.com/jquery-3.5.1.min.js"
+         crossorigin="anonymous"
+         ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+      window.onload = function() {
+        function arrsort(array, key) {
+          return array.sort(function(a, b) {
+            var x = a[key];
+            var y = b[key];
+            return x < y ? -1 : x > y ? 1 : 0;
+          });
+        }
+        let dp = [];
+        let label = [];
+        function addData(data) {
+          let cmd = "<%-!cmd?1:cmd%>";
+          if(cmd != "1"){
+            
+          for (var gk in data) {
+            if(gk == "avg" || data[gk]>30000) continue;
+            dp.push(data[gk]);
+            label.push(gk);
+          }
+          let p = {
+            labels: label,
+            datasets: [{
+              label: "<%-cmd%> Latency (ms)",
+              data: dp
+            }]
+          }
+          var myBarChart = new Chart(document.getElementById('myChart').getContext('2d'), {
+              type: 'line',
+              data: p,
+            options: {
+              responsive:true,
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+              }
+            }
+          }
+          });
+          } else {
+            
+          for (var gk in data) {
+            //if (gk == "tes") continue;
+            dp.push({
+              label: gk,
+              y: data[gk]["avg"]
+            });
+          }
+          dp = arrsort(dp, "y");
+            let asu = [];
+          for (var gk in dp) {
+            asu.push(dp[gk].y);
+            label.push(dp[gk].label);
+          }
+            
+            let p = {
+              labels: label.reverse(),
+            datasets: [{
+              label: "Features Latency (ms)",
+              data: asu.reverse(),
+              backgroundColor: "red"
+            }]
+          }
+          
+          var myBarChart = new Chart(document.getElementById('myChart').getContext('2d'), {
+              type: 'horizontalBar',
+              data: p,
+            options: {
+              responsive:true,
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+              }
+            },
+              onClick: function(c,i) {
+    e = i[0];
+    var x_value = this.data.labels[e._index];
+    var y_value = this.data.datasets[0].data[e._index];
+                location.href="/latency/graph?cmd="+x_value
+}
+          }
+          })
+        }}
+        $.getJSON("/latency/get?id=<%-!cmd?1:cmd%>", addData);
+      };
+    </script>
+  </head>
+  <body>
+    <canvas id="myChart"></canvas>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+# from glitch
+.glitchdotcom.json
+.node-gyp
+node_modules
+.glitch-assets
+
+# db
+db/
+
+# big assets
+bot/assets/kbbi.json

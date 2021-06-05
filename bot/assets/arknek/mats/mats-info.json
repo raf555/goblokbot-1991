@@ -1,0 +1,119 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "spacer"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "",
+                "position": "absolute"
+              },
+              {
+                "type": "image",
+                "url": "",
+                "aspectMode": "cover",
+                "size": "md"
+              }
+            ],
+            "width": "100px",
+            "height": "100px"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "spacer"
+              }
+            ]
+          }
+        ],
+        "spacing": "xl"
+      },
+      {
+        "type": "text",
+        "text": "-",
+        "align": "center",
+        "size": "lg",
+        "weight": "bold"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Craft Recipe at Workshop:"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/2019-11/item-4_0.png",
+                    "position": "absolute"
+                  },
+                  {
+                    "type": "image",
+                    "url": "https://gamepress.gg/arknights/sites/arknights/files/game-images/items/GOLD.png"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "-",
+                        "color": "#ffffff",
+                        "size": "xxs"
+                      }
+                    ],
+                    "position": "absolute",
+                    "backgroundColor": "#000000",
+                    "offsetTop": "35px"
+                  }
+                ],
+                "width": "50px",
+                "height": "50px",
+                "margin": "sm",
+                "offsetTop": "3px",
+                "offsetStart": "5px"
+              },
+              {
+                "type": "separator",
+                "margin": "md"
+              }
+            ],
+            "margin": "sm",
+            "height": "55px",
+            "backgroundColor": "#000000"
+          }
+        ],
+        "margin": "sm"
+      }
+    ]
+  }
+}
