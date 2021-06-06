@@ -125,6 +125,7 @@ async function copid(parsed, event) {
   if (!totaldeathsdiff) totaldeathsdiff = "-";
   if (!totalrecovereddiff) totalrecovereddiff = "-";
   const data = {
+    cmd: "covid",
     type: "flex",
     altText: "Corona Update: Indonesia",
     sender: {

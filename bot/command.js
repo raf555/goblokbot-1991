@@ -67,7 +67,7 @@ async function execMessage(text, event) {
   }
 
   if (reply) {
-    if (!Object.keys(reply).includes("cmd")) {
+    if (!reply.cmd) {
       reply.cmd = cmd;
     }
     reply.parsed = parsed;
