@@ -60,18 +60,17 @@
             );
           }
         
-         $(document).ready(function() {
-           $(".caritgl").on("click", function() {
-             let h = $("#kalender").calendar("get date");
-             h = `${h.getMonth()+1}/${h.getDate()}/${h.getFullYear()} 14:00`
-             let tgl = convertTZ(new Date(h), "Asia/Jakarta").getTime()
-             location.href = "?date="+tgl
+       
+       function loadtgl() {
+         $.get("/api/getavaildate", function(res, s) {
+           let list = [];
+           res.data.forEach(ts => {
+             list.push(new Date(ts));
            })
            $('#kalender')
               .calendar({
                 type: 'date',
-                minDate: new Date(<%= date[0].replace(".json", "") %>),
-                maxDate: new Date(<%= date[date.length-1].replace(".json", "") %>),
+                enabledDates: list,
                 formatter: {
                   date: function (date, settings) {
                     if (!date) return '';
@@ -83,6 +82,16 @@
                 }
               })
             ;
+         })
+       }
+         $(document).ready(function() {
+           loadtgl();
+           $(".caritgl").on("click", function() {
+             let h = $("#kalender").calendar("get date");
+             h = `${h.getMonth()+1}/${h.getDate()}/${h.getFullYear()} 14:00`
+             let tgl = convertTZ(new Date(h), "Asia/Jakarta").getTime()
+             location.href = "?date="+tgl
+           })
            $("#kalender").calendar("set date", new Date(<%= q %>))
            $("#tot").text($(".ui.card").length)
           $(".dropdown").dropdown();
@@ -161,7 +170,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="right floated meta"><small><%= chat[Object.keys(imgdb)[i]].time %></small></div>
-                  <img class="ui avatar image lazy" src="<%= chat[Object.keys(imgdb)[i]].sender.image %>"> <small><%= (chat[Object.keys(imgdb)[i]].sender.name || "").split(" ")[0] %></small>
+                  <img class="ui avatar image lazy" src="<%= user[chat[Object.keys(chat)[i]].sender.id].image %>"> <small><%= (user[chat[Object.keys(chat)[i]].sender.id].name || "").split(" ")[0] %></small>
                 </div>
                 <div class="ui image" style="cursor:pointer" onclick="showImage(this)">
                   <center>

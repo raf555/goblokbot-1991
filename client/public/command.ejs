@@ -40,6 +40,11 @@
          }
       </style>
       <%- include('global/https')-%>
+      <script src="/flex2html/flex2html.min.js"></script>
+     <link
+         rel="stylesheet"
+         href="/flex2html/flex2html.css"
+         />
       <script>
         var sortid = 0;
         var def;
@@ -95,6 +100,17 @@
          var nextid = (sortid)%len;
           realsort(nextid);
         }
+        function showflex(cmd){
+          fetch("https://gblkbt1991.glitch.me/api/command/data?cmd="+cmd)
+           .then(function(reqResponse) {
+             return reqResponse.json();
+           })
+           .then(function(res) {
+               $("#plekbokcon").html(flex2html(null, {type: "flex", contents: JSON.parse(res.reason.reply)}))
+               $('#plekbokcmd').text(cmd);
+               $('#plekbok').modal('show');
+          })
+        }
          function showedit(data/*cmd, obj*/){
            var cmd = $(data).val();
          fetch("https://gblkbt1991.glitch.me/api/command/data?cmd="+cmd)
@@ -122,8 +138,8 @@
                  $("#senderimg").val("");
                  $('#senderdiv').checkbox("uncheck");
                }
-               if(obj.type=="text"){
-                 $("#type").val("text").trigger("change");
+               if(obj.type=="text" || obj.type=="flex"){
+                 $("#type").val(obj.type).trigger("change");
                  $("#texttype").val(obj.reply);
                } else {
                  $("#type").val("image").trigger("change");
@@ -195,6 +211,23 @@
                         $("#result").addClass("warning");
                         $("#result").fadeIn();
                         return false;
+            }
+            if($("#type").val() === "flex"){
+              try{
+                let a = JSON.parse($("#texttype").val())
+                if(flex2html(null, {type:"flex", contents:a}) === carousel_struc()){
+                        $("#addnewcmd").removeClass("loading");
+                        $("#result_reason").html("Invalid flex message");
+                        $("#result").addClass("warning");
+                        $("#result").fadeIn();
+                        return false;}
+              } catch(e){
+                        $("#addnewcmd").removeClass("loading");
+                        $("#result_reason").html("Invalid flex message");
+                        $("#result").addClass("warning");
+                        $("#result").fadeIn();
+                        return false;
+              }
             }
            var form = new FormData();
            form.append("title", $("#title").val());
@@ -406,7 +439,12 @@
               });
             
               $('#type').change(function() {
-                  if ($('#type').val() == 'text') {
+                  if ($('#type').val() == 'text' || $('#type').val() == 'flex') {
+                    if ($('#type').val() == 'text'){
+                      $("label[for=texttype]").text("Reply Text")
+                    } else if ($('#type').val() == 'flex'){
+                      $("label[for=texttype]").text("Reply Flex (JSON)")
+                    }
                       $('#textdiv').fadeIn();
                       $('#imgdiv').hide();
                       $('#imgtype').val("");
@@ -483,6 +521,7 @@
                      <select id="type">
                         <option value="text">Text</option>
                         <option value="image">Image</option>
+                        <option value="flex">Flex</option>
                      </select>
                   </div>
                   <div class="field" id="textdiv" style="display:none">
@@ -589,6 +628,8 @@
                         <div class="sub header">Reply Text: <b><%= cmd[Object.keys(cmd)[i]].reply %></b></div>
                         <% } else if(cmd[Object.keys(cmd)[i]].type == "image") { %>
                         <div class="sub header">Reply Image:</div>
+                         <% } else if(cmd[Object.keys(cmd)[i]].type == "flex") { %>
+                        <div class="sub header">Reply Flex: <a style="cursor:pointer" onclick="showflex('<%=Object.keys(cmd)[i]%>')">Click</a></div>
                         <% } %>
                      </h4>
                      <% if(cmd[Object.keys(cmd)[i]].type == "image") { %>
@@ -694,6 +735,18 @@
             <i class="checkmark icon"></i>
             Yes
             </button>
+         </div>
+      </div>
+      <div class="ui modal transition hidden" id="plekbok">
+         <div class="header">
+            Flex Message for <b id="plekbokcmd"></b> Command
+         </div>
+         <div class="content" id="plekbokcon">
+         </div>
+         <div class="actions">
+            <div class="ui negative button">
+               Close
+            </div>
          </div>
       </div>
    </body>

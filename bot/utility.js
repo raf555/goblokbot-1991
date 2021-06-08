@@ -20,7 +20,8 @@ module.exports = {
   isMember,
   leave,
   dateTodate,
-  uploadImgFromQ
+  uploadImgFromQ,
+  saveUnsend
 };
 
 function leave(event) {
@@ -65,6 +66,36 @@ function replyMessage(event, msg) {
   let file = db.open(`db/latency.json`);
   let latency = Date.now() - event.timestamp;
 
+  let reply = (() => {
+    let eee = Array.isArray(msg) ? msg : [msg];
+
+    if (parsed && parsed.args.showtime) {
+      eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
+    }
+    
+    if (latency >= 7500) {
+      const ex = {
+        type: "text",
+        text: "Sorry for late reply, " + latency + " ms."
+      };
+      if (latency <= 30000) {
+        //eee.push(ex);
+        eee.unshift(ex);
+      } else {
+        eee = [
+          {
+            type: "text",
+            text: "Bot telat bales (" + latency + " ms), tolong kirim ulang."
+          }
+        ];
+      }
+    }
+
+    return client.replyMessage(event.replyToken, eee).then(() => {
+      savebotchat(event, eee);
+    });
+  })();
+
   /* write latency */
   if (!file.get(ftr)) {
     file.set(ftr + ".avg", latency);
@@ -83,45 +114,7 @@ function replyMessage(event, msg) {
     file.save();
   }
 
-  let eee = Array.isArray(msg) ? msg : [msg];
-
-  if (parsed && parsed.args.showtime) {
-    eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
-  }
-
-  let place = event.source.groupId
-    ? client.getGroupMemberProfile(event.source.groupId, event.source.userId)
-    : client.getProfile(event.source.userId);
-
-  return place.then(profile => {
-    if (latency >= 7500) {
-      const ex = {
-        type: "text",
-        text:
-          (isAdmin(event.source.userId)
-            ? "Admin"
-            : profile.displayName.split(" ")[0]) +
-          ", sorry for late reply, " +
-          latency +
-          " ms."
-      };
-      if (latency <= 30000) {
-        //eee.push(ex);
-        eee.unshift(ex);
-      } else {
-        eee = [
-          {
-            type: "text",
-            text: "Bot telat bales (" + latency + " ms), tolong kirim ulang."
-          }
-        ];
-      }
-    }
-
-    return client.replyMessage(event.replyToken, eee).then(() => {
-      savebotchat(event, eee);
-    });
-  });
+  return reply;
 }
 
 function cekban(id, hashed = true) {
@@ -338,7 +331,7 @@ function saveImage(event) {
         .upload({
           name: event.message.id,
           base64string: Buffer.concat(buffer).toString("base64"),
-          expiration: 31643352
+          expiration: 15821676
         })
         .then(upload => {
           dbimg.set(event.message.id.toString(), {

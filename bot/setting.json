@@ -5,10 +5,16 @@
     "normal": "@bot",
     "shortcut": "!",
     "custom": {
-      "normal": {},
+      "normal": {
+        "ay": 0,
+        "ky": 0,
+        "sal": 0,
+        "bil": 0
+      },
       "shortcut": {}
     }
   },
+  "statemsg": 0,
   "saveMessage": {
     "message": 0,
     "image": 0
@@ -16,6 +22,8 @@
   "disabledftr": {
     "pap": 0,
     "tes": 0,
-    "yntkts": 0
+    "yntkts": 0,
+    "yt": 0,
+    "jimp": 0
   }
 }

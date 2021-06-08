@@ -8,11 +8,13 @@ module.exports = (parsed, event) => {
     if (!isNaN(exp)) {
       exp = parseInt(exp);
       if (exp < 600) {
-        return { type: "text", text: "Minimum 10 minutes (600 sec)" };
+        return { type: "text", text: "Minimum 1 minutes (60 sec)" };
       }
     } else {
       return { type: "text", text: "Invalid exp" };
     }
+  } else {
+    exp = 24 * 3600;
   }
 
   let uploaddb = db.open("db/uploadimgq.json");

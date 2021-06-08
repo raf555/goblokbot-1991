@@ -57,6 +57,7 @@ function chatimg(req, res) {
     chat: !files.includes(date + ".json") ? {} : temlendb.get(),
     imgdb: imgdb.get(),
     date: files,
+    user: db.open("db/user.json").get(),
     q: date
   });
 }
