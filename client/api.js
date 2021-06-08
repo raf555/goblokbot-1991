@@ -12,11 +12,20 @@ app.get("/latency/get", latency_get);
 app.get("/api/chat/getcontent", chat_getcontent);
 app.get("/api/command/data", command_data);
 app.get("/api/turn/:type/:state", state_edit);
+app.get("/api/getavaildate", getavaildate);
 
 app.post("/api/ban", banuser);
 app.post("/api/unban", unbanuser);
 app.post("/api/command/:tipe", upload.single("image"), command_handleapi);
 app.post("/api/command/delete/image", command_deleteimage);
+
+function getavaildate(req, res) {
+  res.send({
+    data: fs.readdirSync(__dirname + "/../db/chat/history").map(data => {
+      return parseInt(data.replace(".json", ""));
+    })
+  });
+}
 
 function state_edit(req, res) {
   if (
@@ -113,7 +122,7 @@ function command_data(req, res) {
     } else {
       res.send({
         result: true,
-        reason: db.get(req.query.cmd.toLowerCase())
+        reason: dbcmd.get(req.query.cmd.toLowerCase())
       });
     }
   } else {
@@ -219,7 +228,7 @@ function chat_getcontent(req, res) {
   res.send(
     !id
       ? {}
-      : !fs.readdirSync(__dirname + "/db/chat/history").includes(date + ".json")
+      : !fs.readdirSync(__dirname + "/../db/chat/history").includes(date + ".json")
       ? {}
       : temlendb.get(id)
   );
@@ -298,7 +307,7 @@ function command_new(req, res) {
                 "Command is active! You must set it off first or contact admin."
             });
           } else {
-            if (req.body.type == "text") {
+            if (req.body.type == "text" || req.body.type == "flex") {
               if (req.body.text == "") {
                 res.send({ result: false, reason: "There is empty value!" });
               } else {

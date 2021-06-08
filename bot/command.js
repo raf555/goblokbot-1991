@@ -26,7 +26,10 @@ async function execMessage(text, event) {
     customkeywords.includes(text) ||
     customkeywords2.includes(cmd);
 
-  if (checkstatus && (parsed.called || checkcond)) {
+  if ((checkstatus || checkstatus === 0) && (parsed.called || checkcond)) {
+    if (checkstatus === 0) {
+      return null;
+    }
     return await Promise.resolve(checkstatus);
   }
 
@@ -83,6 +86,9 @@ function validToSend(cmd, event, setting) {
 
   if (!setting.bot) {
     if (!isAdmin(event.source.userId)) {
+      if (!setting.statemsg) {
+        return 0;
+      }
       return {
         type: "text",
         text: "Bot sedang dalam kondisi luring."
@@ -93,6 +99,9 @@ function validToSend(cmd, event, setting) {
   let bancheck = cekban(event.source.userId, false);
   if (bancheck[0]) {
     if (!isAdmin(event.source.userId)) {
+      if (!setting.statemsg) {
+        return 0;
+      }
       return {
         type: "text",
         text: "Anda telah di-ban oleh admin sampai " + bancheck[1]
@@ -102,6 +111,9 @@ function validToSend(cmd, event, setting) {
 
   if (setting.disabledftr[cmd]) {
     if (!isAdmin(event.source.userId)) {
+      if (!setting.statemsg) {
+        return 0;
+      }
       return {
         type: "text",
         text: "Fitur " + cmd + " dalam kondisi nonaktif"
@@ -160,12 +172,24 @@ function customfeature(msg) {
           }
         }
         return rep;
-      } else if (custcmd.get(msg).type == "image") {
+      }
+      if (custcmd.get(msg).type == "image") {
         var rep = {
           type: "image",
           originalContentUrl: custcmd.get(msg).reply,
           previewImageUrl: custcmd.get(msg).reply
         };
+        if (custcmd.get(msg + ".sender.name")) {
+          rep.sender = {};
+          rep.sender.name = custcmd.get(msg + ".sender.name");
+          if (custcmd.get(msg + ".sender.img")) {
+            rep.sender.iconUrl = custcmd.get(msg + ".sender.img");
+          }
+        }
+        return rep;
+      }
+      if (custcmd.get(msg).type == "flex") {
+        var rep = { type: "flex", contents: JSON.parse(custcmd.get(msg).reply), altText: "Flex command" };
         if (custcmd.get(msg + ".sender.name")) {
           rep.sender = {};
           rep.sender.name = custcmd.get(msg + ".sender.name");

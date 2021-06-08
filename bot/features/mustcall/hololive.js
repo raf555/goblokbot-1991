@@ -10,9 +10,9 @@ module.exports = async (parsed, event, now = false) => {
   } else if (parsed.arg.toLowerCase() == "en") {
     url = "https://schedule.hololive.tv/lives/english";
   }
-  let tt = "@bot hololive"
-  if (now){
-    tt += " now"
+  let tt = "@bot hololive";
+  if (now) {
+    tt += " now";
   }
   return hololep(tt.split(" "), event, url);
 };
@@ -332,7 +332,8 @@ async function hololep(tt, event, url) {
         name: "Hololive",
         iconUrl:
           "https://i.ibb.co/BBZSdJL/fc620067-166e-48d9-baa7-44abee59e6e1.jpg"
-      }
+      },
+      cmd: "hololep"
     };
     if (crsl.contents.length < 1) {
       var echo = {
@@ -342,7 +343,8 @@ async function hololep(tt, event, url) {
           name: "Hololive",
           iconUrl:
             "https://i.ibb.co/BBZSdJL/fc620067-166e-48d9-baa7-44abee59e6e1.jpg"
-        }
+        },
+        cmd: "hololep"
       };
     }
     return echo;
@@ -579,7 +581,8 @@ async function hololep(tt, event, url) {
           name: "Hololive",
           iconUrl:
             "https://i.ibb.co/BBZSdJL/fc620067-166e-48d9-baa7-44abee59e6e1.jpg"
-        }
+        },
+        cmd: "hololep"
       };
       if (crsl.contents.length < 1) {
         var echo = {
@@ -589,7 +592,8 @@ async function hololep(tt, event, url) {
             name: "Hololive",
             iconUrl:
               "https://i.ibb.co/BBZSdJL/fc620067-166e-48d9-baa7-44abee59e6e1.jpg"
-          }
+          },
+          cmd: "hololep"
         };
       }
       return echo;
@@ -624,7 +628,8 @@ async function hololep(tt, event, url) {
             name: "Hololive",
             iconUrl:
               "https://i.ibb.co/BBZSdJL/fc620067-166e-48d9-baa7-44abee59e6e1.jpg"
-          }
+          },
+          cmd: "hololep"
         };
         return echo;
       }
@@ -974,7 +979,8 @@ async function hololep(tt, event, url) {
         sender: {
           name: matchedname,
           iconUrl: profpic
-        }
+        },
+        cmd: "hololep"
       };
       //console.log(JSON.stringify(crsl))
       if (crsl.contents.length < 1) {
@@ -984,7 +990,8 @@ async function hololep(tt, event, url) {
           sender: {
             name: matchedname,
             iconUrl: profpic
-          }
+          },
+          cmd: "hololep"
         };
       }
       return echo;

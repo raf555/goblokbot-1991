@@ -9,8 +9,8 @@ module.exports = async (parsed, event) => {
   var char = "";
   if (!parsed.arg) return null;
   char = parsed.arg;
-  if (char.split(" ")[1]) {
-    char = char.replace(" ", "-");
+  if (char.split(" ").length>1) {
+    char = char.replace(/\s/g, "-");
   }
   if (char.toLowerCase() == "poca") {
     const echo = { type: "text", text: "Do you mean rosa?" };

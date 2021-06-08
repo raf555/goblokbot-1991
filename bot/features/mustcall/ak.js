@@ -4,8 +4,8 @@ const cheerio = require("cheerio");
 module.exports = async (parsed, event) => {
   if (!parsed.arg) return null;
   var char = parsed.arg;
-  if (char.split(" ")[1]) {
-    char = char.replace(" ", "-");
+  if (char.split(" ").length>1) {
+    char = char.replace(/\s/g, "-");
   }
   let res = await axios.get("https://gamepress.gg/arknights/operator/" + char);
   let body = res.data;
@@ -407,7 +407,7 @@ module.exports = async (parsed, event) => {
         crsl.contents.push(boble);
       }
     }
-    var h2 = parsed.arg;
+    var h2 = encodeURIComponent(parsed.arg);
     crsl.contents.push({
       type: "bubble",
       body: {
@@ -430,7 +430,7 @@ module.exports = async (parsed, event) => {
       }
     });
   }
-  //console.log(JSON.stringify(crsl));
+  console.log(JSON.stringify(crsl));
   var echo = {
     type: "flex",
     altText: "Arknek: " + char,

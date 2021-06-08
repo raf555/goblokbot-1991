@@ -1,10 +1,16 @@
 const Jimp = require("jimp");
+const axios = require("axios");
 const imgbb = require("./../../../service/imgbb");
 const { parseArg } = require("./../../parser");
+const { Parser } = require("expr-eval");
 
-module.exports = (parsed, event) => {  
+module.exports = (parsed, event) => {
   if (parsed.args.compare) {
     return compare(parsed.args.compare);
+  }
+
+  if (parsed.args.getsize) {
+    return getsize(parsed.args.getsize);
   }
 
   return process(parsed.args).then(url => {
@@ -26,6 +32,21 @@ module.exports = (parsed, event) => {
   });
 };
 
+async function getsize(val) {
+  let urls = val.split(" ");
+  let out = [];
+
+  for (let i = 0; i < urls.length; i++) {
+    let img = await Jimp.read(await getBufferFromURL(urls[i]));
+    out.push(`${i + 1}. ${img.bitmap.width}x${img.bitmap.height}`);
+  }
+
+  return {
+    type: "text",
+    text: out.join("\n")
+  };
+}
+
 async function compare(val) {
   let val2 = parseArg(val);
 
@@ -39,12 +60,8 @@ async function compare(val) {
     url2 = val2[1];
   }
 
-  let img1 = await Jimp.read({
-    url: url1
-  });
-  let img2 = await Jimp.read({
-    url: url2
-  });
+  let img1 = await Jimp.read(await getBufferFromURL(url1));
+  let img2 = await Jimp.read(await getBufferFromURL(url2));
 
   let distance = Jimp.distance(img1, img2); // perceived distance
   let diff = Jimp.diff(img1, img2); // pixel difference
@@ -72,13 +89,41 @@ async function process(args) {
   return url;
 }
 
-async function createImage(args) {
+async function createImage(args, parentdata) {
   let url = args.url;
   delete args["url"];
 
-  let image = await Jimp.read({
-    url: url
-  });
+  let image;
+
+  if (url) {
+    image = await Jimp.read(await getBufferFromURL(url));
+  } else {
+    let baru = args.new;
+    if (baru) {
+      if (baru === 1) {
+        image = await Jimp.create(512, 512, "#ffffff");
+      } else {
+        let s = parseArg(baru);
+        if (s.c && s.c === "random") {
+          s.c = "#" + Math.floor(Math.random() * 16777215).toString(16);
+        }
+        if (!parentdata) {
+          image = await Jimp.create(
+            Number(s.w) || 512,
+            Number(s.h) || 512,
+            s.c || "#ffffff"
+          );
+        } else {
+          image = await Jimp.create(
+            Number(s.w) || calc(s.w, parentdata) || 512,
+            Number(s.h) || calc(s.h, parentdata) || 512,
+            s.c || "#ffffff"
+          );
+        }
+      }
+      delete args["new"];
+    }
+  }
 
   //console.log(();
 
@@ -89,7 +134,7 @@ async function createImage(args) {
   for (let i = 0; i < command.length; i++) {
     let edit = command[i];
     let more = /(.*?)\d+/.test(edit) ? /(.*?)\d+/.exec(edit)[1] : null;
-    
+
     if (tablekey.includes(edit)) {
       image = await tables[edit](image, args[edit]);
     } else {
@@ -129,10 +174,17 @@ function pixelate(image, val) {
 
   let x, y, h, w, p;
   if (Object.keys(val2).length > 0) {
-    x = Number(val2.x);
-    y = Number(val2.y);
-    h = Number(val2.h);
-    w = Number(val2.w);
+    x = Number(val2.x) || 0;
+    y = Number(val2.y) || 0;
+
+    let datacalc = {
+      height: image.bitmap.height,
+      y: y,
+      width: image.bitmap.width,
+      x: x
+    };
+    h = Number(val2.h) || calc(val2.h, datacalc);
+    w = Number(val2.w) || calc(val2.w, datacalc);
     p = Number(val2.p);
     return image.pixelate(p, x, y, w, h);
   } else {
@@ -179,10 +231,10 @@ function brightness(image, val) {
 }
 
 function mirror(image, val) {
-  if (val === 1){
+  if (val === 1) {
     return image.mirror(true, false);
   }
-    
+
   val = parseArg(val);
 
   return image.mirror(!!val.y, !!val.x);
@@ -192,15 +244,40 @@ function mask(image, val) {
   val = parseArg(val);
 
   let pos = val.pos;
+  let centerized = val.centerized === 1;
+  let center = val.center === 1;
 
-  let x, y;
-  if (pos) {
-    pos = pos.split(",");
-    x = Number(pos[0]);
-    y = Number(pos[1]);
-  }
+  let datacalc = {
+    width: image.bitmap.width,
+    height: image.bitmap.height
+  };
+  return createImage(val, datacalc).then(image2 => {
+    let x = 0,
+      y = 0;
 
-  return createImage(val).then(image2 => {
+    datacalc.cwidth = image2.bitmap.width;
+    datacalc.cheight = image2.bitmap.height;
+
+    if (pos) {
+      pos = pos.split(",");
+      x = Number(pos[0]) || calc(pos[0], datacalc);
+      y = Number(pos[1]) || calc(pos[1], datacalc);
+    } else {
+      if (val.x) {
+        x = Number(val.x) || calc(val.x, datacalc);
+      }
+      if (val.y) {
+        y = Number(val.y) || calc(val.y, datacalc);
+      }
+    }
+    if (center) {
+      x = (datacalc.width - datacalc.cwidth) / 2;
+      y = (datacalc.height - datacalc.cheight) / 2;
+    }
+    if (centerized) {
+      x -= datacalc.cwidth / 2;
+      y -= datacalc.cheight / 2;
+    }
     return image.mask(image2, x, y);
   });
 }
@@ -208,10 +285,16 @@ function mask(image, val) {
 function crop(image, val) {
   val = parseArg(val);
 
-  let x = Number(val.x),
-    y = Number(val.y),
-    h = Number(val.h),
-    w = Number(val.w);
+  let x = Number(val.x) || 0,
+    y = Number(val.y) || 0,
+    datacalc = {
+      height: image.bitmap.height,
+      y: y,
+      width: image.bitmap.width,
+      x: x
+    },
+    h = Number(val.h) || calc(val.h, datacalc),
+    w = Number(val.w) || calc(val.w, datacalc);
 
   return image.crop(x, y, w, h);
 }
@@ -234,15 +317,41 @@ function composite(image, val) {
   val = parseArg(val);
 
   let pos = val.pos;
+  let centerized = val.centerized === 1;
+  let center = val.center === 1;
 
-  let x, y;
-  if (pos) {
-    pos = pos.split(",");
-    x = Number(pos[0]);
-    y = Number(pos[1]);
-  }
+  let datacalc = {
+    width: image.bitmap.width,
+    height: image.bitmap.height
+  };
 
-  return createImage(val).then(image2 => {
+  return createImage(val, datacalc).then(image2 => {
+    let x = 0,
+      y = 0;
+
+    datacalc.cwidth = image2.bitmap.width;
+    datacalc.cheight = image2.bitmap.height;
+
+    if (pos) {
+      pos = pos.split(",");
+      x = Number(pos[0]) || calc(pos[0], datacalc);
+      y = Number(pos[1]) || calc(pos[1], datacalc);
+    } else {
+      if (val.x) {
+        x = Number(val.x) || calc(val.x, datacalc);
+      }
+      if (val.y) {
+        y = Number(val.y) || calc(val.y, datacalc);
+      }
+    }
+    if (center) {
+      x = (datacalc.width - datacalc.cwidth) / 2;
+      y = (datacalc.height - datacalc.cheight) / 2;
+    }
+    if (centerized) {
+      x -= datacalc.cwidth / 2;
+      y -= datacalc.cheight / 2;
+    }
     return image.composite(image2, x, y);
   });
 }
@@ -250,36 +359,35 @@ function composite(image, val) {
 async function print(image, val) {
   val = parseArg(val);
 
-  let keys = Object.keys(val);
+  let text = val.text || val.t || null;
+  let size = val.size || val.s || 32;
+  let color = (val.color || val.c || "black").toUpperCase();
+  let align = val.align || val.al;
+  if (!align || (align !== "left" && align !== "right" && align !== "center")) {
+    align = "center";
+  }
+  align = `HORIZONTAL_ALIGN_${align.toUpperCase()}`;
 
   let font;
-  let text = val.text;
-
-  let size;
-  if (keys.includes("size")) {
-    size = val["size"];
-  } else {
-    size = "32";
-  }
-
-  let color;
-  if (keys.includes("color")) {
-    color = val["color"].toUpperCase();
-  } else {
-    color = "BLACK";
-  }
-
   let fontname = `FONT_SANS_${size}_${color}`;
   font = await Jimp.loadFont(Jimp[fontname]);
+  
+  let textwidth = Jimp.measureText(font, text || "");
+  
+  let datacalc = {
+    height: image.bitmap.height,
+    width: image.bitmap.width,
+    twidth: textwidth
+  };
 
-  if (keys.includes("top")) {
+  if (val.top) {
     image = await image.print(
       font,
       0,
       0,
       {
         text: val.top,
-        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+        alignmentX: Jimp[align],
         alignmentY: Jimp.VERTICAL_ALIGN_TOP
       },
       image.bitmap.width,
@@ -287,14 +395,14 @@ async function print(image, val) {
     );
   }
 
-  if (keys.includes("middle")) {
+  if (val.middle) {
     image = await image.print(
       font,
       0,
       0,
       {
         text: val.middle,
-        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+        alignmentX: Jimp[align],
         alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
       },
       image.bitmap.width,
@@ -303,18 +411,39 @@ async function print(image, val) {
   }
 
   if (text) {
-    image = await image.print(
-      font,
-      0,
-      0,
-      {
-        text: text,
-        alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-        alignmentY: Jimp.VERTICAL_ALIGN_BOTTOM
-      },
-      image.bitmap.width,
-      image.bitmap.height
-    );
+    let pos = val.pos;
+
+    let x = 0,
+      y = 0;
+    if (pos) {
+      pos = pos.split(",");
+      x = Number(pos[0]) || calc(pos[0], datacalc);
+      y = Number(pos[1]) || calc(pos[1], datacalc);
+    } else {
+      if (val.x) {
+        x = Number(val.x) || calc(val.x, datacalc);
+      }
+      if (val.y) {
+        y = Number(val.y) || calc(val.y, datacalc);
+      }
+    }
+
+    if (x || y) {
+      image = await image.print(font, x, y, text);
+    } else {
+      image = await image.print(
+        font,
+        0,
+        0,
+        {
+          text: text,
+          alignmentX: Jimp[align],
+          alignmentY: Jimp.VERTICAL_ALIGN_BOTTOM
+        },
+        image.bitmap.width,
+        image.bitmap.height
+      );
+    }
   }
 
   return image;
@@ -359,4 +488,17 @@ function rotate(image, val) {
   }
   val *= -1;
   return image.rotate(val);
+}
+
+function calc(...args) {
+  return Parser.evaluate(...args);
+}
+
+function getBufferFromURL(url) {
+  return axios
+    .get(url, {
+      responseType: "arraybuffer"
+    })
+    .then(response => Buffer.from(response.data, "binary"))
+    .catch(e => null);
 }

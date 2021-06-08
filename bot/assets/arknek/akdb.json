@@ -1,4 +1,9 @@
 {
+  "carnelian": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-06/char_426_billro.png"
+  },
   "skadi corrupting heart": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
     "rarity": 6,
@@ -78,6 +83,11 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
     "rarity": 6,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-07/char_358_lisa_Icon.png"
+  },
+  "rosa-poca": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_197_poca_1_PFP_0.png"
   },
   "weedy": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
@@ -198,6 +208,16 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
     "rarity": 6,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_103_angel_1.png"
+  },
+  "kirara": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-06/char_478_kirara.png"
+  },
+  "bena": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-06/char_369_bena.png"
   },
   "akafuyu": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
@@ -584,7 +604,7 @@
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_204_platnm_1.png"
   },
-  "blue poison": {
+  "blue-poison": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_129_bluep_1.png"
@@ -623,6 +643,11 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_128_plosis_1.png"
+  },
+  "indigo": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-06/char_469_indigo.png"
   },
   "beanstalk": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
@@ -854,22 +879,22 @@
     "rarity": 4,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_141_nights_1.png"
   },
-  "reserve-operator-caster": {
+  "reserve operator caster": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
     "rarity": 3,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_505_rcast.png"
   },
-  "reserve-operator-logistics": {
+  "reserve operator logistics": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
     "rarity": 3,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_506_rmedic.png"
   },
-  "reserve-operator-sniper": {
+  "reserve operator sniper": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
     "rarity": 3,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_507_rsnipe.png"
   },
-  "reserve-operator-melee": {
+  "reserve operator melee": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
     "rarity": 3,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_504_rguard.png"
@@ -998,45 +1023,5 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
     "rarity": 1,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_285_medic2_1.png"
-  },
-  "skadi corrupting-heart": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
-    "rarity": 6,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-05/char_1012_skadi2.png"
-  },
-  "blue-poison": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
-    "rarity": 5,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_129_bluep_1.png"
-  },
-  "reserve operator-caster": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
-    "rarity": 3,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_505_rcast.png"
-  },
-  "reserve operator-logistics": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
-    "rarity": 3,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_506_rmedic.png"
-  },
-  "reserve operator-sniper": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
-    "rarity": 3,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_507_rsnipe.png"
-  },
-  "reserve operator-melee": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
-    "rarity": 3,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-08/char_504_rguard.png"
-  },
-  "poca": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
-    "rarity": 6,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_197_poca_1_PFP_0.png"
-  },
-  "rosa": {
-    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
-    "rarity": 6,
-    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2020-06/char_197_poca_1_PFP_0.png"
   }
 }

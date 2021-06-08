@@ -37,10 +37,10 @@
       <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>-->
          <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script> 
-      <script src="/static/flex2html/flex2html.min.js"></script>
+      <script src="/flex2html/flex2html.min.js"></script>
      <link
          rel="stylesheet"
-         href="/static/flex2html/flex2html.css"
+         href="/flex2html/flex2html.css"
          />
      <script>
          function delay(fn, ms) {
@@ -82,8 +82,33 @@
               })
             );
           }
+       
+       function loadtgl() {
+         $.get("/api/getavaildate", function(res, s) {
+           let list = [];
+           res.data.forEach(ts => {
+             list.push(new Date(ts));
+           })
+           $('#kalender')
+              .calendar({
+                type: 'date',
+                enabledDates: list,
+                formatter: {
+                  date: function (date, settings) {
+                    if (!date) return '';
+                    var day = date.getDate();
+                    var month = date.getMonth() + 1;
+                    var year = date.getFullYear();
+                    return addzero(day) + '/' + addzero(month) + '/' + addzero(year);
+                  }
+                }
+              })
+            ;
+         })
+       }
        let eventtable = {};
          $(document).ready(function(){
+           loadtgl();
            $("div.event").each(function() {
              let id = $(this).attr("id")
              eventtable[id] = $("#"+id).offset().top
@@ -99,22 +124,6 @@
              let tgl = convertTZ(new Date(h), "Asia/Jakarta").getTime()
              location.href = "?date="+tgl
            })
-           $('#kalender')
-              .calendar({
-                type: 'date',
-                minDate: new Date(<%= date[0].replace(".json", "") %>),
-                maxDate: new Date(<%= date[date.length-1].replace(".json", "") %>),
-                formatter: {
-                  date: function (date, settings) {
-                    if (!date) return '';
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return addzero(day) + '/' + addzero(month) + '/' + addzero(year);
-                  }
-                }
-              })
-            ;
            $("#kalender").calendar("set date", new Date(<%= q %>))
                 ;
            $('.lazy').Lazy();
