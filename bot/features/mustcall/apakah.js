@@ -5,7 +5,69 @@ module.exports = (parsed, event) => {
   } else {
     var apakah = "iya";
   }
-  return { type: "text", text: apakah };
+  return {
+    type: "flex",
+    altText: "mending",
+    contents: {
+      type: "bubble",
+      size: "micro",
+      body: {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "box",
+            layout: "horizontal",
+            contents: [
+              {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "box",
+                        layout: "vertical",
+                        contents: [],
+                        width: "2px",
+                        backgroundColor: "#B7B7B7"
+                      }
+                    ],
+                    flex: 1
+                  }
+                ],
+                width: "2px"
+              },
+              {
+                type: "text",
+                text: parsed.command + " " +parsed.arg,
+                flex: 4,
+                size: "sm",
+                color: "#8c8c8c",
+                align: "start",
+                wrap: true
+              }
+            ],
+            spacing: "lg"
+          },
+          {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: apakah,
+                size: "sm"
+              }
+            ],
+            margin: "md"
+          }
+        ]
+      }
+    }
+  };
 };
 function sumChars(s) {
   var i = s.length,

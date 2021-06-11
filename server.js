@@ -17,7 +17,7 @@ app.use(
 app.use(bodyParser.json());
 
 /* client-side */
-app.use(require("./app.js"));
+app.use(require("./client"));
 
 /* static files for client-side */
 app.use(express.static("./client/public/static"));

@@ -1,6 +1,7 @@
 const Jimp = require("jimp");
 const axios = require("axios");
 const imgbb = require("./../../../service/imgbb");
+const db = require("./../../../service/database");
 const { parseArg } = require("./../../parser");
 const { Parser } = require("expr-eval");
 
@@ -89,41 +90,69 @@ async function process(args) {
   return url;
 }
 
-async function createImage(args, parentdata) {
+async function makeJIMP(args, parentdata) {
+  let baru = args.new;
+  let fromid = args.fromid;
+  let fromuser = args.fromuser;
   let url = args.url;
-  delete args["url"];
 
-  let image;
+  delete args["url"];
+  delete args["fromid"];
+  delete args["fromuser"];
+  delete args["new"];
 
   if (url) {
-    image = await Jimp.read(await getBufferFromURL(url));
-  } else {
-    let baru = args.new;
-    if (baru) {
-      if (baru === 1) {
-        image = await Jimp.create(512, 512, "#ffffff");
-      } else {
-        let s = parseArg(baru);
-        if (s.c && s.c === "random") {
-          s.c = "#" + Math.floor(Math.random() * 16777215).toString(16);
-        }
-        if (!parentdata) {
-          image = await Jimp.create(
-            Number(s.w) || 512,
-            Number(s.h) || 512,
-            s.c || "#ffffff"
-          );
-        } else {
-          image = await Jimp.create(
-            Number(s.w) || calc(s.w, parentdata) || 512,
-            Number(s.h) || calc(s.h, parentdata) || 512,
-            s.c || "#ffffff"
-          );
-        }
+    return Jimp.read(await getBufferFromURL(url));
+  } else if (baru) {
+    if (baru === 1) {
+      return Jimp.create(512, 512, "#ffffff");
+    } else {
+      let s = parseArg(baru);
+      if (s.c && s.c === "random") {
+        s.c = "#" + Math.floor(Math.random() * 16777215).toString(16);
       }
-      delete args["new"];
+      if (!parentdata) {
+        return Jimp.create(
+          Number(s.w) || 512,
+          Number(s.h) || 512,
+          s.c || "#ffffff"
+        );
+      } else {
+        return Jimp.create(
+          Number(s.w) || calc(s.w, parentdata) || 512,
+          Number(s.h) || calc(s.h, parentdata) || 512,
+          s.c || "#ffffff"
+        );
+      }
     }
+    delete args["new"];
+  } else if (fromid) {
+    let dbimg = db.open("db/uploadimg.json");
+    
+    if (!dbimg.get(fromid)) {
+      throw Error("Invalid ID");
+    }
+
+    if (dbimg.get(fromid).exp < Date.now()) {
+      throw Error("Image expired");
+    }
+
+    return Jimp.read(dbimg.get(fromid).url);
+  } else if (fromuser) {
+    let dbuser = db.open("db/user.json").get();
+
+    let filter = Object.values(dbuser).filter(data => data.key === fromuser.toLowerCase());
+
+    if (filter.length < 1) {
+      throw Error("Key not found");
+    }
+
+    return Jimp.read(filter[0].image);
   }
+}
+
+async function createImage(args, parentdata) {
+  let image = await makeJIMP(args, parentdata);
 
   //console.log(();
 
@@ -371,9 +400,9 @@ async function print(image, val) {
   let font;
   let fontname = `FONT_SANS_${size}_${color}`;
   font = await Jimp.loadFont(Jimp[fontname]);
-  
+
   let textwidth = Jimp.measureText(font, text || "");
-  
+
   let datacalc = {
     height: image.bitmap.height,
     width: image.bitmap.width,
@@ -499,6 +528,5 @@ function getBufferFromURL(url) {
     .get(url, {
       responseType: "arraybuffer"
     })
-    .then(response => Buffer.from(response.data, "binary"))
-    .catch(e => null);
+    .then(response => Buffer.from(response.data, "binary"));
 }
