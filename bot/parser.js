@@ -42,8 +42,8 @@ function parse(message, caller) {
   let parsed = {};
   parsed.caller = _caller;
   parsed.called = !!_caller;
-  parsed.args = {};
   parsed.shortcut = isShortcut;
+  parsed.args = {};
 
   let arg = [];
 
@@ -83,7 +83,7 @@ function parse(message, caller) {
   }
 
   parsed.arg = arg.join(" ");
-  //console.log(parsed)
+  parsed.fullMsg = message;
 
   return parsed;
 }

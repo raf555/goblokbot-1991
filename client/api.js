@@ -196,8 +196,6 @@ function latency_get(req, res) {
       }
     }
   }
-
-  res.send({});
 }
 
 function chat_getcontent(req, res) {

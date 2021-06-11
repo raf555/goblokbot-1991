@@ -72,7 +72,7 @@ function replyMessage(event, msg) {
     if (parsed && parsed.args.showtime) {
       eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
     }
-    
+
     if (latency >= 7500) {
       const ex = {
         type: "text",
@@ -93,26 +93,45 @@ function replyMessage(event, msg) {
 
     return client.replyMessage(event.replyToken, eee).then(() => {
       savebotchat(event, eee);
+      return true;
     });
   })();
 
   /* write latency */
-  if (!file.get(ftr)) {
-    file.set(ftr + ".avg", latency);
-    file.set(ftr + ".0", latency);
-    file.save();
-  } else {
-    let tot = Object.keys(file.get(ftr)).length - 1;
-    let lat_tot = 1;
-    let lat = latency;
-    for (let i = 0; i < tot; i++) {
-      lat += file.get(ftr + "." + i);
-      lat_tot += 1;
+  let writelat = (() => {
+    let data = file.get(ftr);
+    if (!data) {
+      file.set(ftr + ".avg", latency);
+      file.set(ftr + ".0", latency);
+      file.save();
+    } else {
+      let tot = Object.keys(data).length - 1;
+      let lat = latency;
+
+      delete data["avg"];
+      lat += Object.values(data).reduce((total, num) => total + num);
+
+      file.set(ftr + "." + tot, latency);
+      file.set(ftr + ".avg", Math.round(lat / (tot + 1)));
+      file.save();
     }
-    file.set(ftr + "." + tot, latency);
-    file.set(ftr + ".avg", Math.round(lat / lat_tot));
-    file.save();
-  }
+    return true;
+  })();
+
+  /* save cmd */
+  let savecmd = (() => {
+    let cmdhist = db.open("db/cmdhistory.json");
+    let id = Object.keys(cmdhist.get()).length + 1;
+
+    parsed.id = event.source.userId;
+    parsed.ts = Date.now();
+    parsed.lat = latency;
+
+    cmdhist.set(id.toString, parsed);
+    cmdhist.save();
+
+    return true;
+  })();
 
   return reply;
 }
@@ -161,13 +180,31 @@ function uploadImgFromQ(event) {
           .then(upload => {
             idb.set(upload.id, {
               url: upload.url,
-              del: upload.delete_url
+              del: upload.delete_url,
+              exp: data.exp ? Date.now() + data.exp : 99999999999999,
+              uploader: event.source.userId
             });
             idb.save();
-            client.replyMessage(event.replyToken, {
-              type: "text",
-              text: upload.url
-            });
+
+            let out = [
+              {
+                type: "text",
+                text: upload.url
+              }
+            ];
+
+            if (qdb.get(event.source.userId).jimp) {
+              out.push({
+                type: "text",
+                text: "For jimp reference, please use id under this message"
+              });
+              out.push({
+                type: "text",
+                text: "" + upload.id
+              });
+            }
+
+            client.replyMessage(event.replyToken, out);
           })
           .catch(err => {
             client.replyMessage(event.replyToken, {

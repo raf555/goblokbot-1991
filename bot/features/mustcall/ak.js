@@ -430,7 +430,7 @@ module.exports = async (parsed, event) => {
       }
     });
   }
-  console.log(JSON.stringify(crsl));
+  //console.log(JSON.stringify(crsl));
   var echo = {
     type: "flex",
     altText: "Arknek: " + char,

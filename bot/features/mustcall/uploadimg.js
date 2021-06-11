@@ -4,10 +4,12 @@ const db = require("./../../../service/database");
 module.exports = (parsed, event) => {
   let name = parsed.args.n || parsed.args.name || null;
   let exp = parsed.args.e || parsed.args.exp || null;
+  let jimp = parsed.args.jimp ? true : false;
+
   if (exp) {
     if (!isNaN(exp)) {
       exp = parseInt(exp);
-      if (exp < 600) {
+      if (exp < 60) {
         return { type: "text", text: "Minimum 1 minutes (60 sec)" };
       }
     } else {
@@ -23,7 +25,8 @@ module.exports = (parsed, event) => {
     name: name || event.message.id,
     exp: exp,
     expire: Date.now() + 30000,
-    uploaded: false
+    uploaded: false,
+    jimp: jimp
   });
   uploaddb.save();
 

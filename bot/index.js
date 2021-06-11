@@ -93,8 +93,8 @@ function handleTextMessage(event) {
 }
 
 function handleImgMessage(event) {
-  saveImage(event);
   uploadImgFromQ(event);
+  saveImage(event);
   return null;
 }
 

@@ -189,7 +189,7 @@ function customfeature(msg) {
         return rep;
       }
       if (custcmd.get(msg).type == "flex") {
-        var rep = { type: "flex", contents: JSON.parse(custcmd.get(msg).reply), altText: "Flex command" };
+        var rep = { type: "flex", contents: JSON.parse(custcmd.get(msg).reply), altText: msg };
         if (custcmd.get(msg + ".sender.name")) {
           rep.sender = {};
           rep.sender.name = custcmd.get(msg + ".sender.name");
