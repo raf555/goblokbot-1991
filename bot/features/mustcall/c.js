@@ -6,128 +6,68 @@ module.exports = copid;
 async function copid(parsed, event) {
   let res = await axios.get("https://www.worldometers.info/coronavirus/");
   let body = res.data;
-  var $ = cheerio.load(body);
-  var totalcases1 = "";
-  var totaldeaths1 = "";
-  var totalrecovered1 = "";
-  var activecases1 = "";
-  var totalcases2 = "";
-  var totaldeaths2 = "";
-  var totalrecovered2 = "";
-  var activecases2 = "";
-  var totalcasesdiff = "";
-  var totaldeathsdiff = "";
-  var totalrecovereddiff = "";
-  var n = 0;
-  $('td[style="font-weight: bold; font-size:15px; text-align:left;"]').each(
-    function(i, elm) {
-      if ($(elm).text() == "Indonesia") {
-        n += 1;
-        if (n == 1) {
-          totalcases1 = $(elm)
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          totaldeaths1 = $(elm)
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          totalrecovered1 = $(elm)
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          activecases1 = $(elm)
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-        } else if (n == 2) {
-          totalcases2 = $(elm)
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          totaldeaths2 = $(elm)
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          totalrecovered2 = $(elm)
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-          activecases2 = $(elm)
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .next()
-            .text()
-            .replace(/,/g, "")
-            .replace(/ /g, "");
-        }
+  let $ = cheerio.load(body);
+
+  let country = parsed.args.c;
+  if (!country) {
+    country = "indonesia";
+  }
+
+  let today = $("#main_table_countries_today tbody tr").filter(function() {
+    return $(this).find("td").eq(1).text().trim().toLowerCase() === country;
+  });
+  
+  let today_td = $(today[0]).find("td");
+  
+  let cname = today_td.eq(1).text().trim();
+  
+  if (!cname) {
+    return {type:"text", text:"not found"}
+  }
+  
+  let today_total = today_td.eq(2).text().trim().replace(/,/g, ".");
+  let today_newc = today_td.eq(3).text().trim().replace(/,/g, ".");
+  
+  let today_death = today_td.eq(4).text().trim().replace(/,/g, ".");
+  let today_newd = today_td.eq(5).text().trim().replace(/,/g, ".");
+  
+  let today_recover = today_td.eq(6).text().trim().replace(/,/g, ".");
+  let today_newr = today_td.eq(7).text().trim().replace(/,/g, ".");
+  
+  let today_active = today_td.eq(8).text().trim().replace(/,/g, ".");
+
+  let footer = [
+    {
+      type: "text",
+      text: "Source (EN)",
+      color: "#aaaaaa",
+      size: "xs",
+      align: "start",
+      action: {
+        type: "uri",
+        label: "Source",
+        uri: "https://www.worldometers.info/coronavirus/country/" + country
       }
-      if (n == 2) return false;
     }
-  );
-  activecases1 =
-    -1 *
-    (parseInt(totalcases1) -
-      parseInt(totaldeaths1) -
-      parseInt(totalrecovered1));
-  totalcasesdiff =
-    parseInt(totalcases1.replace(/,/g, "")) -
-    parseInt(totalcases2.replace(/,/g, ""));
-  totalcasesdiff = number_format(totalcasesdiff, 0, ",", ".");
-  totaldeathsdiff = parseInt(totaldeaths1) - parseInt(totaldeaths2);
-  totaldeathsdiff = number_format(totaldeathsdiff, 0, ",", ".");
-  totalrecovereddiff = parseInt(totalrecovered1) - parseInt(totalrecovered2);
-  totalrecovereddiff = number_format(totalrecovereddiff, 0, ",", ".");
-  totalcases1 = number_format(totalcases1, 0, ",", ".");
-  totaldeaths1 = number_format(totaldeaths1, 0, ",", ".");
-  totalrecovered1 = number_format(totalrecovered1, 0, ",", ".");
-  activecases1 = number_format(activecases1, 0, ",", ".");
-  totalcases2 = number_format(totalcases2, 0, ",", ".");
-  totaldeaths2 = number_format(totaldeaths2, 0, ",", ".");
-  totalrecovered2 = number_format(totalrecovered2, 0, ",", ".");
-  activecases2 = number_format(activecases2, 0, ",", ".");
-  if (!totalcases1) totalcases1 = "-";
-  if (!totaldeaths1) totaldeaths1 = "-";
-  if (!totalrecovered1) totalrecovered1 = "-";
-  if (!activecases1) activecases1 = "-";
-  if (!totalcases2) totalcases2 = "-";
-  if (!totaldeaths2) totaldeaths2 = "-";
-  if (!totalrecovered2) totalrecovered2 = "-";
-  if (!activecases2) activecases2 = "-";
-  if (!totalcasesdiff) totalcasesdiff = "-";
-  if (!totaldeathsdiff) totaldeathsdiff = "-";
-  if (!totalrecovereddiff) totalrecovereddiff = "-";
-  const data = {
+  ];
+  if (country === "indonesia") {
+    footer.push({
+      type: "text",
+      text: "Source (ID)",
+      color: "#aaaaaa",
+      size: "xs",
+      align: "end",
+      action: {
+        type: "uri",
+        label: "Source",
+        uri: "https://kawalcovid19.id/"
+      }
+    });
+  }
+  let out = {
     cmd: "covid",
     type: "flex",
-    altText: "Corona Update: Indonesia",
+    altText: "Corona Update: " + cname,
     sender: {
       name: "COVID-19 Update",
       iconUrl:
@@ -148,7 +88,7 @@ async function copid(parsed, event) {
           },
           {
             type: "text",
-            text: "Indonesia",
+            text: cname,
             weight: "bold",
             size: "xxl",
             margin: "md"
@@ -176,7 +116,7 @@ async function copid(parsed, event) {
                   },
                   {
                     type: "text",
-                    text: "" + totalcases1 + " (+" + totalcasesdiff + ")",
+                    text: today_total + " (" + (today_newc || "+0") + ")",
                     size: "sm",
                     color: "#111111",
                     align: "end"
@@ -196,8 +136,7 @@ async function copid(parsed, event) {
                   },
                   {
                     type: "text",
-                    text:
-                      "" + totalrecovered1 + " (+" + totalrecovereddiff + ")",
+                    text: today_recover + " (" + (today_newr || "+0") + ")",
                     size: "sm",
                     color: "#388E3C",
                     align: "end"
@@ -217,7 +156,7 @@ async function copid(parsed, event) {
                   },
                   {
                     type: "text",
-                    text: "" + totaldeaths1 + " (+" + totaldeathsdiff + ")",
+                    text: today_death + " (" + (today_newd || "+0") + ")",
                     size: "sm",
                     color: "#D50000",
                     align: "end"
@@ -237,7 +176,7 @@ async function copid(parsed, event) {
                   },
                   {
                     type: "text",
-                    text: "" + -1 * activecases1,
+                    text: today_active,
                     align: "end",
                     size: "sm",
                     color: "#FBC02D"
@@ -254,33 +193,7 @@ async function copid(parsed, event) {
             type: "box",
             layout: "horizontal",
             margin: "md",
-            contents: [
-              {
-                type: "text",
-                text: "Source (EN)",
-                color: "#aaaaaa",
-                size: "xs",
-                align: "start",
-                action: {
-                  type: "uri",
-                  label: "Source",
-                  uri:
-                    "https://www.worldometers.info/coronavirus/country/indonesia"
-                }
-              },
-              {
-                type: "text",
-                text: "Source (ID)",
-                color: "#aaaaaa",
-                size: "xs",
-                align: "end",
-                action: {
-                  type: "uri",
-                  label: "Source",
-                  uri: "https://kawalcovid19.id/"
-                }
-              }
-            ]
+            contents: footer
           }
         ]
       },
@@ -291,28 +204,5 @@ async function copid(parsed, event) {
       }
     }
   };
-  return data;
-  //}
-}
-
-function number_format(b, c, d, e) {
-  b = (b + "").replace(/[^0-9+\-Ee.]/g, "");
-  var n = !isFinite(+b) ? 0 : +b,
-    prec = !isFinite(+c) ? 0 : Math.abs(c),
-    sep = typeof e === "undefined" ? "," : e,
-    dec = typeof d === "undefined" ? "." : d,
-    s = "",
-    toFixedFix = function(n, a) {
-      var k = Math.pow(10, a);
-      return "" + Math.round(n * k) / k;
-    };
-  s = (prec ? toFixedFix(n, prec) : "" + Math.round(n)).split(".");
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-  }
-  if ((s[1] || "").length < prec) {
-    s[1] = s[1] || "";
-    s[1] += new Array(prec - s[1].length + 1).join("0");
-  }
-  return s.join(dec);
+  return out;
 }

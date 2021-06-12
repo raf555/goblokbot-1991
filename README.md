@@ -32,7 +32,7 @@ Pesan yang bisa diterima sama goblokbot adalah berikut
 
 Cara pake argumen ini sebenernya simple, langsung aja ke contoh
 
-Btw, gak semua fitur / command pake bounded argument. Kebanyakan pake yg unbound.
+Btw, gak semua fitur / command pake bounded argument. Hampir semuanya pake yg unbound.
 
 1. Simple argument
     - `@bot yt -m 5 opm` dengan kata kunci `m` adalah `5`.
