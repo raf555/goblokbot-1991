@@ -55,6 +55,7 @@ function replyMessage(event, msg) {
 
   let ftr = eee[0].cmd;
   let parsed = eee[0].parsed;
+  let lat = eee[0].latency;
 
   delete eee[0]["cmd"];
   delete eee[0]["parsed"];
@@ -66,7 +67,7 @@ function replyMessage(event, msg) {
   }
 
   let file = db.open(`db/latency.json`);
-  let latency = Date.now() - event.timestamp;
+  let latency = lat || Date.now() - event.timestamp;
 
   let reply = (() => {
     if (parsed && parsed.args.showtime) {
