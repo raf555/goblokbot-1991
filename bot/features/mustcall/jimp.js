@@ -91,10 +91,10 @@ async function process(args) {
 }
 
 async function makeJIMP(args, parentdata) {
-  let baru = args.new;
-  let fromid = args.fromid;
-  let fromuser = args.fromuser;
-  let url = args.url;
+  let baru = args.new || args.n;
+  let fromid = args.fromid || args.id;
+  let fromuser = args.fromuser || args.user;
+  let url = args.url || args.u;
 
   delete args["url"];
   delete args["fromid"];

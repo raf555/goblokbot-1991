@@ -16,10 +16,22 @@ const customkeywords2 = Object.keys(featuredb.mustntcall);
 async function execMulti(text, event) {
   let split = text.split(" ; ");
 
-  let executedpromise = [];
+  if (split.length === 1) {
+    return execMessage(text, event);
+  }
 
+  let executedpromise = [];
   for (let i = 0; i < split.length; i++) {
-    executedpromise.push(execMessage(split[i], event));
+    executedpromise.push(
+      execMessage(split[i], event)
+        .then(reply => reply)
+        .catch(e => {
+          console.error(e);
+          let out =
+            "Command Error -> " + split[i] + "\n\nError: " + e.name + " - " + e.message;
+          return { type: "text", text: out };
+        })
+    );
   }
 
   return Promise.all(executedpromise).then(res => {
