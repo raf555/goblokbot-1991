@@ -8,10 +8,11 @@ async function copid(parsed, event) {
   let body = res.data;
   let $ = cheerio.load(body);
 
-  let country = parsed.args.c;
+  let country = parsed.arg || parsed.args.c;
   if (!country) {
     country = "indonesia";
   }
+  country = country.toLowerCase();
 
   let today = $("#main_table_countries_today tbody tr").filter(function() {
     return $(this).find("td").eq(1).text().trim().toLowerCase() === country;

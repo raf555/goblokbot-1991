@@ -76,7 +76,7 @@ function handleMessageEvent(event) {
 function handleTextMessage(event) {
   let message = event.message;
   let reply = command
-    .exec(message.text, event)
+    .execMultiple(message.text, event)
     .then(data => {
       if (data) {
         return replyMessage(event, data);
@@ -85,7 +85,7 @@ function handleTextMessage(event) {
       }
     })
     .catch(e => {
-      console.log(e);
+      console.error(e);
       let out = "Error occured, please tag Admin\n\n";
       out += "Error: " + e.name + " - " + e.message;
       return replyMessage(event, { type: "text", text: out });

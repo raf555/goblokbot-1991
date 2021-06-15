@@ -463,9 +463,5 @@ module.exports = async (parsed, event) => {
       ]
     }
   };
-  var echo = {
-    type: "text",
-    text: "MAL is currenty unavailable.."
-  };
   return umu;
 };

@@ -8,4 +8,6 @@ module.exports = (parsed, event) => {
     };
     return [echo, echo1];
   }
+  
+  return null;
 };

@@ -51,11 +51,13 @@ function pushMessage(id, msg) {
 }
 
 function replyMessage(event, msg) {
-  let ftr = msg.cmd;
-  let parsed = msg.parsed;
+  let eee = Array.isArray(msg) ? msg : [msg];
 
-  delete msg["cmd"];
-  delete msg["parsed"];
+  let ftr = eee[0].cmd;
+  let parsed = eee[0].parsed;
+
+  delete eee[0]["cmd"];
+  delete eee[0]["parsed"];
 
   if (!ftr) {
     return client.replyMessage(event.replyToken, msg).then(() => {
@@ -67,8 +69,6 @@ function replyMessage(event, msg) {
   let latency = Date.now() - event.timestamp;
 
   let reply = (() => {
-    let eee = Array.isArray(msg) ? msg : [msg];
-
     if (parsed && parsed.args.showtime) {
       eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
     }
@@ -127,7 +127,7 @@ function replyMessage(event, msg) {
     parsed.ts = Date.now();
     parsed.lat = latency;
 
-    cmdhist.set(id.toString, parsed);
+    cmdhist.set(id.toString(), parsed);
     cmdhist.save();
 
     return true;
