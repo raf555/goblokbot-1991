@@ -76,7 +76,7 @@ function handleMessageEvent(event) {
 function handleTextMessage(event) {
   let message = event.message;
   let reply = command
-    .exec(message.text, event)
+    .execMultiple(message.text, event)
     .then(data => {
       if (data) {
         return replyMessage(event, data);

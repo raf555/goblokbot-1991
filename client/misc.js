@@ -55,7 +55,7 @@ app.post("/opm", async (req, res) => {
               text:
                 "OPM Chapter - " +
                 chapter +
-                (updated[i].rev ? " - Revision" : ""),
+                (updated[i].revision ? " - Revision" : ""),
               weight: "bold",
               size: "sm",
               wrap: true

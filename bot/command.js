@@ -1,16 +1,37 @@
-const { parse } = require("./parser");
+const { parse, parseMultiple } = require("./parser");
 const featuredb = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
 
 module.exports = {
-  exec: execMessage
+  exec: execMessage,
+  execMultiple: execMulti
 };
 
 let ccc = 0;
 
 const keywords = Object.keys(featuredb.mustcall);
 const customkeywords2 = Object.keys(featuredb.mustntcall);
+
+async function execMulti(text, event) {
+  let split = text.split(" ; ");
+
+  let executed = [];
+
+  for (let i = 0; i < split.length; i++) {
+    let exe = await execMessage(split[i], event);
+    if (exe) {
+      if (!Array.isArray(exe)) {
+        exe = [exe];
+      }
+      executed.push(exe);
+    }
+  }
+
+  return executed.length === 0
+    ? null
+    : [].concat.apply([], executed).slice(0, 5);
+}
 
 async function execMessage(text, event) {
   const setting = db.open("bot/setting.json").get();
@@ -70,10 +91,17 @@ async function execMessage(text, event) {
   }
 
   if (reply) {
-    if (!reply.cmd) {
-      reply.cmd = cmd;
+    if (!Array.isArray(reply)) {
+      if (!reply.cmd && reply.cmd !== "") {
+        reply.cmd = cmd;
+      }
+      reply.parsed = parsed;
+    } else {
+      if (!reply[0].cmd && reply.cmd !== "") {
+        reply[0].cmd = cmd;
+      }
+      reply[0].parsed = parsed;
     }
-    reply.parsed = parsed;
   }
 
   return reply;
@@ -189,7 +217,11 @@ function customfeature(msg) {
         return rep;
       }
       if (custcmd.get(msg).type == "flex") {
-        var rep = { type: "flex", contents: JSON.parse(custcmd.get(msg).reply), altText: msg };
+        var rep = {
+          type: "flex",
+          contents: JSON.parse(custcmd.get(msg).reply),
+          altText: msg
+        };
         if (custcmd.get(msg + ".sender.name")) {
           rep.sender = {};
           rep.sender.name = custcmd.get(msg + ".sender.name");
