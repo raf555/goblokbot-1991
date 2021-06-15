@@ -85,7 +85,7 @@ function handleTextMessage(event) {
       }
     })
     .catch(e => {
-      console.log(e);
+      console.error(e);
       let out = "Error occured, please tag Admin\n\n";
       out += "Error: " + e.name + " - " + e.message;
       return replyMessage(event, { type: "text", text: out });

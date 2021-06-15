@@ -1,4 +1,4 @@
-const { parse, parseMultiple } = require("./parser");
+const { parse } = require("./parser");
 const featuredb = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
@@ -16,21 +16,26 @@ const customkeywords2 = Object.keys(featuredb.mustntcall);
 async function execMulti(text, event) {
   let split = text.split(" ; ");
 
-  let executed = [];
+  let executedpromise = [];
 
   for (let i = 0; i < split.length; i++) {
-    let exe = await execMessage(split[i], event);
-    if (exe) {
-      if (!Array.isArray(exe)) {
-        exe = [exe];
-      }
-      executed.push(exe);
-    }
+    executedpromise.push(execMessage(split[i], event));
   }
 
-  return executed.length === 0
-    ? null
-    : [].concat.apply([], executed).slice(0, 5);
+  return Promise.all(executedpromise).then(res => {
+    let executed = [];
+    res.forEach(reply => {
+      if (reply) {
+        if (!Array.isArray(reply)) {
+          reply = [reply];
+        }
+        executed.push(reply);
+      }
+    });
+    return executed.length === 0
+      ? null
+      : [].concat.apply([], executed).slice(0, 5);
+  });
 }
 
 async function execMessage(text, event) {
