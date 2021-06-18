@@ -13,11 +13,15 @@ let ccc = 0;
 const keywords = Object.keys(featuredb.mustcall);
 const customkeywords2 = Object.keys(featuredb.mustntcall);
 
-async function execMulti(text, event) {
+function execMulti(text, event) {
   let split = text.split(" ; ");
 
   if (split.length === 1) {
     return execMessage(text, event);
+  }
+
+  if (split.length > 5) {
+    return Promise.resolve(null);
   }
 
   let executedpromise = [];
@@ -27,8 +31,7 @@ async function execMulti(text, event) {
         .then(reply => reply)
         .catch(e => {
           console.error(e);
-          let out =
-            "Command Error -> " + split[i] + "\n\nError: " + e.name + " - " + e.message;
+          let out = `Command Error -> ${split[i]} \n\nError: ${e.name} - ${e.message}`;
           return { type: "text", text: out };
         })
     );
@@ -36,15 +39,25 @@ async function execMulti(text, event) {
 
   return Promise.all(executedpromise).then(res => {
     let executed = [];
-    res.forEach(reply => {
+    let nullc = 0;
+
+    res.forEach((reply, i) => {
       if (reply) {
         if (!Array.isArray(reply)) {
           reply = [reply];
         }
-        executed.push(reply);
+      } else {
+        nullc++;
+        reply = [
+          {
+            type: "text",
+            text: `Command (${split[i]}) was skipped because of no reply`
+          }
+        ];
       }
+      executed.push(reply);
     });
-    return executed.length === 0
+    return executed.length === 0 || nullc === executed.length
       ? null
       : [].concat.apply([], executed).slice(0, 5);
   });

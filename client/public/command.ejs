@@ -526,7 +526,7 @@
                   </div>
                   <div class="field" id="textdiv" style="display:none">
                      <label for="texttype">Reply Text</label>
-                     <input type="text" id="texttype" placeholder="Text Reply" autocomplete="off">
+                    <textarea type="text" id="texttype" placeholder="Text Reply" autocomplete="off" rows="2"></textarea>
                   </div>
                   <!--<div class="field" id="imgdiv" style="display:none">
                      <label for="imgtype">Reply Image (URL)</label>
@@ -678,7 +678,11 @@
                           <% } %>
                         </div>
                      </h4>
-                     <% if(cmd[Object.keys(cmd)[i]].requesterid == yourid || admin) { %>
+                    <% samplecondition = Object.keys(cmd)[i] ==="sample"
+                         || Object.keys(cmd)[i] ==="sampleimg"
+                         || Object.keys(cmd)[i] ==="sampleflex"
+                         %>
+                     <% if(samplecondition || cmd[Object.keys(cmd)[i]].requesterid == yourid || admin) { %>
                      <h4 class="ui header">
                         Edit / Delete
                         <div class="sub header">
@@ -686,7 +690,7 @@
                            <br><i>Note: if you change the command, it will create new command instead, you can delete the previous one.</i>
                         </div>
                      </h4>
-                     <% if(cmd[Object.keys(cmd)[i]].requesterid == yourid) { %>
+                     <% if(samplecondition || cmd[Object.keys(cmd)[i]].requesterid == yourid) { %>
                      <button id="editbtn-<%= Object.keys(cmd)[i] %>" class="ui green button" value="<%= Object.keys(cmd)[i] %>" onclick="$('#editbtn-'+this.value).removeClass('transition');$('#editbtn-'+this.value).removeClass('visible');$('#editbtn-'+this.value).addClass('loading');showedit(this);" <% if(cmd[Object.keys(cmd)[i]].approved == 1) { %>disabled<% } %>>Edit</button>
                      <% } %>
                      <% if(admin || cmd[Object.keys(cmd)[i]].requesterid == yourid) { %>

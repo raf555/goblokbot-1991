@@ -7,5 +7,11 @@ node_modules
 # db
 db/
 
+# etc
+contributing.md
+
 # big assets
 bot/assets/kbbi.json
+
+# misc, personal stuff
+client/misc.js

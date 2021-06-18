@@ -1,6 +1,6 @@
 {
   "bot": 1,
-  "imgapi": 2,
+  "imgapi": 0,
   "caller": {
     "normal": "@bot",
     "shortcut": "!",
@@ -25,6 +25,7 @@
     "tes": 0,
     "yntkts": 0,
     "yt": 0,
-    "jimp": 0
+    "jimp": 0,
+    "mashuppp": 1
   }
 }
