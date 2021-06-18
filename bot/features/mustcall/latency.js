@@ -14,14 +14,21 @@ module.exports = (parsed, event) => {
   var usgdata = usg.get();
   var dp = [];
   for (var gk in usgdata) {
-    if (/*gk == "tes" || */ !!cust.get(gk) && cust.get(gk).approved == 0)
-      continue;
     dp.push({
       nama: gk,
       jumlah: parseInt(usgdata[gk].avg)
     });
   }
   dp = arrsort(dp, "jumlah");
+  let tot = parseInt(parsed.args.n) || 3;
+  if (parsed.args.a) {
+    dp = dp.reverse();
+  }
+  let q = parsed.args.q || parsed.arg
+  if (q) {
+    dp = dp.filter(data => data.nama === q);
+    tot = dp.length;
+  }
   var boble = {
     type: "bubble",
     size: "micro",
@@ -39,7 +46,7 @@ module.exports = (parsed, event) => {
         },
         {
           type: "text",
-          text: "Top 3",
+          text: "Top " + tot,
           size: "sm",
           color: "#ffffff"
         }
@@ -88,10 +95,11 @@ module.exports = (parsed, event) => {
       }
     }
   };
-  var c = 0;
-  for (var i = dp.length - 1; i > dp.length - 7; i--) {
-    c += 1;
-    if (c > 3) break;
+  let j = 0;
+  for (var i = dp.length - 1; i > -1; i--, j++) {
+    if (j == tot) {
+      break;
+    }
     var datajson = {
       type: "box",
       layout: "vertical",

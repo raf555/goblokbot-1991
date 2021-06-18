@@ -260,10 +260,10 @@ function command_new(req, res) {
     let dbb = db.open("db/customcmd.json");
     let db2 = db.open("db/fitur.json");
     let user = db.open("db/user.json");
-    if (cmddd.split(" ").length > 5) {
+    if (cmddd.split(" ").length > 10) {
       res.send({
         result: false,
-        reason: "Maximum word is 5 words" //"Command must be one word (without space)"
+        reason: "Maximum word is 10 words" //"Command must be one word (without space)"
       });
     } else if (!isNaN(cmddd)) {
       res.send({
@@ -281,12 +281,12 @@ function command_new(req, res) {
         result: false,
         reason: "Maximum title length is 20 letter!"
       });
-    } else if (cmddd.length > 20) {
+    }/* else if (cmddd.length > 20) {
       res.send({
         result: false,
         reason: "Maximum command length is 20 letter!"
       });
-    } else {
+    }*/ else {
       //console.log(req.body.isedit)
       if ((dbb.get(cmddd) || db2.get(cmddd)) && req.body.isedit != "1") {
         res.send({ result: false, reason: "Command is already registered!" });

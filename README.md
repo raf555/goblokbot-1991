@@ -38,6 +38,8 @@ Btw, gak semua fitur / command pake bounded argument. Hampir semuanya pake yg un
     - `@bot yt -m 5 opm` dengan kata kunci `m` adalah `5`.
     - `@bot yt -m "tes tis" opm` dengan kata kunci `m` adalah `tes tis`.
     - `@bot yt -m 'tes tis' opm` sama aja kek yg atas, tp beda bracket
+    - `@bot yt -b $ -m $tes tis$` sama aja kek di atas, tp custom bracket pake $
+    - `@bot yt -b {} -m {tes tis}` sama aja kek di atas, tp custom bracket open-close pake {}
 
 2. Nested argument
     - `@bot jimp -print "-text 'goblok teks'"
@@ -53,4 +55,4 @@ Btw, gak semua fitur / command pake bounded argument. Hampir semuanya pake yg un
 
 ### Daftar fitur
 
-banyak
+banyak, cek folder **bot/features/mustcall** dan **bot/features/mustntcall** dan file **db/customcmd.json** kalo ada.
