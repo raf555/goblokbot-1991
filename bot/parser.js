@@ -2,7 +2,10 @@ const { parseArgsStringToArgv } = require("string-argv");
 
 module.exports = {
   parse,
-  parseArg
+  parseArg,
+  buildFromParsed,
+  buildArgs,
+  removeArgFromMsg
 };
 
 function parse(message, caller) {
@@ -58,7 +61,9 @@ function parse(message, caller) {
         let custombracket = parsed.args.b;
         if (custombracket) {
           let cust = getcustbracket(custombracket);
-          let regex = new RegExp(`${word}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`);
+          let regex = new RegExp(
+            `${word}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`
+          );
           if (cmdb.match(regex)) {
             let thearg = /^-{1}(\w+)/.exec(word);
             let theval = regex.exec(cmdb);
@@ -100,7 +105,9 @@ function parseArg(text) {
       let custombracket = out.b;
       if (custombracket) {
         let cust = getcustbracket(custombracket);
-        let regex = new RegExp(`${word}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`);
+        let regex = new RegExp(
+          `${word}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`
+        );
         if (text.match(regex)) {
           let thearg = /^-{1}(\w+)/.exec(word);
           let theval = regex.exec(text);
@@ -137,3 +144,64 @@ function getcustbracket(val) {
 
   return out;
 }
+
+function buildFromParsed(parsed, commandonly = false) {
+  let out = "";
+  out += parsed.caller;
+
+  if (parsed.called && !parsed.shortcut) {
+    out += " ";
+  }
+
+  out += parsed.command;
+
+  if (!commandonly) {
+    out += buildArgs(parsed);
+    out += " " + parsed.arg;
+  }
+
+  return out;
+}
+
+function buildArgs(parsed) {
+  let out = "";
+  let args = Object.keys(parsed.args);
+  out += " ";
+  args.forEach(arg => {
+    if (parsed.args[arg] === 1) {
+      out += "--" + arg;
+    } else {
+      out += "-" + arg + " " + parsed.args[arg];
+    }
+  });
+
+  return out;
+}
+
+function removeArgFromMsg(msg, arg) {
+  let args = Object.keys(arg);
+  msg = msg.replace(/\n/g, " ");
+
+  let list_arg = [];
+
+  for (let i = 0; i < args.length; i++) {
+    if (arg[args[i]] === 1) {
+      list_arg.push(" --" + args[i]);
+    } else {
+      let argz = arg[args[i]];
+      if (argz) {
+        argz = " " + argz;
+      } else {
+        argz = "";
+      }
+      list_arg.push(" -" + args[i] + argz);
+    }
+  }
+
+  for (let j = 0; j < list_arg.length; j++) {
+    msg = msg.replace(list_arg[j], "");
+  }
+
+  return msg;
+}
+
