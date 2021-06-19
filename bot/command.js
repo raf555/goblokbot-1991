@@ -1,4 +1,4 @@
-const { parse } = require("./parser");
+const { parse, buildFromParsed, buildArgs } = require("./parser");
 const featuredb = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
@@ -15,6 +15,16 @@ const customkeywords2 = Object.keys(featuredb.mustntcall);
 
 function execMulti(text, event) {
   let split = text.split(" ; ");
+
+  let oh = [];
+  for (let i = 0; i < split.length; i++) {
+    let split2 = split[i].split(" ;; ");
+    let word = /(@bot\s[\w!]+|^![\w!]+|\w+)/.exec(split[i])[1];
+    split2 = split2.join(` ; ${word} `).split(" ; ");
+    oh = oh.concat(split2);
+  }
+
+  split = oh;
 
   if (split.length === 1) {
     return execMessage(text, event);
@@ -89,11 +99,15 @@ async function execMessage(text, event) {
     if (ccc) {
       ccc = 0;
     }
-    if (keywords.includes(cmd)) {
-      reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
+    if (cmd === "!") {
+      reply = await Promise.resolve(lastcmd(parsed, event));
     } else {
-      if (!parsed.shortcut && !parsed.arg && !cmd) {
-        reply = greeting(event);
+      if (keywords.includes(cmd)) {
+        reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
+      } else {
+        if (!parsed.shortcut && !parsed.arg && !cmd) {
+          reply = greeting(event);
+        }
       }
     }
   } else {
@@ -113,8 +127,13 @@ async function execMessage(text, event) {
         let cleanedarg = removeArgFromMsg(text, parsed.args).toLowerCase();
         if (customkeywords.includes(cleanedarg)) {
           reply = customfeature(cleanedarg);
+          reply.cmd = cleanedarg;
+          reply.cmdtype = "other";
         } else {
           reply = regexbasedfeature(text);
+          if (reply) {
+            reply.cmdtype = "other";
+          }
         }
       }
     }
@@ -134,7 +153,31 @@ async function execMessage(text, event) {
     }
   }
 
+  console.log(reply);
+
   return reply;
+}
+
+function lastcmd(parsed, event) {
+  let cmdhist = Object.values(db.open("db/cmdhistory.json").get());
+  let last = cmdhist.length - 1;
+
+  while (cmdhist[last].command === "!") {
+    last--;
+  }
+
+  let out;
+
+  if (cmdhist[last].isothercmd) {
+    out = cmdhist[last].fullMsg;
+  } else {
+    let lastcmd = buildFromParsed(cmdhist[last], true);
+    let currargs = buildArgs(parsed);
+
+    out = lastcmd + currargs + " " + parsed.arg;
+  }
+
+  return execMessage(out, event);
 }
 
 function validToSend(cmd, event, setting) {
@@ -199,7 +242,7 @@ function regexbasedfeature(text) {
     msg.match(/(a)\1\1\1\1+/i) /* msg.match(/^(a)\1*$/i) */
   ) {
     let gblk = db.open(`bot/assets/hacama.json`);
-    return Object.assign(gblk.get(), { cmd: "" });
+    return Object.assign(gblk.get(), { cmd: "aaaaa" });
   }
 
   if (
@@ -211,7 +254,7 @@ function regexbasedfeature(text) {
       type: "image",
       originalContentUrl: "https://i.ibb.co/jbTKmQc/grr.jpg", //"https://i.ibb.co/ChLFsXr/184101.jpg",
       previewImageUrl: "https://i.ibb.co/jbTKmQc/grr.jpg",
-      cmd: ""
+      cmd: "grr"
     };
   }
 }

@@ -53,18 +53,25 @@ function pushMessage(id, msg) {
 function replyMessage(event, msg) {
   let eee = Array.isArray(msg) ? msg : [msg];
 
-  let ftr = eee[0].cmd;
-  let parsed = eee[0].parsed;
-  let lat = eee[0].latency;
+  let data_ = [];
 
-  delete eee[0]["cmd"];
-  delete eee[0]["parsed"];
-
-  if (!ftr) {
-    return client.replyMessage(event.replyToken, msg).then(() => {
-      savebotchat(event, msg);
+  for (let i = 0; i < eee.length; i++) {
+    data_.push({
+      cmd: eee[i].cmd,
+      parsed: eee[i].parsed,
+      latency: eee[i].latency,
+      cmdtype: eee[i].cmdtype
     });
+
+    delete eee[i]["cmd"];
+    delete eee[i]["parsed"];
+    delete eee[i]["latency"];
+    delete eee[i]["cmdtype"];
   }
+
+  let ftr = data_[0].cmd;
+  let parsed = data_[0].parsed;
+  let lat = data_[0].latency;
 
   let file = db.open(`db/latency.json`);
   let latency = lat || Date.now() - event.timestamp;
@@ -100,20 +107,30 @@ function replyMessage(event, msg) {
 
   /* write latency */
   let writelat = (() => {
-    let data = file.get(ftr);
-    if (!data) {
-      file.set(ftr + ".avg", latency);
-      file.set(ftr + ".0", latency);
-      file.save();
-    } else {
-      let tot = Object.keys(data).length - 1;
-      let lat = latency;
+    for (let i = 0; i < data_.length; i++) {
+      ftr = data_[i].cmd;
+      parsed = data_[i].parsed;
+      lat = data_[i].latency;
+      latency = lat || Date.now() - event.timestamp;
 
-      delete data["avg"];
-      lat += Object.values(data).reduce((total, num) => total + num);
+      if (!ftr) {
+        continue;
+      }
 
-      file.set(ftr + "." + tot, latency);
-      file.set(ftr + ".avg", Math.round(lat / (tot + 1)));
+      let data = file.get(ftr);
+      if (!data) {
+        file.set(ftr + ".avg", latency);
+        file.set(ftr + ".0", latency);
+      } else {
+        let tot = Object.keys(data).length - 1;
+        let lat = latency;
+
+        delete data["avg"];
+        lat += Object.values(data).reduce((total, num) => total + num);
+
+        file.set(ftr + "." + tot, latency);
+        file.set(ftr + ".avg", Math.round(lat / (tot + 1)));
+      }
       file.save();
     }
     return true;
@@ -122,13 +139,21 @@ function replyMessage(event, msg) {
   /* save cmd */
   let savecmd = (() => {
     let cmdhist = db.open("db/cmdhistory.json");
-    let id = Object.keys(cmdhist.get()).length + 1;
+    for (let i = 0; i < data_.length; i++) {
+      let id = Object.keys(cmdhist.get()).length + 1;
 
-    parsed.id = event.source.userId;
-    parsed.ts = Date.now();
-    parsed.lat = latency;
+      parsed = data_[i].parsed;
 
-    cmdhist.set(id.toString(), parsed);
+      parsed.id = event.source.userId;
+      parsed.ts = Date.now();
+      parsed.lat = latency;
+
+      if (data_[i].cmdtype === "other") {
+        parsed.isothercmd = true;
+      }
+
+      cmdhist.set(id.toString(), parsed);
+    }
     cmdhist.save();
 
     return true;
