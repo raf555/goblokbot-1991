@@ -4,7 +4,8 @@ module.exports = {
   parse,
   parseArg,
   buildFromParsed,
-  buildArgs
+  buildArgs,
+  removeArgFromMsg
 };
 
 function parse(message, caller) {
@@ -176,3 +177,31 @@ function buildArgs(parsed) {
 
   return out;
 }
+
+function removeArgFromMsg(msg, arg) {
+  let args = Object.keys(arg);
+  msg = msg.replace(/\n/g, " ");
+
+  let list_arg = [];
+
+  for (let i = 0; i < args.length; i++) {
+    if (arg[args[i]] === 1) {
+      list_arg.push(" --" + args[i]);
+    } else {
+      let argz = arg[args[i]];
+      if (argz) {
+        argz = " " + argz;
+      } else {
+        argz = "";
+      }
+      list_arg.push(" -" + args[i] + argz);
+    }
+  }
+
+  for (let j = 0; j < list_arg.length; j++) {
+    msg = msg.replace(list_arg[j], "");
+  }
+
+  return msg;
+}
+

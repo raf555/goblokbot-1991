@@ -1,7 +1,7 @@
 const jimp = require("./jimp");
 const db = require("./../../../service/database");
 
-module.exports = (parsed, event) => {
+module.exports = async (parsed, event) => {
   let userdbval = Object.values(db.open("db/user.json").get());
   let user1 = userdbval[Math.floor(Math.random() * userdbval.length)].key;
   let user2 = userdbval[Math.floor(Math.random() * userdbval.length)].key;
@@ -12,5 +12,11 @@ module.exports = (parsed, event) => {
     composite: ` -fromuser ${user2} -resize 512,512 -crop '-pos 0,0 -w width/2 -h height'`
   };
 
-  return jimp(parsed, event);
+  let out = await jimp(parsed, event);
+
+  if (out) {
+    out.cmd = "";
+  }
+
+  return out;
 };

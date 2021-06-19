@@ -1,7 +1,12 @@
-const { parse, buildFromParsed, buildArgs } = require("./parser");
 const featuredb = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
+const {
+  parse,
+  buildFromParsed,
+  buildArgs,
+  removeArgFromMsg
+} = require("./parser");
 
 module.exports = {
   exec: execMessage,
@@ -10,16 +15,22 @@ module.exports = {
 
 let ccc = 0;
 
+let setting = db.open("bot/setting.json").get();
 const keywords = Object.keys(featuredb.mustcall);
 const customkeywords2 = Object.keys(featuredb.mustntcall);
 
 function execMulti(text, event) {
+  setting = db.open("bot/setting.json").get();
   let split = text.split(" ; ");
+
+  let buildcaller = constructcaller();
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
     let split2 = split[i].split(" ;; ");
-    let word = /(@bot\s[\w!]+|^![\w!]+|\w+)/.exec(split[i])[1];
+    let word = new RegExp(
+      `${buildcaller.normal}\\s(\\w+|!)|^${buildcaller.shortcut}(\\w+|!)|\\w+`
+    ).exec(split[i])[0];
     split2 = split2.join(` ; ${word} `).split(" ; ");
     oh = oh.concat(split2);
   }
@@ -74,7 +85,7 @@ function execMulti(text, event) {
 }
 
 async function execMessage(text, event) {
-  const setting = db.open("bot/setting.json").get();
+  //const setting = db.open("bot/setting.json").get();
   const parsed = parse(text, setting.caller);
 
   let customkeywords = Object.keys(db.open("db/customcmd.json").get());
@@ -153,9 +164,26 @@ async function execMessage(text, event) {
     }
   }
 
-  console.log(reply);
-
   return reply;
+}
+
+function constructcaller() {
+  let normal = [setting.caller.normal].concat(
+    Object.keys(setting.caller.custom.normal).filter(
+      key => setting.caller.custom.normal[key] !== 0
+    )
+  );
+
+  let shortcut = [setting.caller.shortcut].concat(
+    Object.keys(setting.caller.custom.shortcut).filter(
+      key => setting.caller.custom.shortcut[key] !== 0
+    )
+  );
+
+  return {
+    normal: `(${normal.join("|")})`,
+    shortcut: `(${shortcut.join("|")})`
+  };
 }
 
 function lastcmd(parsed, event) {
@@ -308,31 +336,4 @@ function customfeature(msg) {
       return null;
     }
   }
-}
-
-function removeArgFromMsg(msg, arg) {
-  let args = Object.keys(arg);
-  msg = msg.replace(/\n/g, " ");
-
-  let list_arg = [];
-
-  for (let i = 0; i < args.length; i++) {
-    if (arg[args[i]] === 1) {
-      list_arg.push(" --" + args[i]);
-    } else {
-      let argz = arg[args[i]];
-      if (argz) {
-        argz = " " + argz;
-      } else {
-        argz = "";
-      }
-      list_arg.push(" -" + args[i] + argz);
-    }
-  }
-
-  for (let j = 0; j < list_arg.length; j++) {
-    msg = msg.replace(list_arg[j], "");
-  }
-
-  return msg;
 }
