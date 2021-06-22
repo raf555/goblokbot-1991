@@ -77,8 +77,18 @@ function replyMessage(event, msg) {
   let latency = lat || Date.now() - event.timestamp;
 
   let reply = (() => {
-    if (parsed && parsed.args.showtime) {
-      eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
+    if (parsed) {
+      if (parsed.args.showtime) {
+        eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
+      }
+
+      if (parsed.args.showid) {
+        eee.push({ type: "text", text: "ID: " + event.message.id });
+      }
+
+      if (parsed.args.showraw) {
+        eee.push({ type: "text", text: JSON.stringify(eee) });
+      }
     }
 
     if (latency >= 7500) {
@@ -98,6 +108,8 @@ function replyMessage(event, msg) {
         ];
       }
     }
+    
+    eee = eee.slice(0, 5);
 
     return client.replyMessage(event.replyToken, eee).then(() => {
       savebotchat(event, eee);
@@ -151,6 +163,8 @@ function replyMessage(event, msg) {
       if (data_[i].cmdtype === "other") {
         parsed.isothercmd = true;
       }
+      
+      parsed.fromGroup = event.source.groupId || null;
 
       cmdhist.set(id.toString(), parsed);
     }
@@ -296,7 +310,7 @@ function log(event) {
   });
 }
 
-function savebotchat(event, msg) {
+function savebotchat(event, msgdata) {
   const setting = db.open("bot/setting.json").get();
 
   if (!setting.saveMessage.message) {
@@ -315,31 +329,30 @@ function savebotchat(event, msg) {
         new Date(`${a.getMonth() + 1}/${a.getDate()}/${a.getFullYear()}`),
         "Asia/Jakarta"
       ).getTime() +
-      ".json",
-    { autosave: true }
+      ".json"
   );
-  let data = {
-    type: "",
-    message: "",
-    sender: {
-      name: "",
-      image: ""
-    },
-    unsent: false,
-    command: event.message.text || null
-  };
-  data.sender.name = "GoblokBot 1991";
-  if (msg.sender && msg.sender.name) {
-    data.sender.name = msg.sender.name + " from " + "GoblokBot 1991";
-  }
-  data.sender.image =
-    "https://image.prntscr.com/image/6eSLithqSUGnSevWGNyFZg.png";
 
-  if (!Array.isArray(msg)) {
-    msg = [msg];
+  if (!Array.isArray(msgdata)) {
+    msgdata = [msgdata];
   }
 
-  msg.forEach(msg => {
+  msgdata.forEach((msg, i) => {
+    let data = {
+      type: "",
+      message: "",
+      sender: {
+        name: "",
+        image: ""
+      },
+      unsent: false,
+      command: event.message.text || null
+    };
+    data.sender.name = "GoblokBot 1991";
+    if (msg.sender && msg.sender.name) {
+      data.sender.name = msg.sender.name + " from " + "GoblokBot 1991";
+    }
+    data.sender.image =
+      "https://image.prntscr.com/image/6eSLithqSUGnSevWGNyFZg.png";
     switch (msg.type) {
       case "text":
         data.type = "text";
@@ -366,8 +379,9 @@ function savebotchat(event, msg) {
       .toISOString()
       .substr(11, 8)
       .slice(0, -3);
-    temlendb.set("bot" + event.timestamp, data);
+    temlendb.set("bot" + (event.timestamp + i), data);
   });
+  temlendb.save();
   // save stop//
 }
 

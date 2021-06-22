@@ -1,6 +1,6 @@
 module.exports = (parsed, event) => {
   if (!parsed.arg) return null;
-  if (sumChars(parsed.arg + " ")+1 % 2 == 0) {
+  if (sumChars(parsed.arg + " ") % 2 == 0) {
     var apakah = "tidak";
   } else {
     var apakah = "iya";

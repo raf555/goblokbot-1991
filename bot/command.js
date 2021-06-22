@@ -135,13 +135,17 @@ async function execMessage(text, event) {
       if (customkeywords2.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustntcall[cmd](parsed, event));
       } else {
-        let cleanedarg = removeArgFromMsg(text, parsed.args).toLowerCase();
+        let cleanedarg = removeArgFromMsg(text, parsed.args)
+          .trim()
+          .toLowerCase();
         if (customkeywords.includes(cleanedarg)) {
-          reply = customfeature(cleanedarg);
-          reply.cmd = cleanedarg;
-          reply.cmdtype = "other";
+          reply = customfeature(cleanedarg, event);
+          if (reply) {
+            reply.cmd = cleanedarg;
+            reply.cmdtype = "other";
+          }
         } else {
-          reply = regexbasedfeature(text);
+          reply = regexbasedfeature(text, event);
           if (reply) {
             reply.cmdtype = "other";
           }
@@ -190,7 +194,7 @@ function lastcmd(parsed, event) {
   let cmdhist = Object.values(db.open("db/cmdhistory.json").get());
   let last = cmdhist.length - 1;
 
-  while (cmdhist[last].command === "!") {
+  while (!cmdhist[last].fromGroup || cmdhist[last].command === "!") {
     last--;
   }
 
@@ -262,7 +266,7 @@ function greeting(event) {
   };
 }
 
-function regexbasedfeature(text) {
+function regexbasedfeature(text, event) {
   let msg = text;
 
   if (
@@ -287,10 +291,10 @@ function regexbasedfeature(text) {
   }
 }
 
-function customfeature(msg) {
+function customfeature(msg, event) {
   let custcmd = db.open("db/customcmd.json");
   if (custcmd.get(msg)) {
-    if (custcmd.get(msg).approved == 1) {
+    if (isAdmin(event.source.userId) || custcmd.get(msg).approved == 1) {
       if (custcmd.get(msg).type == "text") {
         var rep = { type: "text", text: custcmd.get(msg).reply };
         if (custcmd.get(msg + ".sender.name")) {

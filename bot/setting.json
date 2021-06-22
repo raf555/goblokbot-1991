@@ -16,13 +16,12 @@
   },
   "statemsg": 0,
   "saveMessage": {
-    "message": 0,
+    "message": 1,
     "image": 0
   },
   "disabledftr": {
     "pap": 0,
     "tes": 0,
-    "yntkts": 0,
     "yt": 0,
     "jimp": 0,
     "mashuppp": 1

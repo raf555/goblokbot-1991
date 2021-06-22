@@ -15,27 +15,64 @@ async function copid(parsed, event) {
   country = country.toLowerCase();
 
   let today = $("#main_table_countries_today tbody tr").filter(function() {
-    return $(this).find("td").eq(1).text().trim().toLowerCase() === country;
+    let c = $(this)
+      .find("td")
+      .eq(1)
+      .text()
+      .trim()
+      .toLowerCase();
+    return c.match(new RegExp(country)) || c === country;
   });
-  
+
   let today_td = $(today[0]).find("td");
-  
-  let cname = today_td.eq(1).text().trim();
-  
+
+  let cname = today_td
+    .eq(1)
+    .text()
+    .trim();
+
   if (!cname) {
-    return {type:"text", text:"not found"}
+    return { type: "text", text: "not found" };
   }
-  
-  let today_total = today_td.eq(2).text().trim().replace(/,/g, ".");
-  let today_newc = today_td.eq(3).text().trim().replace(/,/g, ".");
-  
-  let today_death = today_td.eq(4).text().trim().replace(/,/g, ".");
-  let today_newd = today_td.eq(5).text().trim().replace(/,/g, ".");
-  
-  let today_recover = today_td.eq(6).text().trim().replace(/,/g, ".");
-  let today_newr = today_td.eq(7).text().trim().replace(/,/g, ".");
-  
-  let today_active = today_td.eq(8).text().trim().replace(/,/g, ".");
+
+  let today_total = today_td
+    .eq(2)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+  let today_newc = today_td
+    .eq(3)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+
+  let today_death = today_td
+    .eq(4)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+  let today_newd = today_td
+    .eq(5)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+
+  let today_recover = today_td
+    .eq(6)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+  let today_newr = today_td
+    .eq(7)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
+
+  let today_active = today_td
+    .eq(8)
+    .text()
+    .trim()
+    .replace(/,/g, ".");
 
   let footer = [
     {
@@ -47,7 +84,9 @@ async function copid(parsed, event) {
       action: {
         type: "uri",
         label: "Source",
-        uri: "https://www.worldometers.info/coronavirus/country/" + country
+        uri:
+          "https://www.worldometers.info/coronavirus/country/" +
+          encodeURIComponent(country)
       }
     }
   ];
