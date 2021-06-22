@@ -22,9 +22,6 @@ app.use(require("./client"));
 /* static files for client-side */
 app.use(express.static("./client/public/static"));
 
-/* admin operation */
-// require("./service/admin")
-
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`listening on ${listener.address().port}`);
 });

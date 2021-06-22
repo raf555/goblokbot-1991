@@ -9,6 +9,8 @@ module.exports = {
 };
 
 function parse(message, caller) {
+  message = message.trim();
+  
   let splitted = message.split(" ");
   let firstword = splitted[0].toLowerCase();
 
@@ -89,7 +91,7 @@ function parse(message, caller) {
 
   parsed.arg = arg.join(" ");
   parsed.fullMsg = message;
-
+  
   return parsed;
 }
 
