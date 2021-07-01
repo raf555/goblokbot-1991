@@ -10,7 +10,7 @@ module.exports = {
 
 function parse(message, caller) {
   message = message.trim();
-  
+
   let splitted = message.split(" ");
   let firstword = splitted[0].toLowerCase();
 
@@ -91,7 +91,7 @@ function parse(message, caller) {
 
   parsed.arg = arg.join(" ");
   parsed.fullMsg = message;
-  
+
   return parsed;
 }
 
@@ -168,8 +168,8 @@ function buildFromParsed(parsed, commandonly = false) {
 function buildArgs(parsed) {
   let out = "";
   let args = Object.keys(parsed.args);
-  out += " ";
   args.forEach(arg => {
+    out += " ";
     if (parsed.args[arg] === 1) {
       out += "--" + arg;
     } else {
@@ -206,4 +206,3 @@ function removeArgFromMsg(msg, arg) {
 
   return msg;
 }
-

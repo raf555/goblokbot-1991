@@ -86,7 +86,7 @@ function execMulti(text, event) {
 
 async function execMessage(text, event) {
   //const setting = db.open("bot/setting.json").get();
-  const parsed = parse(text, setting.caller);
+  let parsed = parse(text, setting.caller);
 
   let customkeywords = Object.keys(db.open("db/customcmd.json").get());
 
@@ -112,6 +112,13 @@ async function execMessage(text, event) {
     }
     if (cmd === "!") {
       reply = await Promise.resolve(lastcmd(parsed, event));
+      if (reply) {
+        if (Array.isArray(reply)) {
+          parsed = reply[0].parsed;
+        } else {
+          parsed = reply.parsed;
+        }
+      }
     } else {
       if (keywords.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
@@ -161,10 +168,14 @@ async function execMessage(text, event) {
       }
       reply.parsed = parsed;
     } else {
-      if (!reply[0].cmd && reply.cmd !== "") {
-        reply[0].cmd = cmd;
-      }
-      reply[0].parsed = parsed;
+      reply = reply.map(rdata => {
+        let out = {};
+        if (!rdata.cmd && rdata.cmd !== "") {
+          out.cmd = cmd;
+        }
+        out.parsed = parsed;
+        return Object.assign(rdata, out);
+      });
     }
   }
 
@@ -192,21 +203,49 @@ function constructcaller() {
 
 function lastcmd(parsed, event) {
   let cmdhist = Object.values(db.open("db/cmdhistory.json").get());
+
+  if (event.source.groupId) {
+    cmdhist = cmdhist.filter(data => !!data.fromGroup);
+  } else {
+    cmdhist = cmdhist.filter(
+      data => !data.fromGroup && data.id === event.source.userId
+    );
+  }
+
   let last = cmdhist.length - 1;
 
-  while (!cmdhist[last].fromGroup || cmdhist[last].command === "!") {
-    last--;
+  if (parsed.args.cmd) {
+    return {
+      type: "text",
+      text: cmdhist[last].command
+    };
   }
 
   let out;
 
   if (cmdhist[last].isothercmd) {
     out = cmdhist[last].fullMsg;
+    if (parsed.args.arg) {
+      out += " " + cmdhist[last].arg;
+    }
+    if (parsed.args.args) {
+      out += " " + buildArgs(cmdhist[last]);
+    }
   } else {
     let lastcmd = buildFromParsed(cmdhist[last], true);
     let currargs = buildArgs(parsed);
 
-    out = lastcmd + currargs + " " + parsed.arg;
+    let lastarg = "";
+    let lastargs = "";
+
+    if (parsed.args.arg) {
+      lastarg = cmdhist[last].arg;
+    }
+    if (parsed.args.args) {
+      lastargs = buildArgs(cmdhist[last]);
+    }
+
+    out = `${lastcmd}${currargs}${lastargs} ${lastarg} ${parsed.arg}`;
   }
 
   return execMessage(out, event);
@@ -295,38 +334,26 @@ function customfeature(msg, event) {
   let custcmd = db.open("db/customcmd.json");
   if (custcmd.get(msg)) {
     if (isAdmin(event.source.userId) || custcmd.get(msg).approved == 1) {
+      let rep;
       if (custcmd.get(msg).type == "text") {
-        var rep = { type: "text", text: custcmd.get(msg).reply };
-        if (custcmd.get(msg + ".sender.name")) {
-          rep.sender = {};
-          rep.sender.name = custcmd.get(msg + ".sender.name");
-          if (custcmd.get(msg + ".sender.img")) {
-            rep.sender.iconUrl = custcmd.get(msg + ".sender.img");
-          }
-        }
-        return rep;
+        rep = { type: "text", text: custcmd.get(msg).reply };
       }
       if (custcmd.get(msg).type == "image") {
-        var rep = {
+        rep = {
           type: "image",
           originalContentUrl: custcmd.get(msg).reply,
           previewImageUrl: custcmd.get(msg).reply
         };
-        if (custcmd.get(msg + ".sender.name")) {
-          rep.sender = {};
-          rep.sender.name = custcmd.get(msg + ".sender.name");
-          if (custcmd.get(msg + ".sender.img")) {
-            rep.sender.iconUrl = custcmd.get(msg + ".sender.img");
-          }
-        }
-        return rep;
       }
       if (custcmd.get(msg).type == "flex") {
-        var rep = {
+        rep = {
           type: "flex",
           contents: JSON.parse(custcmd.get(msg).reply),
           altText: msg
         };
+      }
+
+      if (rep) {
         if (custcmd.get(msg + ".sender.name")) {
           rep.sender = {};
           rep.sender.name = custcmd.get(msg + ".sender.name");
@@ -336,8 +363,7 @@ function customfeature(msg, event) {
         }
         return rep;
       }
-    } else {
-      return null;
     }
   }
+  return null;
 }

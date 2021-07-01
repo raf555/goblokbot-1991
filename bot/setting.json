@@ -16,7 +16,7 @@
   },
   "statemsg": 0,
   "saveMessage": {
-    "message": 1,
+    "message": 0,
     "image": 0
   },
   "disabledftr": {
@@ -24,6 +24,7 @@
     "tes": 0,
     "yt": 0,
     "jimp": 0,
-    "mashuppp": 1
+    "mashuppp": 1,
+    "opm": 1
   }
 }

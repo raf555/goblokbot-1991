@@ -96,10 +96,10 @@ async function makeJIMP(args, parentdata) {
   let fromuser = args.fromuser || args.user;
   let url = args.url || args.u;
 
-  delete args["url"];
-  delete args["fromid"];
-  delete args["fromuser"];
-  delete args["new"];
+  delete args["url"]; delete args["u"];
+  delete args["fromid"]; delete args["id"];
+  delete args["fromuser"]; delete args["user"];
+  delete args["new"]; delete args["n"];
 
   if (url) {
     return Jimp.read(await getBufferFromURL(url));

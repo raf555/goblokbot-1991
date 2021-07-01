@@ -1,3 +1,4 @@
+let h = require("./hololive");
 module.exports = (parsed, event) => {
-  return require("./hololive")(parsed, event, true);
+  return h(parsed, event, true);
 };
