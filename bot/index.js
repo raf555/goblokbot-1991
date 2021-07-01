@@ -3,7 +3,6 @@ const { postback } = require("./postback");
 const {
   replyMessage,
   saveMessage,
-  isAdmin,
   log,
   saveImage,
   saveUnsend,

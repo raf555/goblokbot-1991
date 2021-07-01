@@ -11,12 +11,8 @@ function getfeatures(onlyname = false) {
 
   let features = fs
     .readdirSync(__dirname)
-    .map(name => {
-      return name.replace(".js", "");
-    })
-    .filter(name => {
-      return condition(name);
-    });
+    .map(name => name.replace(".js", ""))
+    .filter(name => condition(name));
 
   features.forEach(name => {
     if (!onlyname) {

@@ -1,15 +1,18 @@
 const fs = require("fs");
+const adminjs = require("./admin");
+const mustcalljs = require("./mustcall");
+const mustntcalljs = require("./mustntcall");
 
 module.exports = getfeatures;
 
 function getfeatures(onlyname = false) {
-  let mustcall = require("./mustcall")(onlyname);
-  
+  let mustcall = mustcalljs(false);
+
   // assign admin features
-  Object.assign(mustcall, require("./admin")(onlyname))
-  
+  Object.assign(mustcall, adminjs(onlyname));
+
   return {
     mustcall: mustcall,
-    mustntcall: require("./mustntcall")(onlyname)
+    mustntcall: mustntcalljs(onlyname)
   };
 }

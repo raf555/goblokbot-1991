@@ -51,11 +51,7 @@ module.exports = async (parsed, event) => {
           },
           {
             type: "text",
-            text:
-              st.toLowerCase() == "rezda-and-ayame" ||
-              st.toLowerCase() == "ayame-and-rezda"
-                ? "100%"
-                : $("strong").text(),
+            text: $("strong").text(),
             color: "#ffffff",
             align: "start",
             size: "xs",
@@ -74,11 +70,7 @@ module.exports = async (parsed, event) => {
                     type: "filler"
                   }
                 ],
-                width:
-                  st.toLowerCase() == "rezda-and-ayame" ||
-                  st.toLowerCase() == "ayame-and-rezda"
-                    ? "100%"
-                    : $("strong").text(),
+                width: $("strong").text(),
                 backgroundColor: "#F06292",
                 height: "6px"
               }

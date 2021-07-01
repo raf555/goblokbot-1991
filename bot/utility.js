@@ -151,11 +151,12 @@ function replyMessage(event, msg) {
   /* save cmd */
   let savecmd = (() => {
     let cmdhist = db.open("db/cmdhistory.json");
-    for (let i = 0; i < data_.length; i++) {
-      let id = Object.keys(cmdhist.get()).length + 1;
-
+    for (let i = 0; i < data_.length; i++) {      
       parsed = data_[i].parsed;
+      if (!parsed) continue;
 
+      let id = Object.keys(cmdhist.get()).length + 1;
+      
       parsed.id = event.source.userId;
       parsed.ts = Date.now();
       parsed.lat = latency;

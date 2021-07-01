@@ -2,19 +2,35 @@ const db = require("./../../../service/database");
 const imageSearch = require("image-search-google");
 const stringSimilarity = require("string-similarity");
 
+// init
+let papkey = process.env.pap_key.split(",");
+let key1 = papkey[0];
+let key2 = papkey[1];
+let key3 = papkey[2];
+let key4 = papkey[3];
+
+let apikey = process.env.pap_api_key.split(",");
+let api1 = apikey[0];
+let api2 = apikey[1];
+let api3 = apikey[2];
+let api4 = apikey[3];
+
+let key = [key1, key2, key3, key4];
+let api = [api1, api2, api3, api4];
+
 module.exports = (parsed, event) => {
   if (!parsed.arg) return false;
-  
+
   const setting = db.open("bot/setting.json").get();
-  var query = parsed.arg;
+  let query = parsed.arg;
 
   // cek ban
-  var dbz = db.open("db/banpap.json");
-  var dbg = dbz.get();
-  for (var i = 0; i < Object.keys(dbg).length; i++) {
+  let dbz = db.open("db/banpap.json");
+  let dbg = dbz.get();
+  for (let i = 0; i < Object.keys(dbg).length; i++) {
     if (dbz.get(Object.keys(dbg)[i]) == 1) {
-      var reg = new RegExp(Object.keys(dbg)[i], "i");
-      var matches = stringSimilarity.findBestMatch(
+      let reg = new RegExp(Object.keys(dbg)[i], "i");
+      let matches = stringSimilarity.findBestMatch(
         Object.keys(dbg)[i],
         parsed.arg.split(" ")
       );
@@ -30,30 +46,51 @@ module.exports = (parsed, event) => {
       }
     }
   }
-
-  // init
-  var papkey = process.env.pap_key.split(",");
-  var key1 = papkey[0];
-  var key2 = papkey[1];
-  var key3 = papkey[2];
-  var key4 = papkey[3];
-
-  var apikey = process.env.pap_api_key.split(",");
-  var api1 = apikey[0];
-  var api2 = apikey[1];
-  var api3 = apikey[2];
-  var api4 = apikey[3];
-
-  var key = [key1, key2, key3, key4];
-  var api = [api1, api2, api3, api4];
-  var klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
-  var gambar;
-  var options = { page: 1 };
+  let klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
+  let gambar;
+  let options = { page: 1 };
   return klien.search(parsed.arg, options).then(he => {
-    var xdlmao = Math.floor(Math.random() * he.length);
+    if (parsed.args.n) {
+      let n = parsed.args.n;
+      if (typeof n === "string") {
+        n = parseInt(n) % 12;
+      } else {
+        n = 12;
+      }
+
+      let crsl = {
+        type: "flex",
+        altText: "pap",
+        contents: {
+          type: "carousel",
+          contents: []
+        }
+      };
+
+      for (let i = 0; i < Math.min(he.length, n); i++) {
+        crsl.contents.contents.push({
+          type: "bubble",
+          size: "micro",
+          hero: {
+            type: "image",
+            url: he[i].url,
+            size: "full",
+            aspectMode: "fit",
+            action: {
+              type: "uri",
+              uri: he[i].url
+            }
+          }
+        });
+      }
+
+      return crsl;
+    }
+
+    let xdlmao = Math.floor(Math.random() * he.length);
     //console.log(he[xdlmao])
     gambar = he[xdlmao].url;
-    var gambart = he[xdlmao].thumbnail;
+    let gambart = he[xdlmao].thumbnail;
     //console.log(gambar)
     let send = [
       {
@@ -62,35 +99,12 @@ module.exports = (parsed, event) => {
         previewImageUrl: gambart
       }
     ];
-    /*
-          if (
-            event.source.userId == "U3e3a9f7e8233d7fd2f58815690ee2cd4" &&
-            (/saya/g.test(txt) ||
-              /hiyama/g.test(txt) ||
-              (/saya/g.test(txt) && /hiyama/g.test(txt)))
-          ) {
-            send.unshift({
-              type: "flex",
-              contents: {
-                type: "bubble",
-                size: "micro",
-                body: {
-                  type: "box",
-                  layout: "vertical",
-                  contents: [
-                    {
-                      type: "image",
-                      url:
-                        "https://stickershop.line-scdn.net/stickershop/v1/sticker/344658642/android/sticker.png;compress=true",
-                      size: "full",
-                      aspectMode: "cover"
-                    }
-                  ]
-                }
-              },
-              altText: "Simp"
-            });
-          }*/
+    if (parsed.args.out || parsed.args.url) {
+      send.push({
+        type: "text",
+        text: gambar
+      });
+    }
     return send;
   });
 };
