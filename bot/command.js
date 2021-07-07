@@ -212,6 +212,10 @@ function lastcmd(parsed, event) {
     );
   }
 
+  if (cmdhist.length === 0) {
+    return null;
+  }
+
   let last = cmdhist.length - 1;
 
   if (parsed.args.cmd) {
@@ -219,6 +223,17 @@ function lastcmd(parsed, event) {
       type: "text",
       text: cmdhist[last].command
     };
+  }
+
+  if (parsed.args.if) {
+    let iff = parsed.args.if.toLowerCase();
+
+    if (cmdhist[last].command !== iff) {
+      return {
+        type: "text",
+        text: "Last cmd: " + cmdhist[last].command
+      };
+    }
   }
 
   let out;
