@@ -88,6 +88,11 @@ module.exports = (parsed, event) => {
     }
 
     let xdlmao = Math.floor(Math.random() * he.length);
+    
+    if (parsed.args.t){
+      xdlmao = 0;
+    }
+    
     //console.log(he[xdlmao])
     gambar = he[xdlmao].url;
     let gambart = he[xdlmao].thumbnail;
