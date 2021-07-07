@@ -8,9 +8,10 @@ module.exports = {
 
 function upload(options) {
   options.apiKey = key;
-  if (options.name) {
-    options.name = encodeURIComponent(options.name);
-  }
+  
+  //if (options.name) {
+  //  options.name = encodeURIComponent(options.name);
+  //}
 
   return imgbbUploader(options);
 }
