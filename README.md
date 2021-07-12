@@ -53,6 +53,25 @@ Btw, gak semua fitur / command pake bounded argument. Hampir semuanya pake yg un
     - `@bot jimp --new`
       - kata kunci `new` ngasih message boolean `true` ke command jimp.
 
+### Fitur lain
+
+1. Multiple command
+
+    - Contoh: `@bot yt tes ; !pap tes ; !c` bakal ngirim 3 command (berurutan) `yt, pap, c`. Maksimal 5 reply / bubble.
+
+2. Multiple "arg" in 1 command
+
+    - Contoh: `@bot pap tes ;; tis` sama aja kyk `@bot pap tes ; @bot pap tis`. Maksimal 5 reply / bubble.
+
+3. Call last command
+
+    - Pake prefix `!!`. Contoh command terakhir itu pap, jadi `!! tes` sama aja kyk `@bot pap tes`
+
+4. WEBSITE
+
+    - Website goblokbot bisa dipake buat liat grafik latency, liat history chat, liat daftar user, sama request fitur baru.
+    - Buat admin, admin bisa ban orang lewat web, bisa liat message yg di-unsend, bisa accept/delete fitur yg di-request.
+    
 ### Daftar fitur
 
 banyak, cek folder **bot/features/mustcall** dan **bot/features/mustntcall** dan file **db/customcmd.json** kalo ada.

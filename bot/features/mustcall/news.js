@@ -7,7 +7,7 @@ module.exports = async (parsed, event) => {
 
   /* args */
   let country = parsed.args.country || parsed.args.c || "id";
-  let query = parsed.args.q || null;
+  let query = parsed.arg || parsed.args.q || null;
   let max = parseInt(parsed.args.max || parsed.args.m || "12");
   let category = parsed.args.category || parsed.args.cat || null;
 
