@@ -18,6 +18,13 @@ let api4 = apikey[3];
 let key = [key1, key2, key3, key4];
 let api = [api1, api2, api3, api4];
 
+function invalidimage(he) {
+  return (
+    he.url.match(/x-raw-image:\/\/\//) ||
+    he.thumbnail.match(/x-raw-image:\/\/\//)
+  );
+}
+
 module.exports = (parsed, event) => {
   if (!parsed.arg) return false;
 
@@ -49,7 +56,14 @@ module.exports = (parsed, event) => {
   let klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
   let gambar;
   let options = { page: 1 };
-  return klien.search(parsed.arg, options).then(he => {
+  return klien.search(encodeURIComponent(parsed.arg), options).then(he => {
+    if (he.length === 0) {
+      return {
+        type: "text",
+        text: "Not found"
+      };
+    }
+
     if (parsed.args.n) {
       let n = parsed.args.n;
       if (typeof n === "string") {
@@ -68,17 +82,20 @@ module.exports = (parsed, event) => {
       };
 
       for (let i = 0; i < Math.min(he.length, n); i++) {
+        if (invalidimage(he[i])) {
+          continue;
+        }
         crsl.contents.contents.push({
           type: "bubble",
           size: "micro",
           hero: {
             type: "image",
-            url: he[i].url,
+            url: he[i].url.replace("http://", "https://"),
             size: "full",
             aspectMode: "fit",
             action: {
               type: "uri",
-              uri: he[i].url
+              uri: he[i].url.replace("http://", "https://")
             }
           }
         });
@@ -88,14 +105,24 @@ module.exports = (parsed, event) => {
     }
 
     let xdlmao = Math.floor(Math.random() * he.length);
-    
-    if (parsed.args.t){
+
+    if (parsed.args.t) {
       xdlmao = 0;
     }
-    
+
+    let tries = 0;
+
+    while (invalidimage(he[xdlmao]) && tries < 10) {
+      xdlmao = Math.floor(Math.random() * he.length);
+      tries++;
+    }
+
+    //console.log(he)
     //console.log(he[xdlmao])
-    gambar = he[xdlmao].url;
-    let gambart = he[xdlmao].thumbnail;
+
+    gambar = he[xdlmao].url.replace("http://", "https://");
+    let gambart = he[xdlmao].thumbnail.replace("http://", "https://");
+
     //console.log(gambar)
     let send = [
       {

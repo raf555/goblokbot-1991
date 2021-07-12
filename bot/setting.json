@@ -1,6 +1,6 @@
 {
   "bot": 1,
-  "imgapi": 0,
+  "imgapi": 3,
   "caller": {
     "normal": "@bot",
     "shortcut": "!",
