@@ -1,5 +1,5 @@
 const db = require("./../../../service/database");
-const imageSearch = require("image-search-google");
+const imageSearch = require("google-images");
 const stringSimilarity = require("string-similarity");
 
 // init
@@ -21,14 +21,17 @@ let api = [api1, api2, api3, api4];
 function invalidimage(he) {
   return (
     he.url.match(/x-raw-image:\/\/\//) ||
-    he.thumbnail.match(/x-raw-image:\/\/\//)
+    he.thumbnail.url.match(/x-raw-image:\/\/\//)
   );
 }
 
 module.exports = (parsed, event) => {
   if (!parsed.arg) return false;
 
+
   const setting = db.open("bot/setting.json").get();
+  const klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
+  
   let query = parsed.arg;
 
   // cek ban
@@ -53,10 +56,10 @@ module.exports = (parsed, event) => {
       }
     }
   }
-  let klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
   let gambar;
   let options = { page: 1 };
-  return klien.search(encodeURIComponent(parsed.arg), options).then(he => {
+
+  return klien.search(parsed.arg, options).then(he => {
     if (he.length === 0) {
       return {
         type: "text",
@@ -121,7 +124,7 @@ module.exports = (parsed, event) => {
     //console.log(he[xdlmao])
 
     gambar = he[xdlmao].url.replace("http://", "https://");
-    let gambart = he[xdlmao].thumbnail.replace("http://", "https://");
+    let gambart = he[xdlmao].thumbnail.url.replace("http://", "https://");
 
     //console.log(gambar)
     let send = [
