@@ -88,6 +88,8 @@ function parse(message, caller) {
     }
     idx++;
   }
+  
+  delete parsed.args["b"];
 
   parsed.arg = arg.join(" ");
   parsed.fullMsg = message;
@@ -129,6 +131,8 @@ function parseArg(text) {
     }
     idx++;
   }
+
+  delete out["b"];
   //console.log(out)
 
   return out;
