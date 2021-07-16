@@ -94,7 +94,7 @@ function command(req, res) {
 
 function commandimg(req, res) {
   if (!isAdmin(req.session.uid)) {
-    res.redirect("/app");
+    res.redirect("/");
   }
   let cmddb = db.open("db/customcmd.json");
   let cmdimgdb = db.open("db/featureimg.json");
@@ -140,7 +140,7 @@ function getuser(req, res) {
     res.redirect("/user/" + hash(req.session.uid));
   } else {
     if (!userdb.get(req.params.userid)) {
-      res.redirect("/app");
+      res.redirect("/");
     } else {
       res.render("users", {
         userdata: userdb.get(req.params.userid),
