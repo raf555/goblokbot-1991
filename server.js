@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 app.use(require("./chat.js"));
 
 /* client configurations */
-app.set("views", "./client/public");
+app.set("views", "./web/public");
 app.set("view engine", "ejs");
 app.set("view cache", true);
 app.use(
@@ -17,10 +17,10 @@ app.use(
 app.use(bodyParser.json());
 
 /* client-side */
-app.use(require("./client"));
+app.use(require("./web"));
 
 /* static files for client-side */
-app.use(express.static("./client/public/static"));
+app.use(express.static("./web/public/static"));
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`listening on ${listener.address().port}`);
