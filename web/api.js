@@ -9,15 +9,15 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 app.get("/latency/graph", latency_graph);
 app.get("/latency/get", latency_get);
-app.get("/api/chat/getcontent", chat_getcontent);
-app.get("/api/command/data", command_data);
-app.get("/api/turn/:type/:state", state_edit);
-app.get("/api/getavaildate", getavaildate);
+app.get("/chat/getcontent", chat_getcontent);
+app.get("/command/data", command_data);
+app.get("/turn/:type/:state", state_edit);
+app.get("/getavaildate", getavaildate);
 
-app.post("/api/ban", banuser);
-app.post("/api/unban", unbanuser);
-app.post("/api/command/:tipe", upload.single("image"), command_handleapi);
-app.post("/api/command/delete/image", command_deleteimage);
+app.post("/ban", banuser);
+app.post("/unban", unbanuser);
+app.post("/command/:tipe", upload.single("image"), command_handleapi);
+app.post("/command/delete/image", command_deleteimage);
 
 function getavaildate(req, res) {
   res.send({
