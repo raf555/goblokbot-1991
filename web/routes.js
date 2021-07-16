@@ -1,22 +1,17 @@
 const app = require("express").Router();
-const auth = require("./auth");
 const fs = require("fs");
 const db = require("./../service/database");
 const hash = require("./../service/hash");
 const { cekban, isAdmin, convertTZ } = require("./../bot/utility");
 
-const isloggedin = auth.isloggedin;
-
-app.use(auth.app);
-
-app.get("/", isloggedin, index);
-app.get("/latency", isloggedin, latency);
-app.get("/chat/img", isloggedin, chatimg);
-app.get("/chat", isloggedin, chat);
-app.get("/command", isloggedin, command);
-app.get("/command/img", isloggedin, commandimg);
-app.get("/user", isloggedin, user);
-app.get("/user/:userid", isloggedin, getuser);
+app.get("/", index);
+app.get("/latency", latency);
+app.get("/chat/img", chatimg);
+app.get("/chat", chat);
+app.get("/command", command);
+app.get("/command/img", commandimg);
+app.get("/user", user);
+app.get("/user/:userid", getuser);
 
 function index(req, res) {
   let state = db.open("bot/setting.json");
@@ -99,7 +94,7 @@ function command(req, res) {
 
 function commandimg(req, res) {
   if (!isAdmin(req.session.uid)) {
-    res.redirect("/");
+    res.redirect("/app");
   }
   let cmddb = db.open("db/customcmd.json");
   let cmdimgdb = db.open("db/featureimg.json");
@@ -145,7 +140,7 @@ function getuser(req, res) {
     res.redirect("/user/" + hash(req.session.uid));
   } else {
     if (!userdb.get(req.params.userid)) {
-      res.redirect("/");
+      res.redirect("/app");
     } else {
       res.render("users", {
         userdata: userdb.get(req.params.userid),

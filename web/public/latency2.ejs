@@ -116,12 +116,12 @@
     e = i[0];
     var x_value = this.data.labels[e._index];
     var y_value = this.data.datasets[0].data[e._index];
-                location.href="/latency/graph?cmd="+x_value
+                location.href="/api/latency/graph?cmd="+x_value
 }
           }
           })
         }}
-        $.getJSON("/latency/get?id=<%-!cmd?1:cmd%>", addData);
+        $.getJSON("/api/latency/get?id=<%-!cmd?1:cmd%>", addData);
       };
     </script>
   </head>
