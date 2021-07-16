@@ -1,8 +1,30 @@
 const wiki = require("wikipedia");
+const langs = wiki.languages();
 
 module.exports = async (parsed, event) => {
-  let lang = parsed.args.lang || "id";
+  /* args */
+  let lang = (parsed.args.lang || parsed.args.l || "id").toLowerCase();
+  let autosuggest = parsed.args.as;
+
+  delete parsed.args["lang"];
+  delete parsed.args["l"];
+  delete parsed.args["as"];
+
+  const listlang = await Promise.resolve(langs);
+
+  if (Object.keys(parsed.args).length > 0) {
+    lang = Object.keys(parsed.args)[0];
+    parsed.arg = parsed.args[lang];
+    if (parsed.arg === 1) {
+      parsed.arg = "";
+    }
+    lang = lang.toLowerCase();
+  }
+
   try {
+    if (listlang.find(l => Object.keys(l)[0] === lang) === undefined) {
+      throw new Error();
+    }
     await wiki.setLang(lang);
   } catch (e) {
     return { type: "text", text: "Language code invalid" };
@@ -14,7 +36,7 @@ module.exports = async (parsed, event) => {
     summary = await wiki.random();
   } else {
     try {
-      let page = await wiki.page(parsed.arg, { autoSuggest: !!parsed.args.as });
+      let page = await wiki.page(parsed.arg, { autoSuggest: !!autosuggest });
       summary = await page.summary();
     } catch (e) {
       return { type: "text", text: e.message };

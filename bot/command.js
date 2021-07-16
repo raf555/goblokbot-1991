@@ -1,3 +1,4 @@
+// const stringSimilarity = require("string-similarity");
 const featuredb = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
@@ -17,6 +18,12 @@ let ccc = 0;
 
 let setting = db.open("bot/setting.json").get();
 const keywords = Object.keys(featuredb.mustcall);
+const keywords_short = keywords
+  .filter(cmd => cmd.length >= 3)
+  .map(cmd => ({
+    short: cmd[0],
+    cmd: cmd
+  }));
 const customkeywords2 = Object.keys(featuredb.mustntcall);
 
 function execMulti(text, event) {
@@ -92,12 +99,12 @@ async function execMessage(text, event) {
 
   let cmd = parsed.command;
 
+  /* message valid to send check */
   let checkstatus = validToSend(cmd, event, setting);
   let checkcond =
     keywords.includes(cmd) ||
     customkeywords.includes(text) ||
     customkeywords2.includes(cmd);
-
   if ((checkstatus || checkstatus === 0) && (parsed.called || checkcond)) {
     if (checkstatus === 0) {
       return null;
@@ -105,6 +112,7 @@ async function execMessage(text, event) {
     return await Promise.resolve(checkstatus);
   }
 
+  /* proceed the command */
   let reply = null;
   if (parsed.called) {
     if (ccc) {
@@ -120,7 +128,13 @@ async function execMessage(text, event) {
         }
       }
     } else {
-      if (keywords.includes(cmd)) {
+      let validcmd = checkCMD(cmd);
+      // if (keywords.includes(cmd)) {
+      if (validcmd.result) {
+        if (validcmd.shortcut) {
+          cmd = validcmd.shortcut;
+          parsed.command = cmd;
+        }
         reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
       } else {
         if (!parsed.shortcut && !parsed.arg && !cmd) {
@@ -182,6 +196,26 @@ async function execMessage(text, event) {
   return reply;
 }
 
+function checkCMD(cmd) {
+  if (keywords.includes(cmd)) {
+    return {
+      result: true
+    };
+  }
+
+  let idx = keywords_short.findIndex(c => c.short === cmd);
+  if (idx !== -1) {
+    return {
+      result: true,
+      shortcut: keywords_short[idx].cmd
+    };
+  }
+  
+  return {
+    result: false
+  }
+}
+
 function constructcaller() {
   let normal = [setting.caller.normal].concat(
     Object.keys(setting.caller.custom.normal).filter(
@@ -218,10 +252,10 @@ function lastcmd(parsed, event) {
 
   let last = cmdhist.length - 1;
 
-  if (parsed.args.cmd) {
+  if (parsed.args.cmd || parsed.args.info) {
     return {
       type: "text",
-      text: cmdhist[last].command
+      text: cmdhist[last].fullMsg
     };
   }
 
