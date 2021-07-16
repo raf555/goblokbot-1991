@@ -14,4 +14,4 @@ contributing.md
 bot/assets/kbbi.json
 
 # misc, personal stuff
-client/misc.js
+web/misc.js
