@@ -299,7 +299,7 @@ function log(event) {
       }
       debe.save();
     }
-    if (event.message) {
+    if (event.message && event.source.groupId) { // log if messages come from group only
       console.log(
         event.source.userId,
         profile.displayName,
