@@ -7,4 +7,4 @@ function admingabut() {
   a.save()
 }
 
-admingabut();
+module.exports = admingabut;

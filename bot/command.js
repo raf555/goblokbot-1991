@@ -271,6 +271,11 @@ function lastcmd(parsed, event) {
   }
 
   let out;
+  
+  if (parsed.args.all) {
+    parsed.args.arg = 1;
+    parsed.args.args = 1;
+  }
 
   if (cmdhist[last].isothercmd) {
     out = cmdhist[last].fullMsg;

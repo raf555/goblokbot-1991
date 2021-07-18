@@ -226,7 +226,9 @@ function chat_getcontent(req, res) {
   res.send(
     !id
       ? {}
-      : !fs.readdirSync(__dirname + "/../db/chat/history").includes(date + ".json")
+      : !fs
+          .readdirSync(__dirname + "/../db/chat/history")
+          .includes(date + ".json")
       ? {}
       : temlendb.get(id)
   );
@@ -257,6 +259,9 @@ function command_new(req, res) {
       return false;
     }
     let cmddd = req.body.cmd.toLowerCase();
+    let bypasskey = "~";
+    let bypassregex = new RegExp(`^${bypasskey}`);
+    let bypass = cmddd.match(bypassregex);
     let dbb = db.open("db/customcmd.json");
     let db2 = db.open("db/fitur.json");
     let user = db.open("db/user.json");
@@ -270,7 +275,7 @@ function command_new(req, res) {
         result: false,
         reason: "Invalid Command (There must be atleast one alphabet)"
       });
-    } else if (!/^[a-z0-9\s]+$/gi.test(cmddd)) {
+    } else if (!bypass && !/^[a-z0-9\s]+$/gi.test(cmddd)) {
       //(!/^[a-z0-9]+$/gi.test(cmddd)) {
       res.send({
         result: false,
@@ -281,13 +286,23 @@ function command_new(req, res) {
         result: false,
         reason: "Maximum title length is 20 letter!"
       });
-    }/* else if (cmddd.length > 20) {
+    } /* else if (cmddd.length > 20) {
       res.send({
         result: false,
         reason: "Maximum command length is 20 letter!"
       });
     }*/ else {
       //console.log(req.body.isedit)
+      if (cmddd.match(/\./g)) {
+        res.send({
+          result: false,
+          reason: "Invalid Command (dot is not allowed)"
+        });
+        return;
+      }
+      if (bypass) {
+        cmddd = cmddd.replace(bypassregex, "");
+      }
       if ((dbb.get(cmddd) || db2.get(cmddd)) && req.body.isedit != "1") {
         res.send({ result: false, reason: "Command is already registered!" });
       } else {
