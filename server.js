@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+/* scheduled job */
+require("./service/cron")();
+
 /* line bot handler */
 app.use(require("./chat.js"));
 

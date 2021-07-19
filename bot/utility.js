@@ -38,7 +38,7 @@ function leave(event) {
   }
 }
 
-function pushMessage(id, msg) {
+function pushMessage(msg, id) {
   return client
     .pushMessage(id, msg)
     .then(() => {

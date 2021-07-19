@@ -3,11 +3,21 @@ const axios = require("axios");
 module.exports = (parsed, event) => {
   let args = Object.keys(parsed.args);
 
-  if (parsed.args.livers) {
+  if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
+    if (/^(livers)(\s(.*))?/.test(parsed.arg)) {
+      let exec = /^(livers)(\s(.*))?/.exec(parsed.arg);
+      parsed.args.livers = exec[3];
+      parsed.arg = "";
+    }
     return liver_list(parsed);
   }
 
-  if (parsed.args.liver || parsed.args["liver-detail"]) {
+  if (parsed.args.liver || /^(liver)(\s(.*))?/.test(parsed.arg)) {
+    if (/^(liver)(\s(.*))?/.test(parsed.arg)) {
+      let exec = /^(liver)(\s(.*))?/.exec(parsed.arg);
+      parsed.args.liver = exec[3];
+      parsed.arg = "";
+    }
     return liver_info(parsed);
   }
 
@@ -31,24 +41,31 @@ async function live_schedule(parsed) {
     } else {
       events = events.filter(e => e.livers[0].id === id);
     }
-  }
-
-  if (!parsed.args.past) {
-    events = events.filter(
-      e =>
-        convertToWIB(e.start_date).getTime() >=
-        convertToWIB(new Date()).getTime()
-    );
-  } else {
-    events = events
-      .filter(
+    if (parsed.args.now) {
+      events = events.filter(
         e =>
-          /*convertToWIB(e.start_date).getTime() >=
-              convertToWIB(toLocaleDate(new Date(), true)).getTime() &&*/
-          convertToWIB(e.start_date).getTime() <=
+          convertToWIB(e.start_date).getTime() >=
           convertToWIB(new Date()).getTime()
-      )
-      .reverse();
+      );
+    }
+  } else {
+    if (!parsed.args.past) {
+      events = events.filter(
+        e =>
+          convertToWIB(e.start_date).getTime() >=
+          convertToWIB(new Date()).getTime()
+      );
+    } else {
+      events = events
+        .filter(
+          e =>
+            /*convertToWIB(e.start_date).getTime() >=
+              convertToWIB(toLocaleDate(new Date(), true)).getTime() &&*/
+            convertToWIB(e.start_date).getTime() <=
+            convertToWIB(new Date()).getTime()
+        )
+        .reverse();
+    }
   }
 
   if (parsed.args.desc) {
@@ -68,6 +85,13 @@ async function live_schedule(parsed) {
 
   for (let i = page * 12; i < Math.min(page * 12 + 12, events.length); i++) {
     carousel.contents.push(makeLiveBubble(events[i]));
+  }
+
+  if (parsed.args.n && !isNaN(parsed.args.n)) {
+    carousel.contents = carousel.contents.slice(
+      0,
+      Math.min(parseInt(parsed.args.n), 12)
+    );
   }
 
   return {
@@ -97,9 +121,9 @@ async function liver_list(parsed) {
     .then(res => res.data.pageProps.livers);
 
   if (!!q) {
-    let branch = /nijisanji(\s(jp|en|kr|id))/.exec(q.toLowerCase());
+    let branch = /(nijisanji)?(\s?(jp|en|kr|id))/.exec(q.toLowerCase());
     if (branch) {
-      q = branch[2].toUpperCase();
+      q = branch[3].toUpperCase();
       if (q === "JP") {
         q = "にじさんじ";
       } else {
@@ -121,7 +145,7 @@ async function liver_list(parsed) {
     return { type: "text", text: "Invalid sort args" };
   }
   let by = sort[1];
-  let order = sort[2];
+  let order = sort[3];
 
   if (by === "name") {
     livers = livers.sort((a, b) =>
@@ -136,6 +160,8 @@ async function liver_list(parsed) {
       return a.subscribe_orders - b.subscribe_orders;
     });
   }
+  if (order === "desc") livers = livers.reverse();
+  if (parsed.args.desc) livers = livers.reverse();
 
   let carousel = { type: "carousel", contents: [] };
 
@@ -152,6 +178,13 @@ async function liver_list(parsed) {
     carousel.contents.push(makeLiverBubble(livers[i]));
   }
 
+  if (parsed.args.n && !isNaN(parsed.args.n)) {
+    carousel.contents = carousel.contents.slice(
+      0,
+      Math.min(parseInt(parsed.args.n), 12)
+    );
+  }
+
   return {
     type: "flex",
     altText: "Nijisanji Livers - " + q,
@@ -165,7 +198,7 @@ async function liver_list(parsed) {
 }
 
 async function liver_info(parsed) {
-  let arg = parsed.args.liver || parsed.args["liver-detail"];
+  let arg = parsed.args.liver;
   let q;
 
   if (typeof arg === "number") {
@@ -492,7 +525,7 @@ function makeLiverBubble(liver, socmed = false) {
         borderWidth: "light",
         action: {
           type: "message",
-          text: "!niji -liver-detail " + liver.slug
+          text: "!niji -liver " + liver.slug
         }
       }
     ];
@@ -672,8 +705,8 @@ function makeLiverInfoBubble(liver, youtube = false) {
   if (!youtube) {
     return out;
   }
-  return out; 
-  
+  return out;
+
   /*
 
   return {

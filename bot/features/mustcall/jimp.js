@@ -4,6 +4,7 @@ const imgbb = require("./../../../service/imgbb");
 const db = require("./../../../service/database");
 const { parseArg } = require("./../../parser");
 const { Parser } = require("expr-eval");
+const tables = table();
 
 module.exports = (parsed, event) => {
   if (parsed.args.compare) {
@@ -96,10 +97,14 @@ async function makeJIMP(args, parentdata) {
   let fromuser = args.fromuser || args.user;
   let url = args.url || args.u;
 
-  delete args["url"]; delete args["u"];
-  delete args["fromid"]; delete args["id"];
-  delete args["fromuser"]; delete args["user"];
-  delete args["new"]; delete args["n"];
+  delete args["url"];
+  delete args["u"];
+  delete args["fromid"];
+  delete args["id"];
+  delete args["fromuser"];
+  delete args["user"];
+  delete args["new"];
+  delete args["n"];
 
   if (url) {
     return Jimp.read(await getBufferFromURL(url));
@@ -128,7 +133,7 @@ async function makeJIMP(args, parentdata) {
     delete args["new"];
   } else if (fromid) {
     let dbimg = db.open("db/uploadimg.json");
-    
+
     if (!dbimg.get(fromid)) {
       throw Error("Invalid ID");
     }
@@ -141,7 +146,9 @@ async function makeJIMP(args, parentdata) {
   } else if (fromuser) {
     let dbuser = db.open("db/user.json").get();
 
-    let filter = Object.values(dbuser).filter(data => data.key === fromuser.toLowerCase());
+    let filter = Object.values(dbuser).filter(
+      data => data.key === fromuser.toLowerCase()
+    );
 
     if (filter.length < 1) {
       throw Error("Key not found");
@@ -157,7 +164,6 @@ async function createImage(args, parentdata) {
   //console.log(();
 
   let command = Object.keys(args);
-  let tables = table();
   let tablekey = Object.keys(tables);
 
   for (let i = 0; i < command.length; i++) {
@@ -178,23 +184,23 @@ async function createImage(args, parentdata) {
 
 function table() {
   return {
-    rotate: rotate,
-    invert: invert,
-    greyscale: greyscale,
-    resize: resize,
-    print: print,
-    composite: composite,
-    quality: quality,
-    scale: scale,
-    crop: crop,
-    mask: mask,
-    mirror: mirror,
-    brightness: brightness,
-    contrass: contrass,
-    blur: blur,
-    opacity: opacity,
-    pixelate: pixelate,
-    posterize: posterize
+    rotate,
+    invert,
+    greyscale,
+    resize,
+    print,
+    composite,
+    quality,
+    scale,
+    crop,
+    mask,
+    mirror,
+    brightness,
+    contrass,
+    blur,
+    opacity,
+    pixelate,
+    posterize
   };
 }
 

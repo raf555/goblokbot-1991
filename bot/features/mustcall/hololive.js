@@ -365,7 +365,7 @@ async function hololep(tt, event, url) {
         if (
           $(elm)
             .attr("style")
-            .match(/border: 3px red solid/i)
+            .match(/border: 3px red/i)
         ) {
           var collab = false;
           var collabimg = [];
@@ -727,7 +727,7 @@ async function hololep(tt, event, url) {
                   .trim();
                 var islive = $(elm)
                   .attr("style")
-                  .match(/border: 3px red solid/i);
+                  .match(/border: 3px red/i);
                 if (
                   (jamsekon >= nowsekon || islive || isuk == deto) &&
                   matchedname == nama
