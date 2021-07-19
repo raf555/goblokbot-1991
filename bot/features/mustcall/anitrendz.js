@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 module.exports = async (parsed, event) => {
   var url = "";
   var info = "";
-  var tt = parsed.arg;
+  var tt = parsed.arg.toLowerCase();
   if (!tt) {
     url = "https://anitrendz.net/charts/top-anime/";
     info = "Anime";

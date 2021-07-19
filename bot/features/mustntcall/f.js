@@ -1,4 +1,5 @@
 module.exports = () => {
+  if (!!parsed.arg) return null;
   var echo = { type: "text", text: "F" };
   var echo1 = {
     type: "sticker",
