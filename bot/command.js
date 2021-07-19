@@ -36,7 +36,7 @@ function execMulti(text, event) {
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
-    let split2 = split[i].split(/\s;;\s?/);
+    let split2 = split[i].split(/\s?;;\s?/);
     let word = new RegExp(
       `${buildcaller.normal}\\s(\\w+|!)|^${buildcaller.shortcut}(\\w+|!)|\\w+`
     ).exec(split[i])[0];

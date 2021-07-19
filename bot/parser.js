@@ -58,6 +58,13 @@ function parse(message, caller) {
   while (idx < command.length) {
     let word = command[idx];
 
+    // replace equal sign if any
+    if (/^[(-{1})(-{2})]\w+=/.test(word)) {
+      command[idx] = word.replace("=", " ");
+      command = parseArgsStringToArgv(command.join(" "));
+      continue;
+    }
+
     if (idx === 0) {
       parsed.command = word.toLowerCase();
     } else {
@@ -92,6 +99,8 @@ function parse(message, caller) {
     }
     idx++;
   }
+
+  // console.log(parsed);
 
   // delete parsed.args["b"];
 
