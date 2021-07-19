@@ -6,10 +6,10 @@ module.exports = (parsed, event) => {
     {
       type: "text",
       text: parsed.arg,
-      sender: {
+      /*sender: {
         name: "Admin",
         iconUrl: "https://i.ibb.co/wp1gJ6k/Untitled.png"
-      }
+      }*/
     },
     process.env.group_id
   );

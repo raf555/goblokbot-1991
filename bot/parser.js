@@ -5,7 +5,9 @@ module.exports = {
   parseArg,
   buildFromParsed,
   buildArgs,
-  removeArgFromMsg
+  removeArgFromMsg,
+  removeParserArgs,
+  restoreParserArgs
 };
 
 function parse(message, caller) {
@@ -73,11 +75,13 @@ function parse(message, caller) {
             cmdb = cmdb.replace(theval[0], " removed");
             command = parseArgsStringToArgv(cmdb);
           } else {
-            parsed.args[word.replace("-", "").toLowerCase()] = command[idx + 1];
+            parsed.args[word.replace("-", "").toLowerCase()] =
+              command[idx + 1] || null;
             idx++;
           }
         } else {
-          parsed.args[word.replace("-", "").toLowerCase()] = command[idx + 1];
+          parsed.args[word.replace("-", "").toLowerCase()] =
+            command[idx + 1] || null;
           idx++;
         }
       } else if (word.match(/^-{2}\w+/)) {
@@ -88,8 +92,8 @@ function parse(message, caller) {
     }
     idx++;
   }
-  
-  delete parsed.args["b"];
+
+  // delete parsed.args["b"];
 
   parsed.arg = arg.join(" ");
   parsed.fullMsg = message;
@@ -119,11 +123,11 @@ function parseArg(text) {
           text = text.replace(theval[0], " removed");
           args = parseArgsStringToArgv(text);
         } else {
-          out[word.replace("-", "").toLowerCase()] = args[idx + 1];
+          out[word.replace("-", "").toLowerCase()] = args[idx + 1] || null;
           idx++;
         }
       } else {
-        out[word.replace("-", "").toLowerCase()] = args[idx + 1];
+        out[word.replace("-", "").toLowerCase()] = args[idx + 1] || null;
         idx++;
       }
     } else if (word.match(/^-{2}\w+/)) {
@@ -132,7 +136,7 @@ function parseArg(text) {
     idx++;
   }
 
-  delete out["b"];
+  // delete out["b"];
   //console.log(out)
 
   return out;
@@ -170,14 +174,35 @@ function buildFromParsed(parsed, commandonly = false) {
 }
 
 function buildArgs(parsed) {
+  const makebracket = (t, cb = null) => {
+    if (t.split(" ").length > 0) {
+      let b = '"';
+      if (t.match(/"/g)) {
+        b = "'";
+      }
+      if (cb) {
+        if (cb === -1) {
+          b = "";
+        } else {
+          b = cb;
+        }
+      }
+      t = `${b}${t}${b}`;
+    }
+    return t;
+  };
+
   let out = "";
   let args = Object.keys(parsed.args);
+  let b = parsed.args.b;
+
   args.forEach(arg => {
     out += " ";
     if (parsed.args[arg] === 1) {
       out += "--" + arg;
     } else {
-      out += "-" + arg + " " + parsed.args[arg];
+      let cb = arg === "b" ? -1 : b;
+      out += "-" + arg + " " + makebracket(parsed.args[arg], cb);
     }
   });
 
@@ -209,4 +234,20 @@ function removeArgFromMsg(msg, arg) {
   }
 
   return msg;
+}
+
+function removeParserArgs(parsed) {
+  let reserved = {};
+
+  if (parsed.args.b) {
+    reserved.b = parsed.args.b;
+    delete parsed.args["b"];
+  }
+
+  return reserved;
+}
+
+function restoreParserArgs(parsed, data) {
+  Object.assign(parsed.args, data);
+  return parsed;
 }

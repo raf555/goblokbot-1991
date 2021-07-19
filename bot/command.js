@@ -6,7 +6,9 @@ const {
   parse,
   buildFromParsed,
   buildArgs,
-  removeArgFromMsg
+  removeArgFromMsg,
+  removeParserArgs,
+  restoreParserArgs
 } = require("./parser");
 
 module.exports = {
@@ -94,6 +96,7 @@ function execMulti(text, event) {
 async function execMessage(text, event) {
   //const setting = db.open("bot/setting.json").get();
   let parsed = parse(text, setting.caller);
+  let removed = removeParserArgs(parsed); // remove reserved args
 
   let customkeywords = Object.keys(db.open("db/customcmd.json").get());
 
@@ -119,6 +122,9 @@ async function execMessage(text, event) {
       ccc = 0;
     }
     if (cmd === "!") {
+      // special case
+      parsed = restoreParserArgs(parsed, removed);
+      
       reply = await Promise.resolve(lastcmd(parsed, event));
       if (reply) {
         if (Array.isArray(reply)) {
@@ -175,6 +181,9 @@ async function execMessage(text, event) {
     }
   }
 
+  // restore reserved args
+  parsed = restoreParserArgs(parsed, removed);
+
   if (reply) {
     if (!Array.isArray(reply)) {
       if (!reply.cmd && reply.cmd !== "") {
@@ -210,10 +219,10 @@ function checkCMD(cmd) {
       shortcut: keywords_short[idx].cmd
     };
   }
-  
+
   return {
     result: false
-  }
+  };
 }
 
 function constructcaller() {
@@ -253,6 +262,8 @@ function lastcmd(parsed, event) {
   let last = cmdhist.length - 1;
 
   if (parsed.args.cmd || parsed.args.info) {
+    delete parsed.args.cmd;
+    delete parsed.args.info;
     return {
       type: "text",
       text: cmdhist[last].fullMsg
@@ -261,7 +272,7 @@ function lastcmd(parsed, event) {
 
   if (parsed.args.if) {
     let iff = parsed.args.if.toLowerCase();
-
+    delete parsed.args.if;
     if (cmdhist[last].command !== iff) {
       return {
         type: "text",
@@ -271,8 +282,9 @@ function lastcmd(parsed, event) {
   }
 
   let out;
-  
+
   if (parsed.args.all) {
+    delete parsed.args.all;
     parsed.args.arg = 1;
     parsed.args.args = 1;
   }
@@ -285,9 +297,11 @@ function lastcmd(parsed, event) {
     if (parsed.args.args) {
       out += " " + buildArgs(cmdhist[last]);
     }
+
+    delete parsed.args.arg;
+    delete parsed.args.args;
   } else {
     let lastcmd = buildFromParsed(cmdhist[last], true);
-    let currargs = buildArgs(parsed);
 
     let lastarg = "";
     let lastargs = "";
@@ -298,6 +312,11 @@ function lastcmd(parsed, event) {
     if (parsed.args.args) {
       lastargs = buildArgs(cmdhist[last]);
     }
+
+    delete parsed.args.arg;
+    delete parsed.args.args;
+
+    let currargs = buildArgs(parsed);
 
     out = `${lastcmd}${currargs}${lastargs} ${lastarg} ${parsed.arg}`;
   }
