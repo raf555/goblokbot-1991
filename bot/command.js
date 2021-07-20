@@ -103,7 +103,7 @@ async function execMessage(text, event) {
   let cmd = parsed.command;
 
   /* message valid to send check */
-  let checkstatus = validToSend(cmd, event, setting);
+  let checkstatus = validToSend(parsed, event, setting);
   let checkcond =
     keywords.includes(cmd) ||
     customkeywords.includes(text) ||
@@ -324,7 +324,9 @@ function lastcmd(parsed, event) {
   return execMessage(out, event);
 }
 
-function validToSend(cmd, event, setting) {
+function validToSend(parsed, event, setting) {
+  let cmd = parsed.command
+   
   if (cmd === "status") {
     return featuredb.mustcall["status"]();
   }
