@@ -7,7 +7,8 @@ app.post("/chat/callback", line.middleware(config), (req, res) => {
   Promise.all(req.body.events.map(bot.handleEvent))
     .then(result => res.json(result))
     .catch(e => {
-      console.log(e);
+      console.error(e);
+      res.sendStatus(500);
     });
 });
 
