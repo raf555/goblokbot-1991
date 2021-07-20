@@ -1,4 +1,10 @@
 module.exports = (parsed, event) => {
+  if (parsed.args.args) {
+    return {
+      type: "text",
+      text: JSON.stringify(parsed.args, null, 1)
+    };
+  }
   if (!!parsed.arg) {
     return null;
   }

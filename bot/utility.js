@@ -108,7 +108,7 @@ function replyMessage(event, msg) {
         ];
       }
     }
-    
+
     eee = eee.slice(0, 5);
 
     return client.replyMessage(event.replyToken, eee).then(() => {
@@ -126,6 +126,10 @@ function replyMessage(event, msg) {
       latency = lat || Date.now() - event.timestamp;
 
       if (!ftr) {
+        continue;
+      }
+
+      if (latency > 30000) {
         continue;
       }
 
@@ -151,20 +155,24 @@ function replyMessage(event, msg) {
   /* save cmd */
   let savecmd = (() => {
     let cmdhist = db.open("db/cmdhistory.json");
-    for (let i = 0; i < data_.length; i++) {      
+    for (let i = 0; i < data_.length; i++) {
       parsed = data_[i].parsed;
       if (!parsed) continue;
 
       let id = Object.keys(cmdhist.get()).length + 1;
-      
+
       parsed.id = event.source.userId;
       parsed.ts = Date.now();
       parsed.lat = latency;
 
+      if (data_[i].cmd) {
+        parsed.command = data_[i].cmd;
+      }
+
       if (data_[i].cmdtype === "other") {
         parsed.isothercmd = true;
       }
-      
+
       parsed.fromGroup = event.source.groupId || null;
 
       cmdhist.set(id.toString(), parsed);
@@ -299,7 +307,8 @@ function log(event) {
       }
       debe.save();
     }
-    if (event.message && event.source.groupId) { // log if messages come from group only
+    if (event.message && event.source.groupId) {
+      // log if messages come from group only
       console.log(
         event.source.userId,
         profile.displayName,
