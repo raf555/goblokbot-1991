@@ -43,69 +43,21 @@ function parse(message, caller) {
     _caller = caller.normal;
   }
 
-  let cmdb = command;
-  command = parseArgsStringToArgv(command);
+  let parsearg = parseArg(command);
+  let argsplit = parsearg.arg.split(" ");
 
   let parsed = {};
+
   parsed.caller = _caller;
   parsed.called = !!_caller;
   parsed.shortcut = isShortcut;
-  parsed.args = {};
-
-  let arg = [];
-
-  let idx = 0;
-  while (idx < command.length) {
-    let word = command[idx];
-
-    // replace equal sign if any
-    if (/^[(-{1})(-{2})]\w+=/.test(word)) {
-      command[idx] = word.replace("=", " ");
-      command = parseArgsStringToArgv(command.join(" "));
-      continue;
-    }
-
-    if (idx === 0) {
-      parsed.command = word.toLowerCase();
-    } else {
-      if (word.match(/^-{1}\w+/)) {
-        let custombracket = parsed.args.b;
-        if (custombracket) {
-          let cust = getcustbracket(custombracket);
-          let regex = new RegExp(
-            `${word}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`
-          );
-          if (cmdb.match(regex)) {
-            let thearg = /^-{1}(\w+)/.exec(word);
-            let theval = regex.exec(cmdb);
-            parsed.args[thearg[1].toLowerCase()] = theval[1];
-            cmdb = cmdb.replace(theval[0], " removed");
-            command = parseArgsStringToArgv(cmdb);
-          } else {
-            parsed.args[word.replace("-", "").toLowerCase()] =
-              command[idx + 1].replace("\\", "") || null;
-            idx++;
-          }
-        } else {
-          parsed.args[word.replace("-", "").toLowerCase()] =
-            command[idx + 1].replace("\\", "") || null;
-          idx++;
-        }
-      } else if (word.match(/^-{2}\w+/)) {
-        parsed.args[word.replace("--", "").toLowerCase()] = 1;
-      } else {
-        arg.push(word);
-      }
-    }
-    idx++;
-  }
-
-  // console.log(parsed);
+  parsed.command = argsplit.pop();
+  parsed.args = parsearg.args;
+  parsed.arg = argsplit.join(" ");
+  parsed.fullMsg = message;
 
   // delete parsed.args["b"];
-
-  parsed.arg = arg.join(" ");
-  parsed.fullMsg = message;
+  // console.log(parsed);
 
   return parsed;
 }
@@ -113,6 +65,7 @@ function parse(message, caller) {
 function parseArg(text) {
   let args = parseArgsStringToArgv(text);
   let out = {};
+  let arg = [];
 
   let idx = 0;
   while (idx < args.length) {
@@ -120,8 +73,15 @@ function parseArg(text) {
 
     // replace equal sign if any
     if (/^[(-{1})(-{2})]\w+=/.test(word)) {
-      args[idx] = word.replace("=", " ");
-      args = parseArgsStringToArgv(args.join(" "));
+      let splt = [
+        word.substring(0, word.indexOf("=")),
+        word.substring(word.indexOf("=") + 1)
+      ];
+      let join = splt.join(" ");
+      splt = parseArgsStringToArgv(join);
+      args[idx] = splt[0];
+      args.splice(idx + 1, 0, splt[1]);
+      text = text.replace(word, join);
       continue;
     }
 
@@ -139,25 +99,30 @@ function parseArg(text) {
           text = text.replace(theval[0], " removed");
           args = parseArgsStringToArgv(text);
         } else {
-          out[word.replace("-", "").toLowerCase()] =
-            args[idx + 1].replace("\\", "") || null;
+          out[word.replace("-", "").toLowerCase()] = args[idx + 1]
+            ? args[idx + 1].replace("\\", "")
+            : null;
           idx++;
         }
       } else {
-        out[word.replace("-", "").toLowerCase()] =
-          args[idx + 1].replace("\\", "") || null;
+        out[word.replace("-", "").toLowerCase()] = args[idx + 1]
+          ? args[idx + 1].replace("\\", "")
+          : null;
         idx++;
       }
     } else if (word.match(/^-{2}\w+/)) {
       out[word.replace("--", "").toLowerCase()] = 1;
+    } else {
+      arg.push(word);
     }
+
     idx++;
   }
 
   // delete out["b"];
   //console.log(out)
 
-  return out;
+  return { args: out, arg: arg.join(" ") };
 }
 
 function getcustbracket(val) {

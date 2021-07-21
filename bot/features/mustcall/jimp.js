@@ -50,7 +50,7 @@ async function getsize(val) {
 }
 
 async function compare(val) {
-  let val2 = parseArg(val);
+  let val2 = parseArg(val).args;
 
   let url1, url2;
   if (Object.keys(val2).length > 0) {
@@ -112,7 +112,7 @@ async function makeJIMP(args, parentdata) {
     if (baru === 1) {
       return Jimp.create(512, 512, "#ffffff");
     } else {
-      let s = parseArg(baru);
+      let s = parseArg(baru).args;
       if (s.c && s.c === "random") {
         s.c = "#" + Math.floor(Math.random() * 16777215).toString(16);
       }
@@ -205,7 +205,7 @@ function table() {
 }
 
 function pixelate(image, val) {
-  let val2 = parseArg(val);
+  let val2 = parseArg(val).args;
 
   let x, y, h, w, p;
   if (Object.keys(val2).length > 0) {
@@ -270,13 +270,13 @@ function mirror(image, val) {
     return image.mirror(true, false);
   }
 
-  val = parseArg(val);
+  val = parseArg(val).args;
 
   return image.mirror(!!val.y, !!val.x);
 }
 
 function mask(image, val) {
-  val = parseArg(val);
+  val = parseArg(val).args;
 
   let pos = val.pos;
   let centerized = val.centerized === 1;
@@ -318,7 +318,7 @@ function mask(image, val) {
 }
 
 function crop(image, val) {
-  val = parseArg(val);
+  val = parseArg(val).args;
 
   let x = Number(val.x) || 0,
     y = Number(val.y) || 0,
@@ -349,7 +349,7 @@ function quality(image, val) {
 }
 
 function composite(image, val) {
-  val = parseArg(val);
+  val = parseArg(val).args;
 
   let pos = val.pos;
   let centerized = val.centerized === 1;
@@ -392,7 +392,7 @@ function composite(image, val) {
 }
 
 async function print(image, val) {
-  val = parseArg(val);
+  val = parseArg(val).args;
 
   let text = val.text || val.t || null;
   let size = val.size || val.s || 32;
