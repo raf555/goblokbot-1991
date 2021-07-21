@@ -166,7 +166,7 @@ function replyMessage(event, msg) {
       parsed.lat = latency;
 
       if (data_[i].cmd) {
-        parsed.command = data_[i].cmd;
+        parsed.alias = data_[i].cmd;
       }
 
       if (data_[i].cmdtype === "other") {
