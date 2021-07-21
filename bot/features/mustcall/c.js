@@ -113,136 +113,161 @@ async function copid(parsed, event) {
       iconUrl:
         "https://jacksonfreepress.media.clients.ellingtoncms.com/img/photos/2020/03/18/Coronavirus-banner2_cred-CDC_web_t670.jpg"
     },
-    contents: {
-      type: "bubble",
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: "COVID-19",
-            weight: "bold",
-            color: "#D50000",
-            size: "sm"
-          },
-          {
-            type: "text",
-            text: cname,
-            weight: "bold",
-            size: "xxl",
-            margin: "md"
-          },
-          {
-            type: "separator",
-            margin: "xxl"
-          },
-          {
-            type: "box",
-            layout: "vertical",
-            margin: "xxl",
-            spacing: "sm",
-            contents: [
-              {
-                type: "box",
-                layout: "horizontal",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Total Cases",
-                    size: "sm",
-                    color: "#111111",
-                    flex: 0
-                  },
-                  {
-                    type: "text",
-                    text: today_total + " (" + (today_newc || "+0") + ")",
-                    size: "sm",
-                    color: "#111111",
-                    align: "end"
-                  }
-                ]
-              },
-              {
-                type: "box",
-                layout: "horizontal",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Total Recovered",
-                    size: "sm",
-                    color: "#388E3C",
-                    flex: 0
-                  },
-                  {
-                    type: "text",
-                    text: today_recover + " (" + (today_newr || "+0") + ")",
-                    size: "sm",
-                    color: "#388E3C",
-                    align: "end"
-                  }
-                ]
-              },
-              {
-                type: "box",
-                layout: "horizontal",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Total Deaths",
-                    size: "sm",
-                    color: "#D50000",
-                    flex: 0
-                  },
-                  {
-                    type: "text",
-                    text: today_death + " (" + (today_newd || "+0") + ")",
-                    size: "sm",
-                    color: "#D50000",
-                    align: "end"
-                  }
-                ]
-              },
-              {
-                type: "box",
-                layout: "horizontal",
-                contents: [
-                  {
-                    type: "text",
-                    text: "Active Cases",
-                    size: "sm",
-                    flex: 0,
-                    color: "#FBC02D"
-                  },
-                  {
-                    type: "text",
-                    text: today_active,
-                    align: "end",
-                    size: "sm",
-                    color: "#FBC02D"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            type: "separator",
-            margin: "xxl"
-          },
-          {
-            type: "box",
-            layout: "horizontal",
-            margin: "md",
-            contents: footer
-          }
-        ]
-      },
-      styles: {
-        footer: {
-          separator: true
+    contents: makeBubble({
+      cname,
+      today_total,
+      today_newc,
+      today_recover,
+      today_newr,
+      today_death,
+      today_newd,
+      today_active,
+      footer
+    })
+  };
+  return out;
+}
+
+function makeBubble(data) {
+  let {
+    cname,
+    today_total,
+    today_newc,
+    today_recover,
+    today_newr,
+    today_death,
+    today_newd,
+    today_active,
+    footer
+  } = data;
+  return {
+    type: "bubble",
+    body: {
+      type: "box",
+      layout: "vertical",
+      contents: [
+        {
+          type: "text",
+          text: "COVID-19",
+          weight: "bold",
+          color: "#D50000",
+          size: "sm"
+        },
+        {
+          type: "text",
+          text: cname,
+          weight: "bold",
+          size: "xxl",
+          margin: "md"
+        },
+        {
+          type: "separator",
+          margin: "xxl"
+        },
+        {
+          type: "box",
+          layout: "vertical",
+          margin: "xxl",
+          spacing: "sm",
+          contents: [
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "text",
+                  text: "Total Cases",
+                  size: "sm",
+                  color: "#111111",
+                  flex: 0
+                },
+                {
+                  type: "text",
+                  text: today_total + " (" + (today_newc || "+0") + ")",
+                  size: "sm",
+                  color: "#111111",
+                  align: "end"
+                }
+              ]
+            },
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "text",
+                  text: "Total Recovered",
+                  size: "sm",
+                  color: "#388E3C",
+                  flex: 0
+                },
+                {
+                  type: "text",
+                  text: today_recover + " (" + (today_newr || "+0") + ")",
+                  size: "sm",
+                  color: "#388E3C",
+                  align: "end"
+                }
+              ]
+            },
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "text",
+                  text: "Total Deaths",
+                  size: "sm",
+                  color: "#D50000",
+                  flex: 0
+                },
+                {
+                  type: "text",
+                  text: today_death + " (" + (today_newd || "+0") + ")",
+                  size: "sm",
+                  color: "#D50000",
+                  align: "end"
+                }
+              ]
+            },
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "text",
+                  text: "Active Cases",
+                  size: "sm",
+                  flex: 0,
+                  color: "#FBC02D"
+                },
+                {
+                  type: "text",
+                  text: today_active,
+                  align: "end",
+                  size: "sm",
+                  color: "#FBC02D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          type: "separator",
+          margin: "xxl"
+        },
+        {
+          type: "box",
+          layout: "horizontal",
+          margin: "md",
+          contents: footer
         }
+      ]
+    },
+    styles: {
+      footer: {
+        separator: true
       }
     }
   };
-  return out;
 }

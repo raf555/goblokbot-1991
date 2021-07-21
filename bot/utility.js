@@ -1,4 +1,4 @@
-const { line, client, config, message } = require("./../service/line");
+const { client } = require("./../service/line");
 const hash = require("./../service/hash");
 const db = require("./../service/database");
 const imgbb = require("./../service/imgbb");

@@ -20,14 +20,10 @@ function handleEvent(event) {
 
   // limit to grup only and member
   if (event.source.roomId) {
-    return leave(event).then(() => {
-      return null;
-    });
+    return leave(event).then(() => null);
   }
   if (event.source.groupId && event.source.groupId !== process.env.group_id) {
-    return leave(event).then(() => {
-      return null;
-    });
+    return leave(event).then(() => null);
   }
   if (!event.source.groupId) {
     if (event.source.userId && !isMember(event.source.userId)) {
@@ -42,7 +38,6 @@ function handleEvent(event) {
   switch (event.type) {
     case "message":
       return handleMessageEvent(event);
-      break;
     case "unsend":
       saveUnsend(event);
       return null;
@@ -76,13 +71,7 @@ function handleTextMessage(event) {
   let message = event.message;
   return command
     .execMultiple(message.text, event)
-    .then(data => {
-      if (data) {
-        return replyMessage(event, data);
-      } else {
-        return null;
-      }
-    })
+    .then(data => (data ? replyMessage(event, data) : null))
     .catch(e => {
       console.error(e);
       let out = "Error occured, please tag Admin\n\n";
@@ -104,8 +93,6 @@ function handlePostbackEvent(event) {
 
 function handleJoin(event) {
   if (event.source.roomId || event.source.groupId !== process.env.group_id) {
-    return leave(event).then(() => {
-      return null;
-    });
+    return leave(event).then(() => null);
   }
 }
