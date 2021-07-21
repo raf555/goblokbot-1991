@@ -6,7 +6,6 @@ const {
   parse,
   buildFromParsed,
   buildArgs,
-  removeArgFromMsg,
   removeParserArgs,
   restoreParserArgs
 } = require("./parser");
@@ -54,18 +53,15 @@ function execMulti(text, event) {
     return Promise.resolve(null);
   }
 
-  let executedpromise = [];
-  for (let i = 0; i < split.length; i++) {
-    executedpromise.push(
-      execMessage(split[i], event)
-        .then(reply => reply)
-        .catch(e => {
-          console.error(e);
-          let out = `Command Error -> ${split[i]} \n\nError: ${e.name} - ${e.message}`;
-          return { type: "text", text: out };
-        })
-    );
-  }
+  let executedpromise = split.map(text =>
+    execMessage(text, event)
+      .then(reply => reply)
+      .catch(e => {
+        console.error(e);
+        let out = `Command Error -> ${text} \n\nError: ${e.name} - ${e.message}`;
+        return { type: "text", text: out };
+      })
+  );
 
   return Promise.all(executedpromise).then(res => {
     let executed = [];
@@ -124,7 +120,7 @@ async function execMessage(text, event) {
     if (cmd === "!") {
       // special case
       parsed = restoreParserArgs(parsed, removed);
-      
+
       reply = await Promise.resolve(lastcmd(parsed, event));
       if (reply) {
         if (Array.isArray(reply)) {
@@ -162,9 +158,9 @@ async function execMessage(text, event) {
       if (customkeywords2.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustntcall[cmd](parsed, event));
       } else {
-        let cleanedarg = removeArgFromMsg(text, parsed.args)
-          .trim()
-          .toLowerCase();
+        let cleanedarg = (
+          parsed.command + (parsed.arg ? " " + parsed.arg : "")
+        ).toLowerCase();
         if (customkeywords.includes(cleanedarg)) {
           reply = customfeature(cleanedarg, event);
           if (reply) {
@@ -325,8 +321,8 @@ function lastcmd(parsed, event) {
 }
 
 function validToSend(parsed, event, setting) {
-  let cmd = parsed.command
-   
+  let cmd = parsed.command;
+
   if (cmd === "status") {
     return featuredb.mustcall["status"]();
   }
@@ -410,22 +406,27 @@ function customfeature(msg, event) {
   if (custcmd.get(msg)) {
     if (isAdmin(event.source.userId) || custcmd.get(msg).approved == 1) {
       let rep;
-      if (custcmd.get(msg).type == "text") {
-        rep = { type: "text", text: custcmd.get(msg).reply };
-      }
-      if (custcmd.get(msg).type == "image") {
-        rep = {
-          type: "image",
-          originalContentUrl: custcmd.get(msg).reply,
-          previewImageUrl: custcmd.get(msg).reply
-        };
-      }
-      if (custcmd.get(msg).type == "flex") {
-        rep = {
-          type: "flex",
-          contents: JSON.parse(custcmd.get(msg).reply),
-          altText: msg
-        };
+
+      switch (custcmd.get(msg).type) {
+        case "text":
+          rep = { type: "text", text: custcmd.get(msg).reply };
+          break;
+        case "image":
+          rep = {
+            type: "image",
+            originalContentUrl: custcmd.get(msg).reply,
+            previewImageUrl: custcmd.get(msg).reply
+          };
+          break;
+        case "flex":
+          rep = {
+            type: "flex",
+            contents: JSON.parse(custcmd.get(msg).reply),
+            altText: msg
+          };
+          break;
+        default:
+          rep = null;
       }
 
       if (rep) {
