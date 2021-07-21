@@ -32,12 +32,13 @@ function execMulti(text, event) {
   let split = text.split(" ; ");
 
   let buildcaller = constructcaller();
+  let cmdreg = "(\\w+([-\\w]+)?)"
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
     let split2 = split[i].split(/\s?;;\s?/);
     let word = new RegExp(
-      `${buildcaller.normal}\\s(\\w+|!)|^${buildcaller.shortcut}(\\w+|!)|\\w+`
+      `${buildcaller.normal}\\s(${cmdreg}|!)|^${buildcaller.shortcut}(${cmdreg}|!)|${cmdreg}`
     ).exec(split[i])[0];
     split2 = split2.join(` ; ${word} `).split(" ; ");
     oh = oh.concat(split2);
