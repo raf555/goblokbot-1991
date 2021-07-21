@@ -126,7 +126,7 @@ function parseArg(text) {
   }
 
   // delete out["b"];
-  console.log(out);
+  // console.log(out);
 
   return { args: out, arg: arg.join(" ") };
 }
