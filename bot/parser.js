@@ -51,7 +51,7 @@ function parse(message, caller) {
   parsed.caller = _caller;
   parsed.called = !!_caller;
   parsed.shortcut = isShortcut;
-  parsed.command = argsplit.pop();
+  parsed.command = argsplit.shift();
   parsed.args = parsearg.args;
   parsed.arg = argsplit.join(" ");
   parsed.fullMsg = message;
