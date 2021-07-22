@@ -15,7 +15,7 @@ module.exports = {
   execMultiple: execMulti
 };
 
-let ccc = 0;
+let ccc = {};
 
 let setting = db.open("bot/setting.json").get();
 const keywords = Object.keys(featuredb.mustcall);
@@ -32,7 +32,7 @@ function execMulti(text, event) {
   let split = text.split(" ; ");
 
   let buildcaller = constructcaller();
-  let cmdreg = "(\\w+([-\\w]+)?)"
+  let cmdreg = "(\\w+([-\\w]+)?)";
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
@@ -98,13 +98,19 @@ async function execMessage(text, event) {
   let customkeywords = Object.keys(db.open("db/customcmd.json").get());
 
   let cmd = parsed.command;
+  let cleanedcmd = (
+    parsed.command + (parsed.arg ? " " + parsed.arg : "")
+  ).toLowerCase();
+  let validcmd = checkCMD(cmd);
 
   /* message valid to send check */
   let checkstatus = validToSend(parsed, event, setting);
   let checkcond =
     keywords.includes(cmd) ||
-    customkeywords.includes(text) ||
+    validcmd.result ||
+    customkeywords.includes(cleanedcmd) ||
     customkeywords2.includes(cmd);
+
   if ((checkstatus || checkstatus === 0) && (parsed.called || checkcond)) {
     if (checkstatus === 0) {
       return null;
@@ -115,8 +121,8 @@ async function execMessage(text, event) {
   /* proceed the command */
   let reply = null;
   if (parsed.called) {
-    if (ccc) {
-      ccc = 0;
+    if (ccc[event.source.groupId || event.source.userId]) {
+      ccc[event.source.groupId || event.source.userId] = 0;
     }
     if (cmd === "!") {
       // special case
@@ -131,7 +137,6 @@ async function execMessage(text, event) {
         }
       }
     } else {
-      let validcmd = checkCMD(cmd);
       // if (keywords.includes(cmd)) {
       if (validcmd.result) {
         if (validcmd.shortcut) {
@@ -146,8 +151,8 @@ async function execMessage(text, event) {
       }
     }
   } else {
-    if (ccc) {
-      ccc = 0;
+    if (ccc[event.source.groupId || event.source.userId]) {
+      ccc[event.source.groupId || event.source.userId] = 0;
       if (keywords.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
       } else {
@@ -159,13 +164,10 @@ async function execMessage(text, event) {
       if (customkeywords2.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustntcall[cmd](parsed, event));
       } else {
-        let cleanedarg = (
-          parsed.command + (parsed.arg ? " " + parsed.arg : "")
-        ).toLowerCase();
-        if (customkeywords.includes(cleanedarg)) {
-          reply = customfeature(cleanedarg, event);
+        if (customkeywords.includes(cleanedcmd)) {
+          reply = customfeature(cleanedcmd, event);
           if (reply) {
-            reply.cmd = cleanedarg;
+            reply.cmd = cleanedcmd;
             reply.cmdtype = "other";
           }
         } else {
@@ -369,7 +371,7 @@ function validToSend(parsed, event, setting) {
 }
 
 function greeting(event) {
-  ccc = 1;
+  ccc[event.source.groupId || event.source.userId] = 1;
   return {
     type: "text",
     text: isAdmin(event.source.userId) ? "kenaps" : "apaan",
