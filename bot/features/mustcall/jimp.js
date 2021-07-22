@@ -109,7 +109,7 @@ async function makeJIMP(args, parentdata) {
   if (url) {
     return Jimp.read(await getBufferFromURL(url));
   } else if (baru) {
-    if (baru === 1) {
+    if (baru === true) {
       return Jimp.create(512, 512, "#ffffff");
     } else {
       let s = parseArg(baru).args;
@@ -266,7 +266,7 @@ function brightness(image, val) {
 }
 
 function mirror(image, val) {
-  if (val === 1) {
+  if (val === true) {
     return image.mirror(true, false);
   }
 
@@ -279,8 +279,8 @@ function mask(image, val) {
   val = parseArg(val).args;
 
   let pos = val.pos;
-  let centerized = val.centerized === 1;
-  let center = val.center === 1;
+  let centerized = val.centerized === true;
+  let center = val.center === true;
 
   let datacalc = {
     width: image.bitmap.width,
@@ -352,8 +352,8 @@ function composite(image, val) {
   val = parseArg(val).args;
 
   let pos = val.pos;
-  let centerized = val.centerized === 1;
-  let center = val.center === 1;
+  let centerized = val.centerized === true;
+  let center = val.center === true;
 
   let datacalc = {
     width: image.bitmap.width,

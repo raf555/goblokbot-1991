@@ -64,7 +64,7 @@ function parse(message, caller) {
 
 function parseArg(text) {
   const consargreg = n => {
-    return new RegExp(`^-{${n}}(\\w+([-\\w]+)?)`);
+    return new RegExp(`^-{${n}}([a-zA-Z_]\\w*[-\\w]*)`);
   };
   let argsregex1 = consargreg(1);
   let argsregex2 = consargreg(2);
@@ -78,7 +78,7 @@ function parseArg(text) {
     let word = args[idx];
 
     // replace equal sign if any
-    if (/^[(-{1})(-{2})]\w+([-\w]+)?=/.test(word)) {
+    if (/^[(-{1})(-{2})][a-zA-Z_]\w*[-\w]*=/.test(word)) {
       let splt = [
         word.substring(0, word.indexOf("=")),
         word.substring(word.indexOf("=") + 1)
@@ -117,7 +117,7 @@ function parseArg(text) {
         idx++;
       }
     } else if (word.match(argsregex2)) {
-      out[word.replace("--", "").toLowerCase()] = 1;
+      out[word.replace("--", "").toLowerCase()] = true;
     } else {
       arg.push(word);
     }
@@ -190,7 +190,7 @@ function buildArgs(parsed) {
 
   args.forEach(arg => {
     out += " ";
-    if (parsed.args[arg] === 1) {
+    if (parsed.args[arg] === true) {
       out += "--" + arg;
     } else {
       let cb = arg === "b" ? -1 : b;
@@ -208,7 +208,7 @@ function removeArgFromMsg(msg, arg) {
   let list_arg = [];
 
   for (let i = 0; i < args.length; i++) {
-    if (arg[args[i]] === 1) {
+    if (arg[args[i]] === true) {
       list_arg.push(" --" + args[i]);
     } else {
       let argz = arg[args[i]];

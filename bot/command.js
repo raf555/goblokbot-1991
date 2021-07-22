@@ -284,8 +284,8 @@ function lastcmd(parsed, event) {
 
   if (parsed.args.all) {
     delete parsed.args.all;
-    parsed.args.arg = 1;
-    parsed.args.args = 1;
+    parsed.args.arg = true;
+    parsed.args.args = true;
   }
 
   if (cmdhist[last].isothercmd) {

@@ -1,5 +1,5 @@
 {
-  "bot": 1,
+  "bot": 0,
   "imgapi": 3,
   "caller": {
     "normal": "@bot",
