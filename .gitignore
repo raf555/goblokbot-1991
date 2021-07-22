@@ -15,3 +15,5 @@ bot/assets/kbbi.json
 
 # misc, personal stuff
 web/misc.js
+service/cron/
+bot/features/admin/1.js

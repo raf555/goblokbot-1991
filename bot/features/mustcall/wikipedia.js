@@ -1,7 +1,19 @@
 const wiki = require("wikipedia");
 const langs = wiki.languages();
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Wikipedia Command",
+    description: "Command buat nampilin artikel wikipedia",
+    help: "",
+    createdAt: 0,
+    CMD: "wiki",
+    ALIASES: []
+  },
+  run: wikiped
+};
+
+async function wikiped(parsed, event) {
   /* args */
   let lang = (parsed.args.lang || parsed.args.l || "id").toLowerCase();
   let autosuggest = parsed.args.as;
@@ -128,7 +140,7 @@ module.exports = async (parsed, event) => {
       }
     }
   };
-};
+}
 
 function wrap(text, nolimit, limit) {
   if (!nolimit) {

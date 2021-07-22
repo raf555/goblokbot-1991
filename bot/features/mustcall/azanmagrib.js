@@ -1,13 +1,22 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = magrib
+module.exports = {
+  data: {
+    name: "Magrib Warning",
+    description: "Fitur buat warning selama puasa",
+    help: "",
+    createdAt: 0,
+    DISABLED: true,
+    CMD: "magrib",
+    ALIASES: ["azan-magrib"]
+  },
+  run: magrib
+};
 
 async function magrib() {
-  
   return null;
-  
-  
+
   var skrg = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Jakarta"
   });

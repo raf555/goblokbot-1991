@@ -1,6 +1,18 @@
 const malScraper = require("mal-scraper");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "MAL Anime Search",
+    description: "Command buat nyari anime dari MAL",
+    help: "",
+    createdAt: 0,
+    CMD: "anime",
+    ALIASES: ["mal-search"]
+  },
+  run: anime
+};
+
+async function anime(parsed, event) {
   if (!parsed.arg) return false;
   let data = await malScraper.getResultsFromSearch(parsed.arg);
 
@@ -75,4 +87,4 @@ module.exports = async (parsed, event) => {
     text: "MAL is currenty unavailable.."
   };
   return umu;
-};
+}

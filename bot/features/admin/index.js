@@ -16,10 +16,13 @@ function getfeatures(onlyname = false) {
     .filter(name => condition(name));
 
   features.forEach(name => {
-    if (!onlyname) {
-      list[name] = adminonly(require("./" + name));
-    } else {
-      list[name] = 1;
+    let { data, run } = require("./" + name);
+    if (data.DISABLED) return;
+    
+    let cmdname = data.CMD.toLowerCase();
+    list[cmdname] = !onlyname ? adminonly(run) : 1;
+    if (data.ALIASES) {
+      data.ALIASES.forEach(a => (list[a.toLowerCase()] = list[cmdname]));
     }
   });
 

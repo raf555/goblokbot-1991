@@ -1,7 +1,17 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = azan;
+module.exports = {
+  data: {
+    name: "Azan cmd",
+    description: "Fitur buat liat jadwal azan di Jakarta",
+    help: "",
+    createdAt: 0,
+    CMD: "azan",
+    ALIASES: []
+  },
+  run: azan
+};
 
 async function azan() {
   var skrg = new Date().toLocaleString("en-US", {

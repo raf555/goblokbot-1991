@@ -1,4 +1,16 @@
-module.exports = (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Mending command",
+    description: "Fitur buat nanya bot mending mana",
+    help: "",
+    createdAt: 0,
+    CMD: "mending",
+    ALIASES: []
+  },
+  run: mending
+};
+
+function mending(parsed, event) {
   if (!parsed.arg) return null;
   var mending = (parsed.arg + " ")
     .split(" apa ")
@@ -75,7 +87,7 @@ module.exports = (parsed, event) => {
       }
     }
   };
-};
+}
 
 function sumChars(s) {
   var i = s.length,

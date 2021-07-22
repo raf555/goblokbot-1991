@@ -1,17 +1,27 @@
-module.exports = (parsed, event) => {
-  if (!parsed.arg) return null;
-  let msg = parsed.arg.split(" ");
-  if (msg[0] == "mana" || msg[0] == "mana,") {
-    var mending = (msg.slice(1, msg.length).join(" ") + " ").split(" atau ");
-    var mendingan = "" + mending[0] + " " + mending[1];
-    if (mending) {
-      if (sumChars(mendingan) % 2 == 0) {
-        var apakah = mending[0];
-      } else {
-        var apakah = mending[1];
+module.exports = {
+  data: {
+    name: "Choose Command",
+    description: "Command buat nanya saran ke bot",
+    help: "",
+    createdAt: 0,
+    CMD: "pilih",
+    ALIASES: []
+  },
+  run: (parsed, event) => {
+    if (!parsed.arg) return null;
+    let msg = parsed.arg.split(" ");
+    if (msg[0] == "mana" || msg[0] == "mana,") {
+      var mending = (msg.slice(1, msg.length).join(" ") + " ").split(" atau ");
+      var mendingan = "" + mending[0] + " " + mending[1];
+      if (mending) {
+        if (sumChars(mendingan) % 2 == 0) {
+          var apakah = mending[0];
+        } else {
+          var apakah = mending[1];
+        }
       }
+      return { type: "text", text: apakah };
     }
-    return { type: "text", text: apakah };
   }
 };
 function sumChars(s) {

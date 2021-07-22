@@ -8,7 +8,17 @@ const { detiktostr } = require("./../../utility");
 const botwake = Date.now();
 const stat_color = 0;
 
-module.exports = bot_status;
+module.exports = {
+  data: {
+    name: "Status Command",
+    description: "Command buat ngecek status bot",
+    help: "",
+    createdAt: 0,
+    CMD: "status",
+    ALIASES: ["stat"]
+  },
+  run: bot_status
+};
 
 function bot_status(event) {
   return axios.get("https://status.glitch.com/").then(async res => {

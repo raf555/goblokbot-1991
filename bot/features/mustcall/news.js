@@ -1,7 +1,19 @@
 const NewsAPI = require("newsapi");
 const newsapi = new NewsAPI(process.env.newsapikey);
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data:{
+    name: "News Command",
+    description: "Fitur buat nampilin berita terbaru",
+    help: "",
+    createdAt: 0,
+    CMD: "news",
+    ALIASES: []
+  },
+  run: news
+}
+
+  async function news (parsed, event)  {
   let custom = (parsed.args.advanced || parsed.args.adv || 0) === true;
   let search = !custom ? newsapi.v2.topHeadlines : newsapi.v2.everything;
 

@@ -2,18 +2,28 @@ const fs = require("fs");
 
 const table = getfeatures();
 
-module.exports = (parsed, event) => {
-  let split = parsed.arg.split(" ");
-  let arg = split[0].toLowerCase();
+module.exports = {
+  data: {
+    name: "Send CMD",
+    description: "Command buat ngirim apa ae",
+    help: "",
+    createdAt: 0,
+    CMD: "send",
+    ALIASES: []
+  },
+  run: (parsed, event) => {
+    let split = parsed.arg.split(" ");
+    let arg = split[0].toLowerCase();
 
-  if (!Object.keys(table).includes(arg)) {
-    return { type: "text", text: parsed.arg };
+    if (!Object.keys(table).includes(arg)) {
+      return { type: "text", text: parsed.arg };
+    }
+
+    let arg2 = split.splice(1, split.length).join(" ");
+    parsed.arg = arg2;
+
+    return table[arg](parsed, event);
   }
-
-  let arg2 = split.splice(1, split.length).join(" ");
-  parsed.arg = arg2;
-
-  return table[arg](parsed, event);
 };
 
 function getfeatures(onlyname = false) {

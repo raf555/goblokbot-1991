@@ -2,7 +2,17 @@
 const Jimp = require("jimp");
 const imgbb = require("./../../../service/imgbb");
 
-module.exports = kyaa;
+module.exports = {
+  data: {
+    name: "Kyaa command",
+    description: "Command buat generate gambar kyaa",
+    help: "",
+    createdAt: 0,
+    CMD: "kyaa",
+    ALIASES: []
+  },
+  run: kyaa
+};
 
 async function kyaa(parsed, event) {
   let arg = (() => {

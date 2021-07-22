@@ -8,7 +8,19 @@ function arrsort(array, key) {
   });
 }
 
-module.exports = (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Latency Command",
+    description: "Buat ngirim latency fitur bot",
+    help: "",
+    createdAt: 0,
+    CMD: "",
+    ALIASES: []
+  },
+  run: lat
+};
+
+function lat(parsed, event) {
   var usg = db.open(`db/latency.json`);
   var cust = db.open(`db/customcmd.json`);
   var usgdata = usg.get();
@@ -24,7 +36,7 @@ module.exports = (parsed, event) => {
   if (parsed.args.a) {
     dp = dp.reverse();
   }
-  let q = parsed.args.q || parsed.arg
+  let q = parsed.args.q || parsed.arg;
   if (q) {
     dp = dp.filter(data => data.nama === q);
     tot = dp.length;
@@ -118,4 +130,4 @@ module.exports = (parsed, event) => {
     altText: "Bot Latency",
     contents: boble
   };
-};
+}

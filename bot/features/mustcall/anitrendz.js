@@ -1,7 +1,19 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Anitrendz Command",
+    description: "Command buat scrape data dari anitrendz.net",
+    help: "",
+    createdAt: 0,
+    CMD: "anitrendz",
+    ALIASES: []
+  },
+  run: anitrendz
+};
+
+async function anitrendz(parsed, event) {
   var url = "";
   var info = "";
   var tt = parsed.arg.toLowerCase();
@@ -354,4 +366,4 @@ module.exports = async (parsed, event) => {
     altText: "Top 10 " + info,
     contents: crsl
   };
-};
+}

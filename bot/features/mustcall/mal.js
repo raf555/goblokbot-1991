@@ -1,6 +1,18 @@
 const malScraper = require("mal-scraper");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "MyAnimeList Command",
+    description: "Command buat ambil data anime dari MAL",
+    help: "",
+    createdAt: 0,
+    CMD: "mal",
+    ALIASES: []
+  },
+  run: mal
+};
+
+async function mal(parsed, event) {
   if (!parsed.arg) return false;
   let data = await malScraper.getInfoFromName(parsed.arg);
   //console.log(data);
@@ -464,4 +476,4 @@ module.exports = async (parsed, event) => {
     }
   };
   return umu;
-};
+}

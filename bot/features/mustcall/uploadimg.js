@@ -1,34 +1,44 @@
 const imgbb = require("./../../../service/imgbb");
 const db = require("./../../../service/database");
 
-module.exports = (parsed, event) => {
-  let name = parsed.args.n || parsed.args.name || null;
-  let exp = parsed.args.e || parsed.args.exp || null;
-  let jimp = parsed.args.jimp ? true : false;
+module.exports = {
+  data: {
+    name: "Upload IMG",
+    description: "Command buat nambah queue buat upload gambar ke IMGBB",
+    help: "",
+    createdAt: 0,
+    CMD: "uploadimg",
+    ALIASES: []
+  },
+  run: (parsed, event) => {
+    let name = parsed.args.n || parsed.args.name || null;
+    let exp = parsed.args.e || parsed.args.exp || null;
+    let jimp = parsed.args.jimp ? true : false;
 
-  if (exp) {
-    if (!isNaN(exp)) {
-      exp = parseInt(exp);
-      if (exp < 60) {
-        return { type: "text", text: "Minimum 1 minutes (60 sec)" };
+    if (exp) {
+      if (!isNaN(exp)) {
+        exp = parseInt(exp);
+        if (exp < 60) {
+          return { type: "text", text: "Minimum 1 minutes (60 sec)" };
+        }
+      } else {
+        return { type: "text", text: "Invalid exp" };
       }
     } else {
-      return { type: "text", text: "Invalid exp" };
+      exp = 24 * 3600;
     }
-  } else {
-    exp = 24 * 3600;
+
+    let uploaddb = db.open("db/uploadimgq.json");
+
+    uploaddb.set(event.source.userId, {
+      name: name || event.message.id,
+      exp: exp,
+      expire: Date.now() + 30000,
+      uploaded: false,
+      jimp: jimp
+    });
+    uploaddb.save();
+
+    return { type: "text", text: "Waiting for image (30s)" };
   }
-
-  let uploaddb = db.open("db/uploadimgq.json");
-
-  uploaddb.set(event.source.userId, {
-    name: name || event.message.id,
-    exp: exp,
-    expire: Date.now() + 30000,
-    uploaded: false,
-    jimp: jimp
-  });
-  uploaddb.save();
-
-  return { type: "text", text: "Waiting for image (30s)" };
 };

@@ -1,4 +1,16 @@
-module.exports = (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Apakah",
+    description: "Command buat nanya bot",
+    help: "",
+    createdAt: 0,
+    CMD: "apakah",
+    ALIASES: ["apkh"]
+  },
+  run: apkh
+};
+
+function apkh(parsed, event) {
   if (!parsed.arg) return null;
   if (sumChars(parsed.arg + " ") % 2 == 0) {
     var apakah = "tidak";
@@ -42,7 +54,7 @@ module.exports = (parsed, event) => {
               },
               {
                 type: "text",
-                text: parsed.command + " " +parsed.arg,
+                text: parsed.command + " " + parsed.arg,
                 flex: 4,
                 size: "sm",
                 color: "#8c8c8c",
@@ -68,7 +80,7 @@ module.exports = (parsed, event) => {
       }
     }
   };
-};
+}
 function sumChars(s) {
   var i = s.length,
     r = 0;
