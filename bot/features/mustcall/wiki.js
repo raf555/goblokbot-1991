@@ -15,7 +15,7 @@ module.exports = async (parsed, event) => {
   if (Object.keys(parsed.args).length > 0) {
     lang = Object.keys(parsed.args)[0];
     parsed.arg = parsed.args[lang];
-    if (parsed.arg === 1) {
+    if (parsed.arg === true) {
       parsed.arg = "";
     }
     lang = lang.toLowerCase();

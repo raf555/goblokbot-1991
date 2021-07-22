@@ -2,7 +2,7 @@ const NewsAPI = require("newsapi");
 const newsapi = new NewsAPI(process.env.newsapikey);
 
 module.exports = async (parsed, event) => {
-  let custom = (parsed.args.advanced || parsed.args.adv || 0) === 1;
+  let custom = (parsed.args.advanced || parsed.args.adv || 0) === true;
   let search = !custom ? newsapi.v2.topHeadlines : newsapi.v2.everything;
 
   /* args */

@@ -110,7 +110,7 @@ async function liver_list(parsed) {
   let arg = parsed.args.livers;
   let q;
 
-  if (typeof arg === "number") {
+  if (typeof arg === "boolean") {
     q = parsed.arg;
   } else {
     q = arg;
@@ -201,7 +201,7 @@ async function liver_info(parsed) {
   let arg = parsed.args.liver;
   let q;
 
-  if (typeof arg === "number") {
+  if (typeof arg === "boolean") {
     q = parsed.arg;
   } else {
     q = arg;
