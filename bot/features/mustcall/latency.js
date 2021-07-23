@@ -14,7 +14,7 @@ module.exports = {
     description: "Buat ngirim latency fitur bot",
     help: "",
     createdAt: 0,
-    CMD: "",
+    CMD: "latency",
     ALIASES: []
   },
   run: lat

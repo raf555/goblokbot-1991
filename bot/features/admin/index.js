@@ -17,11 +17,12 @@ function getfeatures(onlyname = false) {
 
   features.forEach(name => {
     let { data, run } = require("./" + name);
-    if (data.DISABLED) return;
+    if (!onlyname && data.DISABLED) return;
     
     let cmdname = data.CMD.toLowerCase();
-    list[cmdname] = !onlyname ? adminonly(run) : 1;
-    if (data.ALIASES) {
+    list[cmdname] = !onlyname ? adminonly(run) : data;
+    
+    if (!onlyname && data.ALIASES) {
       data.ALIASES.forEach(a => (list[a.toLowerCase()] = list[cmdname]));
     }
   });

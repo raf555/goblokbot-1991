@@ -191,26 +191,6 @@ async function execMessage(text, event) {
   return reply;
 }
 
-function checkCMD(cmd) {
-  if (keywords.includes(cmd)) {
-    return {
-      result: true
-    };
-  }
-
-  let idx = keywords_short.findIndex(c => c.short === cmd);
-  if (idx !== -1) {
-    return {
-      result: true,
-      shortcut: keywords_short[idx].cmd
-    };
-  }
-
-  return {
-    result: false
-  };
-}
-
 function constructcaller() {
   let normal = [setting.caller.normal].concat(
     Object.keys(setting.caller.custom.normal).filter(
