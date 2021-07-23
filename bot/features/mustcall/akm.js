@@ -2,14 +2,26 @@ const db = require("./../../../service/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Arknights Materials",
+    description: "Command buat ngirim info material dari operator Arknights",
+    help: "",
+    createdAt: 0,
+    CMD: "akm",
+    ALIASES: ["ak-mats"]
+  },
+  run: akm
+};
+
+async function akm(parsed, event) {
   var f = db.open(`bot/assets/arknek/akdb.json`);
   var h2 = "";
   var h = "";
   var char = "";
   if (!parsed.arg) return false;
   char = parsed.arg;
-  if (char.split(" ").length>1) {
+  if (char.split(" ").length > 1) {
     char = char.replace(/\s/g, "-");
   }
   if (char.toLowerCase() == "poca") {
@@ -761,4 +773,4 @@ module.exports = async (parsed, event) => {
     };
     return echo;
   }
-};
+}

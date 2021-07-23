@@ -3,18 +3,29 @@ const cheerio = require("cheerio");
 const db = require("./../../../service/database");
 const fetchs = require("sync-fetch");
 
-module.exports = async (parsed, event, now = false) => {
-  let url;
-  if (parsed.arg.toLowerCase() == "id") {
-    url = "https://schedule.hololive.tv/lives/indonesia";
-  } else if (parsed.arg.toLowerCase() == "en") {
-    url = "https://schedule.hololive.tv/lives/english";
+module.exports = {
+  data: {
+    name: "Hololive cmd",
+    description: "Command buat ngasih live schedule liver hololep",
+    help: "",
+    createdAt: 0,
+    CMD: "hololive",
+    ALIASES: ["h"]
+  },
+  run: async (parsed, event) => {
+    let now = parsed.args.now
+    let url;
+    if (parsed.arg.toLowerCase() == "id") {
+      url = "https://schedule.hololive.tv/lives/indonesia";
+    } else if (parsed.arg.toLowerCase() == "en") {
+      url = "https://schedule.hololive.tv/lives/english";
+    }
+    let tt = "@bot hololive";
+    if (now) {
+      tt += " now";
+    }
+    return hololep(tt.split(" "), event, url);
   }
-  let tt = "@bot hololive";
-  if (now) {
-    tt += " now";
-  }
-  return hololep(tt.split(" "), event, url);
 };
 
 async function hololep(tt, event, url) {

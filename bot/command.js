@@ -19,20 +19,14 @@ let ccc = {};
 
 let setting = db.open("bot/setting.json").get();
 const keywords = Object.keys(featuredb.mustcall);
-const keywords_short = keywords
-  .filter(cmd => cmd.length >= 3)
-  .map(cmd => ({
-    short: cmd[0],
-    cmd: cmd
-  }));
-const customkeywords2 = Object.keys(featuredb.mustntcall);
+const keywords2 = Object.keys(featuredb.mustntcall);
 
 function execMulti(text, event) {
   setting = db.open("bot/setting.json").get();
   let split = text.split(" ; ");
 
   let buildcaller = constructcaller();
-  let cmdreg = "(\\w+([-\\w]+)?)";
+  let cmdreg = "(\\w+[-\\w]*)";
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
@@ -101,15 +95,13 @@ async function execMessage(text, event) {
   let cleanedcmd = (
     parsed.command + (parsed.arg ? " " + parsed.arg : "")
   ).toLowerCase();
-  let validcmd = checkCMD(cmd);
 
   /* message valid to send check */
   let checkstatus = validToSend(parsed, event, setting);
   let checkcond =
     keywords.includes(cmd) ||
-    validcmd.result ||
     customkeywords.includes(cleanedcmd) ||
-    customkeywords2.includes(cmd);
+    keywords2.includes(cmd);
 
   if ((checkstatus || checkstatus === 0) && (parsed.called || checkcond)) {
     if (checkstatus === 0) {
@@ -137,12 +129,7 @@ async function execMessage(text, event) {
         }
       }
     } else {
-      // if (keywords.includes(cmd)) {
-      if (validcmd.result) {
-        if (validcmd.shortcut) {
-          cmd = validcmd.shortcut;
-          parsed.command = cmd;
-        }
+      if (keywords.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
       } else {
         if (!parsed.shortcut && !parsed.arg && !cmd) {
@@ -161,7 +148,7 @@ async function execMessage(text, event) {
         }
       }
     } else {
-      if (customkeywords2.includes(cmd)) {
+      if (keywords2.includes(cmd)) {
         reply = await Promise.resolve(featuredb.mustntcall[cmd](parsed, event));
       } else {
         if (customkeywords.includes(cleanedcmd)) {
@@ -202,26 +189,6 @@ async function execMessage(text, event) {
   }
 
   return reply;
-}
-
-function checkCMD(cmd) {
-  if (keywords.includes(cmd)) {
-    return {
-      result: true
-    };
-  }
-
-  let idx = keywords_short.findIndex(c => c.short === cmd);
-  if (idx !== -1) {
-    return {
-      result: true,
-      shortcut: keywords_short[idx].cmd
-    };
-  }
-
-  return {
-    result: false
-  };
 }
 
 function constructcaller() {

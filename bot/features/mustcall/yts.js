@@ -1,7 +1,19 @@
 const { YTSearcher } = require("ytsearcher");
 const ytsearcher = new YTSearcher(process.env.yts_api);
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Youtube Search",
+    description: "Command buat nyari video dari YT",
+    help: "",
+    createdAt: 0,
+    CMD: "yts",
+    ALIASES: ["youtube-search"]
+  },
+  run: yts
+};
+
+async function yts(parsed, event) {
   let txt = parsed.arg;
 
   let crsl = {
@@ -71,4 +83,4 @@ module.exports = async (parsed, event) => {
       iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
     }
   };
-};
+}

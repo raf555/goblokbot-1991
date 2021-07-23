@@ -25,13 +25,24 @@ function invalidimage(he) {
   );
 }
 
-module.exports = (parsed, event) => {
-  if (!parsed.arg) return false;
+module.exports = {
+  data: {
+    name: "PAP cmd",
+    description: "Command buat ambil satu/lebih gambar dari google",
+    help: "",
+    createdAt: 0,
+    CMD: "pap",
+    ALIASES: ["p"]
+  },
+  run: pap
+};
 
+function pap(parsed, event) {
+  if (!parsed.arg) return false;
 
   const setting = db.open("bot/setting.json").get();
   const klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
-  
+
   let query = parsed.arg;
 
   // cek ban
@@ -142,4 +153,4 @@ module.exports = (parsed, event) => {
     }
     return send;
   });
-};
+}

@@ -2,7 +2,19 @@ const db = require("./../../../service/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "KBBI Command",
+    description: "Command buat scrape data dari KBBI",
+    help: "",
+    createdAt: 0,
+    CMD: "kbbi",
+    ALIASES: []
+  },
+  run: kbbi
+};
+
+async function kbbi(parsed, event) {
   var random = 0;
   if (!parsed.arg) {
     random = 1;
@@ -326,7 +338,7 @@ module.exports = async (parsed, event) => {
     };
   }
   return echo;
-};
+}
 
 function italikuy(kata) {
   var italik = [

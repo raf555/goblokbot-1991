@@ -1,7 +1,19 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Arknights Event Command",
+    description: "Command buat ngirim info event Arknights",
+    help: "",
+    createdAt: 0,
+    CMD: "akevent",
+    ALIASES: ["ak-event", "ake"]
+  },
+  run: akevent
+};
+
+async function akevent(parsed, event) {
   let q = parsed.arg;
 
   if (q.toLowerCase() === "list cn") {
@@ -30,7 +42,7 @@ module.exports = async (parsed, event) => {
     altText: "AK - Event Rewards",
     contents: flex
   }));
-};
+}
 
 function search(urls, q) {
   return urls.filter(data => data.name.match(new RegExp(q, "i")))[0] || null;

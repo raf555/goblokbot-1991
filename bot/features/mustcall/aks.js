@@ -2,14 +2,26 @@ const db = require("./../../../service/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Arknights Stats",
+    description: "Command buat ngirim stats Operator Arknights",
+    help: "",
+    createdAt: 0,
+    CMD: "aks",
+    ALIASES: ["ak-stats"]
+  },
+  run: aks
+};
+
+async function aks(parsed, event) {
   var f = db.open(`bot/assets/arknek/akdb.json`);
   var h2 = "";
   var h = "";
   var char = "";
   if (!parsed.arg) return null;
   char = parsed.arg;
-  if (char.split(" ").length>1) {
+  if (char.split(" ").length > 1) {
     char = char.replace(/\s/g, "-");
   }
   if (char.toLowerCase() == "poca") {
@@ -23,7 +35,7 @@ module.exports = async (parsed, event) => {
   var $ = cheerio.load(body);
   if ($.text().match(/Page not found/)) {
     const echo = { type: "text", text: "Not found.." };
-    return echo
+    return echo;
   } else {
     var xx = db.open(`bot/assets/arknek/stats/stats.json`);
     xx = xx.get();
@@ -517,6 +529,6 @@ module.exports = async (parsed, event) => {
         ]
       }
     };
-    return echo
+    return echo;
   }
-};
+}

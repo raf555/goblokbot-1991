@@ -1,9 +1,19 @@
-module.exports = (parsed, event) => {
-  if (!parsed.arg) return null;
-  return {
-    type: "text",
-    text: boldkuy(parsed.arg)
-  };
+module.exports = {
+  data: {
+    name: "Bold cmd",
+    description: "Fitur buat convert text jd bold",
+    help: "",
+    createdAt: 0,
+    CMD: "bold",
+    ALIASES: ["b"]
+  },
+  run: (parsed, event) => {
+    if (!parsed.arg) return null;
+    return {
+      type: "text",
+      text: boldkuy(parsed.arg)
+    };
+  }
 };
 
 function boldkuy(kata) {

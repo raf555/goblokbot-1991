@@ -1,0 +1,56 @@
+const axios = require("axios");
+const cheerio = require("cheerio");
+
+module.exports = {
+  data: {
+    name: "UrbanDictionary CMD",
+    description: "Command buat ngecek definisi kata dari UD tapi random",
+    help: "",
+    createdAt: 0,
+    CMD: "udr",
+    ALIASES: []
+  },
+  run: async (parsed, event) => {
+    if (!parsed.arg) return null;
+    var katax = parsed.arg;
+    var url =
+      "https://www.urbandictionary.com/define.php?term=" +
+      encodeURIComponent(katax);
+    let res = await axios.get(url);
+    let body = res.data;
+    var judul = new Array();
+    var $ = cheerio.load(body);
+    var kata = "";
+    var number = "";
+    var meaning = "";
+    var word = "";
+    var arti = [];
+    if ($.text().match(/Sorry, we couldn't find/i)) {
+      kata = "Sorry, we couldn't find: " + katax;
+    } else {
+      $("div.def-panel").each(function(i, elm) {
+        number = $(elm).children()[0].children[0].children[0].children[0][
+          "data"
+        ];
+        word = $(elm).children()[1].children[0].children[0]["data"];
+        meaning = $(elm)
+          .find("div.meaning")
+          .text();
+        if (number.match(/Top definition/) && i == 0) {
+          judul.push(word + "\n" + number + "\n\n" + meaning); //+"\n"+word);
+        } else {
+          judul.push(word + "\n\n" + meaning);
+        }
+      });
+    }
+    return {
+      type: "text",
+      text: judul[angkaAcak(0, judul.length - 1)]
+    };
+  }
+};
+
+function angkaAcak(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

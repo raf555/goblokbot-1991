@@ -1,7 +1,17 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = copid;
+module.exports = {
+  data: {
+    name: "Corona cmd",
+    description: "Command buat ngecek kasus corona",
+    help: "",
+    createdAt: 0,
+    CMD: "c",
+    ALIASES: ["covid"]
+  },
+  run: copid
+};
 
 async function copid(parsed, event) {
   let res = await axios.get("https://www.worldometers.info/coronavirus/");

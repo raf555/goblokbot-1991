@@ -60,13 +60,15 @@ function replyMessage(event, msg) {
       cmd: eee[i].cmd,
       parsed: eee[i].parsed,
       latency: eee[i].latency,
-      cmdtype: eee[i].cmdtype
+      cmdtype: eee[i].cmdtype,
+      nosave: eee[i].nosave
     });
 
     delete eee[i]["cmd"];
     delete eee[i]["parsed"];
     delete eee[i]["latency"];
     delete eee[i]["cmdtype"];
+    delete eee[i]["nosave"];
   }
 
   let ftr = data_[0].cmd;
@@ -120,6 +122,8 @@ function replyMessage(event, msg) {
   /* write latency */
   let writelat = (() => {
     for (let i = 0; i < data_.length; i++) {
+      if (data_[i].nosave) continue;
+
       ftr = data_[i].cmd;
       parsed = data_[i].parsed;
       lat = data_[i].latency;
@@ -156,6 +160,8 @@ function replyMessage(event, msg) {
   let savecmd = (() => {
     let cmdhist = db.open("db/cmdhistory.json");
     for (let i = 0; i < data_.length; i++) {
+      if (data_[i].nosave) continue;
+
       parsed = data_[i].parsed;
       if (!parsed) continue;
 

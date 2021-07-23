@@ -1,7 +1,19 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Love Calculator Command",
+    description: "Buat ngukur kecocokan cinta seseorang (lucu2an doang)",
+    help: "",
+    createdAt: 0,
+    CMD: "lc",
+    ALIASES: []
+  },
+  run: lc
+};
+
+async function lc(parsed, event) {
   var st0 = parsed.arg;
   var st1 = st0.split(" dan ");
   var nama1 = st1[0].replace(" ", "+");
@@ -90,4 +102,4 @@ module.exports = async (parsed, event) => {
     }
   };
   return echo3;
-};
+}

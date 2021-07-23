@@ -1,10 +1,22 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-module.exports = async (parsed, event) => {
+module.exports = {
+  data: {
+    name: "Arknek Command",
+    description: "Buat ngirim info operator dari arknights",
+    help: "",
+    createdAt: 0,
+    CMD: "ak",
+    ALIASES: []
+  },
+  run: ak
+};
+
+async function ak(parsed, event) {
   if (!parsed.arg) return null;
   var char = parsed.arg;
-  if (char.split(" ").length>1) {
+  if (char.split(" ").length > 1) {
     char = char.replace(/\s/g, "-");
   }
   let res = await axios.get("https://gamepress.gg/arknights/operator/" + char);
@@ -437,4 +449,4 @@ module.exports = async (parsed, event) => {
     contents: crsl
   };
   return echo;
-};
+}

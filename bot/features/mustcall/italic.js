@@ -1,9 +1,19 @@
-module.exports = (parsed, event) => {
-  if (!parsed.arg) return null;
-  return {
-    type: "text",
-    text: italikuy(parsed.arg)
-  };
+module.exports = {
+  data: {
+    name: "Italic cmd",
+    description: "Command buat convert text jadi italic",
+    help: "",
+    createdAt: 0,
+    CMD: "italic",
+    ALIASES: ["i"]
+  },
+  run: (parsed, event) => {
+    if (!parsed.arg) return null;
+    return {
+      type: "text",
+      text: italikuy(parsed.arg)
+    };
+  }
 };
 
 function italikuy(kata) {

@@ -6,32 +6,42 @@ const { parseArg } = require("./../../parser");
 const { Parser } = require("expr-eval");
 const tables = table();
 
-module.exports = (parsed, event) => {
-  if (parsed.args.compare) {
-    return compare(parsed.args.compare);
-  }
-
-  if (parsed.args.getsize) {
-    return getsize(parsed.args.getsize);
-  }
-
-  return process(parsed.args).then(url => {
-    let out = [
-      {
-        type: "image",
-        originalContentUrl: url,
-        previewImageUrl: url
-      }
-    ];
-
-    if (parsed.args.out) {
-      out.push({
-        type: "text",
-        text: "URL: " + url + "\n\nThe link will expire in 24 hours"
-      });
+module.exports = {
+  data: {
+    name: "JIMP Command",
+    description: "Command image-processing yang didasari library JIMP",
+    help: "",
+    createdAt: 0,
+    CMD: "jimp",
+    ALIASES: []
+  },
+  run: (parsed, event) => {
+    if (parsed.args.compare) {
+      return compare(parsed.args.compare);
     }
-    return out;
-  });
+
+    if (parsed.args.getsize) {
+      return getsize(parsed.args.getsize);
+    }
+
+    return process(parsed.args).then(url => {
+      let out = [
+        {
+          type: "image",
+          originalContentUrl: url,
+          previewImageUrl: url
+        }
+      ];
+
+      if (parsed.args.out) {
+        out.push({
+          type: "text",
+          text: "URL: " + url + "\n\nThe link will expire in 24 hours"
+        });
+      }
+      return out;
+    });
+  }
 };
 
 async function getsize(val) {

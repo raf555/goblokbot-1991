@@ -1,7 +1,20 @@
 const { YTSearcher } = require("ytsearcher");
 const ytsearcher = new YTSearcher(process.env.yts_api);
 
-module.exports = async (parsed, event, random = false) => {
+module.exports = {
+  data: {
+    name: "Youtube CMD",
+    description: "Command buat nampilih top search dari Youtube",
+    help: "",
+    createdAt: 0,
+    CMD: "yt",
+    ALIASES: ["youtube"]
+  },
+  run: yt
+};
+
+async function yt(parsed, event) {
+  let random = parsed.args.random
   let txt = parsed.arg;
   let max = 10;
   let d = await ytsearcher.search(txt, { maxResults: random ? max : 1 });
@@ -61,7 +74,7 @@ module.exports = async (parsed, event, random = false) => {
       iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
     }
   };
-};
+}
 
 function angkaAcak(min, max) {
   // min and max included

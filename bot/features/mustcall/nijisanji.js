@@ -1,27 +1,37 @@
 const axios = require("axios");
 
-module.exports = (parsed, event) => {
-  let args = Object.keys(parsed.args);
+module.exports = {
+  data: {
+    name: "Nijisanji Command",
+    description: "Command buat nampilin live schedule (JP) atau liver Nijisanji",
+    help: "",
+    createdAt: 0,
+    CMD: "nijisanji",
+    ALIASES: ["niji"]
+  },
+  run: (parsed, event) => {
+    let args = Object.keys(parsed.args);
 
-  if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
-    if (/^(livers)(\s(.*))?/.test(parsed.arg)) {
-      let exec = /^(livers)(\s(.*))?/.exec(parsed.arg);
-      parsed.args.livers = exec[3];
-      parsed.arg = "";
+    if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
+      if (/^(livers)(\s(.*))?/.test(parsed.arg)) {
+        let exec = /^(livers)(\s(.*))?/.exec(parsed.arg);
+        parsed.args.livers = exec[3];
+        parsed.arg = "";
+      }
+      return liver_list(parsed);
     }
-    return liver_list(parsed);
-  }
 
-  if (parsed.args.liver || /^(liver)(\s(.*))?/.test(parsed.arg)) {
-    if (/^(liver)(\s(.*))?/.test(parsed.arg)) {
-      let exec = /^(liver)(\s(.*))?/.exec(parsed.arg);
-      parsed.args.liver = exec[3];
-      parsed.arg = "";
+    if (parsed.args.liver || /^(liver)(\s(.*))?/.test(parsed.arg)) {
+      if (/^(liver)(\s(.*))?/.test(parsed.arg)) {
+        let exec = /^(liver)(\s(.*))?/.exec(parsed.arg);
+        parsed.args.liver = exec[3];
+        parsed.arg = "";
+      }
+      return liver_info(parsed);
     }
-    return liver_info(parsed);
-  }
 
-  return live_schedule(parsed);
+    return live_schedule(parsed);
+  }
 };
 
 async function live_schedule(parsed) {
