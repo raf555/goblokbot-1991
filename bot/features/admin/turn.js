@@ -9,7 +9,7 @@ module.exports = {
     CMD: "turn",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let msg = parsed.arg.split(" ");
     //let msg3 = msg.splice(1, msg.length).join(" ");
     let state = db.open("bot/setting.json");

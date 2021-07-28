@@ -7,7 +7,7 @@ module.exports = {
     CMD: "f",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (!!parsed.arg) return null;
     var echo = { type: "text", text: "F" };
     var echo1 = {

@@ -13,7 +13,7 @@ module.exports = {
   run: wikiped
 };
 
-async function wikiped(parsed, event) {
+async function wikiped(parsed, event, bot) {
   /* args */
   let lang = (parsed.args.lang || parsed.args.l || "id").toLowerCase();
   let autosuggest = parsed.args.as;

@@ -20,7 +20,7 @@ module.exports = {
   run: lat
 };
 
-function lat(parsed, event) {
+function lat(parsed, event, bot) {
   var usg = db.open(`db/latency.json`);
   var cust = db.open(`db/customcmd.json`);
   var usgdata = usg.get();

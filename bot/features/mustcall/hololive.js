@@ -1,7 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("./../../../service/database");
-const fetchs = require("sync-fetch");
 
 module.exports = {
   data: {
@@ -9,6 +8,7 @@ module.exports = {
     description: "Command buat ngasih live schedule liver hololep",
     help: "",
     createdAt: 0,
+    DISABLED: true,
     CMD: "hololive",
     ALIASES: ["h"]
   },

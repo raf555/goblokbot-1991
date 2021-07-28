@@ -37,7 +37,7 @@ module.exports = {
   run: pap
 };
 
-function pap(parsed, event) {
+function pap(parsed, event, bot) {
   if (!parsed.arg) return false;
 
   const setting = db.open("bot/setting.json").get();

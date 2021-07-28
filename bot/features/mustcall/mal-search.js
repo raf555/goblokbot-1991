@@ -12,7 +12,7 @@ module.exports = {
   run: anime
 };
 
-async function anime(parsed, event) {
+async function anime(parsed, event, bot) {
   if (!parsed.arg) return false;
   let data = await malScraper.getResultsFromSearch(parsed.arg);
 

@@ -13,7 +13,7 @@ module.exports = {
   run: anitrendz
 };
 
-async function anitrendz(parsed, event) {
+async function anitrendz(parsed, event, bot) {
   var url = "";
   var info = "";
   var tt = parsed.arg.toLowerCase();

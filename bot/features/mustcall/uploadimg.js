@@ -10,7 +10,7 @@ module.exports = {
     CMD: "uploadimg",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let name = parsed.args.n || parsed.args.name || null;
     let exp = parsed.args.e || parsed.args.exp || null;
     let jimp = parsed.args.jimp ? true : false;
@@ -22,7 +22,10 @@ module.exports = {
           return { type: "text", text: "Minimum 1 minutes (60 sec)" };
         }
       } else {
-        return { type: "text", text: "Invalid exp" };
+        if (exp.toLowerCase() !== "inf") {
+          return { type: "text", text: "Invalid exp" };
+        }
+        exp = null;
       }
     } else {
       exp = 24 * 3600;

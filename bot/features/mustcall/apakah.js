@@ -10,7 +10,7 @@ module.exports = {
   run: apkh
 };
 
-function apkh(parsed, event) {
+function apkh(parsed, event, bot) {
   if (!parsed.arg) return null;
   if (sumChars(parsed.arg + " ") % 2 == 0) {
     var apakah = "tidak";

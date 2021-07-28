@@ -9,7 +9,7 @@ module.exports = {
     CMD: "set",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let msg = parsed.arg.split(" ");
     var type = msg[0];
     let choice = msg[1];

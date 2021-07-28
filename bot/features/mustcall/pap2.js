@@ -1,5 +1,3 @@
-let pap = require("./pap");
-
 module.exports = {
   data: {
     name: "Pap2",
@@ -9,8 +7,8 @@ module.exports = {
     CMD: "pap2",
     ALIASES: ["p2"]
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     parsed.args.n = 12;
-    return pap(parsed, event);
+    return bot.mustcall.pap(parsed, event);
   }
 };

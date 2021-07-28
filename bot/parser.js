@@ -46,8 +46,17 @@ function parse(message, caller) {
   let parsearg = parseArg(command);
   let argsplit = parsearg.arg.split(" ");
 
-  let parsed = {};
+  let parsed = {
+    caller: _caller,
+    called: !!_caller,
+    shortcut: isShortcut,
+    command: argsplit.shift().toLowerCase(),
+    args: parsearg.args,
+    arg: argsplit.join(" "),
+    fullMsg: message
+  };
 
+  /*
   parsed.caller = _caller;
   parsed.called = !!_caller;
   parsed.shortcut = isShortcut;
@@ -55,6 +64,7 @@ function parse(message, caller) {
   parsed.args = parsearg.args;
   parsed.arg = argsplit.join(" ");
   parsed.fullMsg = message;
+  */
 
   // delete parsed.args["b"];
   // console.log(parsed);
@@ -63,11 +73,8 @@ function parse(message, caller) {
 }
 
 function parseArg(text) {
-  const consargreg = n => {
-    return new RegExp(`^-{${n}}([a-zA-Z_]\\w*[-\\w]*)`);
-  };
-  let argsregex1 = consargreg(1);
-  let argsregex2 = consargreg(2);
+  let argsregex1 = new RegExp(`^-{1}([a-zA-Z_]\\w*[-\\w]*)`);
+  let argsregex2 = new RegExp(`^-{2}([a-zA-Z_]\\w*[-\\w]*)`);
 
   let args = parseArgsStringToArgv(text);
   let out = {};
@@ -101,23 +108,23 @@ function parseArg(text) {
         if (text.match(regex)) {
           let thearg = argsregex1.exec(word);
           let theval = regex.exec(text);
-          out[thearg[1].toLowerCase()] = theval[1];
+          out[thearg[1]] = theval[1]; // tolowercase
           text = text.replace(theval[0], " removed");
           args = parseArgsStringToArgv(text);
         } else {
-          out[word.replace("-", "").toLowerCase()] = args[idx + 1]
+          out[word.replace("-", "")] = args[idx + 1] // tolowercase
             ? args[idx + 1].replace("\\", "")
             : null;
           idx++;
         }
       } else {
-        out[word.replace("-", "").toLowerCase()] = args[idx + 1]
+        out[word.replace("-", "")] = args[idx + 1] // tolowercase
           ? args[idx + 1].replace("\\", "")
           : null;
         idx++;
       }
     } else if (word.match(argsregex2)) {
-      out[word.replace("--", "").toLowerCase()] = true;
+      out[word.replace("--", "")] = true; // tolowercase
     } else {
       arg.push(word);
     }

@@ -16,7 +16,7 @@ module.exports = {
     CMD: "opm",
     ALIASES: []
   },
-  run: async (parsed, event) => {
+  run: async (parsed, event, bot) => {
     let s = parsed.arg.split(" ");
     let q = s.length > 0 ? s[0] : null;
     let n = s.length > 1 ? s[1] : null;

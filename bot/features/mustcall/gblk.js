@@ -9,7 +9,7 @@ module.exports = {
     CMD: "goblok",
     ALIASES: ["gblk"]
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     return {
       type: "text",
       text: isAdmin(event.source.userId) ? "maap bang :(" : "lo goblok",

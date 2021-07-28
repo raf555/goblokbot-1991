@@ -9,7 +9,7 @@ module.exports = {
     CMD: "push",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (!isAdmin(event.source.userId)) return false;
     pushMessage(
       {

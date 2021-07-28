@@ -14,7 +14,7 @@ module.exports = {
   run: aks
 };
 
-async function aks(parsed, event) {
+async function aks(parsed, event, bot) {
   var f = db.open(`bot/assets/arknek/akdb.json`);
   var h2 = "";
   var h = "";

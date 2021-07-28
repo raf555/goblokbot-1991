@@ -10,7 +10,7 @@ module.exports = {
     CMD: "ban",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let msg = parsed.arg.split(" ");
     var type = msg[0];
     if (type == "user") {

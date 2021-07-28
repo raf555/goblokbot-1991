@@ -14,7 +14,7 @@ module.exports = {
   run: kyaa
 };
 
-async function kyaa(parsed, event) {
+async function kyaa(parsed, event, bot) {
   let arg = (() => {
     let msg = parsed.arg;
     if (!!msg) {

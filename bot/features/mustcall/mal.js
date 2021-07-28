@@ -12,7 +12,7 @@ module.exports = {
   run: mal
 };
 
-async function mal(parsed, event) {
+async function mal(parsed, event, bot) {
   if (!parsed.arg) return false;
   let data = await malScraper.getInfoFromName(parsed.arg);
   //console.log(data);

@@ -13,7 +13,7 @@ module.exports = {
   run: copid
 };
 
-async function copid(parsed, event) {
+async function copid(parsed, event, bot) {
   let res = await axios.get("https://www.worldometers.info/coronavirus/");
   let body = res.data;
   let $ = cheerio.load(body);

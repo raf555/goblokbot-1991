@@ -13,7 +13,7 @@ module.exports = {
   run: ak
 };
 
-async function ak(parsed, event) {
+async function ak(parsed, event, bot) {
   if (!parsed.arg) return null;
   var char = parsed.arg;
   if (char.split(" ").length > 1) {

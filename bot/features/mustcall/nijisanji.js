@@ -9,7 +9,7 @@ module.exports = {
     CMD: "nijisanji",
     ALIASES: ["niji"]
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let args = Object.keys(parsed.args);
 
     if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
@@ -84,8 +84,8 @@ async function live_schedule(parsed) {
 
   let carousel = { type: "carousel", contents: [] };
 
-  let page = Math.max(parseInt(parsed.args.next || parsed.args.page || "0"), 0);
-
+  let page = Math.max(parseInt(Number(parsed.args.next) || parsed.args.page || "0"), 0);
+  
   if (page * 12 >= events.length) {
     return {
       type: "text",
@@ -175,7 +175,7 @@ async function liver_list(parsed) {
 
   let carousel = { type: "carousel", contents: [] };
 
-  let page = Math.max(parseInt(parsed.args.next || parsed.args.page || "0"), 0);
+  let page = Math.max(parseInt(Number(parsed.args.next) || parsed.args.page || "0"), 0);
 
   if (page * 12 >= livers.length) {
     return {

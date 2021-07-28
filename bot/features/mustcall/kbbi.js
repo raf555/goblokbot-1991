@@ -2,6 +2,8 @@ const db = require("./../../../service/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+let bold, italic;
+
 module.exports = {
   data: {
     name: "KBBI Command",
@@ -14,7 +16,10 @@ module.exports = {
   run: kbbi
 };
 
-async function kbbi(parsed, event) {
+async function kbbi(parsed, event, bot) {
+  bold = bot.mustcall.bold;
+  italic = bot.mustcall.italic;
+
   var random = 0;
   if (!parsed.arg) {
     random = 1;
@@ -341,169 +346,15 @@ async function kbbi(parsed, event) {
 }
 
 function italikuy(kata) {
-  var italik = [
-    "𝘢",
-    "𝘣",
-    "𝘤",
-    "𝘥",
-    "𝘦",
-    "𝘧",
-    "𝘨",
-    "𝘩",
-    "𝘪",
-    "𝘫",
-    "𝘬",
-    "𝘭",
-    "𝘮",
-    "𝘯",
-    "𝘰",
-    "𝘱",
-    "𝘲",
-    "𝘳",
-    "𝘴",
-    "𝘵",
-    "𝘶",
-    "𝘷",
-    "𝘸",
-    "𝘹",
-    "𝘺",
-    "𝘻",
-    "𝘈",
-    "𝘉",
-    "𝘊",
-    "𝘋",
-    "𝘌",
-    "𝘍",
-    "𝘎",
-    "𝘏",
-    "𝘐",
-    "𝘑",
-    "𝘒",
-    "𝘓",
-    "𝘔",
-    "𝘕",
-    "𝘖",
-    "𝘗",
-    "𝘘",
-    "𝘙",
-    "𝘚",
-    "𝘛",
-    "𝘜",
-    "𝘝",
-    "𝘞",
-    "𝘟",
-    "𝘠",
-    "𝘡"
-  ];
-  var angkak = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  var katabaru = "";
-  for (var i = 0; i < kata.length; i++) {
-    if (kata[i] == " ") {
-      katabaru += " ";
-    } else if (kata[i] == ".") {
-      katabaru += ".";
-    } else if (kata[i] == ",") {
-      katabaru += ",";
-    } else if (kata[i] == ")") {
-      katabaru += ")";
-    } else if (kata[i] == "(") {
-      katabaru += "(";
-    } else if (kata[i] == "-") {
-      katabaru += "-";
-    } else {
-      if (Number.isInteger(parseInt(kata[i]))) {
-        katabaru += angkak[parseInt(kata[i])];
-      } else if (kata[i].charCodeAt(0) - 97 >= 0) {
-        katabaru += italik[kata[i].charCodeAt(0) - 97];
-      } else if (kata[i].charCodeAt(0) - 97 < 0) {
-        katabaru += italik[kata[i].charCodeAt(0) - 65 + 26];
-      }
-    }
-  }
-  return katabaru;
+  let res = italic({ arg: kata });
+  return res ? res.text : "";
 }
+
 function boldkuy(kata) {
-  var tebal = [
-    "𝐚",
-    "𝐛",
-    "𝐜",
-    "𝐝",
-    "𝐞",
-    "𝐟",
-    "𝐠",
-    "𝐡",
-    "𝐢",
-    "𝐣",
-    "𝐤",
-    "𝐥",
-    "𝐦",
-    "𝐧",
-    "𝐨",
-    "𝐩",
-    "𝐪",
-    "𝐫",
-    "𝐬",
-    "𝐭",
-    "𝐮",
-    "𝐯",
-    "𝐰",
-    "𝐱",
-    "𝐲",
-    "𝐳",
-    "𝐀",
-    "𝐁",
-    "𝐂",
-    "𝐃",
-    "𝐄",
-    "𝐅",
-    "𝐆",
-    "𝐇",
-    "𝐈",
-    "𝐉",
-    "𝐊",
-    "𝐋",
-    "𝐌",
-    "𝐍",
-    "𝐎",
-    "𝐏",
-    "𝐐",
-    "𝐑",
-    "𝐒",
-    "𝐓",
-    "𝐔",
-    "𝐕",
-    "𝐖",
-    "𝐗",
-    "𝐘",
-    "𝐙"
-  ];
-  var angkab = ["𝟎", "𝟏", "𝟐", "𝟑", "𝟒", "𝟓", "𝟔", "𝟕", "𝟖", "𝟗", "𝟏𝟎"];
-  var katabaru = "";
-  for (var i = 0; i < kata.length; i++) {
-    if (kata[i] == " ") {
-      katabaru += " ";
-    } else if (kata[i] == ".") {
-      katabaru += ".";
-    } else if (kata[i] == ",") {
-      katabaru += ",";
-    } else if (kata[i] == ")") {
-      katabaru += ")";
-    } else if (kata[i] == "(") {
-      katabaru += "(";
-    } else if (kata[i] == "-") {
-      katabaru += "-";
-    } else {
-      if (Number.isInteger(parseInt(kata[i]))) {
-        katabaru += angkab[parseInt(kata[i])];
-      } else if (kata[i].charCodeAt(0) - 97 >= 0) {
-        katabaru += tebal[kata[i].charCodeAt(0) - 97];
-      } else if (kata[i].charCodeAt(0) - 97 < 0) {
-        katabaru += tebal[kata[i].charCodeAt(0) - 65 + 26];
-      }
-    }
-  }
-  return katabaru;
+  let res = bold({ arg: kata });
+  return res ? res.text : "";
 }
+
 function bolditalikuy(kata) {
   var tebal = [
     "𝒂",

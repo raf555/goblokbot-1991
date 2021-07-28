@@ -15,7 +15,7 @@ module.exports = {
     CMD: "jimp",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (parsed.args.compare) {
       return compare(parsed.args.compare);
     }

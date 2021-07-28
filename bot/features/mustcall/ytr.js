@@ -1,5 +1,3 @@
-const { run: yt } = require("./yt");
-
 module.exports = {
   data: {
     name: "Youtube random",
@@ -9,8 +7,8 @@ module.exports = {
     CMD: "ytr",
     ALIASES: ["youtube-random"]
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     parsed.args.random = true;
-    return yt(parsed, event);
+    return bot.mustcall.yt(parsed, event);
   }
 };

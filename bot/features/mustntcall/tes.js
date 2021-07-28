@@ -7,7 +7,7 @@ module.exports = {
     CMD: "tes",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (parsed.args.args) {
       return {
         type: "text",

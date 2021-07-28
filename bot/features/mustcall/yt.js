@@ -13,7 +13,7 @@ module.exports = {
   run: yt
 };
 
-async function yt(parsed, event) {
+async function yt(parsed, event, bot) {
   let random = parsed.args.random
   let txt = parsed.arg;
   let max = 10;

@@ -10,7 +10,7 @@ module.exports = {
   run: mending
 };
 
-function mending(parsed, event) {
+function mending(parsed, event, bot) {
   if (!parsed.arg) return null;
   var mending = (parsed.arg + " ")
     .split(" apa ")

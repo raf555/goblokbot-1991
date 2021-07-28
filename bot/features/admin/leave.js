@@ -8,7 +8,7 @@ module.exports = {
     CMD: "leave",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (event.source.groupId) {
       client
         .leaveGroup(event.source.groupId)
