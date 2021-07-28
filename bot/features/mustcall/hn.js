@@ -5,6 +5,7 @@ module.exports = {
     description: "Buat ngirim liver yg lg live",
     help: "",
     createdAt: 0,
+    DISABLED: true,
     CMD: "hn",
     ALIASES: []
   },

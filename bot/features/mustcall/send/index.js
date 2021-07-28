@@ -11,7 +11,7 @@ module.exports = {
     CMD: "send",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let split = parsed.arg.split(" ");
     let arg = split[0].toLowerCase();
 

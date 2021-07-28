@@ -13,7 +13,7 @@ module.exports = {
   run: news
 }
 
-  async function news (parsed, event)  {
+  async function news (parsed, event, bot)  {
   let custom = (parsed.args.advanced || parsed.args.adv || 0) === true;
   let search = !custom ? newsapi.v2.topHeadlines : newsapi.v2.everything;
 

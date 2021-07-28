@@ -20,7 +20,7 @@ module.exports = {
   run: bot_status
 };
 
-function bot_status(event) {
+function bot_status(parsed, event, bot) {
   return axios.get("https://status.glitch.com/").then(async res => {
     var body = res.data;
     var server = "-";

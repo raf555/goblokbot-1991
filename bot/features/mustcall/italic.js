@@ -7,7 +7,7 @@ module.exports = {
     CMD: "italic",
     ALIASES: ["i"]
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (!parsed.arg) return null;
     return {
       type: "text",

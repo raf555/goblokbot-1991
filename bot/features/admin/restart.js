@@ -10,7 +10,7 @@ module.exports = {
     CMD: "restart",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     let state = db.open("bot/setting.json");
     state.set("bot", 1);
     state.save();

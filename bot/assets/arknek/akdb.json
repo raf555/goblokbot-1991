@@ -1,4 +1,9 @@
 {
+  "pallas": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-07/char_485_pallas.png"
+  },
   "carnelian": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
     "rarity": 6,

@@ -9,7 +9,7 @@ module.exports = {
     CMD: "refresh",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     setTimeout(() => {
       exec("git prune ; git gc ; refresh", (err, stdout, stderr) => {
         if (err) {

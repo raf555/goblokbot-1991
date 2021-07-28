@@ -13,7 +13,7 @@ module.exports = {
   run: yts
 };
 
-async function yts(parsed, event) {
+async function yts(parsed, event, bot) {
   let txt = parsed.arg;
 
   let crsl = {

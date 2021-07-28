@@ -1,5 +1,5 @@
 // const stringSimilarity = require("string-similarity");
-const featuredb = require("./features")();
+const bot = require("./features")();
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
 const {
@@ -18,8 +18,8 @@ module.exports = {
 let ccc = {};
 
 let setting = db.open("bot/setting.json").get();
-const keywords = Object.keys(featuredb.mustcall);
-const keywords2 = Object.keys(featuredb.mustntcall);
+const keywords = Object.keys(bot.mustcall);
+const keywords2 = Object.keys(bot.mustntcall);
 
 function execMulti(text, event) {
   setting = db.open("bot/setting.json").get();
@@ -130,7 +130,7 @@ async function execMessage(text, event) {
       }
     } else {
       if (keywords.includes(cmd)) {
-        reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
+        reply = await Promise.resolve(bot.mustcall[cmd](parsed, event, bot));
       } else {
         if (!parsed.shortcut && !parsed.arg && !cmd) {
           reply = greeting(event);
@@ -141,7 +141,7 @@ async function execMessage(text, event) {
     if (ccc[event.source.groupId || event.source.userId]) {
       ccc[event.source.groupId || event.source.userId] = 0;
       if (keywords.includes(cmd)) {
-        reply = await Promise.resolve(featuredb.mustcall[cmd](parsed, event));
+        reply = await Promise.resolve(bot.mustcall[cmd](parsed, event, bot));
       } else {
         if (cmd === "gapapa" || cmd === "gpp" || cmd === "gajadi") {
           reply = { type: "text", text: "oke" };
@@ -149,7 +149,7 @@ async function execMessage(text, event) {
       }
     } else {
       if (keywords2.includes(cmd)) {
-        reply = await Promise.resolve(featuredb.mustntcall[cmd](parsed, event));
+        reply = await Promise.resolve(bot.mustntcall[cmd](parsed, event, bot));
       } else {
         if (customkeywords.includes(cleanedcmd)) {
           reply = customfeature(cleanedcmd, event);
@@ -294,7 +294,7 @@ function validToSend(parsed, event, setting) {
   let cmd = parsed.command;
 
   if (cmd === "status") {
-    return featuredb.mustcall["status"]();
+    return bot.mustcall["status"]();
   }
 
   if (!setting.bot) {

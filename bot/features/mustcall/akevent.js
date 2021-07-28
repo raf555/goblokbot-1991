@@ -13,7 +13,7 @@ module.exports = {
   run: akevent
 };
 
-async function akevent(parsed, event) {
+async function akevent(parsed, event, bot) {
   let q = parsed.arg;
 
   if (q.toLowerCase() === "list cn") {

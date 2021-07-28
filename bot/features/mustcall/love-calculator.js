@@ -13,7 +13,7 @@ module.exports = {
   run: lc
 };
 
-async function lc(parsed, event) {
+async function lc(parsed, event, bot) {
   var st0 = parsed.arg;
   var st1 = st0.split(" dan ");
   var nama1 = st1[0].replace(" ", "+");

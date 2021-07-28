@@ -7,7 +7,7 @@ module.exports = {
     CMD: "pilih",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (!parsed.arg) return null;
     let msg = parsed.arg.split(" ");
     if (msg[0] == "mana" || msg[0] == "mana,") {

@@ -10,7 +10,7 @@ module.exports = {
     CMD: "udr",
     ALIASES: []
   },
-  run: async (parsed, event) => {
+  run: async (parsed, event, bot) => {
     if (!parsed.arg) return null;
     var katax = parsed.arg;
     var url =

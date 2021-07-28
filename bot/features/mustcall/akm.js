@@ -14,7 +14,7 @@ module.exports = {
   run: akm
 };
 
-async function akm(parsed, event) {
+async function akm(parsed, event, bot) {
   var f = db.open(`bot/assets/arknek/akdb.json`);
   var h2 = "";
   var h = "";

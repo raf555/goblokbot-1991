@@ -7,7 +7,7 @@ module.exports = {
     CMD: "peko",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     var audio = [
       [
         "https://cdn.glitch.com/d62336d4-8f62-47f6-b23f-8fc7535e2607%2FPEKOPEKOPEKOPEKO.m4a",

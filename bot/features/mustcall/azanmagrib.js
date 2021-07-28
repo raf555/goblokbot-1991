@@ -14,7 +14,7 @@ module.exports = {
   run: magrib
 };
 
-async function magrib() {
+async function magrib(parsed, event, bot) {
   return null;
 
   var skrg = new Date().toLocaleString("en-US", {

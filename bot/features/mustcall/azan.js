@@ -13,7 +13,7 @@ module.exports = {
   run: azan
 };
 
-async function azan() {
+async function azan(parsed, event, bot) {
   var skrg = new Date().toLocaleString("en-US", {
     timeZone: "Asia/Jakarta"
   });

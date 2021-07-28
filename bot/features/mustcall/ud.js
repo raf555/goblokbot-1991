@@ -9,7 +9,7 @@ module.exports = {
     CMD: "ud",
     ALIASES: []
   },
-  run: (parsed, event) => {
+  run: (parsed, event, bot) => {
     if (!parsed.arg) return null;
     var definition = parsed.arg;
     //console.log(ud)
