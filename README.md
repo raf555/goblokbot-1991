@@ -8,34 +8,6 @@ Bot LINE serbaguna.
 - Kenapa namanya goblokbot?
 - Karena w awalnya pengen bikin bot buat nyepam stiker goblok, tapi dulu g kesampean dan ada keterbatasan dari LINE jadinya malah kek gini skrg.
 
-### History
-
-#### `27-08-2019` -- First Release
-
-Goblokbot pertama kali rilis dengan minim aplikasi tentang *best practices* serta struktur data. Bot ini w bikin sebelum masuk Informatika, makanya cupu.
-
-Kelemahan rilis ini adalah bener-bener susah untuk maintenance, nambah fitur ribet, dll dll pokoknya jelek. Sebagian besar fitur dan script semua jadi 1 file lmao.
-
-#### `??-??-2020` -- V2 release
-
-Versi 2 ini w buat beberapa bulan setelah masuk Informatika, ngerti sedikit soal struktur data jadinya beberapa bisa dijadiin modular.
-
-Struktur bot sebagian dirombak sebagian, tapi fitur-fitur masih jadi satu file, duh. Belum juga diaplikasiin *best practice*, versi ini mirip sama V1 cuman maintenance jadi cukup mudah.
-
-Website dashboard goblokbot dibuat di versi ini, juga beberapa fitur tambahan yang cukup ngebantu (kyk latency record, etc)
-
-#### `05-06-2021` -- V3 release -- breaking release
-
-Versi 3 merupakan rombak total goblokbot, struktur data dan *best practice* keseluruhan diaplikasiin ke goblokbot. Semua fitur-fitur yang ada dari versi sebelumnya disesuaikan ke versi ini.
-SELURUH FITUR MODULAR, udah gaada lagi fitur-fitur disatuin di satu file yang sama.
-
-Kata kunci dari V3 ini adalah **Easy maintenance and modularity**. Sesuai namanya, versi ini bener-bener gampang buat maintenance, nambah fitur gampang, benerin fitur juga gampang, error handler juga ada.
-
-Versi 3 ini setelah w melewati 2 semester di Informatika, *best practice* serta struktur data jadi jelas banget berasa. Juga, struktur data dar goblokbot ini terinspirasi dari Tugas Besar Sistem Operasi kemarin dengan membuat OS 16-bit
-
-Website goblokbot ngga begitu berubah, cuma ngerapihin strukturnya aja. Yang paling banyak berubah adalah botnya, yang paling breaking adalah adanya utilitas `parser` buat ngebantu proses keyword dari user, contohnya adalah support shortcut calling (pake prefix), support arguments, dan lain-lain.
-
-
 # Cara pake
 Ada beberapa hal penting mengenai bot ini sebelum dipake.
 ### Pesan
