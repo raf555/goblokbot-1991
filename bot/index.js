@@ -39,12 +39,11 @@ function handleEvent(event) {
     case "message":
       return handleMessageEvent(event);
     case "unsend":
-      saveUnsend(event);
-      return null;
+      return handleUnsendEvent(event);
     case "postback":
       return handlePostbackEvent(event);
     case "join":
-      return handleJoin(event);
+      return handleJoinEvent(event);
     default:
       return null;
   }
@@ -91,7 +90,12 @@ function handlePostbackEvent(event) {
   return replyMessage(event, reply);
 }
 
-function handleJoin(event) {
+function handleUnsendEvent(event) {
+  saveUnsend(event);
+  return null;
+}
+
+function handleJoinEvent(event) {
   if (event.source.roomId || event.source.groupId !== process.env.group_id) {
     return leave(event).then(() => null);
   }

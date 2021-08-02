@@ -7,7 +7,7 @@ module.exports = {
     help: "",
     createdAt: 0,
     CMD: "nijisanji",
-    ALIASES: ["niji"]
+    ALIASES: ["niji", "2434"]
   },
   run: (parsed, event, bot) => {
     let args = Object.keys(parsed.args);

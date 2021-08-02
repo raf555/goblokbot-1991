@@ -13,7 +13,7 @@ module.exports = {
 function mending(parsed, event, bot) {
   if (!parsed.arg) return null;
   var mending = (parsed.arg + " ")
-    .split(" apa ")
+    .split(/\s[(apa)(atau)]\s/)
     .sort()
     .reverse();
   var mendingan = "" + mending[0] + " " + mending[1];

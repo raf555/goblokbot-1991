@@ -357,10 +357,11 @@ function regexbasedfeature(text, event) {
     return Object.assign(gblk.get(), { cmd: "aaaaa" });
   }
 
+  /*
   if (
     msg[0].toLowerCase() == "g" &&
     msg.length > 2 &&
-    msg.match(/(r)\1\1+/i) /* msg.match(/^(a)\1*$/i) */
+    msg.match(/(r)\1\1+/i)
   ) {
     return {
       type: "image",
@@ -368,7 +369,7 @@ function regexbasedfeature(text, event) {
       previewImageUrl: "https://i.ibb.co/jbTKmQc/grr.jpg",
       cmd: "grr"
     };
-  }
+  }*/
 }
 
 function customfeature(msg, event) {
