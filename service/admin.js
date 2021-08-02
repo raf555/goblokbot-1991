@@ -1,10 +1,10 @@
 const db = require("./database");
 
 function admingabut() {
-  console.log("gabut")
-  let a = db.open("db/latency.json")
-  a.unset("c")
+  let a = db.open("db/cmdhistory.json")
+  a.unset("87")
   a.save()
+  console.log("ok")
 }
 
 module.exports = admingabut;

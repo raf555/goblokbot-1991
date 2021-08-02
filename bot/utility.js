@@ -113,80 +113,90 @@ function replyMessage(event, msg) {
 
     eee = eee.slice(0, 5);
 
-    return client.replyMessage(event.replyToken, eee).then(() => {
-      savebotchat(event, eee);
+    return client
+      .replyMessage(event.replyToken, eee)
+      .then(() => {
+        savebotchat(event, eee);
+        return true;
+      })
+      .catch(e => {
+        console.log("Failed to reply message");
+        return false;
+      });
+  })();
+
+  Promise.resolve(reply).then(res => {
+    if (!res) return;
+
+    /* write latency */
+    let writelat = (() => {
+      for (let i = 0; i < data_.length; i++) {
+        if (data_[i].nosave) continue;
+
+        ftr = data_[i].cmd;
+        parsed = data_[i].parsed;
+        lat = data_[i].latency;
+        latency = lat || Date.now() - event.timestamp;
+
+        if (!ftr) {
+          continue;
+        }
+
+        if (latency > 30000) {
+          continue;
+        }
+
+        let data = file.get(ftr);
+        if (!data) {
+          file.set(ftr + ".avg", latency);
+          file.set(ftr + ".0", latency);
+        } else {
+          let tot = Object.keys(data).length - 1;
+          let lat = latency;
+
+          delete data["avg"];
+          lat += Object.values(data).reduce((total, num) => total + num);
+
+          file.set(ftr + "." + tot, latency);
+          file.set(ftr + ".avg", Math.round(lat / (tot + 1)));
+        }
+        file.save();
+      }
       return true;
-    });
-  })();
+    })();
 
-  /* write latency */
-  let writelat = (() => {
-    for (let i = 0; i < data_.length; i++) {
-      if (data_[i].nosave) continue;
+    /* save cmd */
+    let savecmd = (() => {
+      let cmdhist = db.open("db/cmdhistory.json");
+      for (let i = 0; i < data_.length; i++) {
+        if (data_[i].nosave) continue;
 
-      ftr = data_[i].cmd;
-      parsed = data_[i].parsed;
-      lat = data_[i].latency;
-      latency = lat || Date.now() - event.timestamp;
+        parsed = data_[i].parsed;
+        if (!parsed) continue;
 
-      if (!ftr) {
-        continue;
+        let id = Object.keys(cmdhist.get()).length + 1;
+
+        parsed.id = event.source.userId;
+        parsed.ts = Date.now();
+        parsed.lat = latency;
+
+        if (data_[i].cmd) {
+          parsed.alias = data_[i].cmd;
+        }
+
+        if (data_[i].cmdtype === "other") {
+          parsed.isothercmd = true;
+        }
+
+        parsed.fromGroup = event.source.groupId || null;
+
+        cmdhist.set(id.toString(), parsed);
       }
+      cmdhist.save();
 
-      if (latency > 30000) {
-        continue;
-      }
-
-      let data = file.get(ftr);
-      if (!data) {
-        file.set(ftr + ".avg", latency);
-        file.set(ftr + ".0", latency);
-      } else {
-        let tot = Object.keys(data).length - 1;
-        let lat = latency;
-
-        delete data["avg"];
-        lat += Object.values(data).reduce((total, num) => total + num);
-
-        file.set(ftr + "." + tot, latency);
-        file.set(ftr + ".avg", Math.round(lat / (tot + 1)));
-      }
-      file.save();
-    }
-    return true;
-  })();
-
-  /* save cmd */
-  let savecmd = (() => {
-    let cmdhist = db.open("db/cmdhistory.json");
-    for (let i = 0; i < data_.length; i++) {
-      if (data_[i].nosave) continue;
-
-      parsed = data_[i].parsed;
-      if (!parsed) continue;
-
-      let id = Object.keys(cmdhist.get()).length + 1;
-
-      parsed.id = event.source.userId;
-      parsed.ts = Date.now();
-      parsed.lat = latency;
-
-      if (data_[i].cmd) {
-        parsed.alias = data_[i].cmd;
-      }
-
-      if (data_[i].cmdtype === "other") {
-        parsed.isothercmd = true;
-      }
-
-      parsed.fromGroup = event.source.groupId || null;
-
-      cmdhist.set(id.toString(), parsed);
-    }
-    cmdhist.save();
-
-    return true;
-  })();
+      return true;
+    })();
+  });
 
   return reply;
 }

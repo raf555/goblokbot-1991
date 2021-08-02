@@ -1,3 +1,5 @@
+const hash = require("./../../../service/hash")
+
 module.exports = {
   data: {
     name: "Apakah",
@@ -12,14 +14,14 @@ module.exports = {
 
 function apkh(parsed, event, bot) {
   if (!parsed.arg) return null;
-  if (sumChars(parsed.arg + " ") % 2 == 0) {
+  if (sumChars(hash(parsed.arg + " ")) % 2 == 0) {
     var apakah = "tidak";
   } else {
     var apakah = "iya";
   }
   return {
     type: "flex",
-    altText: "mending",
+    altText: "apakah",
     contents: {
       type: "bubble",
       size: "micro",

@@ -21,7 +21,7 @@ function getfeatures(onlyname = false) {
     let cmdname = data.CMD.toLowerCase();
     list[cmdname] = !onlyname ? run : data;
     
-    if (!onlyname && data.ALIASES) {
+    if (data.ALIASES) {
       data.ALIASES.forEach(a => (list[a.toLowerCase()] = list[cmdname]));
     }
   });
