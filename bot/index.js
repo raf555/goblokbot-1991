@@ -1,5 +1,5 @@
 const command = require("./command");
-const { postback } = require("./postback");
+const postback = require("./postback");
 const {
   replyMessage,
   saveMessage,
@@ -71,12 +71,7 @@ function handleTextMessage(event) {
   return command
     .execMultiple(message.text, event)
     .then(data => (data ? replyMessage(event, data) : null))
-    .catch(e => {
-      console.error(e);
-      let out = "Error occured, please tag Admin\n\n";
-      out += "Error: " + e.name + " - " + e.message;
-      return replyMessage(event, { type: "text", text: out });
-    });
+    .catch(e => handleReplyErr);
 }
 
 function handleImgMessage(event) {
@@ -86,8 +81,10 @@ function handleImgMessage(event) {
 }
 
 function handlePostbackEvent(event) {
-  let reply = postback(event);
-  return replyMessage(event, reply);
+  return postback
+    .exec(event)
+    .then(reply => (reply ? replyMessage(event, reply) : null))
+    .catch(e => handleReplyErr);
 }
 
 function handleUnsendEvent(event) {
@@ -99,4 +96,11 @@ function handleJoinEvent(event) {
   if (event.source.roomId || event.source.groupId !== process.env.group_id) {
     return leave(event).then(() => null);
   }
+}
+
+function handleReplyErr(e) {
+  console.error(e);
+  let out = "Error occured, please tag Admin\n\n";
+  out += "Error: " + e.name + " - " + e.message;
+  return replyMessage(event, { type: "text", text: out });
 }
