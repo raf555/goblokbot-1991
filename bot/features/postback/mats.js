@@ -1,6 +1,20 @@
 const db = require("./../../../service/database");
 
-module.exports = function(pbdk) {
+module.exports = {
+  data: {
+    name: "Arknights Mats",
+    description: "Command buat info material dari Arknights",
+    help: "",
+    createdAt: 0,
+    CMD: "arknights-mats",
+    ALIASES: ["akm", "mats"]
+  },
+  run: mats
+};
+
+function mats(data, event) {
+  let pbdk = data;
+
   //console.log(pbdk[1])
   var yy = db.open("bot/assets/arknek/mats/mats-info.json");
   var yyy = yy.get();
@@ -141,4 +155,4 @@ module.exports = function(pbdk) {
   };
 
   return Object.assign(echo, { nosave: true, cmd: "" });
-};
+}

@@ -1,6 +1,8 @@
-const fs = require("fs")
+const fs = require("fs");
 
-module.exports = function (onlyname = false) {
+module.exports = getfeatures;
+
+function getfeatures(onlyname = false) {
   const condition = name => {
     return name !== "index";
   };
@@ -13,10 +15,14 @@ module.exports = function (onlyname = false) {
     .filter(name => condition(name));
 
   features.forEach(name => {
-    if (!onlyname) {
-      list[name] = require("./" + name);
-    } else {
-      list[name] = 1;
+    let { data, run } = require("./" + name);
+    if (!onlyname && data.DISABLED) return;
+    
+    let cmdname = data.CMD.toLowerCase();
+    list[cmdname] = !onlyname ? run : data;
+    
+    if (data.ALIASES) {
+      data.ALIASES.forEach(a => (list[a.toLowerCase()] = list[cmdname]));
     }
   });
 

@@ -7,14 +7,33 @@ module.exports = {
 };
 
 async function postback(event) {
-  let pbd = event.postback.data;
-  let pbdk = pbd.split(",");
+  let postbackData = parsePostback(event);
+  let { command, data } = postbackData;
 
   let reply = null;
-  
-  if (keywords.includes(pbdk[0])) {
-    reply = await Promise.resolve(features[pbdk[0]](pbdk))
+
+  if (keywords.includes(command)) {
+    reply = await Promise.resolve(features[command](data, event));
   }
 
   return reply;
+}
+
+function parsePostback(event) {
+  let eventdata = event.postback.data;
+
+  let isjson = false;
+  let data = {};
+
+  try {
+    let json = JSON.parse(eventdata);
+    data.command = json.cmd;
+    data.data = json.data;
+  } catch (e) {
+    let pbdk = eventdata.split(/,|-|\|/);
+    data.command = pbdk[0];
+    data.data = pbdk;
+  }
+
+  return data;
 }
