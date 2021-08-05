@@ -31,10 +31,10 @@ function getfeatures(onlyname = false) {
 }
 
 function adminonly(func) {
-  return (parsed, event) => {
+  return (parsed, event, bot) => {
     if (!isAdmin(event.source.userId)) {
       return null;
     }
-    return func(parsed, event);
+    return func(parsed, event, bot);
   };
 }

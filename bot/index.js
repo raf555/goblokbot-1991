@@ -71,7 +71,7 @@ function handleTextMessage(event) {
   return command
     .execMultiple(message.text, event)
     .then(data => (data ? replyMessage(event, data) : null))
-    .catch(e => handleReplyErr);
+    .catch(e => handleReplyErr(e, event));
 }
 
 function handleImgMessage(event) {
@@ -84,7 +84,7 @@ function handlePostbackEvent(event) {
   return postback
     .exec(event)
     .then(reply => (reply ? replyMessage(event, reply) : null))
-    .catch(e => handleReplyErr);
+    .catch(e => handleReplyErr(e, event));
 }
 
 function handleUnsendEvent(event) {
@@ -98,7 +98,7 @@ function handleJoinEvent(event) {
   }
 }
 
-function handleReplyErr(e) {
+function handleReplyErr(e, event) {
   console.error(e);
   let out = "Error occured, please tag Admin\n\n";
   out += "Error: " + e.name + " - " + e.message;
