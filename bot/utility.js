@@ -326,9 +326,10 @@ function log(event) {
     if (event.message && event.source.groupId) {
       // log if messages come from group only
       console.log(
-        event.source.userId,
-        profile.displayName,
-        "\n" +
+        event.source.userId +
+          " " +
+          profile.displayName +
+          " \n" +
           (event.message.text || event.message.type) +
           "\n==============================="
       );
