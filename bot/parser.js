@@ -1,5 +1,4 @@
 const { parseArgsStringToArgv } = require("string-argv");
-let _ = require("lodash");
 
 module.exports = {
   parse,
@@ -104,7 +103,9 @@ function parseArg(text) {
       if (custombracket) {
         let cust = getcustbracket(custombracket);
         let regex = new RegExp(
-          `${_.escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\n|\r|\t)*?)\\${cust[1]}`
+          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${
+            cust[0]
+          }((.|\n|\r|\t)*?)\\${cust[1]}`
         );
         if (text.match(regex)) {
           let thearg = argsregex1.exec(word);
@@ -250,4 +251,8 @@ function removeParserArgs(parsed) {
 function restoreParserArgs(parsed, data) {
   Object.assign(parsed.args, data);
   return parsed;
+}
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
