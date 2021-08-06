@@ -21,14 +21,14 @@ async function akm(parsed, event, bot) {
   var char = "";
   if (!parsed.arg) return false;
   char = parsed.arg;
-  if (char.split(" ").length > 1) {
+  /*if (char.split(" ").length > 1) {
     char = char.replace(/\s/g, "-");
-  }
+  }*/
   if (char.toLowerCase() == "poca") {
     char = "rosa";
   }
   //console.log(char)
-  let res = await axios.get("https://gamepress.gg/arknights/operator/" + char);
+  let res = await axios.get("https://gamepress.gg/arknights/operator/" + char.replace(/\s/g, "-"));
   let body = res.data;
   body = body.replace(/<br>/g, ". ");
   var $ = cheerio.load(body);
