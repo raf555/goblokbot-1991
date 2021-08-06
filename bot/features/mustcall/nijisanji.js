@@ -1,9 +1,14 @@
 const axios = require("axios");
 
+const API_LIVE = "https://api.itsukaralink.jp/v1.2";
+const API_LIVERS =
+  "https://www.nijisanji.jp/_next/data/WU8TUYMRnAFTlleZhBQUF/en/members";
+
 module.exports = {
   data: {
     name: "Nijisanji Command",
-    description: "Command buat nampilin live schedule (JP) atau liver Nijisanji",
+    description:
+      "Command buat nampilin live schedule (JP) atau liver Nijisanji",
     help: "",
     createdAt: 0,
     CMD: "nijisanji",
@@ -35,7 +40,7 @@ module.exports = {
 };
 
 async function live_schedule(parsed) {
-  let data = await request("https://api.itsukaralink.jp/v1.2/events.json");
+  let data = await request(API_LIVE + "/events.json");
   let events = data.events;
 
   if (!!parsed.arg) {
@@ -84,8 +89,11 @@ async function live_schedule(parsed) {
 
   let carousel = { type: "carousel", contents: [] };
 
-  let page = Math.max(parseInt(Number(parsed.args.next) || parsed.args.page || "0"), 0);
-  
+  let page = Math.max(
+    parseInt(Number(parsed.args.next) || parsed.args.page || "0"),
+    0
+  );
+
   if (page * 12 >= events.length) {
     return {
       type: "text",
@@ -127,7 +135,7 @@ async function liver_list(parsed) {
   }
 
   let livers = await axios
-    .get("https://www.nijisanji.jp/_next/data/Upkz0qQmZm1G8yrnqHrBY/en/members")
+    .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
 
   if (!!q) {
@@ -175,7 +183,10 @@ async function liver_list(parsed) {
 
   let carousel = { type: "carousel", contents: [] };
 
-  let page = Math.max(parseInt(Number(parsed.args.next) || parsed.args.page || "0"), 0);
+  let page = Math.max(
+    parseInt(Number(parsed.args.next) || parsed.args.page || "0"),
+    0
+  );
 
   if (page * 12 >= livers.length) {
     return {
@@ -224,7 +235,7 @@ async function liver_info(parsed) {
   q = q.toLowerCase();
 
   let livers = await axios
-    .get("https://www.nijisanji.jp/_next/data/Upkz0qQmZm1G8yrnqHrBY/en/members")
+    .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
 
   livers = livers.filter(
@@ -241,9 +252,7 @@ async function liver_info(parsed) {
   let slug = livers[0].slug;
 
   let liverdata = await axios
-    .get(
-      `https://www.nijisanji.jp/_next/data/Upkz0qQmZm1G8yrnqHrBY/en/members/${slug}.json`
-    )
+    .get(`${API_LIVERS}/${slug}.json`)
     .then(res => res.data.pageProps.liver);
 
   liverdata.debut_at = livers[0].debut_at;
@@ -275,7 +284,7 @@ async function getLiverIdByName(name) {
 async function getLiverDetailByName(name) {
   name = name.toLowerCase();
 
-  let data = await request("https://api.itsukaralink.jp/v1.2/livers.json");
+  let data = await request(API_LIVE + "/livers.json");
   let livers = data.liver_relationships;
 
   let regex = new RegExp(name, "i");
