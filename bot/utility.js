@@ -120,6 +120,7 @@ function replyMessage(event, msg) {
         return true;
       })
       .catch(e => {
+        console.error(e);
         console.log("Failed to reply message");
         return false;
       });
@@ -142,9 +143,9 @@ function replyMessage(event, msg) {
           continue;
         }
 
-        if (latency > 30000) {
-          continue;
-        }
+        // if (latency > 30000) {
+        //  continue;
+        // }
 
         let data = file.get(ftr);
         if (!data) {

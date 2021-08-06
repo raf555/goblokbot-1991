@@ -1,4 +1,14 @@
 {
+  "mizuki": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-08/char_437_mizuki.png"
+  },
+  "chen holungday": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-08/char_1013_chen2.png"
+  },
   "pallas": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
     "rarity": 6,
@@ -214,6 +224,16 @@
     "rarity": 6,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_103_angel_1.png"
   },
+  "tequila": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-08/char_486_takila.png"
+  },
+  "la pluma": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-08/char_421_crow.png"
+  },
   "kirara": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
     "rarity": 5,
@@ -259,7 +279,7 @@
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_455_nothin.png"
   },
-  "lava-purgatory": {
+  "lava purgatory": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-02/char_1011_lava2_0.png"
@@ -609,7 +629,7 @@
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_204_platnm_1.png"
   },
-  "blue-poison": {
+  "blue poison": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_129_bluep_1.png"
