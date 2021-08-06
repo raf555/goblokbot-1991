@@ -362,7 +362,7 @@ async function ak(parsed, event, bot) {
                           },
                           {
                             type: "text",
-                            text: "" + traits,
+                            text: traits || "not found",
                             color: "#ffffff",
                             align: "center",
                             wrap: true,
