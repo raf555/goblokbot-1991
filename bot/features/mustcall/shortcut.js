@@ -26,11 +26,11 @@ function shortcut(parsed, event, bot) {
   let { userId } = event.source;
 
   if (info) {
-    return infocmd(id, userId);
+    return infocmd(userId);
   }
 
   if (unreg) {
-    return unregister(id, userId);
+    return unregister(unreg, userId);
   }
 
   if (reg) {
@@ -44,22 +44,14 @@ function shortcut(parsed, event, bot) {
   return null;
 }
 
-function infocmd(id, uid) {
+function infocmd(uid) {
   let sdb = db.open("db/shortcutcmd.json");
 
-  let key = !id ? "default" : id;
-
-  let cmd = sdb.get(uid + "." + key);
-  if (!cmd) {
-    return {
-      type: "text",
-      text: "Shortcut for id [" + key + "] is not found"
-    };
-  }
+  let cmd = sdb.get(uid);
 
   return {
     type: "text",
-    text: cmd
+    text: cmd ? JSON.stringify(cmd, null, 1) : "{}"
   };
 }
 
@@ -122,5 +114,29 @@ function execute(id, uid, event, exec) {
     };
   }
 
-  return exec(cmd, event);
+  return Promise.resolve(
+    exec(cmd, event)
+      .then(res => {
+        if (!res) {
+          return [
+            {
+              type: "text",
+              text: "Command [" + cmd + "] returned nothing"
+            }
+          ];
+        }
+
+        return res;
+      })
+      .catch(e => {
+        console.error(e);
+        return [
+          {
+            type: "text",
+            text:
+              "Command [" + cmd + "] returned an error\n\nError: " + e.message
+          }
+        ];
+      })
+  ).then(res => res.map(r => Object.assign(r, { nosave: true })));
 }

@@ -1,14 +1,13 @@
 // const stringSimilarity = require("string-similarity");
 const db = require("./../service/database");
 const { cekban, isAdmin } = require("./utility");
-const parser = require("./parser");
 const {
   parse,
   buildFromParsed,
   buildArgs,
   removeParserArgs,
   restoreParserArgs
-} = parser;
+} = require("./parser");
 
 module.exports = {
   exec: execMessage,
@@ -191,9 +190,11 @@ async function execMessage(text, event) {
         return Object.assign(rdata, out);
       });
     }
+
+    return Array.isArray(reply) ? reply : [reply];
   }
 
-  return reply;
+  return null;
 }
 
 function constructcaller() {

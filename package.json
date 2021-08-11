@@ -32,7 +32,7 @@
     "line-login": "^1.0.14",
     "mal-scraper": "^2.11.3",
     "md5": "^2.3.0",
-    "multer": "^1.4.2",
+    "multer": "^1.4.3",
     "newsapi": "^2.4.1",
     "node-cron": "^3.0.0",
     "string-argv": "^0.3.1",
