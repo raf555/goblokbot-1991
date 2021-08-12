@@ -1,7 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const db = require("./../../../service/database");
-const disk = require("diskusage");
 const fs = require("fs");
 const { detiktostr } = require("./../../utility");
 
@@ -244,23 +243,6 @@ function bot_status(parsed, event, bot) {
                       flex: 5
                     }
                   ]
-                },
-                {
-                  type: "box",
-                  layout: "baseline",
-                  spacing: "sm",
-                  contents: [
-                    {
-                      type: "text",
-                      text:
-                        "Disk: " +
-                        humanFileSize(await getFreeSpace()) +
-                        "/200 MB",
-                      wrap: true,
-                      size: "xs",
-                      flex: 5
-                    }
-                  ]
                 }
               ]
             },
@@ -344,16 +326,6 @@ function getMemoryUsage() {
     .filter(l => l.startsWith("total_rss"))[0]
     .split(" ")[1];
   return Math.round(Number(total_rss) / 1e6) - 60;
-}
-
-async function getFreeSpace(path) {
-  try {
-    const { free } = await disk.check("/");
-    return free;
-  } catch (err) {
-    console.error(err);
-    return 0;
-  }
 }
 
 function humanFileSize(bytes, si = false, dp = 1) {

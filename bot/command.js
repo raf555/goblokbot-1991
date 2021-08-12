@@ -179,14 +179,14 @@ async function execMessage(text, event) {
       if (!reply.cmd && reply.cmd !== "") {
         reply.cmd = cmd;
       }
-      reply.parsed = parsed;
+      if (!reply.parsed) reply.parsed = parsed;
     } else {
       reply = reply.map(rdata => {
         let out = {};
         if (!rdata.cmd && rdata.cmd !== "") {
           out.cmd = cmd;
         }
-        out.parsed = parsed;
+        if (!rdata.parsed) out.parsed = parsed;
         return Object.assign(rdata, out);
       });
     }

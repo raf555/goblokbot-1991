@@ -114,29 +114,28 @@ function execute(id, uid, event, exec) {
     };
   }
 
-  return Promise.resolve(
-    exec(cmd, event)
-      .then(res => {
-        if (!res) {
-          return [
-            {
-              type: "text",
-              text: "Command [" + cmd + "] returned nothing"
-            }
-          ];
-        }
-
-        return res;
-      })
-      .catch(e => {
-        console.error(e);
+  //return Promise.resolve(
+  return exec(cmd, event)
+    .then(res => {
+      if (!res) {
         return [
           {
             type: "text",
-            text:
-              "Command [" + cmd + "] returned an error\n\nError: " + e.message
+            text: "Command [" + cmd + "] returned nothing"
           }
         ];
-      })
-  ).then(res => res.map(r => Object.assign(r, { nosave: true })));
+      }
+
+      return res;
+    })
+    .catch(e => {
+      console.error(e);
+      return [
+        {
+          type: "text",
+          text: "Command [" + cmd + "] returned an error\n\nError: " + e.message
+        }
+      ];
+    });
+  //).then(res => res.map(r => Object.assign(r, { nosave: true })));
 }
