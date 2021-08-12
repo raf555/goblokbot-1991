@@ -1,8 +1,26 @@
 const axios = require("axios");
+const cheerio = require("cheerio");
 
-const API_LIVE = "https://api.itsukaralink.jp/v1.2";
-const API_LIVERS =
-  "https://www.nijisanji.jp/_next/data/WU8TUYMRnAFTlleZhBQUF/en/members";
+let API_LIVE = "https://api.itsukaralink.jp/v1.2";
+let API_LIVERS = "";
+
+loadliversurl();
+
+async function loadliversurl() {
+  // https://www.nijisanji.jp/_next/data/8MVMjiycXBBHZJSkK4HKv/en/members
+  let data = await axios
+    .get("https://www.nijisanji.jp/en/members")
+    .then(res => res.data);
+  let $ = cheerio.load(data);
+
+  let nextdata = JSON.parse(
+    $("script#__NEXT_DATA__")
+      .text()
+      .trim()
+  );
+
+  API_LIVERS = `https://www.nijisanji.jp/_next/data/${nextdata.buildId}/en/members`;
+}
 
 module.exports = {
   data: {
