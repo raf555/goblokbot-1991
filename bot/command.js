@@ -56,7 +56,7 @@ function execMulti(text, event) {
       .catch(e => {
         console.error(e);
         let out = `Command Error -> ${text} \n\nError: ${e.name} - ${e.message}`;
-        return { type: "text", text: out };
+        return { type: "text", text: out, nosave: true };
       })
   );
 
