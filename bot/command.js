@@ -55,8 +55,8 @@ function execMulti(text, event) {
       .then(reply => reply)
       .catch(e => {
         console.error(e);
-        let out = `Command Error -> ${text} \n\nError: ${e.name} - ${e.message}`;
-        return { type: "text", text: out };
+        let out = `Command Error -> ${text} \n\n${e.name}: ${e.message}`;
+        return { type: "text", text: out, nosave: true };
       })
   );
 
@@ -99,7 +99,7 @@ async function execMessage(text, event) {
   ).toLowerCase();
 
   /* message valid to send check */
-  let checkstatus = validToSend(parsed, event, setting);
+  let checkstatus = await executeCommand(validToSend, parsed, event);
   let checkcond =
     keywords.includes(cmd) ||
     customkeywords.includes(cleanedcmd) ||
@@ -109,7 +109,7 @@ async function execMessage(text, event) {
     if (checkstatus === 0) {
       return null;
     }
-    return await Promise.resolve(checkstatus);
+    return checkstatus;
   }
 
   /* proceed the command */
@@ -122,9 +122,7 @@ async function execMessage(text, event) {
       // special case
       parsed = restoreParserArgs(parsed, removed);
 
-      reply = await Promise.resolve(
-        bot.mustcall["lastcmd"](parsed, event, bot)
-      );
+      reply = await executeCommand(bot.mustcall["lastcmd"], parsed, event, bot);
       if (reply) {
         if (Array.isArray(reply)) {
           parsed = reply[0].parsed;
@@ -134,7 +132,7 @@ async function execMessage(text, event) {
       }
     } else {
       if (keywords.includes(cmd)) {
-        reply = await Promise.resolve(bot.mustcall[cmd](parsed, event, bot));
+        reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
       } else {
         if (!parsed.shortcut && !parsed.arg && !cmd) {
           reply = greeting(event);
@@ -145,7 +143,7 @@ async function execMessage(text, event) {
     if (ccc[event.source.groupId || event.source.userId]) {
       ccc[event.source.groupId || event.source.userId] = 0;
       if (keywords.includes(cmd)) {
-        reply = await Promise.resolve(bot.mustcall[cmd](parsed, event, bot));
+        reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
       } else {
         if (cmd === "gapapa" || cmd === "gpp" || cmd === "gajadi") {
           reply = { type: "text", text: "oke" };
@@ -153,7 +151,7 @@ async function execMessage(text, event) {
       }
     } else {
       if (keywords2.includes(cmd)) {
-        reply = await Promise.resolve(bot.mustntcall[cmd](parsed, event, bot));
+        reply = await executeCommand(bot.mustntcall[cmd], parsed, event, bot);
       } else {
         if (customkeywords.includes(cleanedcmd)) {
           reply = customfeature(cleanedcmd, event);
@@ -197,6 +195,44 @@ async function execMessage(text, event) {
   return null;
 }
 
+function executeCommand() {
+  const TO = setting.timeout; // timeout in seconds
+
+  let cmdfunc = arguments[0];
+  let parsed, event, bot;
+
+  if (arguments.length > 1 && arguments.length < 5) {
+    parsed = arguments[1];
+    event = arguments[2];
+    bot = arguments[3];
+  }
+
+  const timeout = new Promise((_, reject) => {
+    setTimeout(reject, TO * 1000, new Error("cmd:timeout"));
+  });
+
+  const cmdpromise = new Promise(async (resolve, reject) => {
+    try {
+      resolve(await Promise.resolve(cmdfunc(parsed, event, bot)));
+    } catch (e) {
+      reject(e);
+    }
+  });
+
+  return Promise.race([cmdpromise, timeout]).catch(e => {
+    if (e.message === "cmd:timeout") {
+      let msg;
+      if (parsed) {
+        msg = parsed.fullMsg;
+      }
+      throw new Error(
+        `[${msg}] was cancelled because the timeout (${TO}s) was exceeded.`
+      );
+    }
+    throw e;
+  });
+}
+
 function constructcaller() {
   let normal = [setting.caller.normal].concat(
     Object.keys(setting.caller.custom.normal).filter(
@@ -216,7 +252,7 @@ function constructcaller() {
   };
 }
 
-function validToSend(parsed, event, setting) {
+function validToSend(parsed, event) {
   let cmd = parsed.command;
 
   if (cmd === "status") {

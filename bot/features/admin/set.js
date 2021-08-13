@@ -16,6 +16,8 @@ module.exports = {
     let settingdb = db.open("bot/setting.json");
     if (type == "imgapi") {
       settingdb.set("imgapi", parseInt(choice));
+    } else if (type == "timeout") {
+      settingdb.set("timeout", Number(choice));
     } else if (type == "caller") {
       settingdb.set("caller.custom.normal." + choice.toLowerCase(), 1);
     } else if (type == "statemsg") {

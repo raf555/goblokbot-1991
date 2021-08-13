@@ -26,5 +26,6 @@
     "jimp": 0,
     "mashuppp": 1,
     "opm": 1
-  }
+  },
+  "timeout": 20
 }
