@@ -98,6 +98,8 @@ function replyMessage(event, msg) {
         type: "text",
         text: "Sorry for late reply, " + latency + " ms."
       };
+      eee.unshift(ex);
+      /*
       if (latency <= 30000) {
         //eee.push(ex);
         eee.unshift(ex);
@@ -108,7 +110,7 @@ function replyMessage(event, msg) {
             text: "Bot telat bales (" + latency + " ms), tolong kirim ulang."
           }
         ];
-      }
+      }*/
     }
 
     eee = eee.slice(0, 5);
