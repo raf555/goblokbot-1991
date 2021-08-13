@@ -100,7 +100,8 @@ function handleJoinEvent(event) {
 
 function handleReplyErr(e, event) {
   console.error(e);
-  let out = "Error occured, please tag Admin\n\n";
-  out += "Error: " + e.name + " - " + e.message;
+  /*let out = "Error occured, please tag Admin\n\n";
+  out += "Error: " + e.name + " - " + e.message;*/
+  let out = `${e.name} - ${e.message}`;
   return replyMessage(event, { type: "text", text: out });
 }
