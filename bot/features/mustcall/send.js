@@ -34,13 +34,13 @@ function getfeatures(onlyname = false) {
   let list = {};
 
   let features = fs
-    .readdirSync(__dirname)
+    .readdirSync(__dirname + "/send/")
     .map(name => name.replace(".js", ""))
     .filter(name => condition(name));
 
   features.forEach(name => {
     if (!onlyname) {
-      list[name] = require("./" + name);
+      list[name] = require("./send/" + name);
     } else {
       list[name] = 1;
     }
