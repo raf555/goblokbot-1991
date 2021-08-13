@@ -1,4 +1,3 @@
-const fs = require("fs");
 const adminjs = require("./admin");
 const mustcalljs = require("./mustcall");
 const mustntcalljs = require("./mustntcall");

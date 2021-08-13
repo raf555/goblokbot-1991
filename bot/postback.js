@@ -7,7 +7,7 @@ module.exports = {
 };
 
 async function postback(event) {
-  let postbackData = parsePostback(event);
+  let postbackData = parsePostbackData(event);
   let { command, data } = postbackData;
 
   let reply = null;
@@ -19,7 +19,7 @@ async function postback(event) {
   return reply;
 }
 
-function parsePostback(event) {
+function parsePostbackData(event) {
   let eventdata = event.postback.data;
 
   let isjson = false;
