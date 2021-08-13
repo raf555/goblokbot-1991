@@ -1,4 +1,3 @@
-const db = require("./../../../service/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
@@ -23,8 +22,7 @@ async function kbbi(parsed, event, bot) {
   var random = 0;
   if (!parsed.arg) {
     random = 1;
-    var rawdata = db.open("bot/assets/kbbi.json");
-    var kataw = rawdata.get();
+    var kataw = require("./../../assets/kbbi.json");
     var h2 = kataw[Math.floor(Math.random() * kataw.length)].word;
   } else {
     random = 0;
