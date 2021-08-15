@@ -1,11 +1,14 @@
 const wiki = require("wikipedia");
-const langs = wiki.languages();
 
 module.exports = {
   data: {
     name: "Wikipedia Command",
     description: "Command buat nampilin artikel wikipedia",
-    help: "",
+    usage:
+      "[@bot/!] wiki {options} <query/langcode>?" +
+      "\n\noptions:" +
+      "\n-lang <langcode> ?: bahasa buat wiki" +
+      "\n--as ?: auto suggest/correct query",
     createdAt: 0,
     CMD: "wiki",
     ALIASES: []
@@ -14,6 +17,7 @@ module.exports = {
 };
 
 async function wikiped(parsed, event, bot) {
+  const langs = wiki.languages();
   /* args */
   let lang = (parsed.args.lang || parsed.args.l || "id").toLowerCase();
   let autosuggest = parsed.args.as;

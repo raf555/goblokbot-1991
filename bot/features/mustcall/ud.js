@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "UrbanDictionary CMD",
     description: "Command buat ngecek definisi kata dari UD",
-    help: "",
+    usage: "[@bot/!] ud <query>",
     createdAt: 0,
     CMD: "ud",
     ALIASES: []

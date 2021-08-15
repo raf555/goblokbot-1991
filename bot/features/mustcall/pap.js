@@ -29,7 +29,10 @@ module.exports = {
   data: {
     name: "PAP cmd",
     description: "Command buat ambil satu/lebih gambar dari google",
-    help: "",
+    usage:
+      "[@bot/!] pap {options} <query>" +
+      "\n\noptions:" +
+      "\n-n <n> ?: buat nampilin gambar berjumlah n (maks 12)",
     createdAt: 0,
     CMD: "pap",
     ALIASES: ["p"]
@@ -94,6 +97,8 @@ function pap(parsed, event, bot) {
           contents: []
         }
       };
+      
+      shuffle(he);
 
       for (let i = 0; i < Math.min(he.length, n); i++) {
         if (invalidimage(he[i])) {
@@ -153,4 +158,25 @@ function pap(parsed, event, bot) {
     }
     return send;
   });
+}
+
+//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex]
+    ];
+  }
+
+  return array;
 }

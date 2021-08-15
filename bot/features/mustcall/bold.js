@@ -2,10 +2,10 @@ module.exports = {
   data: {
     name: "Bold cmd",
     description: "Fitur buat convert text jd bold",
-    help: "",
+    usage: "[@bot/!] bold <query>",
     createdAt: 0,
     CMD: "bold",
-    ALIASES: ["b"]
+    ALIASES: []
   },
   run: (parsed, event, bot) => {
     if (!parsed.arg) return null;

@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "Pap2",
     description: "Command PAP tapi 12 gambar",
-    help: "",
+    usage: "[@bot/!] pap2 <query>",
     createdAt: 0,
     CMD: "pap2",
     ALIASES: ["p2"]

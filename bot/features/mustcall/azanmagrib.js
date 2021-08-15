@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Magrib Warning",
     description: "Fitur buat warning selama puasa",
-    help: "",
+    usage: "[@bot/!] magrib",
     createdAt: 0,
     DISABLED: true,
     CMD: "magrib",

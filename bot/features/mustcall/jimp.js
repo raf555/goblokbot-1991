@@ -4,13 +4,12 @@ const imgbb = require("./../../../service/imgbb");
 const db = require("./../../../service/database");
 const { parseArg } = require("./../../parser");
 const { Parser } = require("expr-eval");
-const tables = table();
 
 module.exports = {
   data: {
     name: "JIMP Command",
     description: "Command image-processing yang didasari library JIMP",
-    help: "",
+    usage: "blom, mager", //help(),
     createdAt: 0,
     CMD: "jimp",
     ALIASES: []
@@ -170,6 +169,7 @@ async function makeJIMP(args, parentdata) {
 
 async function createImage(args, parentdata) {
   let image = await makeJIMP(args, parentdata);
+  const tables = table();
 
   //console.log(();
 
@@ -545,4 +545,38 @@ function getBufferFromURL(url) {
       responseType: "arraybuffer"
     })
     .then(response => Buffer.from(response.data, "binary"));
+}
+
+function help() {
+  return (
+    "[@bot/!] jimp {options}!" +
+    "\n\noptions:" +
+    "\n-getsize <url1 url2 url3 ..> ?: get size of images" +
+    "\n-compare <url1 url2> ?: compare two images" +
+    "\n\n" +
+    "Di bawah ini wajib salah satu" +
+    "\n--new / -new <x,y> !: buat gambar blank dgn ukuran x,y" +
+    "\n^^^ -c [random/*] ?: gambar baru pake warna" +
+    "\n-id <id> !: gambar dari id uploadimg" +
+    "\n-user <userkey> !: gambar dari ava user" +
+    "\n-url <url> !: gambar dari url" +
+    "\n" +
+    "\n-rotate <deg> ?: rotate gambar sebesar deg searah jarum jam" +
+    "\n-resize <x/auto>,<y/auto> ?: resize gambar sebesar x,y, keduanya gblh auto" +
+    "\n-print <args> ?: buat print" +
+    "\n-print" +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n-invert ?: " +
+    "\n--invert ?: invert gambar" +
+    "\n--greyscale ?: kasih efek greyscale"
+  );
 }

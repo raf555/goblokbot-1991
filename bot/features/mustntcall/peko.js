@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "Peko",
     description: "Command buat ngirim suara pekora",
-    help: "",
+    usage: "peko <number>?",
     createdAt: 0,
     CMD: "peko",
     ALIASES: []

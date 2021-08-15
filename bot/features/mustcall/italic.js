@@ -2,10 +2,10 @@ module.exports = {
   data: {
     name: "Italic cmd",
     description: "Command buat convert text jadi italic",
-    help: "",
+    usage: "[@bot/!] italic <query>",
     createdAt: 0,
     CMD: "italic",
-    ALIASES: ["i"]
+    ALIASES: []
   },
   run: (parsed, event, bot) => {
     if (!parsed.arg) return null;

@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Unban Command",
     description: "Fitur buat unban orang",
-    help: "",
+    usage: "[@bot/!] unban [user/pap] <query>",
     createdAt: 0,
     CMD: "unban",
     ALIASES: []

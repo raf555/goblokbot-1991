@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Set Command",
     description: "Fitur untuk set variabel bot",
-    help: "",
+    usage: "[@bot/!] set <var> <value>",
     createdAt: 0,
     CMD: "set",
     ALIASES: []

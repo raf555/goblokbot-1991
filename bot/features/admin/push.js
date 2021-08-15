@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Push Message Command",
     description: "Command buat push message ke grup",
-    help: "",
+    usage: "[@bot/!] push <message>",
     createdAt: 0,
     CMD: "push",
     ALIASES: []

@@ -1,17 +1,16 @@
 const fs = require("fs");
 
-const table = getfeatures();
-
 module.exports = {
   data: {
     name: "Send CMD",
     description: "Command buat ngirim apa ae",
-    help: "",
+    usage: "[@bot/!] send [*/banlist/command/gblk]",
     createdAt: 0,
     CMD: "send",
     ALIASES: []
   },
   run: (parsed, event, bot) => {
+    const table = getfeatures();
     let split = parsed.arg.split(" ");
     let arg = split[0].toLowerCase();
 

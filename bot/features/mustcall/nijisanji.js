@@ -27,7 +27,19 @@ module.exports = {
     name: "Nijisanji Command",
     description:
       "Command buat nampilin live schedule (JP) atau liver Nijisanji",
-    help: "",
+    usage:
+      "[@bot/!] nijisanji {options} [livers/liver]? <liver-name/live-title>?" +
+      "\n\noptions:" +
+      "\n--now ?: liat schedule mulai dr jam skrg" +
+      "\n--past ?: liat schedule sblm jam skrg" +
+      "\n--next ?: liat schedule/livers page selanjutnya" +
+      "\n-page <n> ?: liat schedule/livers page n" +
+      "\n-n <n> ?: liat schedule/livers dgn jumlah n" +
+      "\n--desc ?: sort schedule/livers descending" +
+      "\n--livers ?: liat livers" +
+      "\n-livers [(jp/id/en/kr)/*] ?: liat livers dengan query" +
+      "\n-sort-by [(subs/name/debut)](-[asc/desc])? ?: sort livers" +
+      "\n-liver <name> ?: liat liver dgn suatu nama",
     createdAt: 0,
     CMD: "nijisanji",
     ALIASES: ["niji", "2434"]

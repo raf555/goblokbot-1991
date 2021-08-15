@@ -50,25 +50,27 @@ function pushMessage(msg, id) {
     });
 }
 
-function replyMessage(event, msg) {
-  let eee = Array.isArray(msg) ? msg : [msg];
+function replyMessage(event, msgobj) {
+  let msg = Array.isArray(msgobj) ?msgobj : [msgobj];
 
   let data_ = [];
 
-  for (let i = 0; i < eee.length; i++) {
+  for (let i = 0; i < msg.length; i++) {
     data_.push({
-      cmd: eee[i].cmd,
-      parsed: eee[i].parsed,
-      latency: eee[i].latency,
-      cmdtype: eee[i].cmdtype,
-      nosave: eee[i].nosave
+      cmd: msg[i].cmd,
+      parsed: msg[i].parsed,
+      latency: msg[i].latency,
+      cmdtype: msg[i].cmdtype,
+      nosave: msg[i].nosave,
+      realtime: msg[i].realtime
     });
 
-    delete eee[i]["cmd"];
-    delete eee[i]["parsed"];
-    delete eee[i]["latency"];
-    delete eee[i]["cmdtype"];
-    delete eee[i]["nosave"];
+    delete msg[i]["cmd"];
+    delete msg[i]["parsed"];
+    delete msg[i]["latency"];
+    delete msg[i]["cmdtype"];
+    delete msg[i]["nosave"];
+    delete msg[i]["realtime"];
   }
 
   let ftr = data_[0].cmd;
@@ -80,17 +82,7 @@ function replyMessage(event, msg) {
 
   let reply = (() => {
     if (parsed) {
-      if (parsed.args.showtime) {
-        eee.push({ type: "text", text: "Time spent: " + latency + " ms" });
-      }
-
-      if (parsed.args.showid) {
-        eee.push({ type: "text", text: "ID: " + event.message.id });
-      }
-
-      if (parsed.args.showraw) {
-        eee.push({ type: "text", text: JSON.stringify(eee) });
-      }
+      handleReservedArgs(msg, parsed, event, data_);
     }
 
     if (latency >= 7500) {
@@ -98,13 +90,13 @@ function replyMessage(event, msg) {
         type: "text",
         text: "Sorry for late reply, " + latency + " ms."
       };
-      eee.unshift(ex);
+      msg.unshift(ex);
       /*
       if (latency <= 30000) {
-        //eee.push(ex);
-        eee.unshift(ex);
+        //msg.push(ex);
+        msg.unshift(ex);
       } else {
-        eee = [
+        msg = [
           {
             type: "text",
             text: "Bot telat bales (" + latency + " ms), tolong kirim ulang."
@@ -113,12 +105,12 @@ function replyMessage(event, msg) {
       }*/
     }
 
-    eee = eee.slice(0, 5);
+    msg = msg.slice(0, 5);
 
     return client
-      .replyMessage(event.replyToken, eee)
+      .replyMessage(event.replyToken, msg)
       .then(() => {
-        savebotchat(event, eee);
+        savebotchat(event, msg);
         return true;
       })
       .catch(e => {
@@ -137,7 +129,6 @@ function replyMessage(event, msg) {
         if (data_[i].nosave) continue;
 
         ftr = data_[i].cmd;
-        parsed = data_[i].parsed;
         lat = data_[i].latency;
         latency = lat || Date.now() - event.timestamp;
 
@@ -182,6 +173,7 @@ function replyMessage(event, msg) {
         parsed.id = event.source.userId;
         parsed.ts = Date.now();
         parsed.lat = latency;
+        parsed.realtime = data_[i].realtime;
 
         if (data_[i].cmd) {
           parsed.alias = data_[i].cmd;
@@ -202,6 +194,26 @@ function replyMessage(event, msg) {
   });
 
   return reply;
+}
+
+function handleReservedArgs(msg, parsed, event, data) {
+  if (parsed.args.showtime) {
+    let ts = data[data.length - 1].realtime;
+    let latency = data[0].latency || Date.now() - event.timestamp;
+    msg.push({
+      type: "text",
+      text: `Time spent: ${ts} ms\nLatency: ${latency} ms\nDelay: ${latency -
+        ts} ms`
+    });
+  }
+
+  if (parsed.args.showid) {
+    msg.push({ type: "text", text: "ID: " + event.message.id });
+  }
+
+  if (parsed.args.showraw) {
+    msg.push({ type: "text", text: JSON.stringify(msg) });
+  }
 }
 
 function cekban(id, hashed = true) {

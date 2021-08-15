@@ -11,7 +11,7 @@ module.exports = {
   data: {
     name: "Status Command",
     description: "Command buat ngecek status bot",
-    help: "",
+    usage: "[@bot/!] status",
     createdAt: 0,
     CMD: "status",
     ALIASES: ["stat"]

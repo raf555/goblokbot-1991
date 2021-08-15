@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "F",
     description: "Buat pay respect",
-    help: "",
+    usage: "f",
     createdAt: 0,
     CMD: "f",
     ALIASES: []

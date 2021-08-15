@@ -103,5 +103,10 @@ function handleReplyErr(e, event) {
   /*let out = "Error occured, please tag Admin\n\n";
   out += "Error: " + e.name + " - " + e.message;*/
   let out = `${e.name}: ${e.message}`;
-  return replyMessage(event, { type: "text", text: out, nosave: true });
+  return replyMessage(event, {
+    type: "text",
+    text: out,
+    nosave: true,
+    latency: 1
+  });
 }

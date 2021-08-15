@@ -5,7 +5,10 @@ module.exports = {
   data: {
     name: "Arknights Event Command",
     description: "Command buat ngirim info event Arknights",
-    help: "",
+    usage:
+      "[@bot/!] akevent {options} [(list cn/list/upcoming)!/*]" +
+      "\n\noptions:" +
+      "\n--more ?: buat nampilin event page selanjutnya",
     createdAt: 0,
     CMD: "akevent",
     ALIASES: ["ak-event", "ake"]

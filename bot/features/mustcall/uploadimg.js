@@ -5,7 +5,12 @@ module.exports = {
   data: {
     name: "Upload IMG",
     description: "Command buat nambah queue buat upload gambar ke IMGBB",
-    help: "",
+    usage:
+      "[@bot/!] uploadimg {options}" +
+      "\n\noptions:" +
+      "\n-name <name> ?: nama gambar" +
+      "\n-exp <t> ?: kedaluwarsa gambar dalam detik" +
+      "\n--jimp ?: buat id jimp",
     createdAt: 0,
     CMD: "uploadimg",
     ALIASES: []

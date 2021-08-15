@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Admin Command",
     description: "Fitur utk jadiin orang admin",
-    help: "",
+    usage: "[@bot/!] admin set <userkey>",
     createdAt: 0,
     CMD: "admin",
     ALIASES: []

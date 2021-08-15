@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Anitrendz Command",
     description: "Command buat scrape data dari anitrendz.net",
-    help: "",
+    usage: "[@bot/!] anitrendz [male/female/ship/op/ed]?",
     createdAt: 0,
     CMD: "anitrendz",
     ALIASES: []

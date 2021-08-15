@@ -3,7 +3,7 @@ module.exports = {
   data: {
     name: "Leave Command",
     description: "Command buat nyuruh bot leave",
-    help: "",
+    usage: "[@bot/!] leave",
     createdAt: 0,
     CMD: "leave",
     ALIASES: []

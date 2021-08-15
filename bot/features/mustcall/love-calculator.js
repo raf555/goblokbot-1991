@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Love Calculator Command",
     description: "Buat ngukur kecocokan cinta seseorang (lucu2an doang)",
-    help: "",
+    usage: "[@bot/!] lc <nama1> dan <nama2>",
     createdAt: 0,
     CMD: "lc",
     ALIASES: []
