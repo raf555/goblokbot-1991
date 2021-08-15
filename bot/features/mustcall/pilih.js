@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "Choose Command",
     description: "Command buat nanya saran ke bot",
-    help: "",
+    usage: "[@bot/!] pilih mana <query1> [atau/apa] <query2>",
     createdAt: 0,
     CMD: "pilih",
     ALIASES: []
@@ -11,7 +11,9 @@ module.exports = {
     if (!parsed.arg) return null;
     let msg = parsed.arg.split(" ");
     if (msg[0] == "mana" || msg[0] == "mana,") {
-      var mending = (msg.slice(1, msg.length).join(" ") + " ").split(" atau ");
+      var mending = (msg.slice(1, msg.length).join(" ") + " ").split(
+        /\s[(apa)(atau)]\s/
+      );
       var mendingan = "" + mending[0] + " " + mending[1];
       if (mending) {
         if (sumChars(mendingan) % 2 == 0) {

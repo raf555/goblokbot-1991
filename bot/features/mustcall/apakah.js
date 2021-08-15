@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Apakah",
     description: "Command buat nanya bot",
-    help: "",
+    usage: "[@bot/!] apakah <pertanyaan>",
     createdAt: 0,
     CMD: "apakah",
     ALIASES: ["apkh"]

@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Corona cmd",
     description: "Command buat ngecek kasus corona",
-    help: "",
+    usage: "[@bot/!] [c/covid] <nama-negara>?",
     createdAt: 0,
     CMD: "c",
     ALIASES: ["covid"]

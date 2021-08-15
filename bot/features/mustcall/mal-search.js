@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "MAL Anime Search",
     description: "Command buat nyari anime dari MAL",
-    help: "",
+    usage: "[@bot/!] anime <query>",
     createdAt: 0,
     CMD: "anime",
     ALIASES: ["mal-search"]

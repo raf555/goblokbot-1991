@@ -6,7 +6,7 @@ module.exports = {
   data: {
     name: "Arknights Stats",
     description: "Command buat ngirim stats Operator Arknights",
-    help: "",
+    usage: "[@bot/!] aks <operator-name>",
     createdAt: 0,
     CMD: "aks",
     ALIASES: ["ak-stats"]

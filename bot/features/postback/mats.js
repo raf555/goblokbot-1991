@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Arknights Mats",
     description: "Command buat info material dari Arknights",
-    help: "",
+    usage: "-",
     createdAt: 0,
     CMD: "arknights-mats",
     ALIASES: ["akm", "mats"]

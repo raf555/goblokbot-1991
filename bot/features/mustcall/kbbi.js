@@ -1,13 +1,11 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-let bold, italic;
-
 module.exports = {
   data: {
     name: "KBBI Command",
     description: "Command buat scrape data dari KBBI",
-    help: "",
+    usage: "[@bot/!] kbbi <query>?",
     createdAt: 0,
     CMD: "kbbi",
     ALIASES: []
@@ -16,8 +14,8 @@ module.exports = {
 };
 
 async function kbbi(parsed, event, bot) {
-  bold = bot.mustcall.bold;
-  italic = bot.mustcall.italic;
+  let bold = bot.mustcall.bold;
+  let italic = bot.mustcall.italic;
 
   var random = 0;
   if (!parsed.arg) {
@@ -89,15 +87,15 @@ async function kbbi(parsed, event, bot) {
           if ($(elm).children()[0]["name"] == "i") {
             kata += bolditalikuy(lemma); //+ " (" + parseInt(i + 1) + ")");
           } else if ($(elm).children()[0]["name"] == "br") {
-            kata += boldkuy(lemma); ///*+ " (" + parseInt(i + 1) + ")");
+            kata += boldkuy(lemma, bold); ///*+ " (" + parseInt(i + 1) + ")");
           } else {
-            kata += boldkuy(lemma); // /*+ " (" + parseInt(i + 1) + ")");
+            kata += boldkuy(lemma, bold); // /*+ " (" + parseInt(i + 1) + ")");
           }
         } else {
-          if (boldkuy(lemma).match(/undefined/i)) {
+          if (boldkuy(lemma, bold).match(/undefined/i)) {
             kata += lemma;
           } else {
-            kata += boldkuy(lemma);
+            kata += boldkuy(lemma, bold);
           }
           //kata += boldkuy(" (" + parseInt(i + 1) + ")");
         }
@@ -150,7 +148,7 @@ async function kbbi(parsed, event, bot) {
             kata += x.next().text();
             kata += "\n";*/
           kata += "1. ";
-          kata += italikuy(x.text());
+          kata += italikuy(x.text(), italic);
           kata += " cari: ";
           kata += x.next().text();
           kata += "\n";
@@ -196,7 +194,7 @@ async function kbbi(parsed, event, bot) {
                         .text()
                         .trim() != ""
                     ) {
-                      kata += italikuy($(elm).text());
+                      kata += italikuy($(elm).text(), italic);
                       kata += " ";
                     }
                   });
@@ -209,7 +207,8 @@ async function kbbi(parsed, event, bot) {
                           $(elm)
                             .find("font[color=green]")
                             .text()
-                            .slice(1, -1)
+                            .slice(1, -1),
+                          italic
                         ) +
                         ")"
                     );
@@ -221,13 +220,13 @@ async function kbbi(parsed, event, bot) {
                   .end();
                 if ($(elm).find("b")) {
                   dd.find("b").each(function(i, elm) {
-                    $(elm).replaceWith(boldkuy($(elm).text()));
+                    $(elm).replaceWith(boldkuy($(elm).text(), bold));
                   });
                   //dd.find("b").replaceWith(boldkuy(dd.find("b").text()));
                 }
                 if ($(elm).find("i")) {
                   dd.find("i").each(function(i, elm) {
-                    $(elm).replaceWith(italikuy($(elm).text()));
+                    $(elm).replaceWith(italikuy($(elm).text(), italic));
                   });
                 }
                 if ($(elm).find("sup")) {
@@ -275,7 +274,10 @@ async function kbbi(parsed, event, bot) {
   if (kata2.match(/𝐦𝐚𝐤𝐬𝐢𝐦𝐮𝐦/)) {
     kata2 = "Pencarian Anda telah mencapai batas maksimum dalam sehari.";
   }
-  if (kata2.match(/1. lihat /i) && kata2.match(boldkuy(qr_word_sementara))) {
+  if (
+    kata2.match(/1. lihat /i) &&
+    kata2.match(boldkuy(qr_word_sementara, bold))
+  ) {
     qr = 0;
   } else if (kata2.match(/1. lihat /i)) {
     qr = 1;
@@ -343,12 +345,12 @@ async function kbbi(parsed, event, bot) {
   return echo;
 }
 
-function italikuy(kata) {
+function italikuy(kata, italic) {
   let res = italic({ arg: kata });
   return res ? res.text : "";
 }
 
-function boldkuy(kata) {
+function boldkuy(kata, bold) {
   let res = bold({ arg: kata });
   return res ? res.text : "";
 }

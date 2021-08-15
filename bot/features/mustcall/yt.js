@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Youtube CMD",
     description: "Command buat nampilih top search dari Youtube",
-    help: "",
+    usage: "[@bot/!] yt <query>?",
     createdAt: 0,
     CMD: "yt",
     ALIASES: ["youtube"]

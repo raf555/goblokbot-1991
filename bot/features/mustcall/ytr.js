@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "Youtube random",
     description: "Buat nampilin video random dari yt",
-    help: "",
+    usage: "[@bot/!] ytr <query>",
     createdAt: 0,
     CMD: "ytr",
     ALIASES: ["youtube-random"]

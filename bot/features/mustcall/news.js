@@ -2,18 +2,27 @@ const NewsAPI = require("newsapi");
 const newsapi = new NewsAPI(process.env.newsapikey);
 
 module.exports = {
-  data:{
+  data: {
     name: "News Command",
     description: "Fitur buat nampilin berita terbaru",
-    help: "",
+    usage:
+      "[@bot/!] news {options} <query>" +
+      "\n\noptions:" +
+      "\n--adv ?: advanced query" +
+      "\n-c <country> ?: negara" +
+      "\n-q <query> ?: query" +
+      "\n-m <n> ?: max search" +
+      "\n-cat <q> ?: category search" +
+      "\n-from/-to <date> ?: (advanced) date query" +
+      "\n-sortyby <type> ?: (advanced) sort news",
     createdAt: 0,
     CMD: "news",
     ALIASES: []
   },
   run: news
-}
+};
 
-  async function news (parsed, event, bot)  {
+async function news(parsed, event, bot) {
   let custom = (parsed.args.advanced || parsed.args.adv || 0) === true;
   let search = !custom ? newsapi.v2.topHeadlines : newsapi.v2.everything;
 
@@ -139,7 +148,7 @@ module.exports = {
   }
 
   return null;
-};
+}
 
 function todate(str) {
   let regex = /(\d{2}|\d{1})-(\d{2}|\d{1})-(\d{4})/;

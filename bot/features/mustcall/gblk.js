@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Goblok cmd",
     description: "Fitur buat ngatain bot goblok",
-    help: "",
+    usage: "[@bot/!] goblok",
     createdAt: 0,
     CMD: "goblok",
     ALIASES: ["gblk"]

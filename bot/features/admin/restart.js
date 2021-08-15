@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Restart Command",
     description: "Command buat restart bot",
-    help: "",
+    usage: "[@bot/!] restart",
     createdAt: 0,
     CMD: "restart",
     ALIASES: []

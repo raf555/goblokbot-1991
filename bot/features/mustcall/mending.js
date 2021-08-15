@@ -2,7 +2,7 @@ module.exports = {
   data: {
     name: "Mending command",
     description: "Fitur buat nanya bot mending mana",
-    help: "",
+    usage: "[@bot/!] mending <query1> [apa/atau] <query2>",
     createdAt: 0,
     CMD: "mending",
     ALIASES: []

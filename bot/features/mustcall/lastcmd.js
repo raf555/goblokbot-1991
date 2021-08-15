@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Call Last Called CMD",
     description: "Command buat nmanggil command terakhir",
-    help: "",
+    usage: "[@bot/!] [!/lastcmd]",
     createdAt: 0,
     CMD: "lastcmd",
     ALIASES: []

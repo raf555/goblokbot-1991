@@ -4,7 +4,12 @@ module.exports = {
   data: {
     name: "Shortcut cmd register",
     description: "Command buat bikin shortcut cmd biar ez",
-    help: "",
+    usage:
+      "[@bot/!] s <id>? {options}!" +
+      "\n\noptions:" +
+      "\n-reg <name> !: command buat didaftarin" +
+      "\n-id <id> ?: nama shortcut" +
+      "\n-unreg <id> ?: buat unreg",
     createdAt: 0,
     CMD: "shortcut",
     ALIASES: ["s"]

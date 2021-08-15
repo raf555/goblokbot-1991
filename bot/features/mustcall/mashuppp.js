@@ -4,8 +4,9 @@ module.exports = {
   data: {
     name: "MASHUP PP",
     description: "Command buat gabungin 2 poto profil user",
-    help: "",
+    usage: "[@bot/!] mashuppp",
     createdAt: 0,
+    DISABLED: true,
     CMD: "mashup-pp",
     ALIASES: ["mashuppp", "mpp"]
   },

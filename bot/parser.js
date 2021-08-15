@@ -52,7 +52,7 @@ function parse(message, caller) {
     shortcut: isShortcut,
     command: argsplit.shift().toLowerCase(),
     args: parsearg.args,
-    arg: argsplit.join(" "),
+    arg: argsplit.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message
   };
 
@@ -115,13 +115,13 @@ function parseArg(text) {
           args = parseArgsStringToArgv(text);
         } else {
           out[word.replace("-", "")] = args[idx + 1] // tolowercase
-            ? args[idx + 1].replace(/\\/g, "")
+            ? args[idx + 1].replace(/\\(?!\\|\})/g, "")
             : null;
           idx++;
         }
       } else {
         out[word.replace("-", "")] = args[idx + 1] // tolowercase
-          ? args[idx + 1].replace(/\\/g, "")
+          ? args[idx + 1].replace(/\\(?!\\|\})/g, "")
           : null;
         idx++;
       }

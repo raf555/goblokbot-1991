@@ -5,7 +5,10 @@ module.exports = {
   data: {
     name: "Youtube Search",
     description: "Command buat nyari video dari YT",
-    help: "",
+    usage:
+      "[@bot/!] yts {options} <query>" +
+      "\n\noptions:" +
+      "\n-m <n> ?: jumlah hasil search (max 12)",
     createdAt: 0,
     CMD: "yts",
     ALIASES: ["youtube-search"]

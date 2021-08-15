@@ -5,7 +5,7 @@ module.exports = {
   data: {
     name: "Terminal",
     description: "Run terminal cmd from chat",
-    help: "",
+    usage: "[@bot/!] terminal <command>",
     createdAt: 0,
     CMD: "terminal",
     ALIASES: []
@@ -15,7 +15,11 @@ module.exports = {
     const { stdout, stderr } = await exec(cmd);
     return {
       type: "text",
-      text: "stdout:\n" + stdout + "\nstderr:\n" + stderr
+      text:
+        "stdout:\n" +
+        JSON.stringify(stdout) +
+        "\nstderr:\n" +
+        JSON.stringify(stderr)
     };
   }
 };

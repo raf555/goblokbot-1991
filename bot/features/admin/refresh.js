@@ -4,7 +4,7 @@ module.exports = {
   data: {
     name: "Refresh Command",
     description: "Command buat refresh git & restart bot",
-    help: "",
+    usage: "[@bot/!] refresh",
     createdAt: 0,
     CMD: "refresh",
     ALIASES: []

@@ -56,7 +56,7 @@ function execMulti(text, event) {
       .catch(e => {
         console.error(e);
         let out = `Command Error -> ${text} \n\n${e.name}: ${e.message}`;
-        return { type: "text", text: out, nosave: true };
+        return { type: "text", text: out, nosave: true, latency: 1 };
       })
   );
 
@@ -87,6 +87,8 @@ function execMulti(text, event) {
 }
 
 async function execMessage(text, event) {
+  let starttime = Date.now();
+
   //const setting = db.open("bot/setting.json").get();
   let parsed = parse(text, setting.caller);
   let removed = removeParserArgs(parsed); // remove reserved args
@@ -177,6 +179,7 @@ async function execMessage(text, event) {
       if (!reply.cmd && reply.cmd !== "") {
         reply.cmd = cmd;
       }
+      reply.realtime = Date.now() - starttime;
       if (!reply.parsed) reply.parsed = parsed;
     } else {
       reply = reply.map(rdata => {
@@ -184,6 +187,7 @@ async function execMessage(text, event) {
         if (!rdata.cmd && rdata.cmd !== "") {
           out.cmd = cmd;
         }
+        out.realtime = Date.now() - starttime;
         if (!rdata.parsed) out.parsed = parsed;
         return Object.assign(rdata, out);
       });
