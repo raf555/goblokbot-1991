@@ -103,9 +103,7 @@ function parseArg(text) {
       if (custombracket) {
         let cust = getcustbracket(custombracket);
         let regex = new RegExp(
-          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${
-            cust[0]
-          }((.|\\n|\\r|\\t)*?)\\${cust[1]}`
+          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\\n|\\r|\\t)*?)\\${cust[1]}`
         );
         if (text.match(regex)) {
           let thearg = argsregex1.exec(word);
