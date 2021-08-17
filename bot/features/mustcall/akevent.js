@@ -9,9 +9,8 @@ module.exports = {
       "[@bot/!] akevent {options} [(list cn/list/upcoming)!/*]" +
       "\n\noptions:" +
       "\n--more ?: buat nampilin event page selanjutnya",
-    createdAt: 0,
     CMD: "akevent",
-    ALIASES: ["ak-event", "ake"]
+    ALIASES: ["ake"]
   },
   run: akevent
 };

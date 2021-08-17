@@ -6,7 +6,7 @@ module.exports = {
     name: "Restart Command",
     description: "Command buat restart bot",
     usage: "[@bot/!] restart",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "restart",
     ALIASES: []
   },

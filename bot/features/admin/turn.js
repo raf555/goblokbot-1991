@@ -5,7 +5,7 @@ module.exports = {
     name: "Turn command",
     description: "Command buat matiin bot/fitur",
     usage: "[@bot/!] turn [bot/*] [off/on]",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "turn",
     ALIASES: []
   },

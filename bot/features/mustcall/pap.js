@@ -33,7 +33,6 @@ module.exports = {
       "[@bot/!] pap {options} <query>" +
       "\n\noptions:" +
       "\n-n <n> ?: buat nampilin gambar berjumlah n (maks 12)",
-    createdAt: 0,
     CMD: "pap",
     ALIASES: ["p"]
   },

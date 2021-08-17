@@ -13,7 +13,6 @@ module.exports = {
     name: "Latency Command",
     description: "Buat ngirim latency fitur bot",
     usage: "[@bot/!] latency",
-    createdAt: 0,
     CMD: "latency",
     ALIASES: []
   },

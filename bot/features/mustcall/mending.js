@@ -3,7 +3,6 @@ module.exports = {
     name: "Mending command",
     description: "Fitur buat nanya bot mending mana",
     usage: "[@bot/!] mending <query1> [apa/atau] <query2>",
-    createdAt: 0,
     CMD: "mending",
     ALIASES: []
   },
@@ -13,15 +12,16 @@ module.exports = {
 function mending(parsed, event, bot) {
   if (!parsed.arg) return null;
   var mending = (parsed.arg + " ")
-    .split(/\s[(apa)(atau)]\s/)
+    .split("apa")
     .sort()
     .reverse();
   var mendingan = "" + mending[0] + " " + mending[1];
+  let apakah;
   if (mending) {
     if (sumChars(mendingan) % 2 == 0) {
-      var apakah = mending[0];
+      apakah = mending[0];
     } else {
-      var apakah = mending[1];
+      apakah = mending[1];
     }
   }
   return {

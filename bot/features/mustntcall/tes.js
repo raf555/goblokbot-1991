@@ -6,7 +6,6 @@ module.exports = {
       "tes {options} <*>!" +
       "\n\noptions:" +
       "\n--args ?: mengaktifkan echo arguments & query",
-    createdAt: 0,
     CMD: "tes",
     ALIASES: []
   },

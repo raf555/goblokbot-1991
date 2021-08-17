@@ -1,13 +1,12 @@
-const hash = require("./../../../service/hash")
+const hash = require("./../../../service/hash");
 
 module.exports = {
   data: {
     name: "Apakah",
     description: "Command buat nanya bot",
     usage: "[@bot/!] apakah <pertanyaan>",
-    createdAt: 0,
     CMD: "apakah",
-    ALIASES: ["apkh"]
+    ALIASES: []
   },
   run: apkh
 };

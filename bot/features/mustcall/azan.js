@@ -6,7 +6,6 @@ module.exports = {
     name: "Azan cmd",
     description: "Fitur buat liat jadwal azan di Jakarta",
     usage: "[@bot/!] azan",
-    createdAt: 0,
     CMD: "azan",
     ALIASES: []
   },

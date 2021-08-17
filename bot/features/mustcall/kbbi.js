@@ -6,7 +6,6 @@ module.exports = {
     name: "KBBI Command",
     description: "Command buat scrape data dari KBBI",
     usage: "[@bot/!] kbbi <query>?",
-    createdAt: 0,
     CMD: "kbbi",
     ALIASES: []
   },

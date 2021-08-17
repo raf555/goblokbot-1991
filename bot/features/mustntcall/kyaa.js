@@ -7,7 +7,6 @@ module.exports = {
     name: "Kyaa command",
     description: "Command buat generate gambar kyaa",
     usage: "kyaa <keywords>?",
-    createdAt: 0,
     CMD: "kyaa",
     ALIASES: []
   },

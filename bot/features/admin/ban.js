@@ -6,7 +6,7 @@ module.exports = {
     name: "Ban Command",
     description: "Command buat ban pap / orang",
     usage: "[@bot/!] ban [user/pap] <query>",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "ban",
     ALIASES: []
   },

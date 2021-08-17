@@ -9,7 +9,6 @@ module.exports = {
       "\n\noptions:" +
       "\n-lang <langcode> ?: bahasa buat wiki" +
       "\n--as ?: auto suggest/correct query",
-    createdAt: 0,
     CMD: "wiki",
     ALIASES: []
   },

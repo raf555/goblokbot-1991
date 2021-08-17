@@ -6,7 +6,6 @@ module.exports = {
     name: "Corona cmd",
     description: "Command buat ngecek kasus corona",
     usage: "[@bot/!] [c/covid] <nama-negara>?",
-    createdAt: 0,
     CMD: "c",
     ALIASES: ["covid"]
   },

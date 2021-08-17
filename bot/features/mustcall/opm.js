@@ -12,7 +12,6 @@ module.exports = {
     name: "One-Punch Man Command",
     description: "Command buat nampilin panel manga opm random",
     usage: "[@bot/!] opm <chapterno <pageno>?>?",
-    createdAt: 0,
     CMD: "opm",
     ALIASES: []
   },

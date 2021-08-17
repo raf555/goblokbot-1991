@@ -6,7 +6,6 @@ module.exports = {
     name: "Call Last Called CMD",
     description: "Command buat nmanggil command terakhir",
     usage: "[@bot/!] [!/lastcmd]",
-    createdAt: 0,
     CMD: "lastcmd",
     ALIASES: []
   },

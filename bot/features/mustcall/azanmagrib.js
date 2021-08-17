@@ -6,10 +6,9 @@ module.exports = {
     name: "Magrib Warning",
     description: "Fitur buat warning selama puasa",
     usage: "[@bot/!] magrib",
-    createdAt: 0,
     DISABLED: true,
     CMD: "magrib",
-    ALIASES: ["azan-magrib"]
+    ALIASES: []
   },
   run: magrib
 };

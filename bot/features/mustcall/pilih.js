@@ -3,7 +3,6 @@ module.exports = {
     name: "Choose Command",
     description: "Command buat nanya saran ke bot",
     usage: "[@bot/!] pilih mana <query1> [atau/apa] <query2>",
-    createdAt: 0,
     CMD: "pilih",
     ALIASES: []
   },

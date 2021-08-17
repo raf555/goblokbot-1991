@@ -10,7 +10,6 @@ module.exports = {
     name: "JIMP Command",
     description: "Command image-processing yang didasari library JIMP",
     usage: "blom, mager", //help(),
-    createdAt: 0,
     CMD: "jimp",
     ALIASES: []
   },

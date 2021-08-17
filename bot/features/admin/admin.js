@@ -6,7 +6,7 @@ module.exports = {
     name: "Admin Command",
     description: "Fitur utk jadiin orang admin",
     usage: "[@bot/!] admin set <userkey>",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "admin",
     ALIASES: []
   },
