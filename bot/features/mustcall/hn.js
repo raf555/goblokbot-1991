@@ -4,7 +4,6 @@ module.exports = {
     name: "Hololive command",
     description: "Buat ngirim liver yg lg live",
     usage: "[@bot/!] hn",
-    createdAt: 0,
     DISABLED: true,
     CMD: "hn",
     ALIASES: []

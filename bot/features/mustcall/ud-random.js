@@ -6,7 +6,6 @@ module.exports = {
     name: "UrbanDictionary CMD",
     description: "Command buat ngecek definisi kata dari UD tapi random",
     usage: "[@bot/!] udr",
-    createdAt: 0,
     CMD: "udr",
     ALIASES: []
   },

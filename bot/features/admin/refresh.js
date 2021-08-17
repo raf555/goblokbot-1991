@@ -5,7 +5,7 @@ module.exports = {
     name: "Refresh Command",
     description: "Command buat refresh git & restart bot",
     usage: "[@bot/!] refresh",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "refresh",
     ALIASES: []
   },

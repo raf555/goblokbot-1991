@@ -3,7 +3,6 @@ module.exports = {
     name: "F",
     description: "Buat pay respect",
     usage: "f",
-    createdAt: 0,
     CMD: "f",
     ALIASES: []
   },

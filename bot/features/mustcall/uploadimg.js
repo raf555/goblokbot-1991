@@ -11,7 +11,6 @@ module.exports = {
       "\n-name <name> ?: nama gambar" +
       "\n-exp <t> ?: kedaluwarsa gambar dalam detik" +
       "\n--jimp ?: buat id jimp",
-    createdAt: 0,
     CMD: "uploadimg",
     ALIASES: []
   },

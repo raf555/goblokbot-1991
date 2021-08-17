@@ -4,11 +4,10 @@ module.exports = {
   data: {
     name: "MASHUP PP",
     description: "Command buat gabungin 2 poto profil user",
-    usage: "[@bot/!] mashuppp",
-    createdAt: 0,
+    usage: "[@bot/!] mashup-pp",
     DISABLED: true,
     CMD: "mashup-pp",
-    ALIASES: ["mashuppp", "mpp"]
+    ALIASES: []
   },
   run: async (parsed, event, bot) => {
     let userdbval = Object.values(db.open("db/user.json").get());

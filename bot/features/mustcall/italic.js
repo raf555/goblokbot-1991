@@ -3,7 +3,6 @@ module.exports = {
     name: "Italic cmd",
     description: "Command buat convert text jadi italic",
     usage: "[@bot/!] italic <query>",
-    createdAt: 0,
     CMD: "italic",
     ALIASES: []
   },

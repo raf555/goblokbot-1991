@@ -5,7 +5,6 @@ module.exports = {
     name: "Send CMD",
     description: "Command buat ngirim apa ae",
     usage: "[@bot/!] send [*/banlist/command/gblk]",
-    createdAt: 0,
     CMD: "send",
     ALIASES: []
   },

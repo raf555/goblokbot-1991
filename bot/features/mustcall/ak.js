@@ -6,7 +6,6 @@ module.exports = {
     name: "Arknek Command",
     description: "Buat ngirim info operator dari arknights",
     usage: "[@bot/!] ak <operator-name>",
-    createdAt: 0,
     CMD: "ak",
     ALIASES: []
   },

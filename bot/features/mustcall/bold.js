@@ -3,7 +3,6 @@ module.exports = {
     name: "Bold cmd",
     description: "Fitur buat convert text jd bold",
     usage: "[@bot/!] bold <query>",
-    createdAt: 0,
     CMD: "bold",
     ALIASES: []
   },

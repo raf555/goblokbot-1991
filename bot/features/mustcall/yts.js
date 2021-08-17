@@ -9,9 +9,8 @@ module.exports = {
       "[@bot/!] yts {options} <query>" +
       "\n\noptions:" +
       "\n-m <n> ?: jumlah hasil search (max 12)",
-    createdAt: 0,
     CMD: "yts",
-    ALIASES: ["youtube-search"]
+    ALIASES: []
   },
   run: yts
 };

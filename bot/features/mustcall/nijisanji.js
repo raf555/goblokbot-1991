@@ -40,7 +40,6 @@ module.exports = {
       "\n-livers [(jp/id/en/kr)/*] ?: liat livers dengan query" +
       "\n-sort-by [(subs/name/debut)](-[asc/desc])? ?: sort livers" +
       "\n-liver <name> ?: liat liver dgn suatu nama",
-    createdAt: 0,
     CMD: "nijisanji",
     ALIASES: ["niji", "2434"]
   },
@@ -167,6 +166,8 @@ async function liver_list(parsed) {
   let livers = await axios
     .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
+  
+  livers = livers.filter(l => l.affiliation[0] !== "VirtuaReal");
 
   if (!!q) {
     let branch = /(nijisanji)?(\s?(jp|en|kr|id))/.exec(q.toLowerCase());
@@ -238,7 +239,7 @@ async function liver_list(parsed) {
 
   return {
     type: "flex",
-    altText: "Nijisanji Livers - " + q,
+    altText: "Nijisanji Livers - " + (q || "JP"),
     sender: {
       name: "Nijisanji",
       iconUrl:
@@ -267,6 +268,8 @@ async function liver_info(parsed) {
   let livers = await axios
     .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
+  
+  livers = livers.filter(l => l.affiliation[0] !== "VirtuaReal");
 
   livers = livers.filter(
     l =>
@@ -286,13 +289,19 @@ async function liver_info(parsed) {
     .then(res => res.data.pageProps.liver);
 
   liverdata.debut_at = livers[0].debut_at;
+  let yutubid = liverdata.social_links.youtube.split("/");
+  yutubid = yutubid[yutubid.length - 1];
+  liverdata.subs = await getsubs(yutubid);
+  liverdata.trailer = await getviddetail(
+    /\?v=([\d\D]*)/.exec(liverdata.trailer_video)[1]
+  );
 
   let liver = liverdata;
 
   let carousel = { type: "carousel", contents: [] };
   carousel.contents.push(makeLiverBubble(liver, true));
   carousel.contents.push(makeLiverInfoBubble(liver));
-  //carousel.contents.push(makeLiverInfoBubble(liver, true));
+  carousel.contents.push(makeLiverInfoBubble(liver, true));
 
   return {
     type: "flex",
@@ -501,6 +510,7 @@ function makeLiverBubble(liver, socmed = false) {
   let color = liver.color_pattern.primaryColor;
   let name_en = liver.english_name;
   let name_jp = liver.name;
+  let subs = liver.subs;
 
   let action;
 
@@ -657,8 +667,9 @@ function makeLiverBubble(liver, socmed = false) {
             },
             {
               type: "text",
-              text: name_jp,
-              size: "xxs"
+              text: name_jp + (socmed ? "\n\n" + subs + " subscribers" : ""),
+              size: "xxs",
+              wrap: true
             }
           ],
           position: "absolute",
@@ -754,9 +765,7 @@ function makeLiverInfoBubble(liver, youtube = false) {
   if (!youtube) {
     return out;
   }
-  return out;
-
-  /*
+  //return out;
 
   return {
     type: "bubble",
@@ -796,7 +805,7 @@ function makeLiverInfoBubble(liver, youtube = false) {
               contents: [
                 {
                   type: "image",
-                  url: "https://i.ytimg.com/vi/Ndp6PhT-vlQ/hqdefault.jpg",
+                  url: liver.trailer.thumb,
                   size: "full",
                   aspectRatio: "16:9"
                 }
@@ -804,8 +813,7 @@ function makeLiverInfoBubble(liver, youtube = false) {
             },
             {
               type: "text",
-              text:
-                "月ノ美兎「ウラノミト」MV（1stアルバム「月の兎はヴァーチュアルの夢をみる」収録曲）",
+              text: liver.trailer.title,
               size: "sm",
               weight: "bold",
               margin: "sm"
@@ -817,12 +825,45 @@ function makeLiverInfoBubble(liver, youtube = false) {
           action: {
             type: "uri",
             label: "action",
-            uri: "http://linecorp.com/"
+            uri: liver.trailer.url
           }
         }
       ],
       paddingAll: "3px",
       backgroundColor: color
     }
-  };*/
+  };
+}
+
+function getsubs(channelid) {
+  function numFormatter(num) {
+    num = parseInt(num);
+    if (num > 999 && num < 1000000) {
+      return num / 1000 + "K"; // convert to K for number from > 1000 < 1 million
+    } else if (num >= 1000000) {
+      return num / 1000000 + "M"; // convert to M for number from > 1 million
+    } else if (num < 1000) {
+      return num.toString(); // if value < 1000, nothing to do
+    }
+  }
+  return axios
+    .get(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelid}&key=${process.env.yts_api}`
+    )
+    .then(res => numFormatter(res.data.items[0].statistics.subscriberCount));
+}
+
+function getviddetail(id) {
+  return axios
+    .get(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&key=${process.env.yts_api}&id=${id}`
+    )
+    .then(res => {
+      let data = res.data.items[0].snippet;
+      return {
+        title: data.title,
+        thumb: data.thumbnails.standard.url,
+        url: "https://youtu.be/" + id
+      };
+    });
 }

@@ -5,7 +5,6 @@ module.exports = {
     name: "MAL Anime Search",
     description: "Command buat nyari anime dari MAL",
     usage: "[@bot/!] anime <query>",
-    createdAt: 0,
     CMD: "anime",
     ALIASES: ["mal-search"]
   },

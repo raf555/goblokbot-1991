@@ -10,7 +10,6 @@ module.exports = {
       "\n-reg <name> !: command buat didaftarin" +
       "\n-id <id> ?: nama shortcut" +
       "\n-unreg <id> ?: buat unreg",
-    createdAt: 0,
     CMD: "shortcut",
     ALIASES: ["s"]
   },
@@ -22,11 +21,6 @@ function shortcut(parsed, event, bot) {
   let id = parsed.args.as || parsed.args.id || parsed.arg;
   let info = parsed.args.info;
   let unreg = parsed.args.unreg;
-
-  delete parsed.args.reg;
-  delete parsed.args.id;
-  delete parsed.args.info;
-  delete parsed.args.unreg;
 
   let { userId } = event.source;
 
@@ -42,11 +36,7 @@ function shortcut(parsed, event, bot) {
     return register(reg, id, userId);
   }
 
-  if (Object.keys(parsed.args).length === 0) {
-    return execute(id, userId, event, bot.function.execMultiple);
-  }
-
-  return null;
+  return execute(id, userId, event, parsed.args, bot.function.execMultiple);
 }
 
 function infocmd(uid) {
@@ -106,7 +96,7 @@ function unregister(id, uid) {
   };
 }
 
-function execute(id, uid, event, exec) {
+function execute(id, uid, event, args, exec) {
   let sdb = db.open("db/shortcutcmd.json");
 
   let key = !id ? "default" : id;
@@ -117,6 +107,17 @@ function execute(id, uid, event, exec) {
       type: "text",
       text: "Shortcut for id [" + key + "] is not found"
     };
+  }
+
+  let vars = cmd.match(/{(\w+)}/g);
+  if (vars) {
+    vars.forEach(q => {
+      let name = /{(\w+)}/.exec(q)[1];
+      let val = args[name];
+      if (val) {
+        cmd = cmd.replace(new RegExp(q, "g"), val);
+      }
+    });
   }
 
   //return Promise.resolve(

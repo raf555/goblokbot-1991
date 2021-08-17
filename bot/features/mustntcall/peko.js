@@ -3,7 +3,6 @@ module.exports = {
     name: "Peko",
     description: "Command buat ngirim suara pekora",
     usage: "peko <number>?",
-    createdAt: 0,
     CMD: "peko",
     ALIASES: []
   },

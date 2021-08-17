@@ -3,7 +3,6 @@ module.exports = {
     name: "Delay Command",
     description: "Command buat tes delay",
     usage: "[@bot/!] delay <time>?",
-    createdAt: 0,
     CMD: "delay",
     ALIASES: []
   },

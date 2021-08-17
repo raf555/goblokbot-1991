@@ -6,7 +6,7 @@ module.exports = {
     name: "Terminal",
     description: "Run terminal cmd from chat",
     usage: "[@bot/!] terminal <command>",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "terminal",
     ALIASES: []
   },

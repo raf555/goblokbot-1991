@@ -7,7 +7,6 @@ module.exports = {
     name: "Arknights Stats",
     description: "Command buat ngirim stats Operator Arknights",
     usage: "[@bot/!] aks <operator-name>",
-    createdAt: 0,
     CMD: "aks",
     ALIASES: ["ak-stats"]
   },

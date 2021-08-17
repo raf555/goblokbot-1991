@@ -12,9 +12,8 @@ module.exports = {
     name: "Status Command",
     description: "Command buat ngecek status bot",
     usage: "[@bot/!] status",
-    createdAt: 0,
     CMD: "status",
-    ALIASES: ["stat"]
+    ALIASES: []
   },
   run: bot_status
 };

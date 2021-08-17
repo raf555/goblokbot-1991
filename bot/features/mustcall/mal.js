@@ -5,7 +5,6 @@ module.exports = {
     name: "MyAnimeList Command",
     description: "Command buat ambil data anime dari MAL",
     usage: "[@bot/!] mal <query>",
-    createdAt: 0,
     CMD: "mal",
     ALIASES: []
   },

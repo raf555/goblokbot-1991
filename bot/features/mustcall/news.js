@@ -15,7 +15,6 @@ module.exports = {
       "\n-cat <q> ?: category search" +
       "\n-from/-to <date> ?: (advanced) date query" +
       "\n-sortyby <type> ?: (advanced) sort news",
-    createdAt: 0,
     CMD: "news",
     ALIASES: []
   },

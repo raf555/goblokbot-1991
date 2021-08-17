@@ -3,7 +3,6 @@ module.exports = {
     name: "Repo Command",
     description: "Command buat nampilin repo",
     usage: "[@bot/!] repo",
-    createdAt: 0,
     CMD: "repo",
     ALIASES: []
   },

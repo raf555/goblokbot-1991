@@ -3,7 +3,6 @@ module.exports = {
     name: "Help Command",
     description: "Buat ngirim cara penggunaan fitur",
     usage: "[@bot/!] help <feature-name>?",
-    createdAt: 0,
     CMD: "help",
     ALIASES: []
   },
@@ -11,17 +10,23 @@ module.exports = {
 };
 
 function help(parsed, bot, event) {
-  let data = require("/app/bot/features")(true);
-
-  let names = []
-    .concat(Object.keys(data.mustcall))
-    .concat(Object.keys(data.mustntcall));
+  let data = require("./../")(true);
 
   let q = parsed.arg.toLowerCase();
 
   if (q) {
-    return helpcmd(q, names, data);
+    return helpcmd(q, data);
   }
+
+  let names = []
+    .concat(Object.keys(data.mustcall))
+    .map(name => {
+      if (data.mustcall[name].ADMIN) {
+        name += " (admin)";
+      }
+      return name;
+    })
+    .concat(Object.keys(data.mustntcall));
 
   return {
     type: "text",
@@ -29,7 +34,11 @@ function help(parsed, bot, event) {
   };
 }
 
-function helpcmd(q, names, data) {
+function helpcmd(q, data) {
+  let names = []
+    .concat(Object.keys(data.mustcall))
+    .concat(Object.keys(data.mustntcall));
+
   if (names.indexOf(q) === -1) {
     return {
       type: "text",
@@ -41,7 +50,7 @@ function helpcmd(q, names, data) {
   let mustntcall = Object.keys(data.mustntcall);
 
   let cmddata =
-    mustcall.indexOf(q) !== -1 ? data.mustcall[q] : data.mustntcall[q];
+    mustntcall.indexOf(q) !== -1 ? data.mustntcall[q] : data.mustcall[q];
 
   return {
     type: "flex",
@@ -54,7 +63,16 @@ function helpcmd(q, names, data) {
 }
 
 function helpjson(data) {
-  let { name, description: desc, CMD: cmd, ALIASES: aliases, usage } = data;
+  let {
+    name,
+    description: desc,
+    CMD: cmd,
+    ALIASES: aliases,
+    usage,
+    DISABLED: disabled,
+    ADMIN: admin
+  } = data;
+
   return {
     type: "bubble",
     size: "kilo",
@@ -77,6 +95,20 @@ function helpjson(data) {
               text: desc,
               size: "sm",
               wrap: true
+            },
+            {
+              type: "separator",
+              margin: "sm"
+            },
+            {
+              type: "text",
+              text: "Disabled: " + (disabled || "false"),
+              size: "sm"
+            },
+            {
+              type: "text",
+              text: "Admin Only: " + (admin || "false"),
+              size: "sm"
             },
             {
               type: "separator",

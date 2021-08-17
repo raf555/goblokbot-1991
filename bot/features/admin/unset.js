@@ -5,7 +5,7 @@ module.exports = {
     name: "Unset command",
     description: "Fitur buat unset variabel bot",
     usage: "[@bot/!] unset <var> <value>?",
-    createdAt: 0,
+    ADMIN: true,
     CMD: "unset",
     ALIASES: []
   },
