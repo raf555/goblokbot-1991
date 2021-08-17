@@ -1,6 +1,6 @@
 // const stringSimilarity = require("string-similarity");
 const db = require("./../service/database");
-const { cekban, isAdmin } = require("./utility");
+const { cekban, isAdmin, getContentFromEvent } = require("./utility");
 const {
   parse,
   buildFromParsed,
@@ -11,7 +11,8 @@ const {
 
 module.exports = {
   exec: execMessage,
-  execMultiple: execMulti
+  execMultiple: execMulti,
+  execImage: executeImage
 };
 
 let ccc = {};
@@ -235,6 +236,12 @@ function executeCommand() {
     }
     throw e;
   });
+}
+
+function executeImage(event) {
+  // to be added more later if I wanted to
+  
+  return null;
 }
 
 function constructcaller() {
