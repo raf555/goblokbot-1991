@@ -14,60 +14,41 @@ function parse(message, caller) {
   message = message.trim();
 
   let splitted = message.split(" ");
-  let firstword = splitted[0].toLowerCase();
 
-  let command = "";
+  let args = "";
   let _caller = "";
   let isShortcut = false;
+  let command = "";
+  let firstword = splitted.shift().toLowerCase();
 
-  if (firstword !== caller.normal) {
-    if (firstword.charAt(0) === caller.shortcut) {
-      command = message.substring(1);
+  if (firstword === caller.normal || caller.custom.normal[firstword]) {
+    command = splitted.shift();
+    _caller = firstword;
+  } else {
+    let prefix = firstword.charAt(0);
+    if (prefix === caller.shortcut || caller.custom.shortcut[prefix]) {
+      command = firstword.substring(1);
       _caller = caller.shortcut;
       isShortcut = true;
     } else {
-      if (caller.custom.normal[firstword]) {
-        command = splitted.slice(1, splitted.length).join(" ");
-        _caller = firstword;
-      } else if (caller.custom.shortcut[firstword.charAt(0)]) {
-        command = message.substring(1);
-        _caller = caller.shortcut;
-        isShortcut = true;
-      } else {
-        command = splitted.join(" ");
-        _caller = "";
-      }
+      command = firstword;
+      _caller = "";
     }
-  } else {
-    command = splitted.slice(1, splitted.length).join(" ");
-    _caller = caller.normal;
   }
 
-  let parsearg = parseArg(command);
-  let arg = parsearg.arg;
+  args = splitted.join(" ");
+
+  let parsearg = parseArg(args);
 
   let parsed = {
     caller: _caller,
     called: !!_caller,
     shortcut: isShortcut,
-    command: arg.shift().toLowerCase(),
+    command: command.toLowerCase(),
     args: parsearg.args,
-    arg: arg.join(" ").replace(/\\(?!\\|\})/g, ""),
+    arg: parsearg.arg.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message
   };
-
-  /*
-  parsed.caller = _caller;
-  parsed.called = !!_caller;
-  parsed.shortcut = isShortcut;
-  parsed.command = argsplit.shift().toLowerCase();
-  parsed.args = parsearg.args;
-  parsed.arg = argsplit.join(" ");
-  parsed.fullMsg = message;
-  */
-
-  // delete parsed.args["b"];
-  // console.log(parsed);
 
   return parsed;
 }
