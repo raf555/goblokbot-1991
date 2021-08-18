@@ -1,8 +1,8 @@
 const Jimp = require("jimp");
 const axios = require("axios");
-const imgbb = require("./../../../service/imgbb");
-const db = require("./../../../service/database");
-const { parseArg } = require("./../../parser");
+const imgbb = require("@utils/imgbb");
+const db = require("@utils/database");
+const { parseArg } = require("@bot/parser");
 const { Parser } = require("expr-eval");
 
 module.exports = {

@@ -1,5 +1,5 @@
-const db = require("./../../../service/database");
-const { hash } = require("./../../utility");
+const db = require("@utils/database");
+const { hash } = require("@bot/utility");
 
 module.exports = {
   data: {

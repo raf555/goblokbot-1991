@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const db = require("./../../../service/database");
+const db = require("@utils/database");
 
 module.exports = {
   data: {

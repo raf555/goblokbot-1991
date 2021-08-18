@@ -1,5 +1,5 @@
 // const stringSimilarity = require("string-similarity");
-const db = require("./../service/database");
+const db = require("@utils/database");
 const { cekban, isAdmin, getContentFromEvent } = require("./utility");
 const {
   parse,
@@ -239,7 +239,7 @@ function executeCommand() {
   });
 }
 
-function executeImage(event) {
+async function executeImage(event) {
   // to be added more later if I wanted to
 
   return null;

@@ -1,4 +1,4 @@
-const { client } = require("./../../../service/line");
+const { client } = require("@utils/line");
 module.exports = {
   data: {
     name: "Leave Command",

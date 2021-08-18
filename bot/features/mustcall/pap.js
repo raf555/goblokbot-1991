@@ -1,4 +1,4 @@
-const db = require("./../../../service/database");
+const db = require("@utils/database");
 const imageSearch = require("google-images");
 const stringSimilarity = require("string-similarity");
 

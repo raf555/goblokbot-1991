@@ -1,4 +1,4 @@
-const { isAdmin, pushMessage } = require("./../../utility");
+const { isAdmin, pushMessage } = require("@bot/utility");
 
 module.exports = {
   data: {

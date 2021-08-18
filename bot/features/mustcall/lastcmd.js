@@ -1,5 +1,5 @@
-const db = require("./../../../service/database");
-const { buildArgs, buildFromParsed } = require("./../../parser");
+const db = require("@utils/database");
+const { buildArgs, buildFromParsed } = require("@bot/parser");
 
 module.exports = {
   data: {

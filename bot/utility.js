@@ -1,7 +1,7 @@
-const { client } = require("./../service/line");
-const hash = require("./../service/hash");
-const db = require("./../service/database");
-const imgbb = require("./../service/imgbb");
+const { client } = require("@utils/line");
+const hash = require("@utils/hash");
+const db = require("@utils/database");
+const imgbb = require("@utils/imgbb");
 const fs = require("fs");
 
 module.exports = {
