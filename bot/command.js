@@ -227,7 +227,7 @@ function executeCommand() {
 
   return Promise.race([cmdpromise, timeout]).catch(e => {
     if (e.message === "cmd:timeout") {
-      let msg;
+      let msg = "";
       if (parsed) {
         msg = parsed.fullMsg;
       }
@@ -252,10 +252,10 @@ function constructcaller() {
     )
   );
 
-  let shortcut = [setting.caller.shortcut].concat(
-    Object.keys(setting.caller.custom.shortcut).filter(
-      key => setting.caller.custom.shortcut[key] !== 0
-    )
+  let shortcut = ["\\" + setting.caller.shortcut].concat(
+    Object.keys(setting.caller.custom.shortcut)
+      .filter(key => setting.caller.custom.shortcut[key] !== 0)
+      .map(key => "\\" + key)
   );
 
   return {

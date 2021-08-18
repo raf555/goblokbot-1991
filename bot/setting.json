@@ -5,12 +5,7 @@
     "normal": "@bot",
     "shortcut": "!",
     "custom": {
-      "normal": {
-        "ay": 0,
-        "ky": 0,
-        "sal": 0,
-        "bil": 0
-      },
+      "normal": {},
       "shortcut": {}
     }
   },
