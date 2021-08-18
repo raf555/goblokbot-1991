@@ -252,7 +252,7 @@ function constructcaller() {
     )
   );
 
-  let shortcut = [setting.caller.shortcut].concat(
+  let shortcut = ["\\" + setting.caller.shortcut].concat(
     Object.keys(setting.caller.custom.shortcut)
       .filter(key => setting.caller.custom.shortcut[key] !== 0)
       .map(key => "\\" + key)
