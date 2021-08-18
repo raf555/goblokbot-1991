@@ -1,4 +1,4 @@
-const db = require("./../../../service/database");
+const db = require("@utils/database");
 const axios = require("axios");
 const cheerio = require("cheerio");
 

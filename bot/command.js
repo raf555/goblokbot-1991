@@ -1,6 +1,6 @@
 // const stringSimilarity = require("string-similarity");
-const db = require("./../service/database");
-const { cekban, isAdmin } = require("./utility");
+const db = require("@utils/database");
+const { cekban, isAdmin, getContentFromEvent } = require("./utility");
 const {
   parse,
   buildFromParsed,
@@ -8,10 +8,12 @@ const {
   removeParserArgs,
   restoreParserArgs
 } = require("./parser");
+const regexbasedfeature = require("./features/regex");
 
 module.exports = {
   exec: execMessage,
-  execMultiple: execMulti
+  execMultiple: execMulti,
+  execImage: executeImage
 };
 
 let ccc = {};
@@ -162,7 +164,7 @@ async function execMessage(text, event) {
             reply.cmdtype = "other";
           }
         } else {
-          reply = regexbasedfeature(text, event);
+          reply = await executeCommand(regexbasedfeature, parsed, event, bot);
           if (reply) {
             reply.cmdtype = "other";
           }
@@ -235,6 +237,12 @@ function executeCommand() {
     }
     throw e;
   });
+}
+
+async function executeImage(event) {
+  // to be added more later if I wanted to
+
+  return null;
 }
 
 function constructcaller() {
@@ -310,32 +318,6 @@ function greeting(event) {
     text: isAdmin(event.source.userId) ? "kenaps" : "apaan",
     quickReply: db.open(`bot/assets/qr.json`).get()
   };
-}
-
-function regexbasedfeature(text, event) {
-  let msg = text;
-
-  if (
-    msg.length > 4 &&
-    msg.match(/(a)\1\1\1\1+/i) /* msg.match(/^(a)\1*$/i) */
-  ) {
-    let gblk = db.open(`bot/assets/hacama.json`);
-    return Object.assign(gblk.get(), { cmd: "aaaaa" });
-  }
-
-  /*
-  if (
-    msg[0].toLowerCase() == "g" &&
-    msg.length > 2 &&
-    msg.match(/(r)\1\1+/i)
-  ) {
-    return {
-      type: "image",
-      originalContentUrl: "https://i.ibb.co/jbTKmQc/grr.jpg", //"https://i.ibb.co/ChLFsXr/184101.jpg",
-      previewImageUrl: "https://i.ibb.co/jbTKmQc/grr.jpg",
-      cmd: "grr"
-    };
-  }*/
 }
 
 function customfeature(msg, event) {

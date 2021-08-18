@@ -19,7 +19,7 @@ async function kbbi(parsed, event, bot) {
   var random = 0;
   if (!parsed.arg) {
     random = 1;
-    var kataw = require("./../../assets/kbbi.json");
+    var kataw = require("@bot/assets/kbbi.json");
     var h2 = kataw[Math.floor(Math.random() * kataw.length)].word;
   } else {
     random = 0;

@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { isAdmin } = require("./../../utility");
+const { isAdmin } = require("@bot/utility");
 
 module.exports = getfeatures;
 

@@ -11,11 +11,11 @@ module.exports = {
 
 function mending(parsed, event, bot) {
   if (!parsed.arg) return null;
-  var mending = (parsed.arg + " ")
-    .split("apa")
+  var mending = parsed.arg
+    .split(/\s(apa|atau)\s/)
     .sort()
     .reverse();
-  var mendingan = "" + mending[0] + " " + mending[1];
+  var mendingan = mending[0] + " " + mending[2];
   let apakah;
   if (mending) {
     if (sumChars(mendingan) % 2 == 0) {

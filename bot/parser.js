@@ -44,15 +44,15 @@ function parse(message, caller) {
   }
 
   let parsearg = parseArg(command);
-  let argsplit = parsearg.arg.split(" ");
+  let arg = parsearg.arg;
 
   let parsed = {
     caller: _caller,
     called: !!_caller,
     shortcut: isShortcut,
-    command: argsplit.shift().toLowerCase(),
+    command: arg.shift().toLowerCase(),
     args: parsearg.args,
-    arg: argsplit.join(" ").replace(/\\(?!\\|\})/g, ""),
+    arg: arg.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message
   };
 
@@ -135,7 +135,7 @@ function parseArg(text) {
   // delete out["b"];
   // console.log(out);
 
-  return { args: out, arg: arg.join(" ") };
+  return { args: out, arg: arg };
 }
 
 function getcustbracket(val) {

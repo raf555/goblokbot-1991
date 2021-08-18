@@ -1,7 +1,7 @@
-const { client } = require("./../service/line");
-const hash = require("./../service/hash");
-const db = require("./../service/database");
-const imgbb = require("./../service/imgbb");
+const { client } = require("@utils/line");
+const hash = require("@utils/hash");
+const db = require("@utils/database");
+const imgbb = require("@utils/imgbb");
 const fs = require("fs");
 
 module.exports = {
@@ -21,7 +21,8 @@ module.exports = {
   leave,
   dateTodate,
   uploadImgFromQ,
-  saveUnsend
+  saveUnsend,
+  getContentFromEvent
 };
 
 function leave(event) {
@@ -51,7 +52,7 @@ function pushMessage(msg, id) {
 }
 
 function replyMessage(event, msgobj) {
-  let msg = Array.isArray(msgobj) ?msgobj : [msgobj];
+  let msg = Array.isArray(msgobj) ? msgobj : [msgobj];
 
   let data_ = [];
 
@@ -234,7 +235,39 @@ function cekban(id, hashed = true) {
   }
 }
 
-function uploadImgFromQ(event) {
+function getContentFromEvent(event) {
+  // return a buffer
+  return new Promise((resolve, reject) => {
+    let type = event.message.type;
+    if (
+      !(
+        type === "image" ||
+        type === "video" ||
+        type === "audio" ||
+        type === "file"
+      )
+    ) {
+      reject(new TypeError("Message type " + type + " is not allowed!"));
+      return;
+    }
+
+    let buffer = [];
+    client
+      .getMessageContent(event.message.id)
+      .then(stream => {
+        stream.on("data", chunk => {
+          buffer.push(chunk);
+        });
+        stream.on("end", () => {
+          resolve(Buffer.concat(buffer));
+        });
+        stream.on("error", e => reject(e));
+      })
+      .catch(e => reject(e));
+  });
+}
+
+async function uploadImgFromQ(event) {
   let qdb = db.open("db/uploadimgq.json");
 
   let data = qdb.get(event.source.userId);
@@ -242,58 +275,53 @@ function uploadImgFromQ(event) {
     qdb.set(event.source.userId + ".uploaded", true);
     qdb.save();
     let idb = db.open("db/uploadimg.json");
-    let buffer = [];
-    client.getMessageContent(event.message.id).then(stream => {
-      stream.on("data", chunk => {
-        buffer.push(chunk);
-      });
-      stream.on("end", () => {
-        let uploaddata = {
-          name: data.name,
-          base64string: Buffer.concat(buffer).toString("base64")
-        };
-        if (data.exp) {
-          uploaddata.expiration = data.exp;
-        }
-        imgbb
-          .upload(uploaddata)
-          .then(upload => {
-            idb.set(upload.id, {
-              url: upload.url,
-              del: upload.delete_url,
-              exp: data.exp ? Date.now() + data.exp : 99999999999999,
-              uploader: event.source.userId
-            });
-            idb.save();
 
-            let out = [
-              {
-                type: "text",
-                text: upload.url
-              }
-            ];
+    let buffer = await getContentFromEvent(event);
 
-            if (qdb.get(event.source.userId).jimp) {
-              out.push({
-                type: "text",
-                text: "For jimp reference, please use id under this message"
-              });
-              out.push({
-                type: "text",
-                text: "" + upload.id
-              });
-            }
+    let uploaddata = {
+      name: data.name,
+      base64string: buffer.toString("base64")
+    };
+    if (data.exp) {
+      uploaddata.expiration = data.exp;
+    }
+    imgbb
+      .upload(uploaddata)
+      .then(upload => {
+        idb.set(upload.id, {
+          url: upload.url,
+          del: upload.delete_url,
+          exp: data.exp ? Date.now() + data.exp : 99999999999999,
+          uploader: event.source.userId
+        });
+        idb.save();
 
-            client.replyMessage(event.replyToken, out);
-          })
-          .catch(err => {
-            client.replyMessage(event.replyToken, {
-              type: "text",
-              text: "Failed to upload image"
-            });
+        let out = [
+          {
+            type: "text",
+            text: upload.url
+          }
+        ];
+
+        if (qdb.get(event.source.userId).jimp) {
+          out.push({
+            type: "text",
+            text: "For jimp reference, please use id under this message"
           });
+          out.push({
+            type: "text",
+            text: "" + upload.id
+          });
+        }
+
+        client.replyMessage(event.replyToken, out);
+      })
+      .catch(err => {
+        client.replyMessage(event.replyToken, {
+          type: "text",
+          text: "Failed to upload image"
+        });
       });
-    });
   }
 }
 
@@ -427,7 +455,7 @@ function savebotchat(event, msgdata) {
   // save stop//
 }
 
-function saveImage(event) {
+async function saveImage(event) {
   const setting = db.open("bot/setting.json").get();
 
   if (!setting.saveMessage.message || !setting.saveMessage.image) {
@@ -439,30 +467,22 @@ function saveImage(event) {
   }
 
   let dbimg = db.open("db/chat/chatimg.json");
-  let buffer = [];
-
-  client.getMessageContent(event.message.id).then(stream => {
-    stream.on("data", chunk => {
-      buffer.push(chunk);
-    });
-    stream.on("end", () => {
-      imgbb
-        .upload({
-          name: event.message.id,
-          base64string: Buffer.concat(buffer).toString("base64"),
-          expiration: 15821676
-        })
-        .then(upload => {
-          dbimg.set(event.message.id.toString(), {
-            url: upload.url,
-            delete: upload.delete_url
-          });
-          dbimg.save();
-          saveMessage(event, true);
-        })
-        .catch(err => {});
-    });
-  });
+  let buffer = await getContentFromEvent(event);
+  imgbb
+    .upload({
+      name: event.message.id,
+      base64string: buffer.toString("base64"),
+      expiration: 15821676
+    })
+    .then(upload => {
+      dbimg.set(event.message.id.toString(), {
+        url: upload.url,
+        delete: upload.delete_url
+      });
+      dbimg.save();
+      saveMessage(event, true);
+    })
+    .catch(err => {});
 }
 
 function saveUnsend(event) {

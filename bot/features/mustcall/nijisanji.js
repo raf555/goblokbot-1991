@@ -3,6 +3,8 @@ const cheerio = require("cheerio");
 
 let API_LIVE = "https://api.itsukaralink.jp/v1.2";
 let API_LIVERS = "";
+const NIJI_ICON =
+  "https://pbs.twimg.com/profile_images/1335777549343883264/rVsyH8Jo.jpg";
 
 loadliversurl();
 
@@ -146,8 +148,7 @@ async function live_schedule(parsed) {
     altText: "Nijisanji Live Schedule",
     sender: {
       name: "Nijisanji",
-      iconUrl:
-        "https://pbs.twimg.com/profile_images/1335777549343883264/rVsyH8Jo.jpg"
+      iconUrl: NIJI_ICON
     },
     contents: carousel
   };
@@ -166,7 +167,7 @@ async function liver_list(parsed) {
   let livers = await axios
     .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
-  
+
   livers = livers.filter(l => l.affiliation[0] !== "VirtuaReal");
 
   if (!!q) {
@@ -242,8 +243,7 @@ async function liver_list(parsed) {
     altText: "Nijisanji Livers - " + (q || "JP"),
     sender: {
       name: "Nijisanji",
-      iconUrl:
-        "https://pbs.twimg.com/profile_images/1335777549343883264/rVsyH8Jo.jpg"
+      iconUrl: NIJI_ICON
     },
     contents: carousel
   };
@@ -259,17 +259,19 @@ async function liver_info(parsed) {
     q = arg;
   }
 
-  if (!q) {
-    return { type: "text", text: "Invalid query" };
-  }
-
-  q = q.toLowerCase();
-
   let livers = await axios
     .get(API_LIVERS)
     .then(res => res.data.pageProps.livers);
-  
+
   livers = livers.filter(l => l.affiliation[0] !== "VirtuaReal");
+
+  if (!q) {
+    //return { type: "text", text: "Invalid query" };
+    q = "";
+    shuffle(livers);
+  }
+
+  q = q.toLowerCase();
 
   livers = livers.filter(
     l =>
@@ -303,16 +305,35 @@ async function liver_info(parsed) {
   carousel.contents.push(makeLiverInfoBubble(liver));
   carousel.contents.push(makeLiverInfoBubble(liver, true));
 
-  return {
+  let out = {
     type: "flex",
-    altText: "Nijisanji Livers - " + liver.english_name,
+    altText: "Nijisanji Liver - " + liver.english_name,
     sender: {
       name: "Nijisanji",
-      iconUrl:
-        "https://pbs.twimg.com/profile_images/1335777549343883264/rVsyH8Jo.jpg"
+      iconUrl: NIJI_ICON
     },
     contents: carousel
   };
+
+  if (!q) {
+    Object.assign(out, {
+      quickReply: {
+        items: [
+          {
+            type: "action",
+            imageUrl: NIJI_ICON,
+            action: {
+              type: "message",
+              label: "Random Liver",
+              text: "!niji liver"
+            }
+          }
+        ]
+      }
+    });
+  }
+
+  return out;
 }
 
 async function getLiverIdByName(name) {
@@ -862,8 +883,29 @@ function getviddetail(id) {
       let data = res.data.items[0].snippet;
       return {
         title: data.title,
-        thumb: data.thumbnails.standard.url,
+        thumb: data.thumbnails.standard.url || data.thumbnails.default.url,
         url: "https://youtu.be/" + id
       };
     });
+}
+
+//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex]
+    ];
+  }
+
+  return array;
 }

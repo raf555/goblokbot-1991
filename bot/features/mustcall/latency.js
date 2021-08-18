@@ -1,4 +1,4 @@
-const db = require("./../../../service/database");
+const db = require("@utils/database");
 
 function arrsort(array, key) {
   return array.sort(function(a, b) {

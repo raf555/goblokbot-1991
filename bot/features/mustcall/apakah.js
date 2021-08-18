@@ -1,4 +1,4 @@
-const hash = require("./../../../service/hash");
+const hash = require("@utils/hash");
 
 module.exports = {
   data: {

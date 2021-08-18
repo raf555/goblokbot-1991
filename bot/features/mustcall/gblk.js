@@ -1,4 +1,4 @@
-const { isAdmin } = require("./../../utility");
+const { isAdmin } = require("@bot/utility");
 
 module.exports = {
   data: {

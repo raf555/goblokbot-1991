@@ -1,5 +1,5 @@
-const imgbb = require("./../../../service/imgbb");
-const db = require("./../../../service/database");
+const imgbb = require("@utils/imgbb");
+const db = require("@utils/database");
 
 module.exports = {
   data: {

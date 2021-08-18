@@ -1,5 +1,5 @@
-const db = require("./../../../service/database");
-const { cekban } = require("./../../utility");
+const db = require("@utils/database");
+const { cekban } = require("@bot/utility");
 
 module.exports = {
   data: {

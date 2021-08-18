@@ -77,7 +77,10 @@ function handleTextMessage(event) {
 function handleImgMessage(event) {
   uploadImgFromQ(event);
   saveImage(event);
-  return null;
+  return command
+    .execImage(event)
+    .then(reply => (reply ? replyMessage(event, reply) : null))
+    .catch(e => handleReplyErr(e, event));
 }
 
 function handlePostbackEvent(event) {

@@ -1,6 +1,6 @@
 //const axios = require("axios");
 const Jimp = require("jimp");
-const imgbb = require("./../../../service/imgbb");
+const imgbb = require("@utils/imgbb");
 
 module.exports = {
   data: {

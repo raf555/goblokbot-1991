@@ -1,8 +1,8 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const db = require("./../../../service/database");
+const db = require("@utils/database");
 const fs = require("fs");
-const { detiktostr } = require("./../../utility");
+const { detiktostr } = require("@bot/utility");
 
 const botwake = Date.now();
 const stat_color = 0;
