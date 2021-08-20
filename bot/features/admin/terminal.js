@@ -1,6 +1,8 @@
 const { promisify } = require("util");
 const exec = promisify(require("child_process").exec);
 
+/* VERY DANGEROUS FEATURE, USE WITH CAUTION */
+
 module.exports = {
   data: {
     name: "Terminal",
@@ -11,6 +13,10 @@ module.exports = {
     ALIASES: []
   },
   run: async (parsed, event, bot) => {
+    if (event.source.userId !== process.env.admin_id) {
+      throw new Error("Admin only");
+    }
+
     let cmd = parsed.arg;
     const { stdout, stderr } = await exec(cmd);
     return {
