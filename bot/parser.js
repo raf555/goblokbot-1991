@@ -11,7 +11,7 @@ module.exports = {
 };
 
 function parse(message, caller) {
-  message = message.trim();
+  message = message.trim().replace(/(?:\r\n|\r|\n)/g, " ");
 
   let splitted = message.split(" ");
 
@@ -27,8 +27,9 @@ function parse(message, caller) {
   } else {
     let prefix = firstword.charAt(0);
     if (prefix === caller.shortcut || caller.custom.shortcut[prefix]) {
-      command = firstword.substring(1);
-      _caller = caller.shortcut;
+      command =
+        firstword.length === 1 ? splitted.shift() : firstword.substring(1);
+      _caller = prefix;
       isShortcut = true;
     } else {
       command = firstword;
@@ -66,7 +67,7 @@ function parseArg(text) {
     let word = args[idx];
 
     // replace equal sign if any
-    if (/^[(-{1})(-{2})][a-zA-Z_]\w*[-\w]*=/.test(word)) {
+    if (/^-{1}[a-zA-Z_]\w*[-\w]*=/.test(word)) {
       let splt = [
         word.substring(0, word.indexOf("=")),
         word.substring(word.indexOf("=") + 1)
@@ -81,24 +82,22 @@ function parseArg(text) {
 
     if (word.match(argsregex1)) {
       let custombracket = out.b;
+      let usecustbracket = false;
       if (custombracket) {
         let cust = getcustbracket(custombracket);
         let regex = new RegExp(
           `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\\n|\\r|\\t)*?)\\${cust[1]}`
         );
         if (text.match(regex)) {
+          usecustbracket = true;
           let thearg = argsregex1.exec(word);
           let theval = regex.exec(text);
           out[thearg[1]] = theval[1]; // tolowercase
           text = text.replace(theval[0], " removed");
           args = parseArgsStringToArgv(text);
-        } else {
-          out[word.replace("-", "")] = args[idx + 1] // tolowercase
-            ? args[idx + 1].replace(/\\(?!\\|\})/g, "")
-            : null;
-          idx++;
         }
-      } else {
+      }
+      if (!usecustbracket) {
         out[word.replace("-", "")] = args[idx + 1] // tolowercase
           ? args[idx + 1].replace(/\\(?!\\|\})/g, "")
           : null;
