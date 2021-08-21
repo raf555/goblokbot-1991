@@ -22,8 +22,31 @@ module.exports = {
   dateTodate,
   uploadImgFromQ,
   saveUnsend,
-  getContentFromEvent
+  getContentFromEvent,
+  validateSource
 };
+
+function validateSource(event) {
+  return new Promise((resolve, reject) => {
+    
+    if (
+      event.source.roomId ||
+      (event.source.groupId && event.source.groupId !== process.env.group_id)
+    ) {
+      reject(leave(event).then(() => null));
+      return;
+    }
+    
+    if (!event.source.groupId) {
+      if (event.source.userId && !isMember(event.source.userId)) {
+        reject(null);
+        return;
+      }
+    }
+
+    resolve();
+  });
+}
 
 function leave(event) {
   if (event.source.groupId) {

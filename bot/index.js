@@ -6,9 +6,8 @@ const {
   log,
   saveImage,
   saveUnsend,
-  isMember,
-  leave,
-  uploadImgFromQ
+  uploadImgFromQ,
+  validateSource
 } = require("./utility");
 
 module.exports = {
@@ -19,34 +18,26 @@ function handleEvent(event) {
   //event.timestamp = Date.now();
 
   // limit to grup only and member
-  if (event.source.roomId) {
-    return leave(event).then(() => null);
-  }
-  if (event.source.groupId && event.source.groupId !== process.env.group_id) {
-    return leave(event).then(() => null);
-  }
-  if (!event.source.groupId) {
-    if (event.source.userId && !isMember(event.source.userId)) {
-      return null;
-    }
-  }
+  return validateSource(event)
+    .then(() => {
+      // log the event
+      log(event);
 
-  // log the event
-  log(event);
-
-  // handle event
-  switch (event.type) {
-    case "message":
-      return handleMessageEvent(event);
-    case "unsend":
-      return handleUnsendEvent(event);
-    case "postback":
-      return handlePostbackEvent(event);
-    case "join":
-      return handleJoinEvent(event);
-    default:
-      return null;
-  }
+      // handle event
+      switch (event.type) {
+        case "message":
+          return handleMessageEvent(event);
+        case "unsend":
+          return handleUnsendEvent(event);
+        case "postback":
+          return handlePostbackEvent(event);
+        case "join":
+          return handleJoinEvent(event);
+        default:
+          return null;
+      }
+    })
+    .catch(e => e);
 
   //return client.replyMessage(event.replyToken, message.text("tes"));
 }
@@ -96,9 +87,9 @@ function handleUnsendEvent(event) {
 }
 
 function handleJoinEvent(event) {
-  if (event.source.roomId || event.source.groupId !== process.env.group_id) {
-    return leave(event).then(() => null);
-  }
+  return validateSource(event)
+    .then(() => ({}))
+    .catch(e => e);
 }
 
 function handleReplyErr(e, event) {

@@ -1,4 +1,4 @@
-const db = require("./../../service/database");
+const db = require("@utils/database");
 
 module.exports = function(parsed, event, bot) {
   let msg = parsed.fullMsg;
