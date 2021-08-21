@@ -1,13 +1,7 @@
 // const stringSimilarity = require("string-similarity");
 const db = require("@utils/database");
 const { cekban, isAdmin, getContentFromEvent } = require("./utility");
-const {
-  parse,
-  buildFromParsed,
-  buildArgs,
-  removeParserArgs,
-  restoreParserArgs
-} = require("./parser");
+const { parse, removeParserArgs, restoreParserArgs } = require("./parser");
 const regexbasedfeature = require("./features/regex");
 
 module.exports = {
@@ -31,13 +25,14 @@ function execMulti(text, event) {
 
   let buildcaller = constructcaller();
   let cmdreg = "(\\w+[-\\w]*)";
+  let commandregex = new RegExp(
+    `${buildcaller.normal}\\s(${cmdreg}|!)|^${buildcaller.shortcut}\\s?(${cmdreg}|!)|${cmdreg}`
+  );
 
   let oh = [];
   for (let i = 0; i < split.length; i++) {
     let split2 = split[i].split(/\s?;;\s?/);
-    let word = new RegExp(
-      `${buildcaller.normal}\\s(${cmdreg}|!)|^${buildcaller.shortcut}\\s?(${cmdreg}|!)|${cmdreg}`
-    ).exec(split[i])[0];
+    let word = commandregex.exec(split[i])[0];
     split2 = split2.join(` ; ${word} `).split(" ; ");
     oh = oh.concat(split2);
   }
