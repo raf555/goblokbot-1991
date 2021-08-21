@@ -55,8 +55,12 @@ function parse(message, caller) {
 }
 
 function parseArg(text) {
-  let argsregex1 = new RegExp(`^-{1}([a-zA-Z_]\\w*[-\\w]*)`);
-  let argsregex2 = new RegExp(`^-{2}([a-zA-Z_]\\w*[-\\w]*)`);
+  let args1format = `^-{1}([a-zA-Z_]\\w*[-\\w]*)`;
+  let args2format = `^-{2}([a-zA-Z_]\\w*[-\\w]*)`;
+
+  let args1regex = new RegExp(args1format);
+  let args2regex = new RegExp(args2format);
+  let args1eqregex = new RegExp(args1format + "=");
 
   let args = parseArgsStringToArgv(text);
   let out = {};
@@ -67,7 +71,7 @@ function parseArg(text) {
     let word = args[idx];
 
     // replace equal sign if any
-    if (/^-{1}[a-zA-Z_]\w*[-\w]*=/.test(word)) {
+    if (args1eqregex.test(word)) {
       let splt = [
         word.substring(0, word.indexOf("=")),
         word.substring(word.indexOf("=") + 1)
@@ -80,7 +84,7 @@ function parseArg(text) {
       continue;
     }
 
-    if (word.match(argsregex1)) {
+    if (args1regex.test(word)) {
       let custombracket = out.b;
       let usecustbracket = false;
       if (custombracket) {
@@ -88,9 +92,9 @@ function parseArg(text) {
         let regex = new RegExp(
           `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\\n|\\r|\\t)*?)\\${cust[1]}`
         );
-        if (text.match(regex)) {
+        if (regex.test(text)) {
           usecustbracket = true;
-          let thearg = argsregex1.exec(word);
+          let thearg = args1regex.exec(word);
           let theval = regex.exec(text);
           out[thearg[1]] = theval[1]; // tolowercase
           text = text.replace(theval[0], " removed");
@@ -103,7 +107,7 @@ function parseArg(text) {
           : null;
         idx++;
       }
-    } else if (word.match(argsregex2)) {
+    } else if (args2regex.test(word)) {
       out[word.replace("--", "")] = true; // tolowercase
     } else {
       arg.push(word);
