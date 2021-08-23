@@ -48,20 +48,20 @@ function execMulti(text, event) {
   }
 
   let executedpromise = split.map(text =>
-    execMessage(text, event)
-      .then(reply => reply)
-      .catch(e => {
-        console.error(e);
-        let out = `Command Error -> ${text} \n\n${e.name}: ${e.message}`;
-        return { type: "text", text: out, nosave: true, latency: 1 };
-      })
+    execMessage(text, event).catch(e => {
+      console.error(e);
+      let out = `Command Error -> ${text} \n\n${e.name}: ${e.message}`;
+      return { type: "text", text: out, nosave: true, latency: 1 };
+    })
   );
 
   return Promise.all(executedpromise).then(res => {
     let executed = [];
     let nullc = 0;
 
-    res.forEach((reply, i) => {
+    for (let i = 0; i < res.length; i++) {
+      let reply = res[i];
+
       if (reply) {
         if (!Array.isArray(reply)) {
           reply = [reply];
@@ -76,7 +76,8 @@ function execMulti(text, event) {
         ];
       }
       executed.push(reply);
-    });
+    }
+
     return executed.length === 0 || nullc === executed.length
       ? null
       : [].concat.apply([], executed).slice(0, 5);

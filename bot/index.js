@@ -61,8 +61,8 @@ function handleTextMessage(event) {
   let message = event.message;
   return command
     .execMultiple(message.text, event)
-    .then(data => (data ? replyMessage(event, data) : null))
-    .catch(e => handleReplyErr(e, event));
+    .then(handleReply(event))
+    .catch(handleReplyErr(event));
 }
 
 function handleImgMessage(event) {
@@ -70,15 +70,15 @@ function handleImgMessage(event) {
   saveImage(event);
   return command
     .execImage(event)
-    .then(reply => (reply ? replyMessage(event, reply) : null))
-    .catch(e => handleReplyErr(e, event));
+    .then(handleReply(event))
+    .catch(handleReplyErr(event));
 }
 
 function handlePostbackEvent(event) {
   return postback
     .exec(event)
-    .then(reply => (reply ? replyMessage(event, reply) : null))
-    .catch(e => handleReplyErr(e, event));
+    .then(handleReply(event))
+    .catch(handleReplyErr(event));
 }
 
 function handleUnsendEvent(event) {
@@ -92,15 +92,23 @@ function handleJoinEvent(event) {
     .catch(e => e);
 }
 
-function handleReplyErr(e, event) {
-  console.error(e);
-  /*let out = "Error occured, please tag Admin\n\n";
+function handleReply(event) {
+  return function(reply) {
+    return reply ? replyMessage(event, reply) : null;
+  };
+}
+
+function handleReplyErr(event) {
+  return function(e) {
+    console.error(e);
+    /*let out = "Error occured, please tag Admin\n\n";
   out += "Error: " + e.name + " - " + e.message;*/
-  let out = `${e.name}: ${e.message}`;
-  return replyMessage(event, {
-    type: "text",
-    text: out,
-    nosave: true,
-    latency: 1
-  });
+    let out = `${e.name}: ${e.message}`;
+    return replyMessage(event, {
+      type: "text",
+      text: out,
+      nosave: true,
+      latency: 1
+    });
+  };
 }

@@ -18,14 +18,14 @@ module.exports = {
 
 function shortcut(parsed, event, bot) {
   let reg = parsed.args.reg;
-  let id = parsed.args.as || parsed.args.id || parsed.arg;
+  let id = parsed.arg;
   let info = parsed.args.info;
   let unreg = parsed.args.unreg;
 
   let { userId } = event.source;
 
   if (info) {
-    return infocmd(userId);
+    return infocmd(userId, info);
   }
 
   if (unreg) {
@@ -39,10 +39,16 @@ function shortcut(parsed, event, bot) {
   return execute(id, userId, event, parsed.args, bot.function.execMultiple);
 }
 
-function infocmd(uid) {
+function infocmd(uid, info) {
   let sdb = db.open("db/shortcutcmd.json");
 
-  let cmd = sdb.get(uid);
+  let q = uid;
+
+  if (info && typeof info === "string") {
+    q += "." + info.replace(/\./g, "\\.");
+  }
+
+  let cmd = sdb.get(q);
 
   return {
     type: "text",

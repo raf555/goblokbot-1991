@@ -12,8 +12,9 @@ module.exports = {
 };
 
 function apkh(parsed, event, bot) {
-  if (!parsed.arg) return null;
-  if (sumChars(hash(parsed.arg + " ")) % 2 == 0) {
+  let arg = parsed.arg.toLowerCase();
+  if (!arg) return null;
+  if (sumChars(hash(arg + " ")) % 2 == 0) {
     var apakah = "tidak";
   } else {
     var apakah = "iya";

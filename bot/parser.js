@@ -72,10 +72,8 @@ function parseArg(text) {
 
     // replace equal sign if any
     if (args1eqregex.test(word)) {
-      let splt = [
-        word.substring(0, word.indexOf("=")),
-        word.substring(word.indexOf("=") + 1)
-      ];
+      let eq_i = word.indexOf("=");
+      let splt = [word.substring(0, eq_i), word.substring(eq_i + 1)];
       let join = splt.join(" ");
       splt = parseArgsStringToArgv(join);
       args[idx] = splt[0];
