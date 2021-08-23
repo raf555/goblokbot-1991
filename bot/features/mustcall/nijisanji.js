@@ -881,9 +881,11 @@ function getviddetail(id) {
     )
     .then(res => {
       let data = res.data.items[0].snippet;
+      let thumb = data.thumbnails;
+      let url = (thumb.high || thumb.standard || thumb.default).url;
       return {
         title: data.title,
-        thumb: data.thumbnails.standard.url || data.thumbnails.default.url,
+        thumb: url,
         url: "https://youtu.be/" + id
       };
     });

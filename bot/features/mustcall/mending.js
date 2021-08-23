@@ -10,8 +10,9 @@ module.exports = {
 };
 
 function mending(parsed, event, bot) {
-  if (!parsed.arg) return null;
-  var mending = parsed.arg
+  let arg = parsed.arg.toLowerCase();
+  if (!arg) return null;
+  var mending = arg
     .split(/\s(apa|atau)\s/)
     .sort()
     .reverse();
@@ -26,7 +27,7 @@ function mending(parsed, event, bot) {
   }
   return {
     type: "flex",
-    altText: "apkh",
+    altText: "mending",
     contents: {
       type: "bubble",
       size: "micro",

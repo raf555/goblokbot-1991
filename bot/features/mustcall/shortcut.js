@@ -18,7 +18,7 @@ module.exports = {
 
 function shortcut(parsed, event, bot) {
   let reg = parsed.args.reg;
-  let id = parsed.args.as || parsed.args.id || parsed.arg;
+  let id = parsed.arg;
   let info = parsed.args.info;
   let unreg = parsed.args.unreg;
 
