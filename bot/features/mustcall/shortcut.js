@@ -25,7 +25,7 @@ function shortcut(parsed, event, bot) {
   let { userId } = event.source;
 
   if (info) {
-    return infocmd(userId);
+    return infocmd(userId, info);
   }
 
   if (unreg) {
@@ -39,10 +39,16 @@ function shortcut(parsed, event, bot) {
   return execute(id, userId, event, parsed.args, bot.function.execMultiple);
 }
 
-function infocmd(uid) {
+function infocmd(uid, info) {
   let sdb = db.open("db/shortcutcmd.json");
 
-  let cmd = sdb.get(uid);
+  let q = uid;
+
+  if (info && typeof info === "string") {
+    q += "." + info.replace(/\./g, "\\.");
+  }
+
+  let cmd = sdb.get(q);
 
   return {
     type: "text",
