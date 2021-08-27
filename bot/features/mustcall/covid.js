@@ -114,7 +114,6 @@ async function copid(parsed, event, bot) {
     });
   }
   let out = {
-    cmd: "covid",
     type: "flex",
     altText: "Corona Update: " + cname,
     sender: {

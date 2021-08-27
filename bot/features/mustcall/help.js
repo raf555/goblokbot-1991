@@ -9,8 +9,9 @@ module.exports = {
   run: help
 };
 
-function help(parsed, bot, event) {
-  let data = require("./../")(true);
+function help(parsed, event, bot) {
+  //let data = require("./../")(true);
+  let { data } = bot;
 
   let q = parsed.arg.toLowerCase();
 
@@ -20,12 +21,12 @@ function help(parsed, bot, event) {
 
   let names = []
     .concat(Object.keys(data.mustcall))
-    .map(name => {
-      if (data.mustcall[name].ADMIN) {
-        name += " (admin)";
-      }
-      return name;
-    })
+    //.map(name => {
+    // if (data.mustcall[name].ADMIN) {
+    //  name += " (admin)";
+    //}
+    //  return "!" + name;
+    //})
     .concat(Object.keys(data.mustntcall));
 
   return {
@@ -49,20 +50,21 @@ function helpcmd(q, data) {
   let mustcall = Object.keys(data.mustcall);
   let mustntcall = Object.keys(data.mustntcall);
 
-  let cmddata =
-    mustntcall.indexOf(q) !== -1 ? data.mustntcall[q] : data.mustcall[q];
+  let k = mustntcall.indexOf(q) !== -1 ? "mustntcall" : "mustcall";
+
+  let cmddata = data[k][q];
 
   return {
     type: "flex",
     altText: "help - " + q,
     contents: {
       type: "carousel",
-      contents: [helpjson(cmddata), legendjson()]
+      contents: [helpjson(cmddata, k === "mustcall"), legendjson()]
     }
   };
 }
 
-function helpjson(data) {
+function helpjson(data, useprefix) {
   let {
     name,
     description: desc,
@@ -110,6 +112,11 @@ function helpjson(data) {
               text: "Admin Only: " + (admin || "false"),
               size: "sm"
             },
+            /*{
+              type: "text",
+              text: "Use @bot / prefix: " + (useprefix || "false"),
+              size: "sm"
+            },*/
             {
               type: "separator",
               margin: "sm"
@@ -209,6 +216,12 @@ function legendjson() {
           type: "box",
           layout: "vertical",
           contents: [
+            {
+              type: "text",
+              text: "() = comment",
+              wrap: true,
+              size: "sm"
+            },
             {
               type: "text",
               text: "[] = dari pilihan, harus ada",

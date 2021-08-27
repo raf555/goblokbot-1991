@@ -13,7 +13,10 @@ module.exports = {
 let ccc = {};
 
 const bot = require("./features")();
-Object.assign(bot, { function: module.exports }); // assign execute functions
+Object.assign(bot, {
+  function: module.exports,
+  data: require("./features")(true)
+}); // assign execute functions
 
 let setting = db.open("bot/setting.json").get();
 const keywords = Object.keys(bot.mustcall);
@@ -174,27 +177,48 @@ async function execMessage(text, event) {
 
   if (reply) {
     if (!Array.isArray(reply)) {
-      if (!reply.cmd && reply.cmd !== "") {
-        reply.cmd = cmd;
-      }
-      reply.realtime = Date.now() - starttime;
-      if (!reply.parsed) reply.parsed = parsed;
-    } else {
-      reply = reply.map(rdata => {
-        let out = {};
-        if (!rdata.cmd && rdata.cmd !== "") {
-          out.cmd = cmd;
-        }
-        out.realtime = Date.now() - starttime;
-        if (!rdata.parsed) out.parsed = parsed;
-        return Object.assign(rdata, out);
-      });
+      reply = [reply];
     }
 
-    return Array.isArray(reply) ? reply : [reply];
+    let ra = replaceAlias(cmd);
+    let alias = ra.alias;
+    cmd = ra.cmd;
+
+    reply = reply.map(rdata => {
+      let out = {};
+      if (!rdata.cmd && rdata.cmd !== "") {
+        out.cmd = cmd;
+      }
+      if (!rdata.alias && alias) {
+        out.alias = alias;
+      }
+      out.realtime = Date.now() - starttime;
+      if (!rdata.parsed) out.parsed = parsed;
+      return Object.assign(rdata, out);
+    });
+
+    return reply;
   }
 
   return null;
+}
+
+function replaceAlias(cmd) {
+  let data = bot.data;
+  let mustcall = Object.keys(data.mustcall);
+  let mustntcall = Object.keys(data.mustntcall);
+  let k = mustntcall.indexOf(cmd) !== -1 ? "mustntcall" : "mustcall";
+
+  let outcmd = cmd;
+  let outalias = "";
+  let thedata = data[k][cmd];
+
+  if (thedata && thedata.CMD !== cmd) {
+    outcmd = thedata.CMD;
+    outalias = cmd;
+  }
+
+  return { cmd: outcmd, alias: outalias };
 }
 
 function executeCommand() {

@@ -51,13 +51,17 @@ function search(urls, q) {
 }
 
 async function getlink() {
-  let cn = await get_event_data(
-    "https://gamepress.gg/arknights/other/cn-event-and-campaign-list"
-  );
+  let req = await Promise.all([
+    get_event_data(
+      "https://gamepress.gg/arknights/other/cn-event-and-campaign-list"
+    ),
+    get_event_data(
+      "https://gamepress.gg/arknights/other/event-and-campaign-list"
+    )
+  ]);
 
-  let en = await get_event_data(
-    "https://gamepress.gg/arknights/other/event-and-campaign-list"
-  );
+  let cn = req[0];
+  let en = req[1];
 
   return en
     .map(_ => ({ name: _.name, url: _.url }))
