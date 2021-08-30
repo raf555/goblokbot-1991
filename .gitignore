@@ -7,13 +7,10 @@ node_modules
 # db
 db/
 
-# etc
-contributing.md
-
 # big assets
 bot/assets/kbbi.json
 
 # misc, personal stuff
-web/misc.js
+# web/misc.js
 # service/cron/
 # bot/features/admin/1.js

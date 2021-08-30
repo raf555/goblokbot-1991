@@ -29,16 +29,16 @@ module.exports = {
 function validateSource(event) {
   return new Promise((resolve, reject) => {
     if (
-      event.source.roomId ||
+      (event.source.roomId && event.source.roomId !== process.env.room_id) ||
       (event.source.groupId && event.source.groupId !== process.env.group_id)
     ) {
-      reject(leave(event).then(() => null));
+      reject("invalidgroup");
       return;
     }
 
     if (!event.source.groupId) {
       if (event.source.userId && !isMember(event.source.userId)) {
-        reject(null);
+        reject("invaliduser");
         return;
       }
     }
@@ -195,7 +195,7 @@ function replyMessage(event, msgobj) {
 
         let id = Object.keys(cmdhist.get()).length + 1;
 
-        parsed.command = data_[i].cmd
+        parsed.command = data_[i].cmd;
         parsed.id = event.source.userId;
         parsed.ts = Date.now();
         parsed.lat = latency;
@@ -371,27 +371,44 @@ function angkaAcak(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getUserProfile(event) {
+  if (event.source.groupId) {
+    return client.getGroupMemberProfile(
+      event.source.groupId,
+      event.source.userId
+    );
+  }
+
+  if (event.source.roomId) {
+    return client.getRoomMemberProfile(
+      event.source.roomId,
+      event.source.userId
+    );
+  }
+
+  return client.getProfile(event.source.userId);
+}
+
 function log(event) {
-  let place = event.source.groupId
-    ? client.getGroupMemberProfile(event.source.groupId, event.source.userId)
-    : client.getProfile(event.source.userId);
+  let place = getUserProfile(event);
+  let condition = !!(event.source.groupId || event.source.roomId);
 
   place.then(profile => {
     // save the id and user
-    if (event.source.groupId) {
-      const debe = db.open("db/user.json");
-      debe.set(hash(event.source.userId) + ".name", profile.displayName);
-      debe.set(
-        hash(event.source.userId) + ".image",
-        profile.pictureUrl ||
-          "https://cdn.glitch.com/6fe2de81-e459-4790-8106-a0efd4b2192d%2Fno-image-profile.png?v=1622879440349"
-      );
-      if (!debe.get(hash(event.source.userId) + ".id")) {
-        debe.set(hash(event.source.userId) + ".id", event.source.userId);
-      }
-      debe.save();
+    //if (condition) {
+    const debe = db.open("db/user.json");
+    debe.set(hash(event.source.userId) + ".name", profile.displayName);
+    debe.set(
+      hash(event.source.userId) + ".image",
+      profile.pictureUrl ||
+        "https://cdn.glitch.com/6fe2de81-e459-4790-8106-a0efd4b2192d%2Fno-image-profile.png?v=1622879440349"
+    );
+    if (!debe.get(hash(event.source.userId) + ".id")) {
+      debe.set(hash(event.source.userId) + ".id", event.source.userId);
     }
-    if (event.message && event.source.groupId) {
+    debe.save();
+    //}
+    if (event.message && condition) {
       // log if messages come from group only
       console.log(
         event.source.userId +
