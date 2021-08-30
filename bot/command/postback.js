@@ -1,5 +1,5 @@
 const fs = require("fs");
-const features = require("./features/postback")();
+const features = require("@bot/features/postback")();
 const keywords = Object.keys(features);
 
 module.exports = {
