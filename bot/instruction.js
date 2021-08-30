@@ -55,18 +55,27 @@ async function init(event, src, slug) {
   const db = require("@utils/database");
   const fs = require("fs");
   const { execSync } = require("child_process");
+  const { env } = process;
 
   /* append field in .env */
   if (fs.existsSync(".env")) {
     let r = fs.readFileSync(".env");
     let t = r[r.length - 1] !== "\n" ? "\n" : "";
-    t += "admin_id=" + event.source.userId + "\n";
-    if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
+    if (!env["admin_id"]) t += "admin_id=" + event.source.userId + "\n";
+    if (slug !== "admin_id" && !env[slug] && src) t += slug + "=" + src + "\n";
     fs.appendFileSync(".env", t);
   }
-  
+
   /* create database folder */
-  execSync("mkdir db db/bak db/chat");
+  if (!fs.existsSync("db/")) {
+    execSync("mkdir db");
+    if (!fs.existsSync("db/bak")) {
+      execSync("mkdir db/bak");
+    }
+    if (!fs.existsSync("db/chat")) {
+      execSync("mkdir db/chat");
+    }
+  }
 
   /* add admin to user db and admin db */
   let admin = db.open("db/admin.json");
