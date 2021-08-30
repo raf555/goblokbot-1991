@@ -32,11 +32,11 @@ newsapikey= // api key buat news API
 opmkey= // secret key buat opm webhook (update chapter opm)
 ```
 
-4. Rename `.env.example` jadi `.env`. Bikin folder `db`, `db/bak`, dan `db/chat`.
+4. Rename `.env.example` jadi `.env`.
 
 5. Kalo bukan deploy di Glitch, jalanin `npm install` dan `npm start`. (kalo di Glitch udah otomatis, step ini bisa skip).
 
-6. Kalo udah, coba add bot dan kirim pesan `!register`, Bot akan mendaftarkan id lu. (kalo kirim di grup/room bakal daftarin grup/roomnya termasuk lu)
+6. Kalo udah, coba add bot dan kirim pesan `!register`, Bot akan membuat folder `db` dan sebagian isinya juga mendaftarkan id lu. (kalo kirim di grup/room bakal daftarin grup/roomnya termasuk lu)
 
 7. Done.
   
