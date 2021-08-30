@@ -22,7 +22,7 @@ function parse(message, caller) {
   let firstword = splitted.shift().toLowerCase();
 
   if (firstword === caller.normal || caller.custom.normal[firstword]) {
-    command = splitted.shift();
+    command = splitted.shift() || "";
     _caller = firstword;
   } else {
     let prefix = firstword.charAt(0);

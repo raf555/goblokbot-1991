@@ -56,10 +56,13 @@ async function init(event, src, slug) {
   const fs = require("fs");
   const { execSync } = require("child_process");
 
-  let t = "";
-  t += "admin_id=" + event.source.userId + "\n";
-  if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
-  fs.appendFileSync(".env", t);
+  if (fs.existsSync(".env")) {
+    let r = fs.readFileSync(".env");
+    let t = r[r.length - 1] !== "\n" ? "\n" : "";
+    t += "admin_id=" + event.source.userId + "\n";
+    if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
+    fs.appendFileSync(".env", t);
+  }
 
   let admin = db.open("db/admin.json");
   admin.set(hash(event.source.userId), 1);
