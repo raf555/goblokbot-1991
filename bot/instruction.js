@@ -1,53 +1,47 @@
-const { replyMessage, leave } = require("./utility");
+const { log, replyMessage, leave, hash } = require("./utility");
 
 module.exports = event => {
   return function(e) {
-    
-    // WIP
-    
-    /* 
     let eventtype = event.type;
-    let help =
-      "To use the bot, please read the instruction at https://github.com/raf555/goblokbot-1991/blob/main/CONTRIBUTING.md";
-
-    if (eventtype === "message") {
-      let { type } = event.message;
-      if (type === "text") {
-        let text = event.message.text.toLowerCase();
-        if (text[0] === "!") {
-          text = text.substring(1);
-          let out;
-          if (text === "help") {
-            out = help;
-          } else if (text === "register") {
-          } else {
-            out =
-              "User or Group/Room is invalid, please send *!help* for init instruction";
-          }
-          return replyMessage(event, { type: "text", text: out });
+    if (
+      !process.env.admin_id &&
+      !(process.env.admin_id && (process.env.group_id || process.env.room_id))
+    ) {
+      let slug;
+      if (event.source.groupId) {
+        slug = "group_id";
+      } else {
+        if (event.source.roomId) {
+          slug = "room_id";
+        } else {
+          slug = "admin_id;";
         }
       }
-    }
+      let src = event.source.groupId || event.source.roomId;
+      if (event.message && event.message.text) {
+        if (event.message.text.toLowerCase() === "!register") {
+          return init(event, src, slug)
+            .then(() => {
+              return replyMessage(event, {
+                type: "text",
+                text:
+                  "Registered! Bot will be restarted within 1 second to take effect.\n\n" +
+                  "you can send message `tes` for several times to test the bot (it will reply your message if the registration is completed)."
+              });
+            })
+            .catch(e => {
+              console.error(e);
+              return replyMessage(event, {
+                type: "text",
+                text:
+                  "Something wrong with the registration, please check the log."
+              });
+            });
+        }
+      }
 
-    if (eventtype === "follow") {
-      return replyMessage(event, {
-        type: "text",
-        text:
-          "Hi, thank you for using this bot. This bot is designed to only assist one group/room and its member only. \n\n" +
-          help
-      });
+      return null;
     }
-
-    if (eventtype === "join") {
-      return replyMessage(event, {
-        type: "text",
-        text: "Bot admin please add and send me *!help* for instruction"
-      })
-        .then(() => {})
-        .catch(() => {})
-        .then(() => leave(event).then(() => null));
-    }
-    */
 
     if (e === "invalidgroup") {
       return leave(event).then(() => null);
@@ -56,3 +50,23 @@ module.exports = event => {
     return null;
   };
 };
+
+async function init(event, src, slug) {
+  const db = require("@utils/database");
+  const fs = require("fs");
+  const { execSync } = require("child_process");
+
+  let t = "";
+  t += "admin_id=" + event.source.userId + "\n";
+  if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
+  fs.appendFileSync(".env", t);
+
+  let admin = db.open("db/admin.json");
+  admin.set(hash(event.source.userId), 1);
+  admin.save();
+  await log(event);
+
+  setTimeout(execSync, 1000, "refresh");
+
+  return true;
+}
