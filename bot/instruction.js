@@ -26,7 +26,7 @@ module.exports = event => {
                 type: "text",
                 text:
                   "Registered! Bot will be restarted within 1 second to take effect.\n\n" +
-                  "you can send message `tes` for several times to test the bot (it will reply your message if the registration is completed)."
+                  "You can send message `tes` for several times to test the bot (it will reply your message if the registration is completed)."
               });
             })
             .catch(e => {
