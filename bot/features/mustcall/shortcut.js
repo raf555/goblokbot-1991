@@ -45,7 +45,7 @@ function infocmd(uid, info) {
   let q = uid;
 
   if (info && typeof info === "string") {
-    q += "." + info.replace(/\./g, "\\.");
+    q += "." + info;
   }
 
   let cmd = sdb.get(q);
