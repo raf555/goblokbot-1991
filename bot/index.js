@@ -40,9 +40,13 @@ function handleEvent(event) {
           return null;
       }
     })
-    .catch(e => e);
+    .catch(handleInvalidSource(event));
 
   //return client.replyMessage(event.replyToken, message.text("tes"));
+}
+
+function handleInvalidSource(event) {
+  return require("./instruction.js")(event);
 }
 
 function handleMessageEvent(event) {
@@ -92,7 +96,12 @@ function handleUnsendEvent(event) {
 function handleJoinEvent(event) {
   return validateSource(event)
     .then(() => ({}))
-    .catch(e => e);
+    .catch(e => {
+      if (e === "invalidgroup") {
+        return leave(event).then(() => null);
+      }
+      return null;
+    });
 }
 
 function handleReply(event) {
