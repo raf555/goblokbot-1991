@@ -28,7 +28,6 @@ module.exports = {
 
 function validateSource(event) {
   return new Promise((resolve, reject) => {
-    
     if (
       event.source.roomId ||
       (event.source.groupId && event.source.groupId !== process.env.group_id)
@@ -36,7 +35,7 @@ function validateSource(event) {
       reject(leave(event).then(() => null));
       return;
     }
-    
+
     if (!event.source.groupId) {
       if (event.source.userId && !isMember(event.source.userId)) {
         reject(null);
@@ -82,6 +81,7 @@ function replyMessage(event, msgobj) {
   for (let i = 0; i < msg.length; i++) {
     data_.push({
       cmd: msg[i].cmd,
+      alias: msg[i].alias,
       parsed: msg[i].parsed,
       latency: msg[i].latency,
       cmdtype: msg[i].cmdtype,
@@ -90,6 +90,7 @@ function replyMessage(event, msgobj) {
     });
 
     delete msg[i]["cmd"];
+    delete msg[i]["alias"];
     delete msg[i]["parsed"];
     delete msg[i]["latency"];
     delete msg[i]["cmdtype"];
@@ -100,8 +101,6 @@ function replyMessage(event, msgobj) {
   let ftr = data_[0].cmd;
   let parsed = data_[0].parsed;
   let lat = data_[0].latency;
-
-  let file = db.open(`db/latency.json`);
   let latency = lat || Date.now() - event.timestamp;
 
   let reply = (() => {
@@ -147,12 +146,15 @@ function replyMessage(event, msgobj) {
   Promise.resolve(reply).then(res => {
     if (!res) return;
 
+    let file = db.open(`db/latency.json`);
+    let cmdhist = db.open("db/cmdhistory.json");
+
     /* write latency */
     let writelat = (() => {
       for (let i = 0; i < data_.length; i++) {
         if (data_[i].nosave) continue;
 
-        ftr = data_[i].cmd;
+        ftr = data_[i].alias || data_[i].cmd;
         lat = data_[i].latency;
         latency = lat || Date.now() - event.timestamp;
 
@@ -185,22 +187,22 @@ function replyMessage(event, msgobj) {
 
     /* save cmd */
     let savecmd = (() => {
-      let cmdhist = db.open("db/cmdhistory.json");
       for (let i = 0; i < data_.length; i++) {
         if (data_[i].nosave) continue;
 
         parsed = data_[i].parsed;
-        if (!parsed) continue;
+        if (!parsed || !data_[i].cmd) continue;
 
         let id = Object.keys(cmdhist.get()).length + 1;
 
+        parsed.command = data_[i].cmd
         parsed.id = event.source.userId;
         parsed.ts = Date.now();
         parsed.lat = latency;
         parsed.realtime = data_[i].realtime;
 
-        if (data_[i].cmd) {
-          parsed.alias = data_[i].cmd;
+        if (data_[i].alias) {
+          parsed.alias = data_[i].alias;
         }
 
         if (data_[i].cmdtype === "other") {

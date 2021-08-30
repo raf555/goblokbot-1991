@@ -1,5 +1,8 @@
-const command = require("./command");
-const postback = require("./postback");
+const {
+  text: textcmd,
+  image: imagecmd,
+  postback: postbackcmd
+} = require("./command");
 const {
   replyMessage,
   saveMessage,
@@ -59,7 +62,7 @@ function handleMessageEvent(event) {
 
 function handleTextMessage(event) {
   let message = event.message;
-  return command
+  return textcmd
     .execMultiple(message.text, event)
     .then(handleReply(event))
     .catch(handleReplyErr(event));
@@ -68,14 +71,14 @@ function handleTextMessage(event) {
 function handleImgMessage(event) {
   uploadImgFromQ(event);
   saveImage(event);
-  return command
+  return imagecmd
     .execImage(event)
     .then(handleReply(event))
     .catch(handleReplyErr(event));
 }
 
 function handlePostbackEvent(event) {
-  return postback
+  return postbackcmd
     .exec(event)
     .then(handleReply(event))
     .catch(handleReplyErr(event));

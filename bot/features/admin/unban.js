@@ -32,7 +32,7 @@ module.exports = {
         };
       }
     } else if (type == "pap") {
-      var bandb = db.open("features/banpap.json");
+      var bandb = db.open("db/banpap.json");
       out = "Kata pap ";
     }
     bandb.set(type == "user" ? userid : msg3.toLowerCase(), 0);

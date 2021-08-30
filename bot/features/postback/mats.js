@@ -151,7 +151,7 @@ function mats(data, event) {
     type: "flex",
     altText: "Arknights Material Info",
     contents: yyy,
-    cmd: "pb_arknek_mats"
+    alias: "pb_arknek_mats"
   };
 
   return Object.assign(echo, { nosave: true, cmd: "" });
