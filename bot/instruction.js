@@ -56,16 +56,25 @@ async function init(event, src, slug) {
   const fs = require("fs");
   const { execSync } = require("child_process");
 
-  let t = "";
-  t += "admin_id=" + event.source.userId + "\n";
-  if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
-  fs.appendFileSync(".env", t);
+  /* append field in .env */
+  if (fs.existsSync(".env")) {
+    let r = fs.readFileSync(".env");
+    let t = r[r.length - 1] !== "\n" ? "\n" : "";
+    t += "admin_id=" + event.source.userId + "\n";
+    if (slug !== "admin_id" && src) t += slug + "=" + src + "\n";
+    fs.appendFileSync(".env", t);
+  }
+  
+  /* create database folder */
+  execSync("mkdir db db/bak db/chat");
 
+  /* add admin to user db and admin db */
   let admin = db.open("db/admin.json");
   admin.set(hash(event.source.userId), 1);
   admin.save();
   await log(event);
 
+  /* restart the bot */
   setTimeout(execSync, 1000, "refresh");
 
   return true;
