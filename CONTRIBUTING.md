@@ -2,13 +2,16 @@
 Ada beberapa hal penting yang harus dicatet sebelum kontribusi atau pake bot ini sendiri
 
 1. SEMUA DATABASE yang dipake bot ini adalah **LOKAL**, jadi kalo tempat lu deploy kaga support database lokal (gabisa simpen state / ga support persistent storage)
-ya gabisa dipake, dbnya bakal kereset terus.
+unfortunately, gabisa dipake, dbnya bakal kereset terus.
 Saran w bisa dideploy di Glitch, tapi Glitch sering sleep programnya, bikin balesan jadi lemot.
 
     1.1. BOT INI DIDESAIN KHUSUS UNTUK BISA DIPAKE DI 1 GROUP / 1 ROOM / 1 ORANG AJA.
-    KALO LU PAKE BUAT DI GROUP / ROOM, ORANG-ORANG YANG NGECHAT DI SITU OTOMATIS TERDAFTAR SEBAGAI USER BOT INI DAN BISA PAKE. KALO GA, CUMA LU YANG BISA PAKE.
+    Contoh: ketika didaftarkan ke 1 grup/room, maka cuma bisa dipake di situ aja + membernya. Ketika didaftarin sendiri, maka cuma lu sendiri yang bisa pake.
 
 2. Setup OA line, bikin channel LINE Messaging API sama LINE Login di Provider yang sama. Ini liat google aja bisa. Jangan lupa register `https://web-lu.com/chat/callback` buat LINE Messaging API Webhook URL sama `https://web-lu.com/auth/callback` buat LINE Login Callback URL.
+
+### CATATAN: STEP DI BAWAH MENGASUMSIKAN LU DEPLOY DI GLITCH.COM
+- Kalo ngga, step ini berasumsi tempat deploy bisa baca .env, kalo ngga, bisa menyesuaikan.
 
 3. Edit file `.env.example` dan isi dengan field yang sesuai, kalo gatau / gakepake, isi "-" aja dulu.
 
