@@ -25,7 +25,8 @@ module.exports = {
         "stdout:\n" +
         JSON.stringify(stdout) +
         "\nstderr:\n" +
-        JSON.stringify(stderr)
+        JSON.stringify(stderr),
+      nosave: true
     };
   }
 };

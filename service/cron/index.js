@@ -5,7 +5,7 @@ module.exports = () => {
   console.log("Scheduled job has started");
 
   // report usage
-  cron.schedule("0 5 1 * *", report);
+  // cron.schedule("0 5 1 * *", report);
 
   // move db
   cron.schedule("1 5 1 * *", movedb);

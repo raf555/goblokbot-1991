@@ -154,7 +154,7 @@ function replyMessage(event, msgobj) {
       for (let i = 0; i < data_.length; i++) {
         if (data_[i].nosave) continue;
 
-        ftr = data_[i].alias || data_[i].cmd;
+        ftr = data_[i].cmd;
         lat = data_[i].latency;
         latency = lat || Date.now() - event.timestamp;
 
