@@ -8,7 +8,7 @@ const session_options = {
   secret: process.env.login_secret,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 24 * 3600 * 1000 }
+  cookie: { httpOnly: true, maxAge: 24 * 3600 * 1000 }
 };
 
 const login = new line_login({
