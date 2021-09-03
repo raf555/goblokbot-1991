@@ -8,7 +8,7 @@ app.post("/opm", async (req, res) => {
   console.log(data);
 
   if (data.type === "test") {
-    res.status(200).send(JSON.parse(JSON.stringify(data)));
+    res.status(200).json(data);
     return;
   }
 
@@ -26,6 +26,7 @@ app.post("/opm", async (req, res) => {
           let chapter = updated[i].chapter.toString();
           let thumb = updated[i].thumbnail;
           let burl = updated[i].url;
+          let pages = updated[i].pageLength;
           let bdate = new Date(updated[i].timestamp).toString();
           carousel.contents.push({
             type: "bubble",
@@ -50,6 +51,12 @@ app.post("/opm", async (req, res) => {
                   text: "OPM ONE Chapter - " + chapter,
                   weight: "bold",
                   size: "sm",
+                  wrap: true
+                },
+                {
+                  type: "text",
+                  text: pages + " pages.",
+                  size: "xxs",
                   wrap: true
                 },
                 {
@@ -82,6 +89,7 @@ app.post("/opm", async (req, res) => {
           let chapter = updated[i].chapter.toString();
           let thumb = updated[i].thumbnail;
           let burl = updated[i].url;
+          let pages = updated[i].pageLength;
           let bdate = new Date(updated[i].timestamp).toString();
           carousel.contents.push({
             type: "bubble",
@@ -113,6 +121,12 @@ app.post("/opm", async (req, res) => {
                 },
                 {
                   type: "text",
+                  text: pages + " pages.",
+                  size: "xxs",
+                  wrap: true
+                },
+                {
+                  type: "text",
                   text: dateTodate(convertTZ(new Date(bdate), "Asia/Jakarta")),
                   size: "xxs",
                   wrap: true
@@ -135,7 +149,7 @@ app.post("/opm", async (req, res) => {
       }
     }
   }
-  res.status(200).send(JSON.parse(JSON.stringify(data)));
+  res.status(200).json(data);
 });
 
 module.exports = app;

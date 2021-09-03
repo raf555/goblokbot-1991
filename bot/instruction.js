@@ -14,7 +14,7 @@ module.exports = event => {
         if (event.source.roomId) {
           slug = "room_id";
         } else {
-          slug = "admin_id;";
+          slug = "admin_id";
         }
       }
       let src = event.source.groupId || event.source.roomId;
