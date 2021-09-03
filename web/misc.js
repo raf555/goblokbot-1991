@@ -8,7 +8,7 @@ app.post("/opm", async (req, res) => {
   console.log(data);
 
   if (data.type === "test") {
-    res.status(200).send(JSON.parse(JSON.stringify(data)));
+    res.status(200).json(data);
     return;
   }
 
@@ -149,7 +149,7 @@ app.post("/opm", async (req, res) => {
       }
     }
   }
-  res.status(200).send(JSON.parse(JSON.stringify(data)));
+  res.status(200).json(data);
 });
 
 module.exports = app;
