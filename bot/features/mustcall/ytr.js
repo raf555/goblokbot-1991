@@ -8,6 +8,6 @@ module.exports = {
   },
   run: (parsed, event, bot) => {
     parsed.args.random = true;
-    return bot.mustcall.yt(parsed, event);
+    return bot.mustcall.yt(parsed, event, bot);
   }
 };

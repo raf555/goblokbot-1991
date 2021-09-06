@@ -13,24 +13,58 @@ module.exports = {
 };
 
 async function yt(parsed, event, bot) {
-  let random = parsed.args.random
+  let random = parsed.args.random;
+  let search = parsed.args.search;
   let txt = parsed.arg;
-  let max = 10;
-  let d = await ytsearcher.search(txt, { maxResults: random ? max : 1 });
+  let max = 12;
   let i = random ? angkaAcak(0, max - 1) : 0;
+
+  if (search && parsed.args.n) {
+    max = parseInt(parsed.args.n) % 12;
+    if (max === 0) max = 1;
+  }
+  let d = await ytsearcher.search(txt, {
+    maxResults: random || search ? max : 1
+  });
+
+  let out;
+  if (!search) {
+    out = makeytbubble(d.currentPage[i]);
+  } else {
+    out = {
+      type: "carousel",
+      contents: d.currentPage.map(makeytbubble)
+    };
+  }
+
+  return {
+    type: "flex",
+    altText: "Youtube Search",
+    contents: out,
+    sender: {
+      name: "Youtube",
+      iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
+    }
+  };
+}
+
+function makeytbubble(data) {
+  let thumb = data.thumbnails;
+  let thumburl = (thumb.high || thumb.standard || thumb.default).url;
+
   let bbl = {
     type: "bubble",
     size: "kilo",
     hero: {
       type: "image",
-      url: d.currentPage[i].thumbnails.high.url,
+      url: thumburl,
       size: "full",
       aspectMode: "cover",
       aspectRatio: "16:9",
       action: {
         type: "uri",
         label: "action",
-        uri: d.currentPage[i].url
+        uri: data.url
       }
     },
     body: {
@@ -39,13 +73,13 @@ async function yt(parsed, event, bot) {
       contents: [
         {
           type: "text",
-          text: d.currentPage[i].title,
+          text: data.title,
           weight: "bold",
           size: "xs",
           action: {
             type: "uri",
             label: "action",
-            uri: d.currentPage[i].url
+            uri: data.url
           }
         },
         {
@@ -54,7 +88,7 @@ async function yt(parsed, event, bot) {
           contents: [
             {
               type: "text",
-              text: d.currentPage[i].channelTitle,
+              text: data.channelTitle,
               color: "#8c8c8c",
               size: "xxs"
             }
@@ -64,15 +98,7 @@ async function yt(parsed, event, bot) {
       spacing: "sm"
     }
   };
-  return {
-    type: "flex",
-    altText: "Youtube Search",
-    contents: bbl,
-    sender: {
-      name: "Youtube",
-      iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
-    }
-  };
+  return bbl;
 }
 
 function angkaAcak(min, max) {

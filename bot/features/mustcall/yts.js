@@ -8,7 +8,7 @@ module.exports = {
     usage:
       "[@bot/!] yts {options} <query>" +
       "\n\noptions:" +
-      "\n-m <n> ?: jumlah hasil search (max 12)",
+      "\n-n <n> ?: jumlah hasil search (max 12)",
     CMD: "yts",
     ALIASES: []
   },
@@ -16,73 +16,6 @@ module.exports = {
 };
 
 async function yts(parsed, event, bot) {
-  let txt = parsed.arg;
-
-  let crsl = {
-    type: "carousel",
-    contents: []
-  };
-
-  let max = 10;
-  if (parsed.args.m) {
-    max = parseInt(parsed.args.m) % 12;
-  }
-  let d = await ytsearcher.search(txt, { maxResults: max });
-  for (let i = 0; i < d.currentPage.length; i++) {
-    crsl.contents.push({
-      type: "bubble",
-      size: "kilo",
-      hero: {
-        type: "image",
-        url: d.currentPage[i].thumbnails.high.url,
-        size: "full",
-        aspectMode: "cover",
-        aspectRatio: "16:9",
-        action: {
-          type: "uri",
-          label: "action",
-          uri: d.currentPage[i].url
-        }
-      },
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: d.currentPage[i].title,
-            weight: "bold",
-            size: "xs",
-            action: {
-              type: "uri",
-              label: "action",
-              uri: d.currentPage[i].url
-            }
-          },
-          {
-            type: "box",
-            layout: "vertical",
-            contents: [
-              {
-                type: "text",
-                text: d.currentPage[i].channelTitle,
-                color: "#8c8c8c",
-                size: "xxs"
-              }
-            ]
-          }
-        ],
-        spacing: "sm"
-      }
-    });
-  }
-  return {
-    type: "flex",
-    altText: "Youtube Search",
-    contents: crsl,
-    sender: {
-      name: "Youtube",
-      iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
-    }
-  };
+  parsed.args.search = true;
+  return bot.mustcall.yt(parsed, event, bot);
 }
