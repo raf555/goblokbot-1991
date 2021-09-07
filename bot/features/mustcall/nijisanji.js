@@ -29,24 +29,19 @@ module.exports = {
     name: "Nijisanji Command",
     description:
       "Command buat nampilin live schedule (JP) atau liver Nijisanji",
-    usage:
-      "[@bot/!] nijisanji {options} [livers/liver]? <liver-name/live-title>?" +
-      "\n\noptions:" +
-      "\n--now ?: liat schedule mulai dr jam skrg" +
-      "\n--past ?: liat schedule sblm jam skrg" +
-      "\n--next ?: liat schedule/livers page selanjutnya" +
-      "\n-page <n> ?: liat schedule/livers page n" +
-      "\n-n <n> ?: liat schedule/livers dgn jumlah n" +
-      "\n--desc ?: sort schedule/livers descending" +
-      "\n--livers ?: liat livers" +
-      "\n-livers [(jp/id/en/kr)/*] ?: liat livers dengan query" +
-      "\n-sort-by [(subs/name/debut)](-[asc/desc])? ?: sort livers" +
-      "\n-liver <name> ?: liat liver dgn suatu nama",
+
     CMD: "nijisanji",
     ALIASES: ["niji", "2434"]
   },
   run: (parsed, event, bot) => {
-    let args = Object.keys(parsed.args);
+    if (parsed.args.refresh) {
+      return loadliversurl().then(() => {
+        return {
+          type: "text",
+          text: "Refreshed"
+        };
+      });
+    }
 
     if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
       if (/^(livers)(\s(.*))?/.test(parsed.arg)) {
@@ -69,6 +64,20 @@ module.exports = {
     return live_schedule(parsed);
   }
 };
+
+module.exports.data.usage =
+  "[@bot/!] nijisanji {options} [livers/liver]? <liver-name/live-title>?" +
+  "\n\noptions:" +
+  "\n--now ?: liat schedule mulai dr jam skrg" +
+  "\n--past ?: liat schedule sblm jam skrg" +
+  "\n--next ?: liat schedule/livers page selanjutnya" +
+  "\n-page <n> ?: liat schedule/livers page n" +
+  "\n-n <n> ?: liat schedule/livers dgn jumlah n" +
+  "\n--desc ?: sort schedule/livers descending" +
+  "\n--livers ?: liat livers" +
+  "\n-livers [(jp/id/en/kr)/*] ?: liat livers dengan query" +
+  "\n-sort-by [(subs/name/debut)](-[asc/desc])? ?: sort livers" +
+  "\n-liver <name> ?: liat liver dgn suatu nama";
 
 async function live_schedule(parsed) {
   let data = await request(API_LIVE + "/events.json");
