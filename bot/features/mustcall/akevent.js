@@ -81,17 +81,35 @@ async function gas(urlz) {
     []
   ]);
 
-  optimizeheight(bubble2, bubble3);
+  let out = [bubble1];
+
+  out.push(...optimizebubbles(bubble2, bubble3));
 
   return {
     type: "carousel",
-    contents: [bubble1, bubble2, bubble3]
+    contents: out
   };
+}
+
+function optimizebubbles(bubble1, bubble2) {
+  optimizeheight(bubble1, bubble2);
+  optimizeheight(bubble2, bubble1);
+  let h1 = sortheight(bubble1);
+  let h2 = sortheight(bubble2);
+
+  if (h1 + h2 <= 5) {
+    bubble2.body.contents.shift();
+    bubble2.body.contents.shift();
+    bubble1.body.contents.push(...bubble2.body.contents);
+    return [bubble1];
+  }
+
+  return [bubble1, bubble2];
 }
 
 function optimizeheight(bubble1, bubble2) {
   let h1 = countheight(bubble1);
-  let h2 = sortheight(bubble2);
+  let h2 = sortheight(bubble2, true);
 
   if (h1 < h2) {
     let b1con = bubble1.body.contents;
@@ -114,7 +132,7 @@ function countheight(bubble) {
   return c;
 }
 
-function sortheight(bubble) {
+function sortheight(bubble, reverse = false) {
   let out = [];
   let konten = bubble.body.contents;
   let h = 0;
@@ -128,7 +146,11 @@ function sortheight(bubble) {
   konten
     .filter(el => el.type === "box")
     .sort((a, b) => {
-      return countboxheight(b) - countboxheight(a);
+      let i = countboxheight(a) - countboxheight(b);
+      if (reverse) {
+        i *= -1;
+      }
+      return i;
     })
     .forEach(box => {
       out.push(box);
@@ -143,7 +165,8 @@ function sortheight(bubble) {
 
 function countboxheight(box) {
   let { contents } = box;
-  return contents.filter(el => el.type === "box" && el.contents.length > 0).length;
+  return contents.filter(el => el.type === "box" && el.contents.length > 0)
+    .length;
 }
 
 function makebubble2(data) {
