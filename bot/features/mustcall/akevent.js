@@ -47,7 +47,13 @@ async function akevent(parsed, event, bot) {
 }
 
 function search(urls, q) {
-  return urls.filter(data => data.name.match(new RegExp(q, "i")))[0] || null;
+  return (
+    urls.filter(
+      data =>
+        data.name.toLowerCase() === q.toLowerCase() ||
+        data.name.match(new RegExp(q, "i"))
+    )[0] || null
+  );
 }
 
 async function getlink() {
@@ -165,8 +171,7 @@ function sortheight(bubble, reverse = false) {
 
 function countboxheight(box) {
   let { contents } = box;
-  return contents.filter(el => el.type === "box" && el.contents.length > 0)
-    .length;
+  return contents.filter(el => el.type === "box" && el.contents.length > 0).length;
 }
 
 function makebubble2(data) {
