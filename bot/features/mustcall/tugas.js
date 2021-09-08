@@ -10,7 +10,10 @@ module.exports = {
     CMD: "tugas",
     ALIASES: []
   },
-  run: tugas
+  run: (parsed, event, bot) =>
+    tugas(parsed, event, bot).then(reply =>
+      Object.assign(reply, { nosave: true })
+    )
 };
 
 async function tugas(parsed, event, bot) {
@@ -29,22 +32,30 @@ async function tugas(parsed, event, bot) {
     .then(data => data.data.result);
 
   let regex = /\[IF\s?19\]\s?/;
+  let now = Date.now();
 
-  let filtered = data
-    .filter(e => regex.test(e.name))
+  let bubbles = data
+    .filter(e => e.end * 1000 > now && regex.test(e.name))
     .map(e => {
       e.name = e.name.replace(regex, "");
-      return e;
+      return makebubble(e);
     });
 
   let start = parsed.args.next ? 12 : 0;
+
+  if (start > bubbles.length) {
+    return {
+      type: "text",
+      text: "No more assignment"
+    };
+  }
 
   return {
     type: "flex",
     altText: "Tugas Kuliah",
     contents: {
       type: "carousel",
-      contents: filtered.map(makebubble).slice(start, start + 12)
+      contents: bubbles.slice(start, start + 12)
     }
   };
 }
