@@ -81,10 +81,69 @@ async function gas(urlz) {
     []
   ]);
 
+  optimizeheight(bubble2, bubble3);
+
   return {
     type: "carousel",
     contents: [bubble1, bubble2, bubble3]
   };
+}
+
+function optimizeheight(bubble1, bubble2) {
+  let h1 = countheight(bubble1);
+  let h2 = sortheight(bubble2);
+
+  if (h1 < h2) {
+    let b1con = bubble1.body.contents;
+    let b2con = bubble2.body.contents;
+    for (let i = b2con.length - 2; i < b2con.length; i++) {
+      b1con.push(b2con[i]);
+    }
+    b2con.pop();
+    b2con.pop();
+  }
+}
+
+function countheight(bubble) {
+  let c = 0;
+  bubble.body.contents
+    .filter(el => el.type === "box")
+    .forEach(box => {
+      c += countboxheight(box);
+    });
+  return c;
+}
+
+function sortheight(bubble) {
+  let out = [];
+  let konten = bubble.body.contents;
+  let h = 0;
+
+  let title = konten.shift();
+  let separator = konten.shift();
+
+  out.push(title);
+  out.push(separator);
+
+  konten
+    .filter(el => el.type === "box")
+    .sort((a, b) => {
+      return countboxheight(b) - countboxheight(a);
+    })
+    .forEach(box => {
+      out.push(box);
+      out.push(separator);
+      h += countboxheight(box);
+    });
+
+  bubble.body.contents = out;
+
+  return h;
+}
+
+function countboxheight(box) {
+  let { contents } = box;
+  return contents.filter(el => el.type === "box" && el.contents.length > 0).length;
 }
 
 function makebubble2(data) {
