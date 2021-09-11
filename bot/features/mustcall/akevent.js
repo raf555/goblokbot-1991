@@ -47,7 +47,13 @@ async function akevent(parsed, event, bot) {
 }
 
 function search(urls, q) {
-  return urls.filter(data => data.name.match(new RegExp(q, "i")))[0] || null;
+  return (
+    urls.filter(
+      data =>
+        data.name.toLowerCase() === q.toLowerCase() ||
+        data.name.match(new RegExp(q, "i"))
+    )[0] || null
+  );
 }
 
 async function getlink() {
@@ -81,10 +87,91 @@ async function gas(urlz) {
     []
   ]);
 
+  let out = [bubble1];
+
+  out.push(...optimizebubbles(bubble2, bubble3));
+
   return {
     type: "carousel",
-    contents: [bubble1, bubble2, bubble3]
+    contents: out
   };
+}
+
+function optimizebubbles(bubble1, bubble2) {
+  optimizeheight(bubble1, bubble2);
+  optimizeheight(bubble2, bubble1);
+  let h1 = sortheight(bubble1);
+  let h2 = sortheight(bubble2);
+
+  if (h1 + h2 <= 5) {
+    bubble2.body.contents.shift();
+    bubble2.body.contents.shift();
+    bubble1.body.contents.push(...bubble2.body.contents);
+    return [bubble1];
+  }
+
+  return [bubble1, bubble2];
+}
+
+function optimizeheight(bubble1, bubble2) {
+  let h1 = countheight(bubble1);
+  let h2 = sortheight(bubble2, true);
+
+  if (h1 < h2) {
+    let b1con = bubble1.body.contents;
+    let b2con = bubble2.body.contents;
+    for (let i = b2con.length - 2; i < b2con.length; i++) {
+      b1con.push(b2con[i]);
+    }
+    b2con.pop();
+    b2con.pop();
+  }
+}
+
+function countheight(bubble) {
+  let c = 0;
+  bubble.body.contents
+    .filter(el => el.type === "box")
+    .forEach(box => {
+      c += countboxheight(box);
+    });
+  return c;
+}
+
+function sortheight(bubble, reverse = false) {
+  let out = [];
+  let konten = bubble.body.contents;
+  let h = 0;
+
+  let title = konten.shift();
+  let separator = konten.shift();
+
+  out.push(title);
+  out.push(separator);
+
+  konten
+    .filter(el => el.type === "box")
+    .sort((a, b) => {
+      let i = countboxheight(a) - countboxheight(b);
+      if (reverse) {
+        i *= -1;
+      }
+      return i;
+    })
+    .forEach(box => {
+      out.push(box);
+      out.push(separator);
+      h += countboxheight(box);
+    });
+
+  bubble.body.contents = out;
+
+  return h;
+}
+
+function countboxheight(box) {
+  let { contents } = box;
+  return contents.filter(el => el.type === "box" && el.contents.length > 0).length;
 }
 
 function makebubble2(data) {

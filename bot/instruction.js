@@ -4,7 +4,7 @@ module.exports = event => {
   return function(e) {
     let eventtype = event.type;
     if (
-      !process.env.admin_id &&
+      !process.env.admin_id ||
       !(process.env.admin_id && (process.env.group_id || process.env.room_id))
     ) {
       let slug;
