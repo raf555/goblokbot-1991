@@ -22,7 +22,8 @@ async function tugas(parsed, event, bot) {
   }
 
   let params = {
-    textMessage: "Ada deadline apa saja untuk if 19 sejauh ini"
+    textMessage: "Ada deadline apa saja untuk if 19 sejauh ini",
+    days: 9999
   };
 
   let data = await axios
