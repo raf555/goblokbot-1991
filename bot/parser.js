@@ -11,6 +11,7 @@ module.exports = {
 };
 
 function parse(message, caller) {
+  let start = Date.now();
   message = message.trim().replace(/(?:\r\n|\r|\n)/g, " ");
 
   let splitted = message.split(" ");
@@ -48,7 +49,8 @@ function parse(message, caller) {
     command: command.toLowerCase(),
     args: parsearg.args,
     arg: parsearg.arg.join(" ").replace(/\\(?!\\|\})/g, ""),
-    fullMsg: message
+    fullMsg: message,
+    parseTime: Date.now() - start
   };
 
   return parsed;
@@ -88,7 +90,9 @@ function parseArg(text) {
       if (custombracket) {
         let cust = getcustbracket(custombracket);
         let regex = new RegExp(
-          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\\n|\\r|\\t)*?)\\${cust[1]}`
+          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${
+            cust[0]
+          }((.|\\n|\\r|\\t)*?)\\${cust[1]}`
         );
         if (regex.test(text)) {
           usecustbracket = true;

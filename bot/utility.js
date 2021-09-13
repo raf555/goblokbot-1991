@@ -74,6 +74,8 @@ function pushMessage(msg, id) {
 }
 
 function replyMessage(event, msgobj) {
+  if (msgobj.time_metadata) delete msgobj["time_metadata"];
+
   let msg = Array.isArray(msgobj) ? msgobj : [msgobj];
 
   let data_ = [];
