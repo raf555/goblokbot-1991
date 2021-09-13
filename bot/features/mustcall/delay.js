@@ -12,7 +12,8 @@ module.exports = {
     return new Promise(resolve => {
       setTimeout(resolve, time * 1000, {
         type: "text",
-        text: time + " seconds has passed"
+        text: time + " seconds has passed",
+        nosave: true
       });
     });
   }

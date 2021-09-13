@@ -29,7 +29,6 @@ module.exports = {
     name: "Nijisanji Command",
     description:
       "Command buat nampilin live schedule (JP) atau liver Nijisanji",
-
     CMD: "nijisanji",
     ALIASES: ["niji", "2434"]
   },

@@ -91,7 +91,14 @@ async function execMessage(text, event) {
 
   //const setting = db.open("bot/setting.json").get();
   let parsed = parse(text, setting.caller);
-  let removed = removeParserArgs(parsed); // remove reserved args
+
+  /* time metadata */
+  let receivetime = event.timestamp2 - event.timestamp;
+  let passtime = starttime - event.timestamp2;
+  let parsetime = parsed.parseTime;
+
+  /* remove reserved args */
+  let removed = removeParserArgs(parsed);
 
   let customkeywords = Object.keys(db.open("db/customcmd.json").get());
 
@@ -99,6 +106,9 @@ async function execMessage(text, event) {
   let cleanedcmd = (
     parsed.command + (parsed.arg ? " " + parsed.arg : "")
   ).toLowerCase();
+
+  /* exec start */
+  let execstart = Date.now();
 
   /* message valid to send check */
   let checkstatus = await executeCommand(validToSend, parsed, event);
@@ -171,6 +181,9 @@ async function execMessage(text, event) {
     }
   }
 
+  /* exec end */
+  let execend = Date.now() - execstart;
+
   // restore reserved args
   parsed = restoreParserArgs(parsed, removed);
 
@@ -195,6 +208,13 @@ async function execMessage(text, event) {
       if (!rdata.parsed) out.parsed = parsed;
       return Object.assign(rdata, out);
     });
+
+    reply.time_metadata = {
+      receive: receivetime,
+      pass: passtime,
+      parse: parsetime,
+      exec: execend
+    };
 
     return reply;
   }
@@ -223,39 +243,22 @@ function replaceAlias(cmd) {
 function executeCommand() {
   const TO = setting.timeout; // timeout in seconds
 
-  let cmdfunc = arguments[0];
-  let parsed, event, bot;
-
-  if (arguments.length > 1 && arguments.length < 5) {
-    parsed = arguments[1];
-    event = arguments[2];
-    bot = arguments[3];
-  }
+  let [cmdfunc, parsed, event, bot] = arguments;
 
   const timeout = new Promise((_, reject) => {
-    setTimeout(reject, TO * 1000, new Error("cmd:timeout"));
+    let msg = "-";
+    if (parsed) {
+      msg = parsed.fullMsg;
+    }
+    let err = `[${msg}] was cancelled because the timeout (${TO}s) was exceeded.`;
+    setTimeout(reject, TO * 1000, new Error(err));
   });
 
-  const cmdpromise = new Promise(async (resolve, reject) => {
-    try {
-      resolve(await Promise.resolve(cmdfunc(parsed, event, bot)));
-    } catch (e) {
-      reject(e);
-    }
+  const cmdpromise = new Promise((resolve, reject) => {
+    Promise.resolve(cmdfunc(parsed, event, bot)).then(resolve).catch(reject);
   });
 
-  return Promise.race([cmdpromise, timeout]).catch(e => {
-    if (e.message === "cmd:timeout") {
-      let msg = "";
-      if (parsed) {
-        msg = parsed.fullMsg;
-      }
-      throw new Error(
-        `[${msg}] was cancelled because the timeout (${TO}s) was exceeded.`
-      );
-    }
-    throw e;
-  });
+  return Promise.race([cmdpromise, timeout]);
 }
 
 function constructcaller() {

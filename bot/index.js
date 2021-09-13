@@ -15,7 +15,7 @@ module.exports = {
 };
 
 function handleEvent(event) {
-  //event.timestamp = Date.now();
+  event.timestamp2 = Date.now();
 
   // limit to grup only and member
   return validateSource(event)
