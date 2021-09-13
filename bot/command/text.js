@@ -255,9 +255,7 @@ function executeCommand() {
   });
 
   const cmdpromise = new Promise((resolve, reject) => {
-    Promise.resolve(cmdfunc(parsed, event, bot))
-      .then(resolve)
-      .catch(reject);
+    Promise.resolve(cmdfunc(parsed, event, bot)).then(resolve).catch(reject);
   });
 
   return Promise.race([cmdpromise, timeout]);
