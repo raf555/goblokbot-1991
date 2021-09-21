@@ -25,7 +25,8 @@ async function stats(parsed, event, bot) {
       return {
         res: true,
         msg: reply,
-        time: reply.time_metadata
+        time: reply.time_metadata,
+        reply: reply.map(r => Object.assign(r, { nosave: true }))
       };
     })
     .catch(e => {
@@ -37,11 +38,16 @@ async function stats(parsed, event, bot) {
   let exectime = Date.now() - execstart;
 
   let out = makeres(cmd, res);
-  return {
+  let r = [];
+  if (res.res) {
+    r.push(...res.reply);
+  }
+  r.push({
     type: "text",
     text: out,
     nosave: true
-  };
+  });
+  return r;
 }
 
 function makeres() {
@@ -61,8 +67,8 @@ Result: ${res.msg}`;
   } = res.time;
 
   return `Command: ${cmd}
-LINE to Bot latency: ${addms(receivetime)}
 
+LINE to Bot latency: ${addms(receivetime)}
 Pass time: ${addms(passingtime)}
 Parse time: ${addms(parsetime)}
 Execute time: ${addms(exectime)}

@@ -1,5 +1,6 @@
 const db = require("@utils/database");
 const imageSearch = require("google-images");
+const axios = require("axios");
 const stringSimilarity = require("string-similarity");
 
 // init
@@ -46,33 +47,9 @@ function pap(parsed, event, bot) {
   const klien = new imageSearch(key[setting.imgapi], api[setting.imgapi]);
 
   let query = parsed.arg;
-
-  // cek ban
-  let dbz = db.open("db/banpap.json");
-  let dbg = dbz.get();
-  for (let i = 0; i < Object.keys(dbg).length; i++) {
-    if (dbz.get(Object.keys(dbg)[i]) == 1) {
-      let reg = new RegExp(Object.keys(dbg)[i], "i");
-      let matches = stringSimilarity.findBestMatch(
-        Object.keys(dbg)[i],
-        parsed.arg.split(" ")
-      );
-      //if (query.match(reg) && dbz.get(Object.keys(dbg)[i]) == 1) {
-      if (matches.bestMatch.rating >= 0.9) {
-        return {
-          type: "text",
-          text:
-            "Kata tersebut 「 " +
-            Object.keys(dbg)[i] +
-            " 」 telah di-ban oleh Admin"
-        };
-      }
-    }
-  }
-  let gambar;
   let options = { page: 1 };
 
-  return klien.search(parsed.arg, options).then(he => {
+  return klien.search(parsed.arg, options).then(async he => {
     if (he.length === 0) {
       return {
         type: "text",
@@ -81,46 +58,17 @@ function pap(parsed, event, bot) {
     }
 
     if (parsed.args.n) {
-      let n = parsed.args.n;
-      if (typeof n === "string") {
-        n = parseInt(n) % 12;
-      } else {
-        n = 12;
-      }
-
-      let crsl = {
-        type: "flex",
-        altText: "pap",
-        contents: {
-          type: "carousel",
-          contents: []
-        }
-      };
-      
-      shuffle(he);
-
-      for (let i = 0; i < Math.min(he.length, n); i++) {
-        if (invalidimage(he[i])) {
-          continue;
-        }
-        crsl.contents.contents.push({
-          type: "bubble",
-          size: "micro",
-          hero: {
-            type: "image",
-            url: he[i].url.replace("http://", "https://"),
-            size: "full",
-            aspectMode: "fit",
-            action: {
-              type: "uri",
-              uri: he[i].url.replace("http://", "https://")
-            }
-          }
-        });
-      }
-
-      return crsl;
+      return nimages(parsed, he);
     }
+
+    /*
+  let isb = isban(parsed);
+  if (isb) {
+    return {
+      type: "text",
+      text: "Kata tersebut 「 " + isb + " 」 telah di-ban oleh Admin"
+    };
+  }*/
 
     let xdlmao = Math.floor(Math.random() * he.length);
 
@@ -135,10 +83,25 @@ function pap(parsed, event, bot) {
       tries++;
     }
 
+    if (await isnsfw(he[xdlmao].thumbnail.url)) {
+      return bot.function
+        .exec(
+          "@bot ban user " + finduserkey(event.source.userId) + " 5 menit",
+          event
+        )
+        .then(reply => {
+          reply.unshift({
+            type: "text",
+            text: "Gambar jorok"
+          });
+          return reply;
+        });
+    }
+
     //console.log(he)
     //console.log(he[xdlmao])
 
-    gambar = he[xdlmao].url.replace("http://", "https://");
+    let gambar = he[xdlmao].url.replace("http://", "https://");
     let gambart = he[xdlmao].thumbnail.url.replace("http://", "https://");
 
     //console.log(gambar)
@@ -157,6 +120,115 @@ function pap(parsed, event, bot) {
     }
     return send;
   });
+}
+
+function finduserkey(id) {
+  let dbz = db.open("db/user.json");
+  let fi = Object.values(dbz.get()).filter(d => d.id === id);
+
+  if (fi.length > 0) {
+    return fi[0].key;
+  }
+  return null;
+}
+
+function isban(parsed) {
+  // cek ban
+  let dbz = db.open("db/banpap.json");
+  let dbg = dbz.get();
+  for (let i = 0; i < Object.keys(dbg).length; i++) {
+    if (dbz.get(Object.keys(dbg)[i]) == 1) {
+      let reg = new RegExp(Object.keys(dbg)[i], "i");
+      let matches = stringSimilarity.findBestMatch(
+        Object.keys(dbg)[i],
+        parsed.arg.split(" ")
+      );
+      //if (query.match(reg) && dbz.get(Object.keys(dbg)[i]) == 1) {
+      if (matches.bestMatch.rating >= 0.9) {
+        return Object.keys(dbg)[i];
+      }
+    }
+  }
+  return null;
+}
+
+function isnsfw(url) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get("https://api.sightengine.com/1.0/check.json", {
+        params: {
+          url: url,
+          models: "nudity",
+          api_user: process.env.api_nudcek_user,
+          api_secret: process.env.api_nudcek_key
+        }
+      })
+      .then(function(response) {
+        let { data } = response;
+        let { nudity } = data;
+        resolve(
+          nudity.raw >= Math.max(nudity.partial, nudity.safe) ||
+            nudity.partial >= Math.max(nudity.raw, nudity.safe)
+        );
+      })
+      .catch(function(error) {
+        // handle error
+        if (error.response) console.log(error.response.data);
+        else console.log(error.message);
+        reject(new Error("NSFW check failed"));
+        //resolve(false);
+      });
+  });
+}
+
+function nimages(parsed, he) {
+  let isb = isban(parsed);
+  if (isb) {
+    return {
+      type: "text",
+      text: "Kata tersebut 「 " + isb + " 」 telah di-ban oleh Admin"
+    };
+  }
+
+  let n = parsed.args.n;
+  if (typeof n === "string") {
+    n = parseInt(n) % 12;
+  } else {
+    n = 12;
+  }
+
+  let crsl = {
+    type: "flex",
+    altText: "pap",
+    contents: {
+      type: "carousel",
+      contents: []
+    }
+  };
+
+  shuffle(he);
+
+  for (let i = 0; i < Math.min(he.length, n); i++) {
+    if (invalidimage(he[i])) {
+      continue;
+    }
+    crsl.contents.contents.push({
+      type: "bubble",
+      size: "micro",
+      hero: {
+        type: "image",
+        url: he[i].url.replace("http://", "https://"),
+        size: "full",
+        aspectMode: "fit",
+        action: {
+          type: "uri",
+          uri: he[i].url.replace("http://", "https://")
+        }
+      }
+    });
+  }
+
+  return crsl;
 }
 
 //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array

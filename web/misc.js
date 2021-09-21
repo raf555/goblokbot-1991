@@ -3,9 +3,6 @@ const { convertTZ, pushMessage, dateTodate } = require("./../bot/utility");
 const { createHmac, timingSafeEqual } = require("crypto");
 
 app.post("/opm", validate, (req, res) => {
-  console.log(req.headers.opmkey);
-  console.log(req.headers["opm-signature-sha256"]);
-
   let data = req.body;
 
   if (data.type === "update") {
@@ -19,6 +16,9 @@ app.post("/opm", validate, (req, res) => {
 
 /* Securing webhook as middleware (optional, BUT highly recommended) */
 function validate(req, res, next) {
+  console.log(req.headers)
+  console.log(req.body)
+  
   function securecompare(a, b) {
     if (a.length !== b.length) {
       return false;

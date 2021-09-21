@@ -17,6 +17,9 @@ module.exports = {
 };
 
 async function tugas(parsed, event, bot) {
+  /* default is 2 week ahead */
+  const week = 2;
+
   if (event.source.userId !== process.env.admin_id) {
     return null;
   }
@@ -35,8 +38,20 @@ async function tugas(parsed, event, bot) {
   let regex = /\[IF\s?19\]\s?/;
   let now = Date.now();
 
+  let weekcon = e =>
+    parsed.args.all || parsed.arg
+      ? true
+      : e.end <= now / 1000 + week * 7 * 24 * 3600;
+  let querycon = e => {
+    let a = parsed.arg.toLowerCase();
+    let b = e.name.toLowerCase();
+    return parsed.arg ? b.startsWith(a) || new RegExp(a).test(b) : true;
+  };
+
   let bubbles = data
-    .filter(e => e.end * 1000 > now && regex.test(e.name))
+    .filter(
+      e => querycon(e) && weekcon(e) && e.end * 1000 > now && regex.test(e.name)
+    )
     .map(e => {
       e.name = e.name.replace(regex, "");
       return makebubble(e);

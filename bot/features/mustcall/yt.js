@@ -26,6 +26,13 @@ async function yt(parsed, event, bot) {
   let d = await ytsearcher.search(txt, {
     maxResults: random || search ? max : 1
   });
+  
+  if (d.currentPage.length < 1 ) {
+    return {
+      type: "text",
+      text: "0 result"
+    }
+  }
 
   let out;
   if (!search) {
