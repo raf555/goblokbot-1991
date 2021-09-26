@@ -482,8 +482,7 @@ function command_new(req, res) {
                   imgbb
                     .upload({
                       name: cmddd,
-                      base64string: req.file.buffer.toString("base64"),
-                      expiration: 3600 * 24
+                      base64string: req.file.buffer.toString("base64")
                     })
                     .then(data => {
                       data = { data: data };

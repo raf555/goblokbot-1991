@@ -655,7 +655,8 @@
                         <div class="sub header">
                            <%= cmd[Object.keys(cmd)[i]].desc %>
                            <br><br>
-                           Requested by <b><%= cmd[Object.keys(cmd)[i]].requester %></b>.
+                           Requested by <b><%= cmd[Object.keys(cmd)[i]].requester %></b>.<br/>
+                           Requested on <b><%= new Date(cmd[Object.keys(cmd)[i]].time).toLocaleString("id-ID", { timeZone:"Asia/Jakarta", year: "numeric", month: "2-digit", day: "2-digit", hour: "numeric", minute: "numeric", second: "numeric" }) %></b>.
                         </div>
                      </h4>
                     <% function avglat(data) {

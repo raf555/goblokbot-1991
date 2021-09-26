@@ -8,17 +8,11 @@ module.exports = {
     CMD: "leave",
     ALIASES: []
   },
-  run: (parsed, event, bot) => {
+  run: async (parsed, event, bot) => {
     if (event.source.groupId) {
-      client
-        .leaveGroup(event.source.groupId)
-        .then(() => {})
-        .catch(err => {});
+      await client.leaveGroup(event.source.groupId);
     } else if (event.source.roomId) {
-      client
-        .leaveRoom(event.source.roomId)
-        .then(() => {})
-        .catch(err => {});
+      await client.leaveRoom(event.source.roomId);
     }
     return null;
   }
