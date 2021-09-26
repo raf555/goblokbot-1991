@@ -1,4 +1,9 @@
 {
+  "saileach": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_vanguard.png",
+    "rarity": 6,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-09/char_479_sleach.png"
+  },
   "mizuki": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_specialist.png",
     "rarity": 6,
@@ -223,6 +228,11 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_sniper.png",
     "rarity": 6,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_103_angel_1.png"
+  },
+  "mulberry": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
+    "rarity": 5,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-09/char_473_mberry.png"
   },
   "tequila": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_guard.png",
@@ -668,6 +678,11 @@
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_medic.png",
     "rarity": 5,
     "pic": "https://gamepress.gg/arknights/sites/arknights/files/game-images/avatars/char_128_plosis_1.png"
+  },
+  "roberta": {
+    "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_support.png",
+    "rarity": 4,
+    "pic": "https://gamepress.gg/arknights/sites/arknights/files/2021-09/char_484_robrta.png"
   },
   "indigo": {
     "class": "https://gamepress.gg/arknights/sites/arknights/files/2019-10/class_caster.png",

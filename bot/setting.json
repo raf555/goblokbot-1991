@@ -5,9 +5,7 @@
     "normal": "@bot",
     "shortcut": "!",
     "custom": {
-      "normal": {
-        "ky": 0
-      },
+      "normal": {},
       "shortcut": {}
     }
   },

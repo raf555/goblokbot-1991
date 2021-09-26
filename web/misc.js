@@ -1,9 +1,29 @@
 const app = require("express").Router({ caseSensitive: true });
 const { convertTZ, pushMessage, dateTodate } = require("./../bot/utility");
 const { createHmac, timingSafeEqual } = require("crypto");
+const db = require("@utils/database");
 
 app.post("/opm", validate, (req, res) => {
   let data = req.body;
+
+  if (data.type === "error") {
+    let _ = db.open("bot/assets/opmerr.json");
+    let last = _.get("last");
+    let now = Date.now();
+    if (now >= last + 1800000) {
+      _.set("last", now);
+      _.save();
+      pushMessage(
+        {
+          type: "text",
+          text: data.message
+        },
+        process.env.admin_id
+      );
+    }
+    res.status(200).json(data);
+    return;
+  }
 
   if (data.type === "update") {
     handleNewChapt(data.source, data.chapters); // your code here
@@ -16,9 +36,9 @@ app.post("/opm", validate, (req, res) => {
 
 /* Securing webhook as middleware (optional, BUT highly recommended) */
 function validate(req, res, next) {
-  console.log(req.headers)
-  console.log(req.body)
-  
+  console.log(req.headers);
+  console.log(req.body);
+
   function securecompare(a, b) {
     if (a.length !== b.length) {
       return false;

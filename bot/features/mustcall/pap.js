@@ -61,14 +61,13 @@ function pap(parsed, event, bot) {
       return nimages(parsed, he);
     }
 
-    /*
-  let isb = isban(parsed);
-  if (isb) {
-    return {
-      type: "text",
-      text: "Kata tersebut 「 " + isb + " 」 telah di-ban oleh Admin"
-    };
-  }*/
+    let isb = isban(parsed);
+    if (isb) {
+      return {
+        type: "text",
+        text: "Kata tersebut 「 " + isb + " 」 telah di-ban oleh Admin"
+      };
+    }
 
     let xdlmao = Math.floor(Math.random() * he.length);
 
@@ -83,6 +82,8 @@ function pap(parsed, event, bot) {
       tries++;
     }
 
+    /*
+    NSFW detector
     if (await isnsfw(he[xdlmao].thumbnail.url)) {
       return bot.function
         .exec(
@@ -96,7 +97,7 @@ function pap(parsed, event, bot) {
           });
           return reply;
         });
-    }
+    }*/
 
     //console.log(he)
     //console.log(he[xdlmao])

@@ -66,6 +66,27 @@ async function tugas(parsed, event, bot) {
     };
   }
 
+  if (parsed.args.all) {
+    let out = [];
+    bubbles.forEach((bubble, i) => {
+      if (i % 12 === 0) {
+        out.push([]);
+        out[out.length - 1] = {
+          type: "flex",
+          altText: "Tugas Kuliah",
+          contents: {
+            type: "carousel",
+            contents: []
+          }
+        };
+      }
+
+      out[out.length - 1].contents.contents.push(bubble);
+    });
+
+    return out;
+  }
+
   return {
     type: "flex",
     altText: "Tugas Kuliah",
