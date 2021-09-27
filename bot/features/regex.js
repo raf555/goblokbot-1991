@@ -11,17 +11,17 @@ module.exports = function(parsed, event, bot) {
     return Object.assign(gblk.get(), { cmd: "aaaaa" });
   }
 
-  /*
-  if (
-    msg[0].toLowerCase() == "g" &&
-    msg.length > 2 &&
-    msg.match(/(r)\1\1+/i)
-  ) {
-    return {
-      type: "image",
-      originalContentUrl: "https://i.ibb.co/jbTKmQc/grr.jpg", //"https://i.ibb.co/ChLFsXr/184101.jpg",
-      previewImageUrl: "https://i.ibb.co/jbTKmQc/grr.jpg",
-      cmd: "grr"
-    };
-  }*/
+  
+  // if (
+  //   msg[0].toLowerCase() == "g" &&
+  //   msg.length > 2 &&
+  //   msg.match(/(r)\1\1+/i)
+  // ) {
+  //   return {
+  //     type: "image",
+  //     originalContentUrl: "https://i.ibb.co/jbTKmQc/grr.jpg", //"https://i.ibb.co/ChLFsXr/184101.jpg",
+  //     previewImageUrl: "https://i.ibb.co/jbTKmQc/grr.jpg",
+  //     cmd: "grr"
+  //   };
+  // }
 };
