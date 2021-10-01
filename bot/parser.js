@@ -10,7 +10,24 @@ module.exports = {
   restoreParserArgs
 };
 
+function isvalidcaller(caller) {
+  return (
+    !caller || typeof caller !== "object" || !caller.shortcut || !caller.normal
+  );
+}
+
 function parse(message, caller) {
+  if (isvalidcaller(caller)) {
+    caller = {
+      normal: "@bot",
+      shortcut: "!",
+      custom: {
+        normal: {},
+        shortcut: {}
+      }
+    };
+  }
+
   let start = Date.now();
   message = message.trim().replace(/(?:\r\n|\r|\n)/g, " ");
 

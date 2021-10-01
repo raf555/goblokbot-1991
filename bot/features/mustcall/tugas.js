@@ -49,9 +49,15 @@ async function tugas(parsed, event, bot) {
   };
 
   let bubbles = data
-    .filter(
-      e => querycon(e) && weekcon(e) && e.end * 1000 > now && regex.test(e.name)
-    )
+    .filter(e => {
+      return (
+        !e.name.toLowerCase().endsWith("(matkul pilihan)") &&
+        querycon(e) &&
+        weekcon(e) &&
+        e.end * 1000 > now &&
+        regex.test(e.name)
+      );
+    })
     .map(e => {
       e.name = e.name.replace(regex, "");
       return makebubble(e);
