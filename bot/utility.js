@@ -23,8 +23,36 @@ module.exports = {
   uploadImgFromQ,
   saveUnsend,
   getContentFromEvent,
-  validateSource
+  validateSource,
+  gethashidfromkey,
+  gethashidfromuid
 };
+
+function gethashidfromkey(key, data) {
+  if (!data) {
+    data = db.open("db/user.json").get();
+  }
+  let a = Object.keys(data);
+  let b = Object.values(data);
+  let i = b.findIndex(d => d.key === key.toLowerCase());
+  if (i === -1) {
+    return null;
+  }
+  return a[i];
+}
+
+function gethashidfromuid(id, data) {
+  if (!data) {
+    data = db.open("db/user.json").get();
+  }
+  let a = Object.keys(data);
+  let b = Object.values(data);
+  let i = b.findIndex(d => d.id === id);
+  if (i === -1) {
+    return null;
+  }
+  return a[i];
+}
 
 function validateSource(event) {
   return new Promise((resolve, reject) => {
@@ -399,14 +427,21 @@ function log(event) {
     // save the id and user
     //if (condition) {
     const debe = db.open("db/user.json");
-    debe.set(hash(event.source.userId) + ".name", profile.displayName);
+    let hashid = hash(event.source.userId);
+    debe.set(hashid + ".name", profile.displayName || "NONAME");
     debe.set(
-      hash(event.source.userId) + ".image",
+      hashid + ".image",
       profile.pictureUrl ||
         "https://cdn.glitch.com/6fe2de81-e459-4790-8106-a0efd4b2192d%2Fno-image-profile.png?v=1622879440349"
     );
-    if (!debe.get(hash(event.source.userId) + ".id")) {
-      debe.set(hash(event.source.userId) + ".id", event.source.userId);
+    if (!debe.get(hashid + ".id")) {
+      debe.set(hashid + ".id", event.source.userId);
+    }
+    if (!debe.get(hashid + ".key")) {
+      debe.set(
+        hashid + ".key",
+        profile.displayName.split(" ")[0].toLowerCase()
+      );
     }
     debe.save();
     //}

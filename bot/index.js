@@ -9,6 +9,7 @@ const {
   validateSource,
   leave
 } = require("./utility");
+const { addSocialCredit, addMoreSocialCredit } = require("./socialcredit");
 
 module.exports = {
   handleEvent: handleEvent
@@ -50,6 +51,20 @@ function handleMessageEvent(event) {
   // save messages
   saveMessage(event);
 
+  // add social credit
+  if (event.source.roomId || event.source.groupId) {
+    let sc = addSocialCredit(event.source.userId);
+    if (sc && sc.levelchange) {
+      if (event.message.type === "text") {
+        let t = event.message.text;
+        event.message.text =
+          "!levelup " + JSON.stringify(sc.messageobj) + " ; " + t;
+      } else {
+        return replyMessage(event, sc.messageobj);
+      }
+    }
+  }
+
   let message = event.message;
   switch (message.type) {
     case "text":
@@ -63,26 +78,17 @@ function handleMessageEvent(event) {
 
 function handleTextMessage(event) {
   let message = event.message;
-  return text
-    .execMultiple(message.text, event)
-    .then(handleReply(event))
-    .catch(handleReplyErr(event));
+  return handleCMD(text.execMultiple(message.text, event), event);
 }
 
 function handleImgMessage(event) {
   uploadImgFromQ(event);
   saveImage(event);
-  return image
-    .execImage(event)
-    .then(handleReply(event))
-    .catch(handleReplyErr(event));
+  return handleCMD(image.execImage(event), event);
 }
 
 function handlePostbackEvent(event) {
-  return postback
-    .exec(event)
-    .then(handleReply(event))
-    .catch(handleReplyErr(event));
+  return handleCMD(postback.exec(event), event);
 }
 
 function handleUnsendEvent(event) {
@@ -101,9 +107,24 @@ function handleJoinEvent(event) {
     });
 }
 
+function handleCMD(func, event) {
+  return func.then(handleReply(event)).catch(handleReplyErr(event));
+}
+
 function handleReply(event) {
   return function(reply) {
-    return reply ? replyMessage(event, reply) : null;
+    if (reply) {
+      // add social credit if use bot
+      if (event.source.roomId || event.source.groupId) {
+        let sc = addMoreSocialCredit(event.source.userId);
+        if (sc && sc.levelchange) {
+          if (reply.length > 4) reply = reply.slice(0, 4);
+          reply.push(sc.messageobj);
+        }
+      }
+      return replyMessage(event, reply);
+    }
+    return null;
   };
 }
 
