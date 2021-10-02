@@ -1,5 +1,6 @@
 const db = require("@utils/database");
-const { cekban } = require("@bot/utility");
+const { cekban, gethashidfromkey, gethashidfromuid } = require("@bot/utility");
+const { addSocialCredit } = require("@bot/socialcredit");
 
 module.exports = {
   data: {
@@ -14,56 +15,75 @@ module.exports = {
 };
 
 function ban_new(parsed, event, bot) {
-  if (!event.message.mention) {
-    return {
-      type: "text",
-      text: "Invalid syntax"
-    };
-  }
-  let msg = parsed.args.msg;
   let bandb = db.open("db/ban.json");
   let udb = db.open("db/user.json");
   let banhistory = db.open("db/banhistory.json");
-  let { mentionees } = event.message.mention;
+
+  let msg = parsed.args.msg;
   let t = gettime(parsed.arg);
   let banned = [];
   let iz;
   let now = Date.now();
+  let scmin = -1 * 10 * parseInt(t / 60000);
 
-  mentionees.forEach(mentionee => {
-    let id = gethashidfromid(mentionee.userId, udb.get());
-    if (!id) return;
-    let cb = cekban(id);
-    let p = (cb[0] ? cb[2] : now) + t;
-    bandb.set(id, p);
-    banned.push(udb.get(id).name);
-    iz = id;
-    banhistory.set((Object.keys(banhistory.get()).length + 1).toString(), {
-      timestamp: now,
-      message: msg || "",
-      penalty: t,
-      id: mentionee.userId,
-      by: event.source.userId
+  if (!event.message.mention) {
+    let key = parsed.arg.split(" ")[0];
+    let id = gethashidfromkey(key, udb.get());
+    if (id) {
+      let cb = cekban(id);
+      let p = (cb[0] ? cb[2] : now) + t;
+      bandb.set(id, p);
+      banned.push(udb.get(id).name);
+      iz = id;
+      banhistory.set((Object.keys(banhistory.get()).length + 1).toString(), {
+        timestamp: now,
+        message: msg || "",
+        penalty: t,
+        id: udb.get(id).id,
+        by: event.source.userId
+      });
+      addSocialCredit(udb.get(id).id, scmin);
+    }
+  } else {
+    let { mentionees } = event.message.mention;
+    mentionees.forEach(mentionee => {
+      let id = gethashidfromuid(mentionee.userId, udb.get());
+      if (!id) return;
+      let cb = cekban(id);
+      let p = (cb[0] ? cb[2] : now) + t;
+      bandb.set(id, p);
+      banned.push(udb.get(id).name);
+      iz = id;
+      banhistory.set((Object.keys(banhistory.get()).length + 1).toString(), {
+        timestamp: now,
+        message: msg || "",
+        penalty: t,
+        id: mentionee.userId,
+        by: event.source.userId
+      });
+      addSocialCredit(mentionee.userId, scmin);
     });
-  });
+  }
 
   bandb.save();
   banhistory.save();
 
+  if (!iz) {
+    return {
+      type: "text",
+      text: "Key not found / invalid syntax"
+    };
+  }
+
   return {
     type: "text",
-    text: banned.join(", ") + " telah di-ban sampai " + cekban(iz)[1]
+    text:
+      banned.join(", ") +
+      " telah di-ban sampai " +
+      cekban(iz)[1] +
+      "\nSocial credit " +
+      scmin
   };
-}
-
-function gethashidfromid(id, data) {
-  let a = Object.keys(data);
-  let b = Object.values(data);
-  let i = b.findIndex(d => d.id === id);
-  if (i === -1) {
-    return null;
-  }
-  return a[i];
 }
 
 function gettime(text) {

@@ -6,7 +6,10 @@ module.exports = function movedb() {
   // job every first day of month at 05.01 utc (12.01 utc+7)
   console.log("renaming latency and cmdhistory database..");
   exec(
-    `mkdir db/bak/${date} ; mv db/latency.json db/bak/${date}/latency.json ; mv db/cmdhistory.json db/bak/${date}/cmdhistory.json`,
+    `mkdir db/bak/${date} ; ` +
+      `mv db/latency.json db/bak/${date}/latency.json ; ` +
+      `mv db/cmdhistory.json db/bak/${date}/cmdhistory.json ; ` +
+      `mv db/banhistory.json db/bak/${date}/banhistory.json`,
     (err, stdout, stderr) => {
       if (err) {
         // node couldn't execute the command

@@ -68,7 +68,8 @@ function execMulti(text, event) {
         if (!Array.isArray(reply)) {
           reply = [reply];
         }
-      } else {
+        executed.push(reply);
+      } /* else {
         nullc++;
         reply = [
           {
@@ -76,8 +77,7 @@ function execMulti(text, event) {
             text: `Command (${split[i]}) was skipped because of no reply`
           }
         ];
-      }
-      executed.push(reply);
+      }*/
     }
 
     return executed.length === 0 || nullc === executed.length
@@ -255,7 +255,9 @@ function executeCommand() {
   });
 
   const cmdpromise = new Promise((resolve, reject) => {
-    Promise.resolve(cmdfunc(parsed, event, bot)).then(resolve).catch(reject);
+    Promise.resolve(cmdfunc(parsed, event, bot))
+      .then(resolve)
+      .catch(reject);
   });
 
   return Promise.race([cmdpromise, timeout]);
