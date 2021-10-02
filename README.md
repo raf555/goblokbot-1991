@@ -72,6 +72,10 @@ Btw, gak semua fitur / command pake bounded argument. Hampir semuanya pake yg un
     - Website goblokbot bisa dipake buat liat grafik latency, liat history chat, liat daftar user, sama request fitur baru.
     - Buat admin, admin bisa ban orang lewat web, bisa liat message yg di-unsend, bisa accept/delete fitur yg di-request.
     
+5. LEVELING SYSTEM
+
+    - Ada leveling system.
+    
 ### Daftar fitur
 
 banyak, cek folder **bot/features/mustcall** dan **bot/features/mustntcall** dan file **db/customcmd.json** kalo ada.

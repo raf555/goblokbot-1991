@@ -140,13 +140,19 @@ function makecard(d, rank) {
                 type: "text",
                 text: "Level: " + d.level,
                 color: "#ffffff",
-                size: "sm"
+                size: "xs"
               },
               {
                 type: "text",
                 text: "Credit: " + numFormatter(d.xp),
                 color: "#ffffff",
-                size: "sm"
+                size: "xs"
+              },
+              {
+                type: "text",
+                text: "Messages: " + d.count.toLocaleString("id-ID"),
+                color: "#ffffff",
+                size: "xs"
               }
             ],
             paddingAll: "5px",
@@ -177,5 +183,5 @@ function numFormatter(num, fixed = 4) {
         : (num / Math.pow(10, k * 3)).toFixed(1 + fixed), // divide by power
     d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
     e = d + ["", "K", "M", "B", "T"][k]; // append power
-  return e.replace(/\./g, ",");
+  return e.replace(/\./g, ",").replace(/,0+$/,"");
 }

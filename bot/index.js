@@ -52,12 +52,16 @@ function handleMessageEvent(event) {
   saveMessage(event);
 
   // add social credit
-  let sc = addSocialCredit(event.source.userId);
-  if (sc && sc.levelchange) {
-    if (event.message.type === "text") {
-      event.message.text = "!send " + sc.message + " ; " + event.message.text;
-    } else {
-      return handleReply(event)(sc);
+  if (event.source.roomId || event.source.groupId) {
+    let sc = addSocialCredit(event.source.userId);
+    if (sc && sc.levelchange) {
+      if (event.message.type === "text") {
+        let t = event.message.text;
+        event.message.text =
+          "!levelup " + JSON.stringify(sc.messageobj) + " ; " + t;
+      } else {
+        return replyMessage(event, sc.messageobj);
+      }
     }
   }
 
@@ -111,10 +115,12 @@ function handleReply(event) {
   return function(reply) {
     if (reply) {
       // add social credit if use bot
-      let sc = addMoreSocialCredit(event.source.userId);
-      if (sc && sc.levelchange) {
-        if (reply.length > 4) reply = reply.slice(0, 4);
-        reply.push(sc.messageobj);
+      if (event.source.roomId || event.source.groupId) {
+        let sc = addMoreSocialCredit(event.source.userId);
+        if (sc && sc.levelchange) {
+          if (reply.length > 4) reply = reply.slice(0, 4);
+          reply.push(sc.messageobj);
+        }
       }
       return replyMessage(event, reply);
     }

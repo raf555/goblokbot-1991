@@ -56,12 +56,18 @@ function addMoreSocialCredit(id) {
   });
   scdb.save();
 
-  let out = "";
+  let out = "",
+    emoji = "",
+    color = "";
   if (changelvl) {
     if (newlevel <= data.level) {
       out = user.get(id).name + " has leveled down to level " + newlevel;
+      color = "#B71C1C";
+      emoji = "👎👎👎";
     } else {
       out = user.get(id).name + " has leveled up to level " + newlevel;
+      color = "#1E88E5";
+      emoji = "🎉🎉🎉";
     }
   }
 
@@ -72,8 +78,15 @@ function addMoreSocialCredit(id) {
     levelchange: changelvl,
     message: out,
     messageobj: {
-      type: "text",
-      text: out
+      type: "flex",
+      contents: makecb(
+        user.get(id).name,
+        user.get(id).image,
+        newlevel,
+        emoji,
+        color
+      ),
+      altText: "Level change"
     }
   };
 
@@ -119,12 +132,18 @@ function addSocialCredit(id, custom = 0) {
   });
   scdb.save();
 
-  let out = "";
+  let out = "",
+    emoji = "",
+    color = "";
   if (changelvl) {
     if (newlevel <= data.level) {
       out = user.get(id).name + " has leveled down to level " + newlevel;
+      color = "#B71C1C";
+      emoji = "👎👎👎";
     } else {
       out = user.get(id).name + " has leveled up to level " + newlevel;
+      color = "#1E88E5";
+      emoji = "🎉🎉🎉";
     }
   }
 
@@ -135,8 +154,15 @@ function addSocialCredit(id, custom = 0) {
     levelchange: changelvl,
     message: out,
     messageobj: {
-      type: "text",
-      text: out
+      type: "flex",
+      contents: makecb(
+        user.get(id).name,
+        user.get(id).image,
+        newlevel,
+        emoji,
+        color
+      ),
+      altText: "Level change"
     }
   };
 
@@ -180,4 +206,70 @@ function getranks() {
   });
 
   return out.sort((b, a) => a.xp - b.xp);
+}
+
+function makecb(name, image, level, emoji, color) {
+  return {
+    type: "bubble",
+    size: "micro",
+    body: {
+      type: "box",
+      layout: "vertical",
+      contents: [
+        {
+          type: "box",
+          layout: "vertical",
+          contents: [
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "filler"
+                },
+                {
+                  type: "box",
+                  layout: "vertical",
+                  contents: [
+                    {
+                      type: "image",
+                      url: image,
+                      size: "full"
+                    }
+                  ],
+                  cornerRadius: "100px",
+                  height: "64px",
+                  width: "64px"
+                },
+                {
+                  type: "filler"
+                }
+              ]
+            },
+            {
+              type: "text",
+              text: name || "NONAME",
+              align: "center",
+              size: "md",
+              margin: "sm",
+              wrap: true,
+              color: "#ffffff"
+            },
+            {
+              type: "text",
+              text: "Level " + level,
+              align: "center",
+              color: "#ffffff"
+            },
+            {
+              type: "text",
+              text: emoji,
+              align: "center"
+            }
+          ]
+        }
+      ],
+      backgroundColor: color
+    }
+  };
 }

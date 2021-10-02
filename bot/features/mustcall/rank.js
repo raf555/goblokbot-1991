@@ -54,6 +54,9 @@ function makecard(uid, data, level, curxp, nextxp, count) {
   let image = data.image;
   let explow = getxpbylevel(level);
   let prog = Math.floor(((curxp - explow) / (nextxp - explow)) * 570);
+  if (curxp <= 0) {
+    prog = 1;
+  }
 
   let cmd = `!jimp -new "-w 670 -h 256 -c #23272A"
 -composite "-new '-w 598 -h 192 -c #090A0B' -pos 35,35"
@@ -81,5 +84,5 @@ function numFormatter(num, fixed = 4) {
       c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed), // divide by power
       d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
       e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
-  return e.replace(/\./g, ",");
+  return e.replace(/\./g, ",").replace(/,0+$/,"");
 }
