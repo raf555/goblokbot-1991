@@ -551,7 +551,7 @@ async function saveImage(event) {
     .upload({
       name: event.message.id,
       base64string: buffer.toString("base64"),
-      expiration: 15821676
+      expiration: 15552000
     })
     .then(upload => {
       dbimg.set(event.message.id.toString(), {

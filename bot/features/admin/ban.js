@@ -25,13 +25,14 @@ function ban_new(parsed, event, bot) {
   let iz;
   let now = Date.now();
   let scmin = -1 * 10 * parseInt(t / 60000);
+  let set = parsed.args.set;
 
   if (!event.message.mention) {
     let key = parsed.arg.split(" ")[0];
     let id = gethashidfromkey(key, udb.get());
     if (id) {
       let cb = cekban(id);
-      let p = (cb[0] ? cb[2] : now) + t;
+      let p = (cb[0] && !set ? cb[2] : now) + t;
       bandb.set(id, p);
       banned.push(udb.get(id).name);
       iz = id;
@@ -50,7 +51,7 @@ function ban_new(parsed, event, bot) {
       let id = gethashidfromuid(mentionee.userId, udb.get());
       if (!id) return;
       let cb = cekban(id);
-      let p = (cb[0] ? cb[2] : now) + t;
+      let p = (cb[0] && !set ? cb[2] : now) + t;
       bandb.set(id, p);
       banned.push(udb.get(id).name);
       iz = id;
