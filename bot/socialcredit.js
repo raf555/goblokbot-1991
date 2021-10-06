@@ -18,6 +18,14 @@ function getgap() {
 }
 
 function addMoreSocialCredit(id) {
+  return addcredit(id, true);
+}
+
+function addSocialCredit(id, custom = null) {
+  return addcredit(id, false, custom);
+}
+
+function addcredit(id, isfrombonus, custom) {
   const scdb = db.open("db/socialcredit.json");
   const user = db.open("db/user.json");
   const now = Date.now();
@@ -38,119 +46,66 @@ function addMoreSocialCredit(id) {
     data = scdb.get(id);
   }
 
-  if (now <= data.lastbonus + getgap()) return;
+  if (isfrombonus) {
+    if (now <= data.lastbonus + getgap()) return;
+  } else {
+    if (custom === null && now <= data.last + getgap()) return;
+  }
 
-  let xp = angkaAcak(25, 75);
+  let xp;
+  if (isfrombonus) {
+    xp = angkaAcak(25, 50);
+  } else {
+    if (custom !== null) {
+      xp = custom;
+    } else {
+      xp = angkaAcak(10, 25);
+    }
+  }
   let curxp = data.xp;
   let acc = curxp + xp;
   let newlevel = getlevelbyxp(acc);
 
   let changelvl = newlevel !== data.level;
 
-  scdb.set(id, {
-    xp: acc,
-    level: newlevel,
-    last: data.last,
-    lastbonus: now,
-    count: data.count || 0
-  });
-  scdb.save();
-
-  let out = "",
-    emoji = "",
-    color = "";
-  if (changelvl) {
-    if (newlevel <= data.level) {
-      out = user.get(id).name + " has leveled down to level " + newlevel;
-      color = "#B71C1C";
-      emoji = "👎👎👎";
-    } else {
-      out = user.get(id).name + " has leveled up to level " + newlevel;
-      color = "#1E88E5";
-      emoji = "🎉🎉🎉";
-    }
-  }
-
-  let outobj = {
-    xp: acc,
-    level: newlevel,
-    count: data.count + 1,
-    levelchange: changelvl,
-    message: out,
-    messageobj: {
-      type: "flex",
-      contents: makecb(
-        user.get(id).name,
-        user.get(id).image,
-        newlevel,
-        emoji,
-        color
-      ),
-      altText: "Level change"
-    }
-  };
-
-  return outobj;
-}
-
-function addSocialCredit(id, custom = 0) {
-  const scdb = db.open("db/socialcredit.json");
-  const user = db.open("db/user.json");
-  const now = Date.now();
-
-  id = gethashidfromuid(id, user.get());
-  if (!id) return;
-
-  let data = scdb.get(id);
-
-  if (!data) {
+  if (isfrombonus) {
     scdb.set(id, {
-      xp: 0,
-      level: 0,
-      last: 0,
-      lastbonus: 0,
-      count: 0
+      xp: acc,
+      level: newlevel,
+      last: data.last,
+      lastbonus: now
     });
-    data = scdb.get(id);
+  } else {
+    scdb.set(id, {
+      xp: acc,
+      level: newlevel,
+      last: now,
+      lastbonus: data.lastbonus
+    });
   }
-
-  if (!custom && now <= data.last + getgap()) return;
-
-  let xp = custom ? custom : angkaAcak(10, 25);
-  let curxp = data.xp;
-  let acc = curxp + xp;
-  let newlevel = getlevelbyxp(acc);
-
-  let changelvl = newlevel !== data.level;
-
-  scdb.set(id, {
-    xp: acc,
-    level: newlevel,
-    last: now,
-    lastbonus: data.lastbonus,
-    count: (data.count || 0) + 1
-  });
   scdb.save();
 
   let out = "",
     emoji = "",
-    color = "";
+    color = "",
+    icon;
   if (changelvl) {
     if (newlevel <= data.level) {
       out = user.get(id).name + " has leveled down to level " + newlevel;
       color = "#B71C1C";
       emoji = "👎👎👎";
+      icon = "https://image.prntscr.com/image/t2QaS89gRIiEbsGo6I4-MQ.png";
     } else {
       out = user.get(id).name + " has leveled up to level " + newlevel;
       color = "#1E88E5";
       emoji = "🎉🎉🎉";
+      icon = "https://image.prntscr.com/image/rxoXBSART7C5qKBjcgP5Yg.png";
     }
   }
 
   let outobj = {
     xp: acc,
     level: newlevel,
-    count: data.count + 1,
     levelchange: changelvl,
     message: out,
     messageobj: {
@@ -162,13 +117,39 @@ function addSocialCredit(id, custom = 0) {
         emoji,
         color
       ),
-      altText: "Level change"
+      altText: "Level change",
+      sender: {
+        name: "Social Credit Bot",
+        iconUrl: icon
+      }
     }
   };
 
   return outobj;
 }
 
+/** new leveling algorithm */
+function getprog(lvl) {
+  return Math.floor(10 * Math.pow(lvl, 2) + 69.69 * lvl + 123.42069);
+}
+function getxpbylevel(lvl) {
+  let xp = 0;
+  for (let i = 0; i < lvl; i++) {
+    xp += getprog(i);
+  }
+  return xp;
+}
+function getlevelbyxp(xp) {
+  let lvl = 1;
+  if (xp < getxpbylevel(lvl)) return 0;
+  while (getxpbylevel(lvl) <= xp) {
+    lvl++;
+  }
+  return lvl - 1;
+}
+/**/
+
+/** old leveling algorithm 
 function getlevelbyxp(xp) {
   return Math.floor(Math.sqrt(xp) * constant) || 0;
 }
@@ -176,9 +157,15 @@ function getlevelbyxp(xp) {
 function getxpbylevel(lvl) {
   return Math.ceil((lvl / constant) ** 2);
 }
+*/
 
 function getscdata(id) {
-  return getranks().filter(d => d.uid === id)[0];
+  let a = getranks().filter(d => d.uid === id)[0];
+  if (!a) {
+    addSocialCredit(id, 0);
+    a = getranks().filter(d => d.uid === id)[0];
+  }
+  return a;
 }
 
 function getrank(id) {
@@ -199,9 +186,9 @@ function getranks() {
       image: ud.image,
       id: keys[i],
       uid: ud.id,
+      key: ud.key,
       level: sc.level,
-      xp: sc.xp,
-      count: sc.count || 0
+      xp: sc.xp
     });
   });
 

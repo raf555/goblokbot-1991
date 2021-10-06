@@ -11,7 +11,7 @@ module.exports = {
       return null;
     }
     try {
-      return JSON.parse(parsed.arg);
+      return Object.assign(JSON.parse(parsed.arg), { nosave: true });
     } catch (e) {
       return null;
     }

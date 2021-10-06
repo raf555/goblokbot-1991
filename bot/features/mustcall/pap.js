@@ -142,7 +142,7 @@ function isban(parsed) {
       let reg = new RegExp(Object.keys(dbg)[i], "i");
       let matches = stringSimilarity.findBestMatch(
         Object.keys(dbg)[i],
-        parsed.arg.split(" ")
+        parsed.arg.toLowerCase().split(" ")
       );
       //if (query.match(reg) && dbz.get(Object.keys(dbg)[i]) == 1) {
       if (matches.bestMatch.rating >= 0.9) {

@@ -57,8 +57,7 @@ function handleMessageEvent(event) {
     if (sc && sc.levelchange) {
       if (event.message.type === "text") {
         let t = event.message.text;
-        event.message.text =
-          "!levelup " + JSON.stringify(sc.messageobj) + " ; " + t;
+        event.message.text = t + " ; !levelup " + JSON.stringify(sc.messageobj);
       } else {
         return replyMessage(event, sc.messageobj);
       }

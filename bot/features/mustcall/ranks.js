@@ -11,14 +11,6 @@ module.exports = {
   run: function(parsed, event, bot) {
     let ranks = getranks();
 
-    let out = "";
-
-    ranks.forEach((d, i) => {
-      out += `#${i + 1} ${d.name} | Social credit: ${d.xp} | Level: ${
-        d.level
-      } | Messages: ${d.count}\n`;
-    });
-
     return {
       type: "flex",
       contents: makecarousel(ranks),
@@ -41,6 +33,9 @@ function makecarousel(ranks) {
   });
 
   let bubbles = cards.map(makebubble);
+  if (bubbles[bubbles.length - 1].body.contents.length === 0) {
+    bubbles.pop();
+  }
 
   return {
     type: "carousel",
@@ -82,11 +77,11 @@ function makebubble(d, i) {
 function makecard(d, rank) {
   let defimg =
     "https://cdn.glitch.com/6fe2de81-e459-4790-8106-a0efd4b2192d%2Fno-image-profile.png?v=1622879440349";
-  let name = d.name || "NONAME"
+  let name = d.name || "NONAME";
   if (name.length > 17) {
     name = name.substring(0, 17) + "..";
   }
-  
+
   return {
     type: "box",
     layout: "horizontal",
@@ -120,7 +115,12 @@ function makecard(d, rank) {
                 ],
                 width: "64px",
                 height: "64px",
-                cornerRadius: "100px"
+                cornerRadius: "100px",
+                action: {
+                  type: "message",
+                  label: "rank",
+                  text: "!rank " + d.key
+                }
               }
             ],
             paddingAll: "5px",
@@ -147,12 +147,6 @@ function makecard(d, rank) {
                 text: "Credit: " + numFormatter(d.xp),
                 color: "#ffffff",
                 size: "xs"
-              },
-              {
-                type: "text",
-                text: "Messages: " + d.count.toLocaleString("id-ID"),
-                color: "#ffffff",
-                size: "xs"
               }
             ],
             paddingAll: "5px",
@@ -167,7 +161,7 @@ function makecard(d, rank) {
 }
 
 //https://stackoverflow.com/a/32638472
-function numFormatter(num, fixed = 4) {
+function numFormatter(num, fixed = 1) {
   if (num === null) {
     return null;
   } // terminate early
@@ -183,5 +177,5 @@ function numFormatter(num, fixed = 4) {
         : (num / Math.pow(10, k * 3)).toFixed(1 + fixed), // divide by power
     d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
     e = d + ["", "K", "M", "B", "T"][k]; // append power
-  return e.replace(/\./g, ",").replace(/,0+$/,"");
+  return e.replace(/\./g, ",").replace(/,0+$/, "");
 }

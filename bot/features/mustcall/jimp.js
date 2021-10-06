@@ -15,11 +15,11 @@ module.exports = {
   },
   run: (parsed, event, bot) => {
     if (parsed.args.compare) {
-      return compare(parsed.args.compare);
+      return compare(parsed.arg);
     }
 
     if (parsed.args.getsize) {
-      return getsize(parsed.args.getsize);
+      return getsize(parsed.arg);
     }
 
     return process(parsed.args).then(url => {
@@ -44,16 +44,19 @@ module.exports = {
 
 async function getsize(val) {
   let urls = val.split(" ");
-  let out = [];
 
-  for (let i = 0; i < urls.length; i++) {
-    let img = await Jimp.read(await getBufferFromURL(urls[i]));
-    out.push(`${i + 1}. ${img.bitmap.width}x${img.bitmap.height}`);
-  }
+  let promises = urls.map(url => Jimp.read(url));
+  let imgs = Promise.all(promises).then(res => {
+    let out = [];
+    res.forEach((img, i) =>
+      out.push(`${i + 1}. ${img.bitmap.width}x${img.bitmap.height}`)
+    );
+    return out;
+  });
 
   return {
     type: "text",
-    text: out.join("\n")
+    text: (await imgs).join("\n")
   };
 }
 
@@ -70,8 +73,8 @@ async function compare(val) {
     url2 = val2[1];
   }
 
-  let img1 = await Jimp.read(await getBufferFromURL(url1));
-  let img2 = await Jimp.read(await getBufferFromURL(url2));
+  let imgs = await Promise.all([Jimp.read(url1), Jimp.read(url2)]);
+  let [img1, img2] = imgs;
 
   let distance = Jimp.distance(img1, img2); // perceived distance
   let diff = Jimp.diff(img1, img2); // pixel difference
@@ -91,7 +94,7 @@ async function process(args) {
   let buffer = (await image.getBufferAsync(Jimp.MIME_PNG)).toString("base64");
 
   let upload = await imgbb.upload({
-    name: "jimptes" + Date.now(),
+    name: "JIMP_" + Date.now(),
     base64string: buffer,
     expiration: 3600 * 24
   });
@@ -417,11 +420,13 @@ async function print(image, val) {
   font = await Jimp.loadFont(Jimp[fontname]);
 
   let textwidth = Jimp.measureText(font, text || "");
-
+  let textheight = Jimp.measureTextHeight(font, text || "", textwidth)
+  
   let datacalc = {
     height: image.bitmap.height,
     width: image.bitmap.width,
-    twidth: textwidth
+    twidth: textwidth,
+    theight: textheight
   };
 
   if (val.top) {

@@ -23,6 +23,13 @@ function givesc(parsed, event, bot) {
   let out = [];
   let set = parsed.args.set;
 
+  let all = parsed.arg.split(" ")[0].toLowerCase() === "all";
+  if (all) {
+    event.message.mention = {
+      mentionees: Object.values(udb.get()).map(d => ({ userId: d.id }))
+    };
+  }
+
   if (!event.message.mention) {
     let key = parsed.arg.split(" ")[0];
     let hash = gethashidfromkey(key, udb.get());
@@ -58,15 +65,25 @@ function givesc(parsed, event, bot) {
     };
   }
 
-  out = out.slice(0, 4);
-  out.unshift({
-    type: "text",
-    text:
+  let t;
+  if (all) {
+    t =
+      "Semua telah diberikan " +
+      amount.toLocaleString("id-ID") +
+      " social credit";
+  } else {
+    t =
       users.join(", ") +
       " telah diberikan " +
       amount.toLocaleString("id-ID") +
-      " social credit"
+      " social credit";
+  }
+
+  out = out.slice(0, 4);
+  out.unshift({
+    type: "text",
+    text: t
   });
 
-  return out;
+  return all ? out[0] : out;
 }
