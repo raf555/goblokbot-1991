@@ -18,7 +18,7 @@ module.exports = {
 
 function shortcut(parsed, event, bot) {
   let reg = parsed.args.reg;
-  let id = parsed.arg;
+  let id = parsed.arg.split(" ")[0];
   let info = parsed.args.info;
   let unreg = parsed.args.unreg;
 
@@ -36,7 +36,7 @@ function shortcut(parsed, event, bot) {
     return register(reg, id, userId);
   }
 
-  return execute(id, userId, event, parsed.args, bot.function.execMultiple);
+  return execute(id, userId, event, parsed, bot.function.execMultiple);
 }
 
 function infocmd(uid, info) {
@@ -102,9 +102,12 @@ function unregister(id, uid) {
   };
 }
 
-function execute(id, uid, event, args, exec) {
+function execute(id, uid, event, parsed, exec) {
   let sdb = db.open("db/shortcutcmd.json");
+  let { args, arg } = parsed;
 
+  let split = arg.split(" ");
+  split.shift();
   let key = !id ? "default" : id;
 
   let cmd = sdb.get(uid + "." + key);
@@ -117,12 +120,12 @@ function execute(id, uid, event, args, exec) {
 
   let vars = cmd.match(/{(\w+)}/g);
   if (vars) {
-    vars.forEach(q => {
+    vars = [...new Set(vars)];
+    vars.forEach((q,i) => {
       let name = /{(\w+)}/.exec(q)[1];
-      let val = args[name];
-      if (val) {
-        cmd = cmd.replace(new RegExp(q, "g"), val);
-      }
+      let r = new RegExp(q, "g");
+      let val = args[name] || split[i];
+      cmd = cmd.replace(r, val)
     });
   }
 
