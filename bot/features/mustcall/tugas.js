@@ -174,7 +174,7 @@ function makebubble(data) {
         },
         {
           type: "text",
-          text: data.desc.trim(),
+          text: data.desc.trim() || "-",
           wrap: true,
           size: "sm"
         }

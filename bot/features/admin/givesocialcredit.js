@@ -26,7 +26,9 @@ function givesc(parsed, event, bot) {
   let all = parsed.arg.split(" ")[0].toLowerCase() === "all";
   if (all) {
     event.message.mention = {
-      mentionees: Object.values(udb.get()).map(d => ({ userId: d.id }))
+      mentionees: Object.values(udb.get())
+        .filter(d => d.key !== "null")
+        .map(d => ({ userId: d.id }))
     };
   }
 

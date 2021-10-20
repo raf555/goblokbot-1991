@@ -79,7 +79,7 @@ function makecard(
   let explow = getxpbylevel(level);
   let prog1 = curxp - explow;
   let prog2 = nextxp - explow;
-  let prog = Math.floor((prog1 / prog2) * 570);
+  let prog = Math.ceil((prog1 / prog2) * 570);
   if (curxp <= 0) {
     prog = 1;
   }

@@ -6,6 +6,7 @@ module.exports = {
   addMoreSocialCredit,
   getxpbylevel,
   getlevelbyxp,
+  getprog,
   getrank,
   getranks,
   getscdata
@@ -29,6 +30,8 @@ function addcredit(id, isfrombonus, custom) {
   const scdb = db.open("db/socialcredit.json");
   const user = db.open("db/user.json");
   const now = Date.now();
+
+  let uid = id;
 
   id = gethashidfromuid(id, user.get());
   if (!id) return;
@@ -115,7 +118,8 @@ function addcredit(id, isfrombonus, custom) {
         user.get(id).image,
         newlevel,
         emoji,
-        color
+        color,
+        getrank(uid)
       ),
       altText: "Level change",
       sender: {
@@ -191,11 +195,13 @@ function getranks() {
       xp: sc.xp
     });
   });
+  out = out.sort((b, a) => a.xp - b.xp);
+  out.push(out.shift());
 
-  return out.sort((b, a) => a.xp - b.xp);
+  return out;
 }
 
-function makecb(name, image, level, emoji, color) {
+function makecb(name, image, level, emoji, color, rank) {
   return {
     type: "bubble",
     size: "micro",
@@ -254,6 +260,15 @@ function makecb(name, image, level, emoji, color) {
               align: "center"
             }
           ]
+        },
+        {
+          type: "text",
+          text: "#" + rank,
+          color: "#ffffff",
+          size: "lg",
+          position: "absolute",
+          offsetEnd: "4px",
+          offsetTop: "1px"
         }
       ],
       backgroundColor: color
