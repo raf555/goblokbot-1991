@@ -7,7 +7,8 @@ module.exports = {
     description: "Command buat nmanggil command terakhir",
     usage: "[@bot/!] [!/lastcmd]",
     CMD: "lastcmd",
-    ALIASES: []
+    ALIASES: [],
+    DISABLED: true
   },
   run: lastcmd
 };

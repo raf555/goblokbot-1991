@@ -48,7 +48,7 @@ async function tugas(parsed, event, bot) {
     return parsed.arg ? b.startsWith(a) || new RegExp(a).test(b) : true;
   };
 
-  let bubbles = data
+  data = data
     .filter(e => {
       return (
         !e.name.toLowerCase().endsWith("(matkul pilihan)") &&
@@ -60,126 +60,142 @@ async function tugas(parsed, event, bot) {
     })
     .map(e => {
       e.name = e.name.replace(regex, "");
-      return makebubble(e);
+      return e;
     });
-
-  let start = parsed.args.next ? 12 : 0;
-
-  if (start > bubbles.length) {
-    return {
-      type: "text",
-      text: "No more assignment"
-    };
-  }
-
-  if (parsed.args.all) {
-    let out = [];
-    bubbles.forEach((bubble, i) => {
-      if (i % 12 === 0) {
-        out.push([]);
-        out[out.length - 1] = {
-          type: "flex",
-          altText: "Tugas Kuliah",
-          contents: {
-            type: "carousel",
-            contents: []
-          }
-        };
-      }
-
-      out[out.length - 1].contents.contents.push(bubble);
-    });
-
-    return out;
-  }
 
   return {
     type: "flex",
     altText: "Tugas Kuliah",
-    contents: {
-      type: "carousel",
-      contents: bubbles.slice(start, start + 12)
-    }
+    contents: makeBubble(data)
   };
 }
 
-function datetojam(date) {
-  let jam = appendzero(date.getHours());
-  let mnt = appendzero(date.getMinutes());
-
-  return `${jam}.${mnt}`;
+function getHari(ts) {
+  return new Date(ts).toLocaleString("id-ID", { weekday: "long" });
 }
 
-function datetotgl(date) {
-  let hari = date.toLocaleDateString("ID", { weekday: "long" });
-  let tgl = appendzero(date.getDate());
-  let bln = appendzero(date.getMonth() + 1);
-  let thn = date.getFullYear();
-
-  return `${hari}, ${tgl}-${bln}-${thn}`;
+function getTglPendek(ts) {
+  return new Date(ts).toLocaleString("id-ID", {
+    day: "numeric",
+    month: "short"
+  });
 }
 
-function appendzero(n) {
-  if (typeof n === "string") {
-    n = parseInt(n);
-  }
-
-  return n < 10 ? "0" + n : n.toString();
+function getJam(ts) {
+  return new Date(ts).toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
 }
 
-function makebubble(data) {
-  let date = convertTZ(new Date(data.end * 1000), "Asia/Jakarta");
-  let tgl = datetotgl(date);
-  let jam = datetojam(date);
-
-  return {
+function makeBubble(data) {
+  let bubble = {
     type: "bubble",
-    size: "kilo",
     body: {
       type: "box",
       layout: "vertical",
-      contents: [
-        {
-          type: "box",
-          layout: "vertical",
-          contents: [
-            {
-              type: "text",
-              text: data.name,
-              size: "lg",
-              wrap: true,
-              align: "center",
-              weight: "bold"
-            },
-            {
-              type: "separator"
-            },
-            {
-              type: "text",
-              text: tgl,
-              align: "center",
-              size: "sm"
-            },
-            {
-              type: "text",
-              text: jam,
-              align: "center",
-              size: "sm"
-            }
-          ],
-          spacing: "xs"
-        },
-        {
-          type: "separator"
-        },
-        {
-          type: "text",
-          text: data.desc.trim() || "-",
-          wrap: true,
-          size: "sm"
-        }
-      ],
+      contents: [],
       spacing: "sm"
     }
+  };
+  let day = {};
+
+  for (let i = 0; i < data.length; i++) {
+    let tugas = data[i];
+    tugas.end =
+      convertTZ(new Date(tugas.end * 1000), "Asia/Jakarta").getTime() / 1000;
+    let ts = tugas.end * 1000;
+    let tglnya = new Date(ts).getDate().toString();
+    if (!day[tglnya]) {
+      day[tglnya] = makeDateBubble(ts);
+    }
+    if (day[tglnya].contents[2].contents.length) {
+      day[tglnya].contents[2].contents.push({
+        type: "separator"
+      });
+    }
+    day[tglnya].contents[2].contents.push(makeTugasBubble(data[i]));
+  }
+
+  let key = Object.keys(day);
+  for (let i = 0; i < key.length; i++) {
+    if (i > 0) {
+      bubble.body.contents.push({
+        type: "separator"
+      });
+    }
+    bubble.body.contents.push(day[key[i]]);
+  }
+
+  return bubble;
+}
+
+function makeDateBubble(ts) {
+  return {
+    type: "box",
+    layout: "horizontal",
+    contents: [
+      {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "text",
+            size: "sm",
+            text: getHari(ts),
+            weight: "bold",
+            align: "end"
+          },
+          {
+            type: "text",
+            size: "sm",
+            text: getTglPendek(ts),
+            weight: "bold",
+            align: "end"
+          }
+        ],
+        width: "60px"
+      },
+      {
+        type: "separator"
+      },
+      {
+        type: "box",
+        layout: "vertical",
+        contents: [],
+        spacing: "xs"
+      }
+    ],
+    spacing: "md"
+  };
+}
+
+function makeTugasBubble(data) {
+  return {
+    type: "box",
+    layout: "vertical",
+    contents: [
+      {
+        type: "text",
+        text: data.name,
+        size: "sm",
+        weight: "bold",
+        wrap: true
+      },
+      {
+        type: "text",
+        text: getJam(data.end * 1000),
+        size: "xs",
+        margin: "none",
+        weight: "bold"
+      },
+      {
+        type: "text",
+        text: data.desc.trim() || "-",
+        margin: "xs",
+        size: "xs",
+        wrap: true
+      }
+    ]
   };
 }
