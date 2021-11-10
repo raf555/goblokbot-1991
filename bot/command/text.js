@@ -130,6 +130,7 @@ async function execMessage(text, event) {
     if (ccc[event.source.groupId || event.source.userId]) {
       ccc[event.source.groupId || event.source.userId] = 0;
     }
+    /*
     if (cmd === "!") {
       // special case
       parsed = restoreParserArgs(parsed, removed);
@@ -142,15 +143,15 @@ async function execMessage(text, event) {
           parsed = reply.parsed;
         }
       }
+    } else {*/
+    if (keywords.includes(cmd)) {
+      reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
     } else {
-      if (keywords.includes(cmd)) {
-        reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
-      } else {
-        if (!parsed.shortcut && !parsed.arg && !cmd) {
-          reply = greeting(event);
-        }
+      if (!parsed.shortcut && !parsed.arg && !cmd) {
+        reply = greeting(event);
       }
     }
+    //}
   } else {
     if (ccc[event.source.groupId || event.source.userId]) {
       ccc[event.source.groupId || event.source.userId] = 0;

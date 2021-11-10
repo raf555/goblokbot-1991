@@ -69,6 +69,14 @@ module.exports = {
                 label: "More",
                 text: "!opm"
               }
+            },
+            {
+              type: "action",
+              action: {
+                type: "message",
+                label: "More from this chapt",
+                text: "!opm " + chapters[i1].chapter
+              }
             }
           ]
         }
