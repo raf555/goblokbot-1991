@@ -15,6 +15,7 @@ bot/assets/kbbi.json
 # service/cron/
 # bot/features/admin/1.js
 service/cron/ceknilai.js
+nilai.json
 
 # func
 /func
