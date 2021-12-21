@@ -1,4 +1,8 @@
-const { ArgumentError, ArgumentTypeError } = require("./exception");
+const {
+  ArgumentError,
+  ArgumentTypeError,
+  ArgumentConstraintError
+} = require("./exception");
 const argstype = require("./type");
 
 module.exports = { argsmiddleware, help };
@@ -59,26 +63,20 @@ function argsmiddleware(rules, parsed) {
         delete args[_name];
         delete args[_alias];
 
-        try {
-          assigntype(_name, name, string, args, rules);
-        } catch (e) {
-          if (rules[name].default) {
-            args[_name] = rules[name].default;
-          } else {
-            throw e;
-          }
-        }
+        assigntype(_name, name, string, args, rules);
       } else {
-        if (rules[name].default) {
+        if (rules[name].default !== undefined) {
           args[_name] = rules[name].default;
-        } else {
+          continue;
+        }
+        if (rules[name].required) {
           throw new ArgumentError(`Argument ${name} is required.`);
         }
       }
     } else {
       if (raw.length) {
         if (!raw[i]) {
-          if (rules[name].default) {
+          if (rules[name].default !== undefined) {
             args[_name] = rules[name].default;
             i++;
             continue;
@@ -111,13 +109,16 @@ function assigntype(_name, name, value, args, rules) {
     typeof rules[name].type === "function"
   ) {
     args[_name] = rules[name].type(_name, value, args);
+    checkconstraint(rules, args, name, _name);
   } else {
     if (Array.isArray(rules[name].type)) {
       for (let i = 0, n = rules[name].type.length; i < n; i++) {
         try {
           args[_name] = rules[name].type[i](_name, value, args);
+          checkconstraint(rules, args, name, _name);
           break;
         } catch (e) {
+          if (e.name === "ArgumentConstraintError") throw e;
           if (i === n - 1) {
             throw new ArgumentTypeError(
               `Argument ${name} must be a valid (${rules[name].type
@@ -131,6 +132,19 @@ function assigntype(_name, name, value, args, rules) {
   }
 }
 
+function checkconstraint(rules, args, name, _name) {
+  if (!rules[name].constraints) return;
+
+  let constraints = rules[name].constraints;
+  for (let i = 0, n = constraints.length; i < n; i++) {
+    if (!constraints[i][0](args[_name])) {
+      throw new ArgumentConstraintError(
+        `Argument ${name} value must meet a condition: ${constraints[i][1]}`
+      );
+    }
+  }
+}
+
 function help(parsed, event, { data, mustcall }) {
   let caller = "";
   if (mustcall) {
@@ -138,10 +152,10 @@ function help(parsed, event, { data, mustcall }) {
   }
 
   let args = data.ARGS;
-  let args_required = [];
-  let args_optional = [];
   let args_positional = [];
+  let args_positional_ = [];
   let args_not_positional = [];
+  let args_not_positional_ = [];
 
   let a = {
     alias: "-a",
@@ -156,12 +170,6 @@ function help(parsed, event, { data, mustcall }) {
       let name = [];
       name.push(arg);
       if (args[arg].alias) name.push(args[arg].alias);
-      let arr;
-      if (args[arg].required) {
-        arr = args_required;
-      } else {
-        arr = args_optional;
-      }
       if (arg.startsWith("--")) args[arg].type = argstype.BOOLEAN;
       if (!args[arg].type) args[arg].type = argstype.STRING;
       let type = Array.isArray(args[arg].type)
@@ -173,12 +181,14 @@ function help(parsed, event, { data, mustcall }) {
         desc: args[arg].description || "-",
         type,
         positional: !arg.startsWith("-"),
-        default: args[arg].default || "-"
+        default: args[arg].default || "-",
+        required: args[arg].required || false
       };
-      arr.push(out);
       if (out.positional) {
         args_positional.push("<" + out.realname + ">");
+        args_positional_.push(out);
       } else {
+        args_not_positional_.push(out);
         if (arg.startsWith("--")) {
           args_not_positional.push("[" + out.realname + "]");
         } else {
@@ -188,41 +198,54 @@ function help(parsed, event, { data, mustcall }) {
     });
   }
 
-  let req_msg = args_required.map(d => {
-    return `•  ${d.name}
-    Description: ${d.desc}
-    Data Type: ${d.type}
-    Positional: ${
-      d.positional
-        ? "yes, " + (args_positional.indexOf("<" + d.realname + ">") + 1)
-        : "no"
-    }
-    Default Value: ${d.default === "-" ? "-" : JSON.stringify(d.default)}`;
+  args_not_positional_.sort(function(x, y) {
+    return Boolean(x.required) === Boolean(y.required)
+      ? 0
+      : Boolean(x.required)
+      ? -1
+      : 1;
+  });
+  args_not_positional_.unshift({
+    name: "--help, --h",
+    desc: "Buat munculin pesan ini",
+    type: "Boolean"
   });
 
-  let opt_msg = args_optional.map(d => {
+  let pos_msg = args_positional_.map(d => {
     return `•  ${d.name}
+    Required: ${d.required ? "yes" : "no"}
     Description: ${d.desc}
     Data Type: ${d.type}
-    Positional: ${
-      d.positional
-        ? "yes, " + (args_positional.indexOf("<" + d.realname + ">") + 1)
-        : "no"
-    }
-    Default Value: ${d.default === "-" ? "-" : JSON.stringify(d.default)}`;
+    Default Value: ${
+      d.default === "-" || !d.default ? "-" : JSON.stringify(d.default)
+    }`;
+  });
+
+  let not_pos_msg = args_not_positional_.map(d => {
+    return `•  ${d.name}
+    Required: ${d.required ? "yes" : "no"}
+    Description: ${d.desc}
+    Data Type: ${d.type}
+    Default Value: ${
+      d.default === "-" || !d.default ? "-" : JSON.stringify(d.default)
+    }`;
   });
 
   let message = `Usage:${caller} ${data.CMD} ${args_positional
     .concat(args_not_positional)
     .join(" ")}
+Alias: ${data.ALIASES.join(" | ") || "-"}
 
+Name: ${data.name}
 Description: ${data.description}
+Disabled: ${data.DISABLED ? "yes" : "no"}
+Admin only: ${data.ADMIN ? "yes" : "no"}
 
-Required Argument(s):
-${req_msg.length ? req_msg.join("\n") : "-"}
+Positional Argument(s):
+${pos_msg.length ? pos_msg.join("\n") : "-"}
 
-Optional Argument(s):
-${opt_msg.length ? opt_msg.join("\n") : "-"}`;
+Non-Positional Argument(s):
+${not_pos_msg.length ? not_pos_msg.join("\n") : "-"}`;
 
   return {
     type: "text",
