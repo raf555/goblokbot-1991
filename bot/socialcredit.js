@@ -46,8 +46,11 @@ function addcredit(id, isfrombonus, custom) {
       lastbonus: 0,
       count: 0
     });
+    scdb.save();
     data = scdb.get(id);
   }
+
+  let currank = getrank(uid);
 
   if (isfrombonus) {
     if (now <= data.lastbonus + getgap()) return;
@@ -88,39 +91,70 @@ function addcredit(id, isfrombonus, custom) {
   }
   scdb.save();
 
+  let latestrank = getrank(uid);
+  let changerank = latestrank !== currank;
+
   let out = "",
     emoji = "",
     color = "",
+    color2 = "",
     icon;
-  if (changelvl) {
-    if (newlevel <= data.level) {
-      out = user.get(id).name + " has leveled down to level " + newlevel;
-      color = "#B71C1C";
-      emoji = "👎👎👎";
-      icon = "https://image.prntscr.com/image/t2QaS89gRIiEbsGo6I4-MQ.png";
-    } else {
-      out = user.get(id).name + " has leveled up to level " + newlevel;
-      color = "#1E88E5";
-      emoji = "🎉🎉🎉";
-      icon = "https://image.prntscr.com/image/rxoXBSART7C5qKBjcgP5Yg.png";
+  if (changelvl || changerank) {
+    if (changerank) {
+      if (currank > latestrank) {
+        color2 = "#1E88E5";
+      } else {
+        color2 = "#B71C1C";
+      }
+    }
+    if (changelvl) {
+      if (newlevel <= data.level) {
+        out = user.get(id).name + " has leveled down to level " + newlevel;
+        color = "#B71C1C";
+        emoji = "👎👎👎";
+        icon = "https://image.prntscr.com/image/t2QaS89gRIiEbsGo6I4-MQ.png";
+      } else {
+        out = user.get(id).name + " has leveled up to level " + newlevel;
+        color = "#1E88E5";
+        emoji = "🎉🎉🎉";
+        icon = "https://image.prntscr.com/image/rxoXBSART7C5qKBjcgP5Yg.png";
+      }
     }
   }
 
-  let outobj = {
-    xp: acc,
-    level: newlevel,
-    levelchange: changelvl,
-    message: out,
-    messageobj: {
-      type: "flex",
-      contents: makecb(
+  let outc = [];
+  if (changerank) {
+    outc.push(
+      makecb2(user.get(id).name, user.get(id).image, color2, currank, latestrank)
+    );
+  }
+  if (changelvl) {
+    outc.push(
+      makecb(
         user.get(id).name,
         user.get(id).image,
         newlevel,
         emoji,
         color,
         getrank(uid)
-      ),
+      )
+    );
+  }
+
+  let outobj = {
+    xp: acc,
+    level: newlevel,
+    levelchange: changelvl || changerank,
+    message: out,
+    messageobj: {
+      type: "flex",
+      contents:
+        outc.length === 2
+          ? {
+              type: "carousel",
+              contents: outc
+            }
+          : outc[0],
       altText: "Level change",
       sender: {
         name: "Social Credit Bot",
@@ -269,6 +303,73 @@ function makecb(name, image, level, emoji, color, rank) {
           position: "absolute",
           offsetEnd: "4px",
           offsetTop: "1px"
+        }
+      ],
+      backgroundColor: color
+    }
+  };
+}
+
+function makecb2(name, image, color, rank1, rank2) {
+  return {
+    type: "bubble",
+    size: "micro",
+    body: {
+      type: "box",
+      layout: "vertical",
+      contents: [
+        {
+          type: "box",
+          layout: "vertical",
+          contents: [
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "filler"
+                },
+                {
+                  type: "box",
+                  layout: "vertical",
+                  contents: [
+                    {
+                      type: "image",
+                      url: image,
+                      size: "full"
+                    }
+                  ],
+                  cornerRadius: "100px",
+                  height: "64px",
+                  width: "64px"
+                },
+                {
+                  type: "filler"
+                }
+              ]
+            },
+            {
+              type: "text",
+              text: name || "NONAME",
+              align: "center",
+              size: "md",
+              margin: "sm",
+              wrap: true,
+              color: "#ffffff"
+            },
+            {
+              type: "text",
+              text: "Rank change",
+              align: "center",
+              color: "#ffffff"
+            },
+            {
+              type: "text",
+              text: rank1 + " -> " + rank2,
+              align: "center",
+              color: "#ffffff"
+            }
+          ]
         }
       ],
       backgroundColor: color

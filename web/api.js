@@ -3,7 +3,7 @@ const fs = require("fs");
 const db = require("./../service/database");
 const hash = require("./../service/hash");
 const imgbb = require("./../service/imgbb");
-const { convertTZ, cekban, isAdmin, pushMessage } = require("./../bot/utility");
+const { convertTZ, cekban, isAdmin, pushMessage: pm } = require("./../bot/utility");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -18,6 +18,10 @@ app.post("/ban", banuser);
 app.post("/unban", unbanuser);
 app.post("/command/:tipe", upload.single("image"), command_handleapi);
 app.post("/command/delete/image", command_deleteimage);
+
+function pushMessage(id, msg) {
+  return pm(msg, id)
+}
 
 function getavaildate(req, res) {
   res.send({

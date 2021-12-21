@@ -2,6 +2,7 @@ const db = require("@utils/database");
 const imageSearch = require("google-images");
 const axios = require("axios");
 const stringSimilarity = require("string-similarity");
+const argstype = require("@bot/command/args/type");
 
 // init
 let papkey = process.env.pap_key.split(",");
@@ -35,7 +36,14 @@ module.exports = {
       "\n\noptions:" +
       "\n-n <n> ?: buat nampilin gambar berjumlah n (maks 12)",
     CMD: "pap",
-    ALIASES: ["p"]
+    ALIASES: ["p"],
+    ARGS: {
+      "-n": {
+        required: false,
+        type: argstype.NUMBER,
+        description: "Jumlah gambar yang di-pap"
+      }
+    }
   },
   run: pap
 };
@@ -191,12 +199,7 @@ function nimages(parsed, he) {
     };
   }
 
-  let n = parsed.args.n;
-  if (typeof n === "string") {
-    n = parseInt(n) % 12;
-  } else {
-    n = 12;
-  }
+  let n = parsed.args.n % 12;
 
   let crsl = {
     type: "flex",

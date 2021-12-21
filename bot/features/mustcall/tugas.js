@@ -8,13 +8,22 @@ module.exports = {
     description: "Buat ngirim tugas kuliah gw",
     usage: "[@bot/!] tugas",
     CMD: "tugas",
-    ALIASES: []
+    ALIASES: ["t"]
   },
   run: (parsed, event, bot) =>
     tugas(parsed, event, bot).then(reply =>
       Object.assign(reply, { nosave: true })
     )
 };
+
+function hasExcluded(name) {
+  const exclude = ["kripto"];
+  let con = true;
+  exclude.forEach(e => {
+    con = con && new RegExp(e, "i").test(name);
+  });
+  return con;
+}
 
 async function tugas(parsed, event, bot) {
   /* default is 2 week ahead */
@@ -35,7 +44,7 @@ async function tugas(parsed, event, bot) {
     )
     .then(data => data.data.result);
 
-  let regex = /\[IF\s?19\]\s?/;
+  let regex = /\[IF\s?19\]\s?/i;
   let now = Date.now();
 
   let weekcon = e =>
@@ -55,11 +64,16 @@ async function tugas(parsed, event, bot) {
         querycon(e) &&
         weekcon(e) &&
         e.end * 1000 > now &&
-        regex.test(e.name)
+        regex.test(e.name) &&
+        !hasExcluded(e.name)
       );
     })
     .map(e => {
       e.name = e.name.replace(regex, "");
+      e.start =
+        convertTZ(new Date(e.start * 1000), "Asia/Jakarta").getTime() / 1000;
+      e.end =
+        convertTZ(new Date(e.end * 1000), "Asia/Jakarta").getTime() / 1000;
       return e;
     });
 
@@ -88,6 +102,22 @@ function getJam(ts) {
   });
 }
 
+function isToday(ts) {
+  let today = convertTZ(new Date(), "Asia/Jakarta");
+  let d = new Date(ts);
+
+  return d.getDate() === today.getDate() && d.getMonth() === today.getMonth();
+}
+
+function isTomorrow(ts) {
+  let today = convertTZ(new Date(), "Asia/Jakarta");
+  let d = new Date(ts);
+
+  return (
+    d.getDate() === today.getDate() + 1 && d.getMonth() === today.getMonth()
+  );
+}
+
 function makeBubble(data) {
   let bubble = {
     type: "bubble",
@@ -102,10 +132,8 @@ function makeBubble(data) {
 
   for (let i = 0; i < data.length; i++) {
     let tugas = data[i];
-    tugas.end =
-      convertTZ(new Date(tugas.end * 1000), "Asia/Jakarta").getTime() / 1000;
     let ts = tugas.end * 1000;
-    let tglnya = new Date(ts).getDate().toString();
+    let tglnya = new Date(ts).toDateString();
     if (!day[tglnya]) {
       day[tglnya] = makeDateBubble(ts);
     }
@@ -152,7 +180,30 @@ function makeDateBubble(ts) {
             text: getTglPendek(ts),
             weight: "bold",
             align: "end"
-          }
+          },
+          ...(isToday(ts)
+            ? [
+                {
+                  type: "text",
+                  size: "xs",
+                  text: "Hari ini",
+                  weight: "bold",
+                  align: "end",
+                  color: "#D50000"
+                }
+              ]
+            : isTomorrow(ts)
+            ? [
+                {
+                  type: "text",
+                  size: "xs",
+                  text: "Besok",
+                  weight: "bold",
+                  align: "end",
+                  color: "#FBC02D"
+                }
+              ]
+            : [])
         ],
         width: "60px"
       },
@@ -171,6 +222,10 @@ function makeDateBubble(ts) {
 }
 
 function makeTugasBubble(data) {
+  let t = "";
+  if (isUjian(data.name)) {
+    t += getJam(data.start * 1000) + " - ";
+  }
   return {
     type: "box",
     layout: "vertical",
@@ -184,7 +239,7 @@ function makeTugasBubble(data) {
       },
       {
         type: "text",
-        text: getJam(data.end * 1000),
+        text: t + getJam(data.end * 1000),
         size: "xs",
         margin: "none",
         weight: "bold"
@@ -198,4 +253,14 @@ function makeTugasBubble(data) {
       }
     ]
   };
+}
+
+function isUjian(name) {
+  name = name.toLowerCase();
+  return (
+    name.startsWith("kuis") ||
+    name.startsWith("ujian") ||
+    name.startsWith("uas") ||
+    name.startsWith("uts")
+  );
 }

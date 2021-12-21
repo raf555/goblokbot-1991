@@ -67,7 +67,8 @@ function parse(message, caller) {
     args: parsearg.args,
     arg: parsearg.arg.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message,
-    parseTime: Date.now() - start
+    parseTime: Date.now() - start,
+    rawParsed: parsearg.arg
   };
 
   return parsed;
