@@ -41,7 +41,8 @@ module.exports = {
       "-n": {
         required: false,
         type: argstype.NUMBER,
-        description: "Jumlah gambar yang di-pap"
+        description: "Jumlah gambar yang di-pap",
+        constraints: [[n => n < 12 && n > 0, "n must be lower than 12 and greater than 0"]]
       }
     }
   },

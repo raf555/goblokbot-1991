@@ -12,4 +12,12 @@ class ArgumentError extends Error {
   }
 }
 
-module.exports = { ArgumentError, ArgumentTypeError };
+class ArgumentConstraintError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ArgumentConstraintError";
+  }
+}
+
+
+module.exports = { ArgumentError, ArgumentTypeError, ArgumentConstraintError };
