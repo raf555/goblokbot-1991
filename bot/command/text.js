@@ -3,6 +3,7 @@ const db = require("@utils/database");
 const { cekban, isAdmin } = require("@bot/utility");
 const { parse, removeParserArgs, restoreParserArgs } = require("@bot/parser");
 const regexbasedfeature = require("@bot/features/regex");
+const { argsmiddleware, help: argshelp } = require("./args");
 
 module.exports = {
   exec: execMessage,
@@ -122,6 +123,24 @@ async function execMessage(text, event) {
       return null;
     }
     return checkstatus;
+  }
+
+  if (keywords.includes(cmd) || keywords2.includes(cmd)) {
+    let cmddata,
+      mustcall = false;
+    if (parsed.called && keywords.includes(cmd)) {
+      cmddata = bot.data.mustcall[cmd];
+      mustcall = true;
+    } else if (keywords2.includes(cmd)) {
+      cmddata = bot.data.mustntcall[cmd];
+    }
+    if (parsed.args.help || parsed.args.h) {
+      return await executeCommand(argshelp, parsed, event, {
+        data: cmddata,
+        mustcall
+      });
+    }
+    argsmiddleware(cmddata.ARGS, parsed);
   }
 
   /* proceed the command */

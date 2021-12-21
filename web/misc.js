@@ -10,7 +10,7 @@ app.post("/opm", validate, (req, res) => {
     let _ = db.open("bot/assets/opmerr.json");
     let last = _.get("last");
     let now = Date.now();
-    if (now >= last + 1800000) {
+    if (now >= last + 300000) {
       _.set("last", now);
       _.save();
       pushMessage(
@@ -21,13 +21,19 @@ app.post("/opm", validate, (req, res) => {
         process.env.admin_id
       );
     }
-    res.status(200).json(data);
+    res
+      .status(200)
+      .type("text/plain")
+      .send(req.headers["opmkey"]);
     return;
   }
 
   if (data.type === "update") {
     handleNewChapt(data.source, data.chapters); // your code here
-    res.status(200).json(data);
+    res
+      .status(200)
+      .type("text/plain")
+      .send(req.headers["opmkey"]);
     return;
   }
 
@@ -36,9 +42,6 @@ app.post("/opm", validate, (req, res) => {
 
 /* Securing webhook as middleware (optional, BUT highly recommended) */
 function validate(req, res, next) {
-  console.log(req.headers);
-  console.log(req.body);
-
   function securecompare(a, b) {
     if (a.length !== b.length) {
       return false;
@@ -63,18 +66,21 @@ function validate(req, res, next) {
   function basicauth() {
     let mykey = process.env.opmkey; // your subscription key
     let key = req.headers["opmkey"];
-    return key && key === mykey; // use string matching
+    return key && securecompare(Buffer.from(mykey), Buffer.from(key)); // use string matching
   }
 
   /* if test event (registration), ignore validation */
   if (req.body.type === "test") {
-    res.status(200).json(req.body);
+    res
+      .status(200)
+      .type("text/plain")
+      .send(req.headers["opmkey"]);
     return;
   }
 
   /* these validation are optional,
-  but highly recommended to use either one to secure the requests
-  */
+    but highly recommended to use either one to secure the requests
+    */
   if (signaturevalidation() && basicauth()) {
     next();
     return;

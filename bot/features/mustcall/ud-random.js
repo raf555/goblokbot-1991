@@ -20,7 +20,6 @@ module.exports = {
     var judul = new Array();
     var $ = cheerio.load(body);
     var kata = "";
-    var number = "";
     var meaning = "";
     var word = "";
     var arti = [];
@@ -28,18 +27,11 @@ module.exports = {
       kata = "Sorry, we couldn't find: " + katax;
     } else {
       $("div.def-panel").each(function(i, elm) {
-        number = $(elm).children()[0].children[0].children[0].children[0][
-          "data"
-        ];
         word = $(elm).children()[1].children[0].children[0]["data"];
         meaning = $(elm)
           .find("div.meaning")
           .text();
-        if (number.match(/Top definition/) && i == 0) {
-          judul.push(word + "\n" + number + "\n\n" + meaning); //+"\n"+word);
-        } else {
-          judul.push(word + "\n\n" + meaning);
-        }
+        judul.push(word + "\n\n" + meaning);
       });
     }
     return {

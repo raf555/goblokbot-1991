@@ -67,7 +67,8 @@ function parse(message, caller) {
     args: parsearg.args,
     arg: parsearg.arg.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message,
-    parseTime: Date.now() - start
+    parseTime: Date.now() - start,
+    rawParsed: parsearg.arg
   };
 
   return parsed;
@@ -107,7 +108,9 @@ function parseArg(text) {
       if (custombracket) {
         let cust = getcustbracket(custombracket);
         let regex = new RegExp(
-          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${cust[0]}((.|\\n|\\r|\\t)*?)\\${cust[1]}`
+          `${escapeRegExp(word)}[.\\s\\n\\r\\t]*?\\${
+            cust[0]
+          }((.|\\n|\\r|\\t)*?)\\${cust[1]}`
         );
         if (regex.test(text)) {
           usecustbracket = true;
