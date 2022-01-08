@@ -20,17 +20,17 @@
     "@line/bot-sdk": "^7.4.0",
     "axios": "^0.24.0",
     "cheerio": "^0.22.0",
-    "edit-json-file": "^1.6.2",
+    "edit-json-file": "^1.7.0",
     "ejs": "^3.1.6",
     "expr-eval": "^2.0.2",
     "express": "^4.17.2",
-    "express-rate-limit": "^5.5.1",
+    "express-rate-limit": "^6.0.5",
     "express-session": "^1.17.2",
     "google-images": "^2.1.0",
     "imgbb-uploader": "^1.3.5",
     "jimp": "^0.16.1",
     "line-login": "^1.0.14",
-    "mal-scraper": "^2.11.3",
+    "mal-scraper": "^2.11.4",
     "md5": "^2.3.0",
     "module-alias": "^2.2.2",
     "multer": "^1.4.4",
@@ -43,7 +43,7 @@
     "ytsearcher": "^1.2.4"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "_moduleAliases": {
     "@utils": "./service",

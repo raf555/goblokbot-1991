@@ -42,6 +42,13 @@ module.exports = {
       });
     }
 
+    if (!API_LIVERS) {
+      return {
+        type: "text",
+        text: "This feature is not ready yet."
+      };
+    }
+
     if (parsed.args.livers || /^(livers)(\s(.*))?/.test(parsed.arg)) {
       if (/^(livers)(\s(.*))?/.test(parsed.arg)) {
         let exec = /^(livers)(\s(.*))?/.exec(parsed.arg);
@@ -533,7 +540,8 @@ function makeLiveBubble(event) {
 
 function makeLiverBubble(liver, socmed = false) {
   let ava = liver.images.halfbody.url;
-  let imageintro = liver.images.splash_background.url;
+  let imageintro = (liver.images.splash_background || liver.images.halfbody)
+    .url;
   let affiliation = liver.affiliation[0];
   let debut = toLocaleDate(new Date(liver.debut_at));
   let color = liver.color_pattern.primaryColor;

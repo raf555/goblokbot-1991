@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { angkaAcak } = require("@bot/utility");
-const argstype = require("@bot/command/args/type");
+const { ArgsType } = require("@bot/command/args");
 
 module.exports = {
   data: {
@@ -12,12 +12,13 @@ module.exports = {
     ARGS: {
       chapter: {
         required: false,
-        type: argstype.STRING
+        type: ArgsType.STRING
       },
       page: {
         required: false,
-        type: argstype.STRING
-      }
+        type: ArgsType.STRING
+      },
+      "--raw": {}
     }
   },
   run: async (parsed, event, bot) => {
@@ -40,7 +41,7 @@ async function opmraw(parsed, q, n) {
 
   let chapters = data.map(c => {
     let out = {};
-    out.chapter = /\[第(\d+)話\]/.exec(c.title)[1];
+    out.chapter = /\[第(.+)話\]/.exec(c.title)[1];
     out.link = c.link + ".json";
     return out;
   });
@@ -168,7 +169,7 @@ async function opm(parsed, q, n) {
   });
 
   if (q) {
-    chapters = chapters.filter(c => c.chapter === q);
+    chapters = chapters.filter(c => c.chapter === q || c.title.toLowerCase().indexOf(q) !== -1);
     if (chapters.length < 1) {
       throw new Error("Chapter " + q + " not found");
     }

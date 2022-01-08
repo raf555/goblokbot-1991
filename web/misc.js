@@ -28,6 +28,21 @@ app.post("/opm", validate, (req, res) => {
     return;
   }
 
+  if (data.type === "timeline") {
+    pushMessage(
+      {
+        type: "text",
+        text: data.message
+      },
+      process.env.admin_id
+    );
+    res
+      .status(200)
+      .type("text/plain")
+      .send(req.headers["opmkey"]);
+    return;
+  }
+
   if (data.type === "update") {
     handleNewChapt(data.source, data.chapters); // your code here
     res

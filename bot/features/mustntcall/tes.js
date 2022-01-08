@@ -1,5 +1,3 @@
-const argstype = require("@bot/command/args/type");
-
 module.exports = {
   data: {
     name: "Tes",
@@ -10,20 +8,7 @@ module.exports = {
       "\n--args ?: mengaktifkan echo arguments & query",
     CMD: "tes",
     ALIASES: [],
-    ARGS: {
-      x: {
-        type: [argstype.NUMBER, argstype.DATE]
-      },
-      y: {
-        type: argstype.JSON,
-        required: true,
-        default: {}
-      },
-      "-z": {
-        required: true
-      },
-      "--a": {}
-    }
+    ARGS: {}
   },
   run: (parsed, event, bot) => {
     if (parsed.args.args) {

@@ -3,11 +3,11 @@ const db = require("@utils/database");
 const { cekban, isAdmin } = require("@bot/utility");
 const { parse, removeParserArgs, restoreParserArgs } = require("@bot/parser");
 const regexbasedfeature = require("@bot/features/regex");
-const { argsmiddleware, help: argshelp } = require("./args");
+const Args = require("./args");
 
 module.exports = {
   exec: execMessage,
-  execMultiple: execMulti
+  execMultiple: execMulti,
 };
 
 let ccc = {};
@@ -15,7 +15,7 @@ let ccc = {};
 const bot = require("@bot/features")();
 Object.assign(bot, {
   function: module.exports,
-  data: require("@bot/features")(true)
+  data: require("@bot/features")(true),
 }); // assign execute functions
 
 let setting = db.open("bot/setting.json").get();
@@ -50,15 +50,15 @@ function execMulti(text, event) {
     return Promise.resolve(null);
   }
 
-  let executedpromise = split.map(text =>
-    execMessage(text, event).catch(e => {
+  let executedpromise = split.map((text) =>
+    execMessage(text, event).catch((e) => {
       console.error(e);
       let out = `Command Error -> ${text} \n\n${e.name}: ${e.message}`;
       return { type: "text", text: out, nosave: true, latency: 1 };
     })
   );
 
-  return Promise.all(executedpromise).then(res => {
+  return Promise.all(executedpromise).then((res) => {
     let executed = [];
     let nullc = 0;
 
@@ -125,22 +125,26 @@ async function execMessage(text, event) {
     return checkstatus;
   }
 
-  if (keywords.includes(cmd) || keywords2.includes(cmd)) {
+  if ((parsed.called && keywords.includes(cmd)) || keywords2.includes(cmd)) {
     let cmddata,
       mustcall = false;
-    if (parsed.called && keywords.includes(cmd)) {
-      cmddata = bot.data.mustcall[cmd];
-      mustcall = true;
-    } else if (keywords2.includes(cmd)) {
-      cmddata = bot.data.mustntcall[cmd];
+    if (parsed.called) {
+      if (keywords.includes(cmd)) {
+        cmddata = bot.data.mustcall[cmd];
+        mustcall = true;
+      }
+    } else {
+      if (keywords2.includes(cmd)) {
+        cmddata = bot.data.mustntcall[cmd];
+      }
     }
     if (parsed.args.help || parsed.args.h) {
-      return await executeCommand(argshelp, parsed, event, {
+      return await executeCommand(Args.ArgsHelp, parsed, event, {
         data: cmddata,
-        mustcall
+        mustcall,
       });
     }
-    argsmiddleware(cmddata.ARGS, parsed);
+    if (cmddata) Args.ArgsMiddleware(cmddata.ARGS, parsed);
   }
 
   /* proceed the command */
@@ -216,7 +220,7 @@ async function execMessage(text, event) {
     let alias = ra.alias;
     cmd = ra.cmd;
 
-    reply = reply.map(rdata => {
+    reply = reply.map((rdata) => {
       let out = {};
       if (!rdata.cmd && rdata.cmd !== "") {
         out.cmd = cmd;
@@ -233,7 +237,7 @@ async function execMessage(text, event) {
       receive: receivetime,
       pass: passtime,
       parse: parsetime,
-      exec: execend
+      exec: execend,
     };
 
     return reply;
@@ -275,9 +279,7 @@ function executeCommand() {
   });
 
   const cmdpromise = new Promise((resolve, reject) => {
-    Promise.resolve(cmdfunc(parsed, event, bot))
-      .then(resolve)
-      .catch(reject);
+    Promise.resolve(cmdfunc(parsed, event, bot)).then(resolve).catch(reject);
   });
 
   return Promise.race([cmdpromise, timeout]);
@@ -286,19 +288,19 @@ function executeCommand() {
 function constructcaller() {
   let normal = [setting.caller.normal].concat(
     Object.keys(setting.caller.custom.normal).filter(
-      key => setting.caller.custom.normal[key] !== 0
+      (key) => setting.caller.custom.normal[key] !== 0
     )
   );
 
   let shortcut = ["\\" + setting.caller.shortcut].concat(
     Object.keys(setting.caller.custom.shortcut)
-      .filter(key => setting.caller.custom.shortcut[key] !== 0)
-      .map(key => "\\" + key)
+      .filter((key) => setting.caller.custom.shortcut[key] !== 0)
+      .map((key) => "\\" + key)
   );
 
   return {
     normal: `(${normal.join("|")})`,
-    shortcut: `(${shortcut.join("|")})`
+    shortcut: `(${shortcut.join("|")})`,
   };
 }
 
@@ -316,7 +318,7 @@ function validToSend(parsed, event) {
       }
       return {
         type: "text",
-        text: "Bot sedang dalam kondisi luring."
+        text: "Bot sedang dalam kondisi luring.",
       };
     }
   }
@@ -329,7 +331,7 @@ function validToSend(parsed, event) {
       }
       return {
         type: "text",
-        text: "Anda telah di-ban oleh admin sampai " + bancheck[1]
+        text: "Anda telah di-ban oleh admin sampai " + bancheck[1],
       };
     }
   }
@@ -341,7 +343,7 @@ function validToSend(parsed, event) {
       }
       return {
         type: "text",
-        text: "Fitur " + cmd + " dalam kondisi nonaktif"
+        text: "Fitur " + cmd + " dalam kondisi nonaktif",
       };
     }
   }
@@ -354,7 +356,7 @@ function greeting(event) {
   return {
     type: "text",
     text: isAdmin(event.source.userId) ? "kenaps" : "apaan",
-    quickReply: db.open(`bot/assets/qr.json`).get()
+    quickReply: db.open(`bot/assets/qr.json`).get(),
   };
 }
 
@@ -372,14 +374,14 @@ function customfeature(msg, event) {
           rep = {
             type: "image",
             originalContentUrl: custcmd.get(msg).reply,
-            previewImageUrl: custcmd.get(msg).reply
+            previewImageUrl: custcmd.get(msg).reply,
           };
           break;
         case "flex":
           rep = {
             type: "flex",
             contents: JSON.parse(custcmd.get(msg).reply),
-            altText: msg
+            altText: msg,
           };
           break;
         default:

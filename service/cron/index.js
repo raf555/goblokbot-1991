@@ -14,8 +14,8 @@ module.exports = () => {
   // opm cover
   // cron.schedule("*/5 * * * *", opmcover);
 
-  // cek nilai tiap 10 menit
-  cron.schedule("*/10 * * * *", ceknilai);
+  // cek nilai tiap 15 menit
+  // cron.schedule("*/15 * * * *", ceknilai);
   
   console.log("Scheduled job has started");
 };

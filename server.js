@@ -12,9 +12,7 @@ app.set("view engine", "ejs");
 app.set("view cache", true);
 app.set("views", "./web/public");
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 
 /* static files for client-side */
 app.use(express.static("./web/public/static"));

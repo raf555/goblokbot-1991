@@ -5,15 +5,22 @@ const {
 } = require("./exception");
 const argstype = require("./type");
 
-module.exports = { argsmiddleware, help };
+module.exports = {
+  ArgsMiddleware: argsmiddleware,
+  ArgsHelp: help,
+  ArgsType: argstype
+};
 
 /*
 {
-        alias: "-a",
-        required: false,
-        type: argstype.BOOLEAN,
-        description: "Enable arguments test mode",
-        default: false
+        alias: "alias",
+        required: "boolean, true or false",
+        type: argstype.type,
+        description: "string of desc",
+        default: "default value",
+        constraints: [[func(value), errmsg]],
+        rules: [[func(args), errmsh]],
+        require: array of string
 }
 */
 
@@ -53,7 +60,7 @@ function argsmiddleware(rules, parsed) {
           ? rules[name].default === false
             ? false
             : true
-          : true;
+          : false;
       continue;
     }
 
@@ -108,17 +115,23 @@ function assigntype(_name, name, value, args, rules) {
     !Array.isArray(rules[name].type) &&
     typeof rules[name].type === "function"
   ) {
+    checkrequiredargs(rules, args, name, _name);
+    checkrule(rules, args, name, _name);
     args[_name] = rules[name].type(_name, value, args);
     checkconstraint(rules, args, name, _name);
   } else {
     if (Array.isArray(rules[name].type)) {
       for (let i = 0, n = rules[name].type.length; i < n; i++) {
         try {
+          checkrequiredargs(rules, args, name, _name);
+          checkrule(rules, args, name, _name);
           args[_name] = rules[name].type[i](_name, value, args);
           checkconstraint(rules, args, name, _name);
           break;
         } catch (e) {
-          if (e.name === "ArgumentConstraintError") throw e;
+          if (e.name === "ArgumentConstraintError") {
+            throw e;
+          }
           if (i === n - 1) {
             throw new ArgumentTypeError(
               `Argument ${name} must be a valid (${rules[name].type
@@ -128,6 +141,54 @@ function assigntype(_name, name, value, args, rules) {
           }
         }
       }
+    }
+  }
+}
+
+function checkrequiredargs(rules, args, name, _name) {
+  if (!rules[name].require) return;
+
+  function has(string) {
+    string = string.toString().toLowerCase();
+    if (string.startsWith("--")) {
+      string = string.substring(2);
+    } else if (string.startsWith("-")) {
+      string = string.substring(1);
+    }
+    return Object.keys(args).indexOf(string) !== -1;
+  }
+
+  let require = rules[name].require;
+  for (let i = 0, n = require.length; i < n; i++) {
+    if (!has(require[i])) {
+      throw new ArgumentConstraintError(
+        `Argument ${name} requires following arguments: ${require.join(", ")}`
+      );
+    }
+  }
+}
+
+function checkrule(rules, args, name, _name) {
+  if (!rules[name].rules) return;
+
+  let methods = {
+    has(string) {
+      string = string.toLowerCase();
+      if (string.startsWith("--")) {
+        string = string.substring(2);
+      } else if (string.startsWith("-")) {
+        string = string.substring(1);
+      }
+      return Object.keys(args).indexOf(string) !== -1;
+    }
+  };
+
+  let _rules = rules[name].rules;
+  for (let i = 0, n = _rules.length; i < n; i++) {
+    if (!_rules[i][0](methods)) {
+      throw new ArgumentConstraintError(
+        `Argument ${name} value must meet a rule: ${_rules[i][1]}`
+      );
     }
   }
 }
@@ -205,11 +266,12 @@ function help(parsed, event, { data, mustcall }) {
       ? -1
       : 1;
   });
+  /*
   args_not_positional_.unshift({
     name: "--help, --h",
     desc: "Buat munculin pesan ini",
     type: "Boolean"
-  });
+  });*/
 
   let pos_msg = args_positional_.map(d => {
     return `•  ${d.name}
@@ -238,8 +300,6 @@ Alias: ${data.ALIASES.join(" | ") || "-"}
 
 Name: ${data.name}
 Description: ${data.description}
-Disabled: ${data.DISABLED ? "yes" : "no"}
-Admin only: ${data.ADMIN ? "yes" : "no"}
 
 Positional Argument(s):
 ${pos_msg.length ? pos_msg.join("\n") : "-"}

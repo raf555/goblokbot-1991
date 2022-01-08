@@ -1,4 +1,4 @@
-const { ArgumentTypeError } = require("./exception");
+const { ArgumentTypeError, ArgumentError } = require("./exception");
 
 module.exports = {
   BOOLEAN,
@@ -49,42 +49,156 @@ function DATE(name, string, args) {
   return date;
 }
 
-function ARRAY(name, string, args) {
-  string = string.toString();
-  let valid = null;
-  try {
-    let arr = JSON.parse(string);
-    if (Array.isArray(arr)) {
-      valid = arr;
-    }
-  } catch (e) {
-  } finally {
-    if (valid) return valid;
-    let keys = Object.keys(args)
-      .join(" ")
-      .match(new RegExp(name + "\\d+", "g"));
-    if (keys && keys.length) {
-      let out = [];
-      keys.forEach(key => {
-        out.push(args[key]);
-        delete args[key];
-      });
-      return out;
-    } else {
-      let split = string.split(",");
-      return split;
-    }
-  }
-}
-
 function _JSON(name, string, args) {
   try {
     let json = JSON.parse(string);
     if (typeof json !== "object" || json === null) throw {};
     return json;
   } catch (e) {
-    throw new ArgumentTypeError(
-      `Argument ${name} must be a valid json format.`
-    );
+    throw new ArgumentTypeError(`Argument ${name} must be a valid JSON.`);
+  }
+}
+
+function ARRAY() {
+  if (
+    (arguments.length === 1) &
+    (typeof arguments[0] === "function" || Array.isArray(arguments[0]))
+  ) {
+    let func = arguments[0];
+    let func2 = function(name, string, args) {
+      return toArray(name, string, args, func);
+    };
+    let tostr = Array.isArray(func) ? `Array[${func.join(", ")}]` : `Array(${func})`;
+    func2.toString = () => tostr;
+
+    return func2;
+  }
+  let [name, string, args] = arguments;
+  string = string.toString();
+  return toArray(name, string, args);
+}
+
+function toArray(name, string, args, type = null) {
+  if (Array.isArray(string)) return string;
+  let valid = null;
+  try {
+    let arr = JSON.parse(string);
+    if (Array.isArray(arr)) {
+      valid = arr;
+      if (type) {
+        if (typeof type === "function") {
+          for (let i = 0, n = valid.length; i < n; i++) {
+            try {
+              valid[i] = type(name, valid[i], args);
+            } catch (e) {
+              throw new ArgumentTypeError(
+                `Argument ${name} at index ${i} must be a valid ${type} format.`
+              );
+            }
+          }
+        } else {
+          if (type.length > valid.length) {
+            throw new ArgumentError(
+              `Argument ${name} must have atleast ${type.length} items.`
+            );
+          }
+          for (let i = 0, n = valid.length; i < n; i++) {
+            if (Array.isArray(valid[i]) || typeof valid[i] === "object") {
+              valid[i] = JSON.stringify(valid[i]);
+            }
+            try {
+              valid[i] = (type[i] || STRING)(name, valid[i], args);
+            } catch (e) {
+              throw new ArgumentTypeError(
+                `Argument ${name} at index ${i} must be a valid ${type[i]} format.`
+              );
+            }
+          }
+        }
+      }
+    }
+  } catch (e) {
+    if (
+      type &&
+      (e.name === "ArgumentTypeError" || e.name === "ArgumentError")
+    ) {
+      throw e;
+    }
+  }
+  if (valid) return valid;
+  let regex = new RegExp(name + "(\\d+)", "g");
+  let keys = Object.keys(args)
+    .join(" ")
+    .match(regex);
+  if (keys && keys.length) {
+    let out = [];
+    keys.forEach(key => {
+      let regex = new RegExp(name + "(\\d+)", "g");
+      let exec = regex.exec(key);
+      let i = parseInt(exec[1]);
+      out[i] = args[key];
+      delete args[key];
+    });
+    if (type) {
+      if (typeof type === "function") {
+        for (let i = 0, n = out.length; i < n; i++) {
+          if (out[i] === undefined) continue;
+          try {
+            out[i] = type(name, out[i], args);
+          } catch (e) {
+            throw new ArgumentTypeError(
+              `Argument ${name} at index ${i} must be a valid ${type} format.`
+            );
+          }
+        }
+      } else {
+        if (type.length > out.length) {
+          throw new ArgumentError(
+            `Argument ${name} must have atleast ${type.length} items.`
+          );
+        }
+        for (let i = 0, n = out.length; i < n; i++) {
+          try {
+            out[i] = (type[i] || STRING)(name, out[i], args);
+          } catch (e) {
+            throw new ArgumentTypeError(
+              `Argument ${name} at index ${i} must be a valid ${type[i]} format.`
+            );
+          }
+        }
+      }
+    }
+    return out;
+  } else {
+    let split = string.split(",");
+    if (type) {
+      if (typeof type === "function") {
+        for (let i = 0, n = split.length; i < n; i++) {
+          try {
+            split[i] = type(name, split[i], args);
+          } catch (e) {
+            throw new ArgumentTypeError(
+              `Argument ${name} at index ${i} must be a valid ${type} format.`
+            );
+          }
+        }
+      } else {
+        if (type.length > split.length) {
+          throw new ArgumentError(
+            `Argument ${name} must have atleast ${type.length} items.`
+          );
+        }
+        for (let i = 0, n = split.length; i < n; i++) {
+          try {
+            split[i] = (type[i] || STRING)(name, split[i], args);
+          } catch (e) {
+            throw new ArgumentTypeError(
+              `Argument ${name} at index ${i} must be a valid ${type[i]} format.`
+            );
+          }
+        }
+      }
+    }
+    return split;
   }
 }

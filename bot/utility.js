@@ -346,7 +346,7 @@ async function uploadImgFromQ(event) {
         idb.set(upload.id, {
           url: upload.url,
           del: upload.delete_url,
-          exp: data.exp ? Date.now() + data.exp : 99999999999999,
+          exp: data.exp ? data.exp : null,
           uploader: event.source.userId
         });
         idb.save();
@@ -551,7 +551,7 @@ async function saveImage(event) {
     .upload({
       name: event.message.id,
       base64string: buffer.toString("base64"),
-      expiration: 15552000
+      expiration: 2592000
     })
     .then(upload => {
       dbimg.set(event.message.id.toString(), {

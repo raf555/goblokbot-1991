@@ -4,7 +4,7 @@ const RateLimit = require("express-rate-limit");
 
 /* limiter for web requests */
 app.use(
-  new RateLimit({
+  RateLimit({
     max: 3600, // limit each IP to 3600 requests per 60 seconds
     delayMs: 0 // disable delaying - full speed until the max limit is reached
   })

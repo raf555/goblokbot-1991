@@ -1,5 +1,6 @@
 const { YTSearcher } = require("ytsearcher");
 const ytsearcher = new YTSearcher(process.env.yts_api);
+const { ArgsType } = require("@bot/command/args");
 
 module.exports = {
   data: {
@@ -7,7 +8,19 @@ module.exports = {
     description: "Command buat nampilih top search dari Youtube",
     usage: "[@bot/!] yt <query>?",
     CMD: "yt",
-    ALIASES: ["youtube"]
+    ALIASES: ["youtube"],
+    ARGS: {
+      "--random": {
+        description: "Random mode"
+      },
+      "--search": {
+        description: "Search mode"
+      },
+      "-n": {
+        type: ArgsType.NUMBER,
+        description: "Jumlah hasil search"
+      }
+    }
   },
   run: yt
 };
@@ -20,7 +33,7 @@ async function yt(parsed, event, bot) {
   let i = random ? angkaAcak(0, max - 1) : 0;
 
   if (search && parsed.args.n) {
-    max = parseInt(parsed.args.n) % 12;
+    max = parsed.args.n;
     if (max === 0) max = 1;
   }
   let d = await ytsearcher.search(txt, {
