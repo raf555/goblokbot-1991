@@ -7,7 +7,7 @@ module.exports = {
 };
 
 function upload(options) {
-  options.apiKey = key;
+  if (!options.apiKey) options.apiKey = key;
   
   //if (options.name) {
   //  options.name = encodeURIComponent(options.name);

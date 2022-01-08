@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { STRING } = require("@bot/command/args/type");
+const { ArgsType } = require("@bot/command/args");
 
 module.exports = {
   data: {
@@ -9,12 +9,7 @@ module.exports = {
     usage: "[@bot/!] [c/covid] <nama-negara>?",
     CMD: "covid",
     ALIASES: ["c"],
-    ARGS: {
-      country: {
-        required: false,
-        type: STRING
-      }
-    }
+    ARGS: {}
   },
   run: copid
 };
@@ -24,7 +19,7 @@ async function copid(parsed, event, bot) {
   let body = res.data;
   let $ = cheerio.load(body);
 
-  let country = parsed.args.country;
+  let country = parsed.arg;
   if (!country) {
     country = "indonesia";
   }

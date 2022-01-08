@@ -19,5 +19,4 @@ class ArgumentConstraintError extends Error {
   }
 }
 
-
 module.exports = { ArgumentError, ArgumentTypeError, ArgumentConstraintError };

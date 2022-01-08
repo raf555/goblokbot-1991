@@ -2,7 +2,7 @@ const db = require("@utils/database");
 const imageSearch = require("google-images");
 const axios = require("axios");
 const stringSimilarity = require("string-similarity");
-const argstype = require("@bot/command/args/type");
+const {ArgsType} = require("@bot/command/args");
 
 // init
 let papkey = process.env.pap_key.split(",");
@@ -40,9 +40,9 @@ module.exports = {
     ARGS: {
       "-n": {
         required: false,
-        type: argstype.NUMBER,
+        type: ArgsType.NUMBER,
         description: "Jumlah gambar yang di-pap",
-        constraints: [[n => n < 12 && n > 0, "n must be lower than 12 and greater than 0"]]
+        constraints: [[n => n <= 12 && n > 0, "n must be lower than 12 and greater than 0"]]
       }
     }
   },
@@ -200,7 +200,7 @@ function nimages(parsed, he) {
     };
   }
 
-  let n = parsed.args.n % 12;
+  let n = parsed.args.n;
 
   let crsl = {
     type: "flex",

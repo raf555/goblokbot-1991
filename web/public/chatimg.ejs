@@ -136,24 +136,6 @@
                 <i class="inverted circular search link icon caritgl"></i>
               </div>
             </div>
-           <!--<select class="ui selection search fluid dropdown" id="hari">
-                  <% for (var i = 0; i < date.length; i++) { %>
-                <% let ts = date[i].replace(".json", "") %>
-                <% 
-                var tgl = new Date(parseInt(ts)).toLocaleString("en-US", {
-                    timeZone: "Asia/Jakarta"
-                  });
-                  tgl = new Date(tgl);
-  
-             let today = `${addzero(tgl.getDate())}/${addzero(tgl.getMonth()+1)}/${tgl.getFullYear()}`; 
-               if (q == ts){ %>
-                
-                <option value="<%= ts %>" selected><%= today %></option>
-                  <% } else { %>
-                <option value="<%= ts %>"><%= today %></option>
-                  <% } %>
-                  <% } %>
-              </select>-->
             <div class="ui divider"></div>
            <b>Click the image to enlarge.</b>
            <br>Total images: <span id="tot"></span>
@@ -170,7 +152,7 @@
               <div class="ui card">
                 <div class="content">
                   <div class="right floated meta"><small><%= chat[Object.keys(imgdb)[i]].time %></small></div>
-                  <img class="ui avatar image lazy" src="<%= user[chat[Object.keys(chat)[i]].sender.id].image %>"> <small><%= (user[chat[Object.keys(chat)[i]].sender.id].name || "").split(" ")[0] %></small>
+                  <img class="ui avatar image lazy" src="<%= user[chat[Object.keys(imgdb)[i]].sender.id].image %>"> <small><%= (user[chat[Object.keys(imgdb)[i]].sender.id].name || "").split(" ")[0] %></small>
                 </div>
                 <div class="ui image" style="cursor:pointer" onclick="showImage(this)">
                   <center>
