@@ -138,13 +138,15 @@ async function execMessage(text, event) {
         cmddata = bot.data.mustntcall[cmd];
       }
     }
-    if (parsed.args.help || parsed.args.h) {
-      return await executeCommand(Args.ArgsHelp, parsed, event, {
-        data: cmddata,
-        mustcall,
-      });
+    if (cmddata) {
+      if (parsed.args.help || parsed.args.h) {
+        return await executeCommand(Args.ArgsHelp, parsed, event, {
+          data: cmddata,
+          mustcall,
+        });
+      }
+      Args.ArgsMiddleware(cmddata.ARGS, parsed);
     }
-    if (cmddata) Args.ArgsMiddleware(cmddata.ARGS, parsed);
   }
 
   /* proceed the command */

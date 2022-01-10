@@ -21,6 +21,12 @@ module.exports = {
       },
       "-c": {
         require: ["-d", "-e"]
+      },
+      "-z" : {
+        type:ArgsType.STRING,
+        modify(value) {
+          return value.toLowerCase() + "uuu"
+        }
       }
     }
   },
