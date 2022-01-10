@@ -10,9 +10,9 @@ module.exports = {
       "\n\noptions:" +
       "\n--more ?: buat nampilin event page selanjutnya",
     CMD: "akevent",
-    ALIASES: ["ake"]
+    ALIASES: ["ake"],
   },
-  run: akevent
+  run: akevent,
 };
 
 async function akevent(parsed, event, bot) {
@@ -39,17 +39,35 @@ async function akevent(parsed, event, bot) {
     }
   }
 
-  return gas(url).then(flex => ({
-    type: "flex",
-    altText: "AK - Event Rewards",
-    contents: flex
-  }));
+  return gas(url)
+    .then((flex) => ({
+      type: "flex",
+      altText: "AK - Event Rewards",
+      contents: flex,
+    }))
+    .then((res) => {
+      return optimizeCarousel(res);
+    });
+}
+
+function optimizeCarousel(res) {
+  let size = new TextEncoder().encode(JSON.stringify(res.contents)).length;
+  if (size > 50000) {
+    let carousel = res.contents;
+    res.contents = [];
+    let res1 = JSON.parse(JSON.stringify(res));
+    let res2 = JSON.parse(JSON.stringify(res));
+    res1.contents = carousel.contents.shift();
+    res2.contents = carousel;
+    return [res1, res2];
+  }
+  return res;
 }
 
 function search(urls, q) {
   return (
     urls.filter(
-      data =>
+      (data) =>
         data.name.toLowerCase() === q.toLowerCase() ||
         data.name.match(new RegExp(q, "i"))
     )[0] || null
@@ -63,15 +81,15 @@ async function getlink() {
     ),
     get_event_data(
       "https://gamepress.gg/arknights/other/event-and-campaign-list"
-    )
+    ),
   ]);
 
   let cn = req[0];
   let en = req[1];
 
   return en
-    .map(_ => ({ name: _.name, url: _.url }))
-    .concat(cn.map(_ => ({ name: _.name, url: _.url })));
+    .map((_) => ({ name: _.name, url: _.url }))
+    .concat(cn.map((_) => ({ name: _.name, url: _.url })));
 }
 
 async function gas(urlz) {
@@ -84,7 +102,7 @@ async function gas(urlz) {
     data.data[data.data.length - 2],
     data.data[data.data.length - 1],
     [],
-    []
+    [],
   ]);
 
   let out = [bubble1];
@@ -93,7 +111,7 @@ async function gas(urlz) {
 
   return {
     type: "carousel",
-    contents: out
+    contents: out,
   };
 }
 
@@ -131,8 +149,8 @@ function optimizeheight(bubble1, bubble2) {
 function countheight(bubble) {
   let c = 0;
   bubble.body.contents
-    .filter(el => el.type === "box")
-    .forEach(box => {
+    .filter((el) => el.type === "box")
+    .forEach((box) => {
       c += countboxheight(box);
     });
   return c;
@@ -150,7 +168,7 @@ function sortheight(bubble, reverse = false) {
   out.push(separator);
 
   konten
-    .filter(el => el.type === "box")
+    .filter((el) => el.type === "box")
     .sort((a, b) => {
       let i = countboxheight(a) - countboxheight(b);
       if (reverse) {
@@ -158,7 +176,7 @@ function sortheight(bubble, reverse = false) {
       }
       return i;
     })
-    .forEach(box => {
+    .forEach((box) => {
       out.push(box);
       out.push(separator);
       h += countboxheight(box);
@@ -171,7 +189,8 @@ function sortheight(bubble, reverse = false) {
 
 function countboxheight(box) {
   let { contents } = box;
-  return contents.filter(el => el.type === "box" && el.contents.length > 0).length;
+  return contents.filter((el) => el.type === "box" && el.contents.length > 0)
+    .length;
 }
 
 function makebubble2(data) {
@@ -189,15 +208,15 @@ function makebubble2(data) {
           weight: "bold",
           size: "md",
           wrap: true,
-          color: "#ffffff"
+          color: "#ffffff",
         },
         {
           type: "separator",
           margin: "sm",
-          color: "#ffffff"
-        }
-      ]
-    }
+          color: "#ffffff",
+        },
+      ],
+    },
   };
 
   for (let i = 0; i < data.length - 2; i++) {
@@ -210,14 +229,14 @@ function makebubble2(data) {
           text: data[i].name,
           size: "sm",
           color: "#ffffff",
-          wrap: true
-        }
+          wrap: true,
+        },
       ],
-      margin: "md"
+      margin: "md",
     };
 
     let hor = createitemcon(data[i].data);
-    hor.forEach(item => {
+    hor.forEach((item) => {
       con.contents.push(item);
     });
 
@@ -225,7 +244,7 @@ function makebubble2(data) {
     bbl.body.contents.push({
       type: "separator",
       margin: "sm",
-      color: "#ffffff"
+      color: "#ffffff",
     });
   }
 
@@ -241,7 +260,7 @@ function createitemcon(data) {
     out.push({
       type: "box",
       layout: "horizontal",
-      contents: []
+      contents: [],
     });
   }
 
@@ -256,17 +275,17 @@ function createitemcon(data) {
           contents: [
             {
               type: "image",
-              url: item.img
-            }
+              url: item.img,
+            },
           ],
           width: "35px",
           height: "35px",
           offsetTop: "5px",
-          offsetStart: "5px"
-        }
+          offsetStart: "5px",
+        },
       ],
       width: "45px",
-      height: "45px"
+      height: "45px",
     };
     if (!!item.bg) {
       p.contents.unshift({
@@ -275,12 +294,12 @@ function createitemcon(data) {
         contents: [
           {
             type: "image",
-            url: item.bg
-          }
+            url: item.bg,
+          },
         ],
         width: "45px",
         height: "45px",
-        position: "absolute"
+        position: "absolute",
       });
     }
     if (!!item.qty) {
@@ -292,19 +311,19 @@ function createitemcon(data) {
             type: "text",
             text: item.qty,
             color: "#ffffff",
-            size: "xxs"
-          }
+            size: "xxs",
+          },
         ],
         backgroundColor: "#000000",
         position: "absolute",
         offsetBottom: "1px",
-        offsetEnd: "5px"
+        offsetEnd: "5px",
       });
     }
     out[(i - (i % 5)) / 5].contents.push(p);
   });
 
-  return out;
+  return out.filter((d) => !!d.contents.length);
 }
 
 async function getdata(url) {
@@ -326,22 +345,12 @@ async function getdata(url) {
   }
 
   let period = (() => {
-    $(".event-duration")
-      .children()
-      .remove();
-    return $(".event-duration")
-      .text()
-      .trim();
+    $(".event-duration").children().remove();
+    return $(".event-duration").text().trim();
   })();
-  let img =
-    baseurl +
-    $(".og-image")
-      .find("img")
-      .attr("src");
+  let img = baseurl + $(".og-image").find("img").attr("src");
 
-  let summary = $(".field__item")
-    .eq(0)
-    .find("div.event-total-summary");
+  let summary = $(".field__item").eq(1).find("div.event-total-summary");
 
   let out = [];
 
@@ -351,10 +360,7 @@ async function getdata(url) {
 
     let out2 = {};
 
-    let name = td
-      .eq(0)
-      .text()
-      .trim();
+    let name = td.eq(0).text().trim();
 
     out2.name = name;
     out2.data = [];
@@ -373,15 +379,12 @@ async function getdata(url) {
         bgurl = baseurl + bgstyle[1];
       }
 
-      let qty = datar
-        .find("div.item-qty")
-        .text()
-        .trim();
+      let qty = datar.find("div.item-qty").text().trim();
 
       out2.data.push({
         img: imgurl,
         bg: bgurl,
-        qty: qty
+        qty: qty,
       });
     });
 
@@ -392,7 +395,7 @@ async function getdata(url) {
     name: name,
     period: period,
     img: img,
-    data: out
+    data: out,
   };
 }
 
@@ -408,8 +411,8 @@ function build_bubble(name, period, url, imgurl) {
       aspectMode: "cover",
       action: {
         type: "uri",
-        uri: url
-      }
+        uri: url,
+      },
     },
     body: {
       type: "box",
@@ -424,16 +427,16 @@ function build_bubble(name, period, url, imgurl) {
           action: {
             type: "uri",
             label: "action",
-            uri: url
-          }
+            uri: url,
+          },
         },
         {
           type: "text",
           text: period,
-          size: "xs"
-        }
-      ]
-    }
+          size: "xs",
+        },
+      ],
+    },
   };
 }
 
@@ -471,16 +474,18 @@ async function event_(reg, args) {
     altText: "Arknights EN Upcoming Event",
     contents: {
       type: "carousel",
-      contents: bubble
-    }
+      contents: bubble,
+    },
   };
 }
 
 async function event_upcoming_en() {
-  let data = (await get_event_data(
-    "https://gamepress.gg/arknights/other/event-and-campaign-list",
-    1
-  ))[0];
+  let data = (
+    await get_event_data(
+      "https://gamepress.gg/arknights/other/event-and-campaign-list",
+      1
+    )
+  )[0];
 
   let name = data.name;
   let url = data.url;
@@ -494,7 +499,7 @@ async function event_upcoming_en() {
   return {
     type: "flex",
     altText: "Arknights EN Upcoming Event",
-    contents: build_bubble2(name, period, url, imgurl)
+    contents: build_bubble2(name, period, url, imgurl),
   };
 }
 
@@ -514,37 +519,17 @@ async function get_event_data(eventurl, n = -1) {
     let firstdata = $(elem);
     let td = firstdata.find("td");
 
-    let status = td
-      .eq(0)
-      .find("div")
-      .text()
-      .trim();
+    let status = td.eq(0).find("div").text().trim();
     let time = td.eq(0).find("time");
     let period = {
-      start: time
-        .eq(0)
-        .text()
-        .trim(),
-      end: time
-        .eq(1)
-        .text()
-        .trim()
+      start: time.eq(0).text().trim(),
+      end: time.eq(1).text().trim(),
     };
 
     let baseurl = "https://gamepress.gg";
 
-    let imgurl =
-      baseurl +
-      td
-        .eq(1)
-        .find("img")
-        .attr("src");
-    let url =
-      baseurl +
-      td
-        .eq(1)
-        .find("a")
-        .attr("href");
+    let imgurl = baseurl + td.eq(1).find("img").attr("src");
+    let url = baseurl + td.eq(1).find("a").attr("href");
 
     let name = td
       .eq(1)
@@ -569,7 +554,7 @@ async function get_event_data(eventurl, n = -1) {
       period: period,
       url: url,
       imgurl: imgurl,
-      status: status
+      status: status,
     });
   });
 
@@ -588,8 +573,8 @@ function build_bubble2(name, period, url, imgurl) {
       aspectMode: "cover",
       action: {
         type: "uri",
-        uri: url
-      }
+        uri: url,
+      },
     },
     body: {
       type: "box",
@@ -604,15 +589,15 @@ function build_bubble2(name, period, url, imgurl) {
           action: {
             type: "uri",
             label: "action",
-            uri: url
-          }
+            uri: url,
+          },
         },
         {
           type: "text",
           text: period.start + " ~ " + period.end,
-          size: "xs"
-        }
-      ]
+          size: "xs",
+        },
+      ],
     },
     footer: {
       type: "box",
@@ -623,11 +608,11 @@ function build_bubble2(name, period, url, imgurl) {
           action: {
             type: "message",
             label: "Ingfokan",
-            text: "!akevent " + name
+            text: "!akevent " + name,
           },
-          style: "secondary"
-        }
-      ]
-    }
+          style: "secondary",
+        },
+      ],
+    },
   };
 }

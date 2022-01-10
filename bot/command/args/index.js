@@ -1,14 +1,14 @@
 const {
   ArgumentError,
   ArgumentTypeError,
-  ArgumentConstraintError
+  ArgumentConstraintError,
 } = require("./exception");
 const argstype = require("./type");
 
 module.exports = {
   ArgsMiddleware: argsmiddleware,
   ArgsHelp: help,
-  ArgsType: argstype
+  ArgsType: argstype,
 };
 
 /*
@@ -116,17 +116,19 @@ function assigntype(_name, name, value, args, rules) {
     typeof rules[name].type === "function"
   ) {
     checkrequiredargs(rules, args, name, _name);
-    checkrule(rules, args, name, _name);
+    //checkrule(rules, args, name, _name);
     args[_name] = rules[name].type(_name, value, args);
     checkconstraint(rules, args, name, _name);
+    modifyarg(rules, args, name, _name);
   } else {
     if (Array.isArray(rules[name].type)) {
       for (let i = 0, n = rules[name].type.length; i < n; i++) {
         try {
           checkrequiredargs(rules, args, name, _name);
-          checkrule(rules, args, name, _name);
+          // checkrule(rules, args, name, _name);
           args[_name] = rules[name].type[i](_name, value, args);
           checkconstraint(rules, args, name, _name);
+          modifyarg(rules, args, name, _name);
           break;
         } catch (e) {
           if (e.name === "ArgumentConstraintError") {
@@ -135,7 +137,7 @@ function assigntype(_name, name, value, args, rules) {
           if (i === n - 1) {
             throw new ArgumentTypeError(
               `Argument ${name} must be a valid (${rules[name].type
-                .map(f => f.toString())
+                .map((f) => f.toString())
                 .join(" | ")}) format.`
             );
           }
@@ -180,7 +182,7 @@ function checkrule(rules, args, name, _name) {
         string = string.substring(1);
       }
       return Object.keys(args).indexOf(string) !== -1;
-    }
+    },
   };
 
   let _rules = rules[name].rules;
@@ -206,6 +208,22 @@ function checkconstraint(rules, args, name, _name) {
   }
 }
 
+function modifyarg(rules, args, name, _name) {
+  if (!rules[name].modify) return;
+
+  let modify = rules[name].modify;
+  if (modify && typeof modify === "function") {
+    delete rules[name].modify;
+    try {
+      assigntype(_name, name, modify(args[_name]), args, rules);
+    } catch (e) {
+      throw e;
+    } finally {
+      rules[name].modify = modify;
+    }
+  }
+}
+
 function help(parsed, event, { data, mustcall }) {
   let caller = "";
   if (mustcall) {
@@ -223,18 +241,18 @@ function help(parsed, event, { data, mustcall }) {
     required: false,
     type: "",
     help: "Enable arguments test mode",
-    default: false
+    default: false,
   };
 
   if (args) {
-    Object.keys(args).forEach(arg => {
+    Object.keys(args).forEach((arg) => {
       let name = [];
       name.push(arg);
       if (args[arg].alias) name.push(args[arg].alias);
       if (arg.startsWith("--")) args[arg].type = argstype.BOOLEAN;
       if (!args[arg].type) args[arg].type = argstype.STRING;
       let type = Array.isArray(args[arg].type)
-        ? "(" + args[arg].type.map(f => f.toString()).join(" | ") + ")"
+        ? "(" + args[arg].type.map((f) => f.toString()).join(" | ") + ")"
         : args[arg].type.toString();
       let out = {
         name: name.join(", "),
@@ -243,7 +261,7 @@ function help(parsed, event, { data, mustcall }) {
         type,
         positional: !arg.startsWith("-"),
         default: args[arg].default || "-",
-        required: args[arg].required || false
+        required: args[arg].required || false,
       };
       if (out.positional) {
         args_positional.push("<" + out.realname + ">");
@@ -259,7 +277,7 @@ function help(parsed, event, { data, mustcall }) {
     });
   }
 
-  args_not_positional_.sort(function(x, y) {
+  args_not_positional_.sort(function (x, y) {
     return Boolean(x.required) === Boolean(y.required)
       ? 0
       : Boolean(x.required)
@@ -273,7 +291,7 @@ function help(parsed, event, { data, mustcall }) {
     type: "Boolean"
   });*/
 
-  let pos_msg = args_positional_.map(d => {
+  let pos_msg = args_positional_.map((d) => {
     return `•  ${d.name}
     Required: ${d.required ? "yes" : "no"}
     Description: ${d.desc}
@@ -283,7 +301,7 @@ function help(parsed, event, { data, mustcall }) {
     }`;
   });
 
-  let not_pos_msg = args_not_positional_.map(d => {
+  let not_pos_msg = args_not_positional_.map((d) => {
     return `•  ${d.name}
     Required: ${d.required ? "yes" : "no"}
     Description: ${d.desc}
@@ -309,6 +327,6 @@ ${not_pos_msg.length ? not_pos_msg.join("\n") : "-"}`;
 
   return {
     type: "text",
-    text: message
+    text: message,
   };
 }

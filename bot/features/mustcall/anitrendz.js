@@ -156,10 +156,10 @@ async function anitrendz(parsed, event, bot) {
         borderWidth: "1px",
         paddingAll: "3px"
       };
-      if (i < 4) {
+      if (i < 5) {
         bbl1.push(bbl);
       } else {
-        if (i >= 4 && i < 10) {
+        if (i >= 5 && i < 10) {
           bbl2.push(bbl);
         }
       }
