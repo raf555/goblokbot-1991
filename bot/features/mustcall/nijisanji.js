@@ -1,5 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const db = require("@utils/database");
 
 let API_LIVE = "https://api.itsukaralink.jp/v1.2";
 let API_LIVERS = "";
@@ -7,6 +8,9 @@ const NIJI_ICON =
   "https://pbs.twimg.com/profile_images/1335777549343883264/rVsyH8Jo.jpg";
 
 loadliversurl();
+
+let yt_apis = process.env.yts_api.split(",");
+let yt_api = null;
 
 async function loadliversurl() {
   // https://www.nijisanji.jp/_next/data/8MVMjiycXBBHZJSkK4HKv/en/members
@@ -30,9 +34,13 @@ module.exports = {
     description:
       "Command buat nampilin live schedule (JP) atau liver Nijisanji",
     CMD: "nijisanji",
-    ALIASES: ["niji", "2434"]
+    ALIASES: ["niji", "2434"],
+    allowedRoles: ["nijisanji lover"],
   },
   run: (parsed, event, bot) => {
+  const setting = db.open("bot/setting.json").get();
+   yt_api =  yt_apis[setting.ytsapi];
+    
     if (parsed.args.refresh) {
       return loadliversurl().then(() => {
         return {
@@ -885,7 +893,7 @@ function getsubs(channelid) {
   }
   return axios
     .get(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelid}&key=${process.env.yts_api}`
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelid}&key=${yt_api}`
     )
     .then(res => numFormatter(res.data.items[0].statistics.subscriberCount));
 }
@@ -893,7 +901,7 @@ function getsubs(channelid) {
 function getviddetail(id) {
   return axios
     .get(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&key=${process.env.yts_api}&id=${id}`
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&key=${yt_api}&id=${id}`
     )
     .then(res => {
       let data = res.data.items[0].snippet;

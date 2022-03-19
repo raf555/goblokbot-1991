@@ -35,7 +35,7 @@
     "AP_GAMEPLAY": {
       "itemId": "AP_GAMEPLAY",
       "name": "Sanity",
-      "description": "\"What is it that distinguishes us from this land? Our breath, or feeling? Or life and death?\"",
+      "description": "'What is it that distinguishes us from this land? Our breath, or feeling? Or life and death?'",
       "rarity": 4,
       "iconId": "AP_GAMEPLAY",
       "overrideBkg": null,
@@ -99,7 +99,7 @@
     "4002": {
       "itemId": "4002",
       "name": "Originite Prime",
-      "description": "Widely used in industry, this Originium crystal is difficult to extract. Its production requires very fine processing, but it remains the major energy source of the world and the foundation of Originium Arts. Even if widespread rumors claim \"Originite Prime spreads an incurable disease,\" few can resist its temptation.",
+      "description": "Widely used in industry, this Originium crystal is difficult to extract. Its production requires very fine processing, but it remains the major energy source of the world and the foundation of Originium Arts. Even if widespread rumors claim 'Originite Prime spreads an incurable disease,' few can resist its temptation.",
       "rarity": 5,
       "iconId": "DIAMOND",
       "overrideBkg": null,
@@ -140,6 +140,26 @@
         },
         {
           "stageId": "camp_r_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "camp_r_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "camp_r_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "camp_r_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "camp_r_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "camp_r_06",
           "occPer": "ALWAYS"
         }
       ],
@@ -217,6 +237,10 @@
           "occPer": "ALWAYS"
         },
         {
+          "stageId": "main_09-01",
+          "occPer": "ALWAYS"
+        },
+        {
           "stageId": "sub_04-2-3",
           "occPer": "ALWAYS"
         },
@@ -251,13 +275,13 @@
     "4004": {
       "itemId": "4004",
       "name": "Distinction Certificate",
-      "description": "The Infection Isolation Act is the last vestige of modern nation states. As long as you have some special ability, it is but a meaningless piece of paper. (The words of her Leithanien mentor.)",
+      "description": "The Infection Isolation Act is the last vestige of modern nation states. As long as you have some special ability, it is but a meaningless piece of paper. (The words of her Leithanian mentor.)",
       "rarity": 4,
       "iconId": "HGG_SHD",
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 10006,
-      "usage": "A certificate that attests to an operator’s distinguished accomplishments and expertise. Can be exchanged for rare items.",
+      "usage": "A certificate that attests to an operator's distinguished accomplishments and expertise. Can be exchanged for rare items.",
       "obtainApproach": "New Operator's gift",
       "classifyType": "NORMAL",
       "itemType": "HGG_SHD",
@@ -273,7 +297,7 @@
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 10007,
-      "usage": "A certificate that attests to an operator’s skills and qualifications. Can be exchanged for items.",
+      "usage": "A certificate that attests to an operator's skills and qualifications. Can be exchanged for items.",
       "obtainApproach": "New Operator's gift",
       "classifyType": "NORMAL",
       "itemType": "LGG_SHD",
@@ -282,7 +306,7 @@
     },
     "4006": {
       "itemId": "4006",
-      "name": "Shop Voucher",
+      "name": "Purchase Certificate",
       "description": "The operations at Rhodes Island require substantial funding and a variety of materials. Therefore, we must trade in diverse markets in order to keep everything running",
       "rarity": 2,
       "iconId": "EXGG_SHD",
@@ -301,6 +325,22 @@
       ],
       "buildingProductList": []
     },
+    "LMTGS_COIN_601": {
+      "itemId": "LMTGS_COIN_601",
+      "name": "Headhunting Data Contract",
+      "description": "A long-term, stable relationship with the headhunting agency can effectively control our expenditures. However, we hope that this method will not be required every time.",
+      "rarity": 4,
+      "iconId": "LMTGS_COIN_601",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 10009,
+      "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "NORMAL",
+      "itemType": "LMTGS_COIN",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
     "LMTGS_COIN_903": {
       "itemId": "LMTGS_COIN_903",
       "name": "Headhunting Data Contract",
@@ -309,7 +349,7 @@
       "iconId": "LMTGS_COIN_903",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10009,
+      "sortId": 10010,
       "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
       "obtainApproach": "New Operator's gift",
       "classifyType": "NORMAL",
@@ -325,7 +365,55 @@
       "iconId": "LMTGS_COIN_1401",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10010,
+      "sortId": 10011,
+      "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "NORMAL",
+      "itemType": "LMTGS_COIN",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LMTGS_COIN_1601": {
+      "itemId": "LMTGS_COIN_1601",
+      "name": "Headhunting Data Contract",
+      "description": "A long-term, stable relationship with the headhunting agency can effectively control our expenditures. However, we hope that this method will not be required every time.",
+      "rarity": 4,
+      "iconId": "LMTGS_COIN_1601",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 10012,
+      "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "NORMAL",
+      "itemType": "LMTGS_COIN",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LMTGS_COIN_1803": {
+      "itemId": "LMTGS_COIN_1803",
+      "name": "Headhunting Data Contract",
+      "description": "A long-term, stable relationship with the headhunting agency can effectively control our expenditures. However, we hope that this method will not be required every time.",
+      "rarity": 4,
+      "iconId": "LMTGS_COIN_1803",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 10013,
+      "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "NORMAL",
+      "itemType": "LMTGS_COIN",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LMTGS_COIN_2101": {
+      "itemId": "LMTGS_COIN_2101",
+      "name": "Headhunting Data Contract",
+      "description": "A long-term, stable relationship with the headhunting agency can effectively control our expenditures. However, we hope that this method will not be required every time.",
+      "rarity": 4,
+      "iconId": "LMTGS_COIN_2101",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 10014,
       "usage": "A time-limited currency arranged for a new type of headhunting contract; Collect enough to recruit an operator from a designated pool for a limited time",
       "obtainApproach": "New Operator's gift",
       "classifyType": "NORMAL",
@@ -341,7 +429,7 @@
       "iconId": "EPGS_COIN",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10011,
+      "sortId": 10101,
       "usage": "A new product, born of processing data from expired headhunting contracts; Can be exchanged for certain supplies.",
       "obtainApproach": "Automatically obtained when Headhunting Data expires",
       "classifyType": "NORMAL",
@@ -357,7 +445,7 @@
       "iconId": "REP_COIN",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10012,
+      "sortId": 10102,
       "usage": "A reward for reviewing past events; Can be used to exchange for various supplies.",
       "obtainApproach": "Obtained through event rerun",
       "classifyType": "NORMAL",
@@ -373,7 +461,7 @@
       "iconId": "CRISIS_SHOP_COIN",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10021,
+      "sortId": 10201,
       "usage": "Rewards earned after completing a contract. Can be used to redeem supplies.",
       "obtainApproach": "Contingency Contract reward",
       "classifyType": "NORMAL",
@@ -384,16 +472,80 @@
     "STORY_REVIEW_COIN": {
       "itemId": "STORY_REVIEW_COIN",
       "name": "Information Fragments",
-      "description": "An auxiliary function of Rhodes Island's intelligence processing system. After extracting effective intelligence from a complex batch of information,  the system was able to recreate images of past events with astonishing fidelity.\nThe information was packaged as videotapes to make it easier for ordinary people to understand.",
+      "description": "An auxiliary function of Rhodes Island's intelligence processing system. After extracting effective intelligence from a complex batch of information, the system was able to recreate images of past events with astonishing fidelity.\nThe information was packaged as videotapes to make it easier for ordinary people to understand.",
       "rarity": 4,
       "iconId": "STORY_REVIEW_COIN",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 10022,
+      "sortId": 10202,
       "usage": "A topological model of effective intelligence that can be used to reconstruct past events.",
-      "obtainApproach": "Obtained through event exchange",
+      "obtainApproach": "Purchase Certificates Store, Event Store",
       "classifyType": "NORMAL",
       "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "RETRO_COIN": {
+      "itemId": "RETRO_COIN",
+      "name": "Event Crystal",
+      "description": "An auxiliary function of Rhodes Island's intelligence processing system. After extracting effective intelligence from a mass of information, the system is able to recreate images of past events. Information extracted through crystallization is typically of greater importance.\nIts synthesis into optical disc form is simply for easier understanding by the layperson.",
+      "rarity": 4,
+      "iconId": "RETRO_COIN",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A topological model of aggregated information. Can be used to rebuild past events.",
+      "obtainApproach": "Gift",
+      "classifyType": "NORMAL",
+      "itemType": "RETRO_COIN",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "renamingCard": {
+      "itemId": "renamingCard",
+      "name": "ID Info Update Card",
+      "description": "Don't waste the precious chance to do a system update.",
+      "rarity": 4,
+      "iconId": "renamingCard",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 20001,
+      "usage": "ID Info Update Card for a system upgrade to the Rhodes Island bridge. This one is for you, Doctor.",
+      "obtainApproach": "Store and Gift",
+      "classifyType": "CONSUME",
+      "itemType": "RENAMING_CARD",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "renamingCard_0_018": {
+      "itemId": "renamingCard_0_018",
+      "name": "ID Info Update Card",
+      "description": "Don't waste the precious chance to do a system update.",
+      "rarity": 4,
+      "iconId": "renamingCard",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 20011,
+      "usage": "ID Info Update Card for a system upgrade to the Rhodes Island bridge. This one is for you, Doctor.",
+      "obtainApproach": "Store and Gift",
+      "classifyType": "CONSUME",
+      "itemType": "RENAMING_CARD",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "renamingCard_30_018": {
+      "itemId": "renamingCard_30_018",
+      "name": "ID Info Update Card",
+      "description": "Don't waste the precious chance to do a system update.",
+      "rarity": 4,
+      "iconId": "renamingCard",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 20012,
+      "usage": "ID Info Update Card for a system upgrade to the Rhodes Island bridge. This one is for you, Doctor.",
+      "obtainApproach": "Store and Gift",
+      "classifyType": "CONSUME",
+      "itemType": "RENAMING_CARD",
       "stageDropList": [],
       "buildingProductList": []
     },
@@ -438,7 +590,7 @@
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 30004,
-      "usage": "A portable , easy-to-carry sampler that is good for maintaining a level of Sanity during emergencies.",
+      "usage": "A portable, easy-to-carry sampler that is good for maintaining a level of Sanity during emergencies.",
       "obtainApproach": "Limited Event Drop",
       "classifyType": "CONSUME",
       "itemType": "AP_SUPPLY",
@@ -483,6 +635,70 @@
       "description": "In order to ensure the available talent pool can be scaled upwards to satisfy the Doctor's emergency preparation request, this batch of headhunting items carries specificity, time-sensitivity, and of course, a degree of risk.",
       "rarity": 4,
       "iconId": "LIMITED_TKT_GACHA_10_1401",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 40003,
+      "usage": "A batch headhunting permit issued by the Rhodes Island HR Department; Can be used at a certain time to recruit talented Operators, 10 rolls at once.",
+      "obtainApproach": "Gift",
+      "classifyType": "NORMAL",
+      "itemType": "LIMITED_TKT_GACHA_10",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LIMITED_TKT_GACHA_10_1601": {
+      "itemId": "LIMITED_TKT_GACHA_10_1601",
+      "name": "Tide on Sunset Headhunting Permit",
+      "description": "In order to ensure the available talent pool can be scaled upwards to satisfy the Doctor's emergency preparation request, this batch of headhunting items carries specificity, time-sensitivity, and of course, a degree of risk.",
+      "rarity": 4,
+      "iconId": "LIMITED_TKT_GACHA_10_1601",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 40003,
+      "usage": "A batch headhunting permit issued by the Rhodes Island HR Department; Can be used at a certain time to recruit talented Operators, 10 rolls at once.",
+      "obtainApproach": "Gift",
+      "classifyType": "NORMAL",
+      "itemType": "LIMITED_TKT_GACHA_10",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LINKAGE_TKT_GACHA_10_1701": {
+      "itemId": "LINKAGE_TKT_GACHA_10_1701",
+      "name": "Elite Forces Headhunting Permit",
+      "description": "In order to ensure the available talent pool can be scaled upwards to satisfy the Doctor's emergency preparation request, this batch of headhunting items carries specificity, time-sensitivity, and of course, a degree of risk.",
+      "rarity": 4,
+      "iconId": "LINKAGE_TKT_GACHA_10_1701",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 40003,
+      "usage": "A batch headhunting permit issued by the Rhodes Island HR Department; Can be used at a certain time to recruit talented Operators, 10 rolls at once.",
+      "obtainApproach": "Gift",
+      "classifyType": "NORMAL",
+      "itemType": "LINKAGE_TKT_GACHA_10",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LIMITED_TKT_GACHA_10_1803": {
+      "itemId": "LIMITED_TKT_GACHA_10_1803",
+      "name": "Song of the Sea Headhunting Permit",
+      "description": "In order to ensure the available talent pool can be scaled upwards to satisfy the Doctor's emergency preparation request, this batch of headhunting items carries specificity, time-sensitivity, and of course, a degree of risk.",
+      "rarity": 4,
+      "iconId": "LIMITED_TKT_GACHA_10_1803",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 40003,
+      "usage": "A batch headhunting permit issued by the Rhodes Island HR Department; Can be used at a certain time to recruit talented Operators, 10 rolls at once.",
+      "obtainApproach": "Gift",
+      "classifyType": "NORMAL",
+      "itemType": "LIMITED_TKT_GACHA_10",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "LIMITED_TKT_GACHA_10_2101": {
+      "itemId": "LIMITED_TKT_GACHA_10_2101",
+      "name": "Breaking Waves Headhunting Permit",
+      "description": "In order to ensure the available talent pool can be scaled upwards to satisfy the Doctor's emergency preparation request, this batch of headhunting items carries specificity, time-sensitivity, and of course, a degree of risk.",
+      "rarity": 4,
+      "iconId": "LIMITED_TKT_GACHA_10_2101",
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 40003,
@@ -543,14 +759,30 @@
     },
     "voucher_item_4pick1": {
       "itemId": "voucher_item_4pick1",
-      "name": "Operator Exchange Voucher",
+      "name": "Operator Voucher",
       "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
       "rarity": 4,
       "iconId": "voucher_item_4pick1",
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 50001,
-      "usage": "Used to exchange for an Operator.",
+      "usage": "Used to redeem an Operator.",
+      "obtainApproach": "Gift",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_PICK",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_item_4pick1_1803": {
+      "itemId": "voucher_item_4pick1_1803",
+      "name": "Operator Voucher",
+      "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
+      "rarity": 4,
+      "iconId": "voucher_item_4pick1",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50002,
+      "usage": "Used to redeem an Operator.",
       "obtainApproach": "Gift",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
@@ -565,9 +797,25 @@
       "iconId": "voucher_recruitR5_pick2",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50002,
-      "usage": "Used to exchange for an Operator.",
+      "sortId": 50003,
+      "usage": "Used to redeem an Operator.",
       "obtainApproach": "Obtained through medal collection",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_PICK",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_recruitR5_pick1803": {
+      "itemId": "voucher_recruitR5_pick1803",
+      "name": "Senior Operator Transfer Permit",
+      "description": "Allows you to select a 5-star Operator.",
+      "rarity": 4,
+      "iconId": "voucher_recruitR5_g",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50004,
+      "usage": "A lot of tablework went into this Senior Operator Transfer Permit from Rhodes Island's HR distribution; a 100% guarantee on the aid you receive is no small ask.",
+      "obtainApproach": "Gift",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
       "stageDropList": [],
@@ -576,13 +824,13 @@
     "voucher_item_pick601": {
       "itemId": "voucher_item_pick601",
       "name": "Top Operator Transfer Permit",
-      "description": "Allows you to select a 6-star Operator from a past Headhunting Pool up to and including \"Enthusiasm, Expansion, Explosion.\"",
+      "description": "Allows you to select a 6-star Operator from a past Headhunting Pool up to and including 'Enthusiasm, Expansion, Explosion.'",
       "rarity": 4,
       "iconId": "voucher_item_pick601",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50003,
-      "usage": "A transfer permit for senior and top operators issued by the HR Department; a lot of preparation work went into making this possible, as it is nearly impossible to find guaranteed help.",
+      "sortId": 50005,
+      "usage": "A lot of tablework went into this Top Operator Transfer Permit from Rhodes Island's HR distribution; a 100% guarantee on the aid you receive is no small ask.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
@@ -592,16 +840,64 @@
     "voucher_item_pick1401": {
       "itemId": "voucher_item_pick1401",
       "name": "Thank-You Celebration Operator Permit",
-      "description": "Allows you to select a non-limited 6-star Operator from a past Headhunting Pool up to and including \"Illusions of the Past.\"",
+      "description": "Allows you to select a non-limited 6-star Operator from a past Headhunting Pool up to and including 'Illusions of the Past.'",
       "rarity": 4,
       "iconId": "voucher_recruitR6_g",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50004,
-      "usage": "A transfer permit for senior and top operators issued by the HR Department; a lot of preparation work went into making this possible, as it is nearly impossible to find guaranteed help.",
+      "sortId": 50006,
+      "usage": "A lot of tablework went into this Top Operator Transfer Permit from Rhodes Island's HR distribution; a 100% guarantee on the aid you receive is no small ask.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_item_pick1803": {
+      "itemId": "voucher_item_pick1803",
+      "name": "Top Operator Transfer Permit",
+      "description": "Allows you to select a 6-star Operator from a past Headhunting Pool up to and including 'Fractured Light.'",
+      "rarity": 4,
+      "iconId": "voucher_recruitR6_g",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50007,
+      "usage": "A lot of tablework went into this Top Operator Transfer Permit from Rhodes Island's HR distribution; a 100% guarantee on the aid you receive is no small ask.",
+      "obtainApproach": "Store",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_PICK",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_elite_II_5": {
+      "itemId": "voucher_elite_II_5",
+      "name": "Senior Operator Training Invitation Letter",
+      "description": "Operators holding this letter are able to apply for short-term rush training; the Instructors will tailor the course according to the Operator's circumstances, helping them make rapid breakthroughs, unearth their own potential, and attain a decisive standard.",
+      "rarity": 4,
+      "iconId": "voucher_elite_II_5",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50011,
+      "usage": "A training invitation exclusive to Senior Operators, offering accelerated promotion of their abilities to the Elite 2 level.",
+      "obtainApproach": "Store",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_ELITE_II_5",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_skin": {
+      "itemId": "voucher_skin",
+      "name": "Outfit Voucher",
+      "description": "Can redeem an outfit currently being sold at the Outfit Store.",
+      "rarity": 4,
+      "iconId": "voucher_skin",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50051,
+      "usage": "An Operator outfit voucher from Rhodes Island's HR distribution; a new set of clothes always makes people happy.",
+      "obtainApproach": "Gift",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_SKIN",
       "stageDropList": [],
       "buildingProductList": []
     },
@@ -613,7 +909,7 @@
       "iconId": "2020recruitment10_1",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50005,
+      "sortId": 50101,
       "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
@@ -629,7 +925,7 @@
       "iconId": "2020recruitment10_2",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50006,
+      "sortId": 50101,
       "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
@@ -645,7 +941,55 @@
       "iconId": "2020recruitment10_3",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 50007,
+      "sortId": 50101,
+      "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_CGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "2021recruitment10_1": {
+      "itemId": "2021recruitment10_1",
+      "name": "Type-α Headhunting Permit",
+      "description": "Due to various strategic considerations, Rhodes Island conducted targeted headhunting in addition to batch recruitment in order to seek assistance from individuals with special talents.",
+      "rarity": 4,
+      "iconId": "2021recruitment10_1",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50102,
+      "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_CGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "2021recruitment10_2": {
+      "itemId": "2021recruitment10_2",
+      "name": "Type-β Headhunting Permit",
+      "description": "Due to various strategic considerations, Rhodes Island conducted targeted headhunting in addition to batch recruitment in order to seek assistance from individuals with special talents.",
+      "rarity": 4,
+      "iconId": "2021recruitment10_2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50102,
+      "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_CGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "2021recruitment10_3": {
+      "itemId": "2021recruitment10_3",
+      "name": "Type-γ Headhunting Permit",
+      "description": "Due to various strategic considerations, Rhodes Island conducted targeted headhunting in addition to batch recruitment in order to seek assistance from individuals with special talents.",
+      "rarity": 4,
+      "iconId": "2021recruitment10_3",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 50102,
       "usage": "A special permit issued by the Rhodes Island HR Department with specific instructions for the headhunting agency. Can be used to headhunt for 10 Operators.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
@@ -655,14 +999,14 @@
     },
     "voucher_recruitR4_1": {
       "itemId": "voucher_recruitR4_1",
-      "name": "★4 Recruitment Exchange Voucher I",
+      "name": "★4 Recruitment Voucher I",
       "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
       "rarity": 3,
       "iconId": "voucher_recruitR4_1",
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 50103,
-      "usage": "Used to exchange for an Operator.",
+      "usage": "Used to redeem an Operator.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
@@ -671,14 +1015,14 @@
     },
     "voucher_recruitR3_1": {
       "itemId": "voucher_recruitR3_1",
-      "name": "★3 Recruitment Exchange Voucher I",
+      "name": "★3 Recruitment Voucher I",
       "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
       "rarity": 2,
       "iconId": "voucher_recruitR3_1",
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 50104,
-      "usage": "Used to exchange for an Operator.",
+      "usage": "Used to redeem an Operator.",
       "obtainApproach": "Store",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_PICK",
@@ -733,6 +1077,70 @@
       "stageDropList": [],
       "buildingProductList": []
     },
+    "randomMaterialRune_3": {
+      "itemId": "randomMaterialRune_3",
+      "name": "Operation Cinder Supplies",
+      "description": "A supply crate from the Contingency Contract network. Provides a bit of a reward to those who work hard to heal this land. -Contingency Contract",
+      "rarity": 4,
+      "iconId": "randomMaterialRune_3",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 60004,
+      "usage": "Filled with an assortment of supplies and materials.",
+      "obtainApproach": "Contingency Contract reward",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_MGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "randomMaterialRune_4": {
+      "itemId": "randomMaterialRune_4",
+      "name": "Operation Lead Seal Supplies",
+      "description": "A supply crate from the Contingency Contract network. Provides a bit of a reward to those who work hard to heal this land. -Contingency Contract",
+      "rarity": 4,
+      "iconId": "randomMaterialRune_4",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 60005,
+      "usage": "Filled with an assortment of supplies and materials.",
+      "obtainApproach": "Contingency Contract reward",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_MGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "randomMaterialRune_5": {
+      "itemId": "randomMaterialRune_5",
+      "name": "Operation Spectrum Supplies",
+      "description": "A supply crate from the Contingency Contract network. Provides a bit of a reward to those who work hard to heal this land. -Contingency Contract",
+      "rarity": 4,
+      "iconId": "randomMaterialRune_5",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 60006,
+      "usage": "Filled with an assortment of supplies and materials.",
+      "obtainApproach": "Contingency Contract reward",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_MGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "randomMaterialRune_6": {
+      "itemId": "randomMaterialRune_6",
+      "name": "Operation Wild Scales Supplies",
+      "description": "A supply crate from the Contingency Contract network. Provides a bit of a reward to those who work hard to heal this land. -Contingency Contract",
+      "rarity": 4,
+      "iconId": "randomMaterialRune_6",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 60007,
+      "usage": "Filled with an assortment of supplies and materials.",
+      "obtainApproach": "Contingency Contract reward",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_MGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
     "randomMaterial_1": {
       "itemId": "randomMaterial_1",
       "name": "Rhodes Island Supplies",
@@ -774,7 +1182,7 @@
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 60103,
-      "usage": "A pack of rations to commemorate your one-year return to Rhodes Island. Contains a variety of random supplies.",
+      "usage": "A pack of rations, containing a variety of random supplies.",
       "obtainApproach": "Limited Event Drop",
       "classifyType": "CONSUME",
       "itemType": "VOUCHER_MGACHA",
@@ -790,6 +1198,22 @@
       "overrideBkg": null,
       "stackIconId": null,
       "sortId": 60104,
+      "usage": "Filled with an assortment of supplies and materials.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "CONSUME",
+      "itemType": "VOUCHER_MGACHA",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "randomMaterial_5": {
+      "itemId": "randomMaterial_5",
+      "name": "Rhodes Island Supplies II",
+      "description": "Rhodes Island purchases and stores boxes of supplies from various places. However, due to the lack of an organized storage system, each box contains seemingly random materials.",
+      "rarity": 4,
+      "iconId": "randomMaterial_1",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 60107,
       "usage": "Filled with an assortment of supplies and materials.",
       "obtainApproach": "Limited Event Drop",
       "classifyType": "CONSUME",
@@ -932,6 +1356,10 @@
           "occPer": "ALWAYS"
         },
         {
+          "stageId": "main_09-09",
+          "occPer": "ALWAYS"
+        },
+        {
           "stageId": "sub_04-3-3",
           "occPer": "ALWAYS"
         },
@@ -1045,6 +1473,22 @@
         }
       ]
     },
+    "mod_unlock_token": {
+      "itemId": "mod_unlock_token",
+      "name": "Module Data Block",
+      "description": "The data blocks record the endless nights the Engineering Department toiled away developing the various modules.",
+      "rarity": 4,
+      "iconId": "mod_unlock_token",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 90001,
+      "usage": "Used to unlock Operator modules.",
+      "obtainApproach": "Store, Mission Reward, Event Reward",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
     "30011": {
       "itemId": "30011",
       "name": "Orirock",
@@ -1060,19 +1504,11 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_02",
+          "stageId": "act16d5_03",
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act13d0_02",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act12d0_01",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act9d0_01",
+          "stageId": "act10d5_02",
           "occPer": "ALWAYS"
         },
         {
@@ -1080,7 +1516,27 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act10d5_02",
+          "stageId": "act9d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act12d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act13d0_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act13d5_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_02",
           "occPer": "ALWAYS"
         },
         {
@@ -1092,11 +1548,43 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "main_00-09",
+          "stageId": "act17d0_02",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act17d0_01",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act18d3_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act18d3_01",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act17d0_03",
           "occPer": "ALWAYS"
         },
         {
           "stageId": "sub_02-05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_00-09",
           "occPer": "ALWAYS"
         }
       ],
@@ -1117,11 +1605,7 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_05",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act12d0_04",
+          "stageId": "act18d0_04",
           "occPer": "ALMOST"
         },
         {
@@ -1129,7 +1613,31 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act11d0_04",
+          "stageId": "act12d0_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act13d5_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act16d5_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act17d0_06",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act17d0_04",
           "occPer": "ALMOST"
         },
         {
@@ -1137,32 +1645,44 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "main_01-07",
-          "occPer": "ALWAYS"
+          "stageId": "act18d3_06",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "sub_02-12",
-          "occPer": "ALWAYS"
+          "stageId": "act18d3_04",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "main_05-10",
-          "occPer": "USUAL"
-        },
-        {
-          "stageId": "main_07-14",
-          "occPer": "USUAL"
+          "stageId": "act11d0_04",
+          "occPer": "ALMOST"
         },
         {
           "stageId": "sub_06-1-2",
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "sub_03-3-2",
+          "stageId": "main_07-14",
           "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_05-10",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "sub_02-12",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_01-07",
+          "occPer": "ALWAYS"
         },
         {
           "stageId": "sub_05-1-1",
           "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "sub_03-3-2",
+          "occPer": "USUAL"
         }
       ],
       "buildingProductList": [
@@ -1186,6 +1706,22 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act8mini_05",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act7mini_04",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d3_07",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_10",
+          "occPer": "ALMOST"
+        },
         {
           "stageId": "act12d0_06",
           "occPer": "USUAL"
@@ -1216,6 +1752,10 @@
         },
         {
           "stageId": "main_08-03",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-11",
           "occPer": "OFTEN"
         }
       ],
@@ -1251,6 +1791,10 @@
         {
           "stageId": "main_08-03",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-11",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -1275,11 +1819,15 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_02",
-          "occPer": "ALWAYS"
+          "stageId": "act17d0_02",
+          "occPer": "OFTEN"
         },
         {
-          "stageId": "act13d0_01",
+          "stageId": "act11d0_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act9d0_02",
           "occPer": "USUAL"
         },
         {
@@ -1287,15 +1835,23 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act9d0_02",
+          "stageId": "act13d0_01",
           "occPer": "USUAL"
         },
         {
-          "stageId": "act11d0_01",
+          "stageId": "act13d5_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_01",
           "occPer": "USUAL"
         },
         {
-          "stageId": "act7d5_01",
+          "stageId": "act15d5_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_01",
           "occPer": "USUAL"
         },
         {
@@ -1303,12 +1859,44 @@
           "occPer": "USUAL"
         },
         {
-          "stageId": "main_01-05",
+          "stageId": "act17d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d3_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act7mini_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act8mini_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act7d5_01",
           "occPer": "USUAL"
         },
         {
           "stageId": "main_02-03",
           "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_01-05",
+          "occPer": "USUAL"
         }
       ],
       "buildingProductList": []
@@ -1328,7 +1916,15 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_04",
+          "stageId": "act17d0_06",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act9d0_05",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act12d0_05",
           "occPer": "OFTEN"
         },
         {
@@ -1336,11 +1932,19 @@
           "occPer": "USUAL"
         },
         {
-          "stageId": "act12d0_05",
+          "stageId": "act13d5_04",
           "occPer": "OFTEN"
         },
         {
-          "stageId": "act9d0_05",
+          "stageId": "act15d0_05",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act15d5_05",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_05",
           "occPer": "OFTEN"
         },
         {
@@ -1352,11 +1956,19 @@
           "occPer": "ALMOST"
         },
         {
-          "stageId": "main_01-12",
+          "stageId": "act7mini_03",
           "occPer": "USUAL"
         },
         {
-          "stageId": "main_06-10",
+          "stageId": "act8mini_03",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_05",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_09-02",
           "occPer": "USUAL"
         },
         {
@@ -1364,12 +1976,20 @@
           "occPer": "USUAL"
         },
         {
-          "stageId": "sub_03-2-2",
-          "occPer": "ALMOST"
+          "stageId": "main_06-10",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_01-12",
+          "occPer": "USUAL"
         },
         {
           "stageId": "sub_05-3-1",
           "occPer": "USUAL"
+        },
+        {
+          "stageId": "sub_03-2-2",
+          "occPer": "ALMOST"
         }
       ],
       "buildingProductList": [
@@ -1393,6 +2013,10 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act18d3_09",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "main_03-04",
           "occPer": "OFTEN"
@@ -1419,6 +2043,10 @@
         },
         {
           "stageId": "main_08-14",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-08",
           "occPer": "OFTEN"
         }
       ],
@@ -1474,6 +2102,38 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act18d3_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act17d0_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act17d0_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_02",
+          "occPer": "ALWAYS"
+        },
+        {
           "stageId": "act13d5_03",
           "occPer": "ALWAYS"
         },
@@ -1522,6 +2182,26 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act18d3_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act15d0_04",
+          "occPer": "ALWAYS"
+        },
         {
           "stageId": "act13d0_04",
           "occPer": "ALMOST"
@@ -1589,6 +2269,18 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act18d0_06",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_09",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act15d5_07",
+          "occPer": "OFTEN"
+        },
+        {
           "stageId": "act13d5_07",
           "occPer": "ALMOST"
         },
@@ -1619,6 +2311,10 @@
         {
           "stageId": "main_07-03",
           "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_09-06",
+          "occPer": "OFTEN"
         }
       ],
       "buildingProductList": [
@@ -1649,6 +2345,10 @@
         {
           "stageId": "main_06-04",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-06",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -1673,23 +2373,7 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_01",
-          "occPer": "ALMOST"
-        },
-        {
-          "stageId": "act13d0_03",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act12d0_03",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act9d0_01",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "act11d0_01",
+          "stageId": "act16d5_01",
           "occPer": "ALWAYS"
         },
         {
@@ -1697,7 +2381,31 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act4d0_01",
+          "stageId": "act11d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act9d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act12d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act13d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act13d5_01",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act15d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_03",
           "occPer": "ALWAYS"
         },
         {
@@ -1705,11 +2413,43 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "main_00-07",
+          "stageId": "act17d0_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act17d0_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d3_01",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act8mini_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act4d0_01",
           "occPer": "ALWAYS"
         },
         {
           "stageId": "sub_02-06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_00-07",
           "occPer": "ALWAYS"
         }
       ],
@@ -1718,7 +2458,7 @@
     "30022": {
       "itemId": "30022",
       "name": "Sugar",
-      "description": "A more expensive sugar made from natural materials. Ahh, this taste… will surely put one in a great mood. However, it’s not for casual snacking.",
+      "description": "A more expensive sugar made from natural materials. Ahh, this taste... will surely put one in a great mood. However, it's not for casual snacking.",
       "rarity": 1,
       "iconId": "MTL_SL_STRG2",
       "overrideBkg": null,
@@ -1730,7 +2470,7 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_04",
+          "stageId": "act18d3_03",
           "occPer": "ALWAYS"
         },
         {
@@ -1738,23 +2478,51 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act6d5_04",
+          "stageId": "act13d5_04",
           "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_07",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act17d0_05",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act17d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_05",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d0_03",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act18d3_05",
+          "occPer": "USUAL"
         },
         {
           "stageId": "a001_03",
           "occPer": "USUAL"
         },
         {
-          "stageId": "main_02-02",
+          "stageId": "act7mini_02",
           "occPer": "ALMOST"
         },
         {
-          "stageId": "main_05-03",
-          "occPer": "USUAL"
+          "stageId": "act8mini_04",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "main_07-02",
+          "stageId": "act6d5_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_08-05",
           "occPer": "ALWAYS"
         },
         {
@@ -1762,15 +2530,23 @@
           "occPer": "OFTEN"
         },
         {
-          "stageId": "main_08-05",
+          "stageId": "main_07-02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "main_05-03",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_02-02",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "sub_05-2-2",
           "occPer": "ALWAYS"
         },
         {
           "stageId": "sub_03-1-1",
-          "occPer": "ALWAYS"
-        },
-        {
-          "stageId": "sub_05-2-2",
           "occPer": "ALWAYS"
         }
       ],
@@ -1795,6 +2571,10 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act15d0_06",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "act12d0_07",
           "occPer": "ALMOST"
@@ -1826,6 +2606,10 @@
         {
           "stageId": "main_08-12",
           "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_09-04",
+          "occPer": "OFTEN"
         }
       ],
       "buildingProductList": [
@@ -1856,6 +2640,10 @@
         {
           "stageId": "main_05-02",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-04",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -1879,6 +2667,38 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act18d3_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act17d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act17d0_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act16d5_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_03",
+          "occPer": "ALWAYS"
+        },
         {
           "stageId": "act13d5_01",
           "occPer": "ALWAYS"
@@ -1925,11 +2745,15 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_05",
+          "stageId": "act18d0_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act7d5_04",
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act12d0_05",
+          "stageId": "act10d5_04",
           "occPer": "ALWAYS"
         },
         {
@@ -1937,12 +2761,16 @@
           "occPer": "OFTEN"
         },
         {
-          "stageId": "act10d5_04",
+          "stageId": "act12d0_05",
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act7d5_04",
+          "stageId": "act13d5_05",
           "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_07",
+          "occPer": "ALMOST"
         },
         {
           "stageId": "act4d0_04",
@@ -1953,23 +2781,31 @@
           "occPer": "ALMOST"
         },
         {
-          "stageId": "main_02-01",
-          "occPer": "USUAL"
-        },
-        {
-          "stageId": "main_05-07",
-          "occPer": "USUAL"
-        },
-        {
-          "stageId": "main_06-01",
+          "stageId": "act18d3_06",
           "occPer": "ALMOST"
+        },
+        {
+          "stageId": "main_09-14",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_08-12",
+          "occPer": "USUAL"
         },
         {
           "stageId": "main_07-09",
           "occPer": "ALMOST"
         },
         {
-          "stageId": "main_08-12",
+          "stageId": "main_06-01",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "main_05-07",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_02-01",
           "occPer": "USUAL"
         },
         {
@@ -1999,6 +2835,10 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act15d0_08",
+          "occPer": "USUAL"
+        },
+        {
           "stageId": "act13d0_08",
           "occPer": "OFTEN"
         },
@@ -2024,6 +2864,10 @@
         },
         {
           "stageId": "main_07-16",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-15",
           "occPer": "OFTEN"
         },
         {
@@ -2057,6 +2901,10 @@
           "occPer": "SOMETIMES"
         },
         {
+          "stageId": "main_09-15",
+          "occPer": "SOMETIMES"
+        },
+        {
           "stageId": "sub_04-1-1",
           "occPer": "SOMETIMES"
         }
@@ -2082,6 +2930,42 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act18d3_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act17d0_01",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act17d0_02",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act16d5_02",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act16d5_06",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act15d0_02",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "act12d0_03",
           "occPer": "ALWAYS"
@@ -2124,7 +3008,11 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
-          "stageId": "act13d5_03",
+          "stageId": "act18d3_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act10d5_03",
           "occPer": "ALMOST"
         },
         {
@@ -2132,11 +3020,23 @@
           "occPer": "ALWAYS"
         },
         {
-          "stageId": "act10d5_03",
+          "stageId": "act13d5_03",
           "occPer": "ALMOST"
         },
         {
-          "stageId": "act4d0_03",
+          "stageId": "act15d0_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_05",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act17d0_04",
+          "occPer": "ALMOST"
+        },
+        {
+          "stageId": "act18d0_03",
           "occPer": "ALMOST"
         },
         {
@@ -2144,19 +3044,19 @@
           "occPer": "ALMOST"
         },
         {
-          "stageId": "sub_02-01",
-          "occPer": "USUAL"
+          "stageId": "act4d0_03",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "main_03-07",
-          "occPer": "ALWAYS"
+          "stageId": "sub_07-1-2",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "main_06-14",
-          "occPer": "USUAL"
+          "stageId": "sub_06-2-1",
+          "occPer": "ALMOST"
         },
         {
-          "stageId": "main_07-10",
+          "stageId": "main_08-08",
           "occPer": "USUAL"
         },
         {
@@ -2164,16 +3064,20 @@
           "occPer": "USUAL"
         },
         {
-          "stageId": "main_08-08",
+          "stageId": "main_07-10",
           "occPer": "USUAL"
         },
         {
-          "stageId": "sub_06-2-1",
-          "occPer": "ALMOST"
+          "stageId": "main_06-14",
+          "occPer": "USUAL"
         },
         {
-          "stageId": "sub_07-1-2",
-          "occPer": "ALMOST"
+          "stageId": "main_03-07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "sub_02-01",
+          "occPer": "USUAL"
         }
       ],
       "buildingProductList": [
@@ -2197,6 +3101,14 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act18d0_07",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act15d0_07",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "act13d0_07",
           "occPer": "OFTEN"
@@ -2232,6 +3144,10 @@
         {
           "stageId": "main_08-17",
           "occPer": "OFTEN"
+        },
+        {
+          "stageId": "sub_09-1-1",
+          "occPer": "OFTEN"
         }
       ],
       "buildingProductList": [
@@ -2262,6 +3178,10 @@
         {
           "stageId": "main_05-08",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "sub_09-1-1",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -2285,6 +3205,14 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act8mini_07",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act15d5_06",
+          "occPer": "OFTEN"
+        },
         {
           "stageId": "act13d0_06",
           "occPer": "OFTEN"
@@ -2328,6 +3256,10 @@
         {
           "stageId": "main_08-02",
           "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-07",
+          "occPer": "OFTEN"
         }
       ],
       "buildingProductList": []
@@ -2357,6 +3289,10 @@
         {
           "stageId": "main_08-02",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-07",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -2380,6 +3316,10 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act17d0_07",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "act13d5_08",
           "occPer": "USUAL"
@@ -2406,6 +3346,10 @@
         },
         {
           "stageId": "main_08-11",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-13",
           "occPer": "OFTEN"
         }
       ],
@@ -2436,6 +3380,10 @@
         {
           "stageId": "main_08-11",
           "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-13",
+          "occPer": "SOMETIMES"
         }
       ],
       "buildingProductList": [
@@ -2459,6 +3407,10 @@
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
       "stageDropList": [
+        {
+          "stageId": "act17d0_08",
+          "occPer": "USUAL"
+        },
         {
           "stageId": "act11d0_08",
           "occPer": "USUAL"
@@ -2489,6 +3441,10 @@
         },
         {
           "stageId": "main_07-15",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-14",
           "occPer": "OFTEN"
         }
       ],
@@ -2539,6 +3495,18 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act7mini_05",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d0_08",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "act15d5_08",
+          "occPer": "OFTEN"
+        },
+        {
           "stageId": "act12d0_08",
           "occPer": "USUAL"
         },
@@ -2564,6 +3532,10 @@
         },
         {
           "stageId": "main_08-10",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-17",
           "occPer": "OFTEN"
         }
       ],
@@ -2756,6 +3728,10 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act16d5_08",
+          "occPer": "USUAL"
+        },
+        {
           "stageId": "act11d0_06",
           "occPer": "USUAL"
         },
@@ -2769,6 +3745,10 @@
         },
         {
           "stageId": "main_08-07",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-10",
           "occPer": "OFTEN"
         },
         {
@@ -2805,6 +3785,10 @@
           "occPer": "SOMETIMES"
         },
         {
+          "stageId": "main_09-10",
+          "occPer": "SOMETIMES"
+        },
+        {
           "stageId": "sub_05-4-2",
           "occPer": "SOMETIMES"
         }
@@ -2831,7 +3815,19 @@
       "itemType": "MATERIAL",
       "stageDropList": [
         {
+          "stageId": "act8mini_06",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "act18d3_08",
+          "occPer": "USUAL"
+        },
+        {
           "stageId": "main_08-13",
+          "occPer": "USUAL"
+        },
+        {
+          "stageId": "main_09-12",
           "occPer": "USUAL"
         },
         {
@@ -2877,7 +3873,7 @@
     },
     "30145": {
       "itemId": "30145",
-      "name": "Crystalline Electroassembly",
+      "name": "Crystalline Electronic Unit",
       "description": "A crystallization of Terra's Originium technology. A symbol of Terra's industrial modernization. From Originium Casting units to intercity network servers, their making all starts with inventions like these.",
       "rarity": 4,
       "iconId": "MTL_SL_OEU",
@@ -2893,6 +3889,108 @@
         {
           "roomType": "WORKSHOP",
           "formulaId": "57"
+        }
+      ]
+    },
+    "31043": {
+      "itemId": "31043",
+      "name": "Semi-Synthetic Solvent",
+      "description": "The product of a traditional solvent undergoing a modernization process, it demonstrates remarkably enhanced properties.",
+      "rarity": 2,
+      "iconId": "MTL_SL_SS",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 100044,
+      "usage": "An active solvent with excellent physical characteristics, and good resistance to acids and bases. Can be used in a variety of upgrades.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "main_09-03",
+          "occPer": "OFTEN"
+        },
+        {
+          "stageId": "main_09-16",
+          "occPer": "OFTEN"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "31044": {
+      "itemId": "31044",
+      "name": "Refined Solvent",
+      "description": "A coating held together by high-molecule polymers. In addition to its baseline protective capabilities, it has also gained other special characteristics, of which heat resistance is but one of many.",
+      "rarity": 3,
+      "iconId": "MTL_SL_RS",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 100043,
+      "usage": "A special coating made from a specific formulation process. Can be used for high level upgrades.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "main_09-03",
+          "occPer": "SOMETIMES"
+        },
+        {
+          "stageId": "main_09-16",
+          "occPer": "SOMETIMES"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "59"
+        }
+      ]
+    },
+    "31053": {
+      "itemId": "31053",
+      "name": "Compound Cutting Fluid",
+      "description": "Provides lubrication and heat resistance during the refining process, which can further increase the rate at which metal products meet final quality specifications.",
+      "rarity": 2,
+      "iconId": "MTL_SL_CCF",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 100046,
+      "usage": "An industrial agent necessary for metal processing. Can be used for a variety of upgrades.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "main_09-05",
+          "occPer": "OFTEN"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "31054": {
+      "itemId": "31054",
+      "name": "Cutting Fluid Solution",
+      "description": "A biologically stable stock solution. Precautions should be taken to avoid cross-contamination during storage.",
+      "rarity": 3,
+      "iconId": "MTL_SL_PLCF",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 100045,
+      "usage": "A stock solution prepared from a variety of active solvents. Can be used for high level upgrades.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "main_09-05",
+          "occPer": "SOMETIMES"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "60"
         }
       ]
     },
@@ -3136,27 +4234,6 @@
         }
       ]
     },
-    "3243": {
-      "itemId": "3243",
-      "name": "Sniper Dualchip",
-      "description": "A material obtained after hard training. It seems to be especially helpful for veteran Sniper Operators.",
-      "rarity": 4,
-      "iconId": "MTL_ASC_SNP3",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400004,
-      "usage": "A dualchip that records special trainings. Can be used to Promote Sniper Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": [
-        {
-          "roomType": "MANUFACTURE",
-          "formulaId": "8"
-        }
-      ]
-    },
     "3233": {
       "itemId": "3233",
       "name": "Defender Dualchip",
@@ -3165,7 +4242,7 @@
       "iconId": "MTL_ASC_TNK3",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400005,
+      "sortId": 400004,
       "usage": "A dualchip that records special trainings. Can be used to Promote Defender Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3178,6 +4255,48 @@
         }
       ]
     },
+    "3243": {
+      "itemId": "3243",
+      "name": "Sniper Dualchip",
+      "description": "A material obtained after hard training. It seems to be especially helpful for veteran Sniper Operators.",
+      "rarity": 4,
+      "iconId": "MTL_ASC_SNP3",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400005,
+      "usage": "A dualchip that records special trainings. Can be used to Promote Sniper Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": [
+        {
+          "roomType": "MANUFACTURE",
+          "formulaId": "8"
+        }
+      ]
+    },
+    "3253": {
+      "itemId": "3253",
+      "name": "Caster Dualchip",
+      "description": "A material obtained after hard training. It seems to be especially helpful for veteran Caster Operators.",
+      "rarity": 4,
+      "iconId": "MTL_ASC_CST3",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400006,
+      "usage": "A dualchip that records special trainings. Can be used to Promote Caster Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": [
+        {
+          "roomType": "MANUFACTURE",
+          "formulaId": "9"
+        }
+      ]
+    },
     "3263": {
       "itemId": "3263",
       "name": "Medic Dualchip",
@@ -3186,7 +4305,7 @@
       "iconId": "MTL_ASC_MED3",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400006,
+      "sortId": 400007,
       "usage": "A dualchip that records special trainings. Can be used to Promote Medic Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3207,7 +4326,7 @@
       "iconId": "MTL_ASC_SUP3",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400007,
+      "sortId": 400008,
       "usage": "A dualchip that records special trainings. Can be used to Promote Supporter Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3217,27 +4336,6 @@
         {
           "roomType": "MANUFACTURE",
           "formulaId": "11"
-        }
-      ]
-    },
-    "3253": {
-      "itemId": "3253",
-      "name": "Caster Dualchip",
-      "description": "A material obtained after hard training. It seems to be especially helpful for veteran Caster Operators.",
-      "rarity": 4,
-      "iconId": "MTL_ASC_CST3",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400008,
-      "usage": "A dualchip that records special trainings. Can be used to Promote Caster Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": [
-        {
-          "roomType": "MANUFACTURE",
-          "formulaId": "9"
         }
       ]
     },
@@ -3314,32 +4412,6 @@
         }
       ]
     },
-    "3242": {
-      "itemId": "3242",
-      "name": "Sniper Chip Pack",
-      "description": "A material obtained after hard training. It seems to be especially helpful for experienced Sniper Operators.",
-      "rarity": 3,
-      "iconId": "MTL_ASC_SNP2",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400012,
-      "usage": "A memory chip pack that records special trainings. Can be used to Promote Sniper Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [
-        {
-          "stageId": "pro_b_1",
-          "occPer": "ALWAYS"
-        }
-      ],
-      "buildingProductList": [
-        {
-          "roomType": "WORKSHOP",
-          "formulaId": "49"
-        }
-      ]
-    },
     "3232": {
       "itemId": "3232",
       "name": "Defender Chip Pack",
@@ -3348,7 +4420,7 @@
       "iconId": "MTL_ASC_TNK2",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400013,
+      "sortId": 400012,
       "usage": "A memory chip pack that records special trainings. Can be used to Promote Defender Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3366,6 +4438,58 @@
         }
       ]
     },
+    "3242": {
+      "itemId": "3242",
+      "name": "Sniper Chip Pack",
+      "description": "A material obtained after hard training. It seems to be especially helpful for experienced Sniper Operators.",
+      "rarity": 3,
+      "iconId": "MTL_ASC_SNP2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400013,
+      "usage": "A memory chip pack that records special trainings. Can be used to Promote Sniper Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "pro_b_1",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "49"
+        }
+      ]
+    },
+    "3252": {
+      "itemId": "3252",
+      "name": "Caster Chip Pack",
+      "description": "A material obtained after hard training. It seems to be especially helpful for experienced Caster Operators.",
+      "rarity": 3,
+      "iconId": "MTL_ASC_CST2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400014,
+      "usage": "A memory chip pack that records special trainings. Can be used to Promote Caster Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "pro_b_1",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "50"
+        }
+      ]
+    },
     "3262": {
       "itemId": "3262",
       "name": "Medic Chip Pack",
@@ -3374,7 +4498,7 @@
       "iconId": "MTL_ASC_MED2",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400014,
+      "sortId": 400015,
       "usage": "A memory chip pack that records special trainings. Can be used to Promote Medic Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3400,7 +4524,7 @@
       "iconId": "MTL_ASC_SUP2",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400015,
+      "sortId": 400016,
       "usage": "A memory chip pack that records special trainings. Can be used to Promote Supporter Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3415,32 +4539,6 @@
         {
           "roomType": "WORKSHOP",
           "formulaId": "52"
-        }
-      ]
-    },
-    "3252": {
-      "itemId": "3252",
-      "name": "Caster Chip Pack",
-      "description": "A material obtained after hard training. It seems to be especially helpful for experienced Caster Operators.",
-      "rarity": 3,
-      "iconId": "MTL_ASC_CST2",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400016,
-      "usage": "A memory chip pack that records special trainings. Can be used to Promote Caster Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [
-        {
-          "stageId": "pro_b_1",
-          "occPer": "ALWAYS"
-        }
-      ],
-      "buildingProductList": [
-        {
-          "roomType": "WORKSHOP",
-          "formulaId": "50"
         }
       ]
     },
@@ -3522,32 +4620,6 @@
         }
       ]
     },
-    "3241": {
-      "itemId": "3241",
-      "name": "Sniper Chip",
-      "description": "A material obtained after hard training. It seems to be especially helpful for rookie Sniper Operators.",
-      "rarity": 2,
-      "iconId": "MTL_ASC_SNP1",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400020,
-      "usage": "A memory chip that records special trainings. Can be used to Promote Sniper Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [
-        {
-          "stageId": "pro_b_1",
-          "occPer": "ALWAYS"
-        }
-      ],
-      "buildingProductList": [
-        {
-          "roomType": "WORKSHOP",
-          "formulaId": "41"
-        }
-      ]
-    },
     "3231": {
       "itemId": "3231",
       "name": "Defender Chip",
@@ -3556,7 +4628,7 @@
       "iconId": "MTL_ASC_TNK1",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400021,
+      "sortId": 400020,
       "usage": "A memory chip that records special trainings. Can be used to Promote Defender Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3574,6 +4646,58 @@
         }
       ]
     },
+    "3241": {
+      "itemId": "3241",
+      "name": "Sniper Chip",
+      "description": "A material obtained after hard training. It seems to be especially helpful for rookie Sniper Operators.",
+      "rarity": 2,
+      "iconId": "MTL_ASC_SNP1",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400021,
+      "usage": "A memory chip that records special trainings. Can be used to Promote Sniper Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "pro_b_1",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "41"
+        }
+      ]
+    },
+    "3251": {
+      "itemId": "3251",
+      "name": "Caster Chip",
+      "description": "A material obtained after hard training. It seems to be especially helpful for rookie Caster Operators.",
+      "rarity": 2,
+      "iconId": "MTL_ASC_CST1",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 400022,
+      "usage": "A memory chip that records special trainings. Can be used to Promote Caster Operators.",
+      "obtainApproach": null,
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [
+        {
+          "stageId": "pro_b_1",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": [
+        {
+          "roomType": "WORKSHOP",
+          "formulaId": "42"
+        }
+      ]
+    },
     "3261": {
       "itemId": "3261",
       "name": "Medic Chip",
@@ -3582,7 +4706,7 @@
       "iconId": "MTL_ASC_MED1",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400022,
+      "sortId": 400023,
       "usage": "A memory chip that records special trainings. Can be used to Promote Medic Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3608,7 +4732,7 @@
       "iconId": "MTL_ASC_SUP1",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 400023,
+      "sortId": 400024,
       "usage": "A memory chip that records special trainings. Can be used to Promote Supporter Operators.",
       "obtainApproach": null,
       "classifyType": "MATERIAL",
@@ -3623,32 +4747,6 @@
         {
           "roomType": "WORKSHOP",
           "formulaId": "44"
-        }
-      ]
-    },
-    "3251": {
-      "itemId": "3251",
-      "name": "Caster Chip",
-      "description": "A material obtained after hard training. It seems to be especially helpful for rookie Caster Operators.",
-      "rarity": 2,
-      "iconId": "MTL_ASC_CST1",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 400024,
-      "usage": "A memory chip that records special trainings. Can be used to Promote Caster Operators.",
-      "obtainApproach": null,
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [
-        {
-          "stageId": "pro_b_1",
-          "occPer": "ALWAYS"
-        }
-      ],
-      "buildingProductList": [
-        {
-          "roomType": "WORKSHOP",
-          "formulaId": "42"
         }
       ]
     },
@@ -3710,22 +4808,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier1_sniper": {
-      "itemId": "tier1_sniper",
-      "name": "Replicated Sniper Token",
-      "description": "A normal token. It's nothing special, but it has its uses.",
-      "rarity": 0,
-      "iconId": "tier1_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450043,
-      "usage": "Used to improve the Potential of ★1 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier1_tank": {
       "itemId": "tier1_tank",
       "name": "Replicated Defender Token",
@@ -3734,8 +4816,40 @@
       "iconId": "tier1_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450044,
+      "sortId": 450043,
       "usage": "Used to improve the Potential of ★1 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier1_sniper": {
+      "itemId": "tier1_sniper",
+      "name": "Replicated Sniper Token",
+      "description": "A normal token. It's nothing special, but it has its uses.",
+      "rarity": 0,
+      "iconId": "tier1_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450044,
+      "usage": "Used to improve the Potential of ★1 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier1_caster": {
+      "itemId": "tier1_caster",
+      "name": "Replicated Caster Token",
+      "description": "A normal token. It's nothing special, but it has its uses.",
+      "rarity": 0,
+      "iconId": "tier1_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450045,
+      "usage": "Used to improve the Potential of ★1 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -3750,7 +4864,7 @@
       "iconId": "tier1_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450045,
+      "sortId": 450046,
       "usage": "Used to improve the Potential of ★1 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -3766,24 +4880,8 @@
       "iconId": "tier1_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450046,
-      "usage": "Used to improve the Potential of ★1 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier1_caster": {
-      "itemId": "tier1_caster",
-      "name": "Replicated Caster Token",
-      "description": "A normal token. It's nothing special, but it has its uses.",
-      "rarity": 0,
-      "iconId": "tier1_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450047,
-      "usage": "Used to improve the Potential of ★1 Caster Operators.",
+      "usage": "Used to improve the Potential of ★1 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -3838,22 +4936,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier2_sniper": {
-      "itemId": "tier2_sniper",
-      "name": "Original Sniper Token",
-      "description": "A common token. People only remember it when they really need it.",
-      "rarity": 1,
-      "iconId": "tier2_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450035,
-      "usage": "Used to improve the Potential of ★2 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier2_tank": {
       "itemId": "tier2_tank",
       "name": "Original Defender Token",
@@ -3862,8 +4944,40 @@
       "iconId": "tier2_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450036,
+      "sortId": 450035,
       "usage": "Used to improve the Potential of ★2 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier2_sniper": {
+      "itemId": "tier2_sniper",
+      "name": "Original Sniper Token",
+      "description": "A common token. People only remember it when they really need it.",
+      "rarity": 1,
+      "iconId": "tier2_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450036,
+      "usage": "Used to improve the Potential of ★2 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier2_caster": {
+      "itemId": "tier2_caster",
+      "name": "Original Caster Token",
+      "description": "A common token. People only remember it when they really need it.",
+      "rarity": 1,
+      "iconId": "tier2_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450037,
+      "usage": "Used to improve the Potential of ★2 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -3878,7 +4992,7 @@
       "iconId": "tier2_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450037,
+      "sortId": 450038,
       "usage": "Used to improve the Potential of ★2 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -3894,24 +5008,8 @@
       "iconId": "tier2_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450038,
-      "usage": "Used to improve the Potential of ★2 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier2_caster": {
-      "itemId": "tier2_caster",
-      "name": "Original Caster Token",
-      "description": "A common token. People only remember it when they really need it.",
-      "rarity": 1,
-      "iconId": "tier2_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450039,
-      "usage": "Used to improve the Potential of ★2 Caster Operators.",
+      "usage": "Used to improve the Potential of ★2 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -3966,22 +5064,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier3_sniper": {
-      "itemId": "tier3_sniper",
-      "name": "Antique Sniper Token",
-      "description": "A peculiar token. It's nothing amazing, but you won't forget you have it.",
-      "rarity": 2,
-      "iconId": "tier3_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450027,
-      "usage": "Used to improve the Potential of ★3 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier3_tank": {
       "itemId": "tier3_tank",
       "name": "Antique Defender Token",
@@ -3990,8 +5072,40 @@
       "iconId": "tier3_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450028,
+      "sortId": 450027,
       "usage": "Used to improve the Potential of ★3 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier3_sniper": {
+      "itemId": "tier3_sniper",
+      "name": "Antique Sniper Token",
+      "description": "A peculiar token. It's nothing amazing, but you won't forget you have it.",
+      "rarity": 2,
+      "iconId": "tier3_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450028,
+      "usage": "Used to improve the Potential of ★3 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier3_caster": {
+      "itemId": "tier3_caster",
+      "name": "Antique Caster Token",
+      "description": "A peculiar token. It's nothing amazing, but you won't forget you have it.",
+      "rarity": 2,
+      "iconId": "tier3_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450029,
+      "usage": "Used to improve the Potential of ★3 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4006,7 +5120,7 @@
       "iconId": "tier3_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450029,
+      "sortId": 450030,
       "usage": "Used to improve the Potential of ★3 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -4022,24 +5136,8 @@
       "iconId": "tier3_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450030,
-      "usage": "Used to improve the Potential of ★3 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier3_caster": {
-      "itemId": "tier3_caster",
-      "name": "Antique Caster Token",
-      "description": "A peculiar token. It's nothing amazing, but you won't forget you have it.",
-      "rarity": 2,
-      "iconId": "tier3_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450031,
-      "usage": "Used to improve the Potential of ★3 Caster Operators.",
+      "usage": "Used to improve the Potential of ★3 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4094,22 +5192,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier4_sniper": {
-      "itemId": "tier4_sniper",
-      "name": "Rare Sniper Token",
-      "description": "A rare token. Staring at it makes you want to start collecting similar tokens.",
-      "rarity": 3,
-      "iconId": "tier4_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450019,
-      "usage": "Used to improve the Potential of ★4 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier4_tank": {
       "itemId": "tier4_tank",
       "name": "Rare Defender Token",
@@ -4118,8 +5200,40 @@
       "iconId": "tier4_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450020,
+      "sortId": 450019,
       "usage": "Used to improve the Potential of ★4 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier4_sniper": {
+      "itemId": "tier4_sniper",
+      "name": "Rare Sniper Token",
+      "description": "A rare token. Staring at it makes you want to start collecting similar tokens.",
+      "rarity": 3,
+      "iconId": "tier4_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450020,
+      "usage": "Used to improve the Potential of ★4 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier4_caster": {
+      "itemId": "tier4_caster",
+      "name": "Rare Caster Token",
+      "description": "A rare token. Staring at it makes you want to start collecting similar tokens.",
+      "rarity": 3,
+      "iconId": "tier4_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450021,
+      "usage": "Used to improve the Potential of ★4 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4134,7 +5248,7 @@
       "iconId": "tier4_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450021,
+      "sortId": 450022,
       "usage": "Used to improve the Potential of ★4 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -4150,24 +5264,8 @@
       "iconId": "tier4_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450022,
-      "usage": "Used to improve the Potential of ★4 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier4_caster": {
-      "itemId": "tier4_caster",
-      "name": "Rare Caster Token",
-      "description": "A rare token. Staring at it makes you want to start collecting similar tokens.",
-      "rarity": 3,
-      "iconId": "tier4_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450023,
-      "usage": "Used to improve the Potential of ★4 Caster Operators.",
+      "usage": "Used to improve the Potential of ★4 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4222,22 +5320,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier5_sniper": {
-      "itemId": "tier5_sniper",
-      "name": "Epic Sniper Token",
-      "description": "A special token. All the efforts taken to get your hands on it will prove to be worth it.",
-      "rarity": 4,
-      "iconId": "tier5_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450011,
-      "usage": "Used to improve the Potential of ★5 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier5_tank": {
       "itemId": "tier5_tank",
       "name": "Epic Defender Token",
@@ -4246,8 +5328,40 @@
       "iconId": "tier5_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450012,
+      "sortId": 450011,
       "usage": "Used to improve the Potential of ★5 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier5_sniper": {
+      "itemId": "tier5_sniper",
+      "name": "Epic Sniper Token",
+      "description": "A special token. All the efforts taken to get your hands on it will prove to be worth it.",
+      "rarity": 4,
+      "iconId": "tier5_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450012,
+      "usage": "Used to improve the Potential of ★5 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier5_caster": {
+      "itemId": "tier5_caster",
+      "name": "Epic Caster Token",
+      "description": "A special token. All the efforts taken to get your hands on it will prove to be worth it.",
+      "rarity": 4,
+      "iconId": "tier5_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450013,
+      "usage": "Used to improve the Potential of ★5 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4262,7 +5376,7 @@
       "iconId": "tier5_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450013,
+      "sortId": 450014,
       "usage": "Used to improve the Potential of ★5 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -4278,24 +5392,8 @@
       "iconId": "tier5_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450014,
-      "usage": "Used to improve the Potential of ★5 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier5_caster": {
-      "itemId": "tier5_caster",
-      "name": "Epic Caster Token",
-      "description": "A special token. All the efforts taken to get your hands on it will prove to be worth it.",
-      "rarity": 4,
-      "iconId": "tier5_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450015,
-      "usage": "Used to improve the Potential of ★5 Caster Operators.",
+      "usage": "Used to improve the Potential of ★5 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4350,22 +5448,6 @@
       "stageDropList": [],
       "buildingProductList": []
     },
-    "tier6_sniper": {
-      "itemId": "tier6_sniper",
-      "name": "Royal Sniper Token",
-      "description": "A unique token. Is it really okay to just give away something this precious?",
-      "rarity": 5,
-      "iconId": "tier6_sniper",
-      "overrideBkg": null,
-      "stackIconId": null,
-      "sortId": 450003,
-      "usage": "Used to improve the Potential of ★6 Sniper Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
     "tier6_tank": {
       "itemId": "tier6_tank",
       "name": "Royal Defender Token",
@@ -4374,8 +5456,40 @@
       "iconId": "tier6_tank",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450004,
+      "sortId": 450003,
       "usage": "Used to improve the Potential of ★6 Defender Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier6_sniper": {
+      "itemId": "tier6_sniper",
+      "name": "Royal Sniper Token",
+      "description": "A unique token. Is it really okay to just give away something this precious?",
+      "rarity": 5,
+      "iconId": "tier6_sniper",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450004,
+      "usage": "Used to improve the Potential of ★6 Sniper Operators.",
+      "obtainApproach": "Store",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "tier6_caster": {
+      "itemId": "tier6_caster",
+      "name": "Royal Caster Token",
+      "description": "A unique token. Is it really okay to just give away something this precious?",
+      "rarity": 5,
+      "iconId": "tier6_caster",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 450005,
+      "usage": "Used to improve the Potential of ★6 Caster Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4390,7 +5504,7 @@
       "iconId": "tier6_medic",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450005,
+      "sortId": 450006,
       "usage": "Used to improve the Potential of ★6 Medic Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
@@ -4406,24 +5520,8 @@
       "iconId": "tier6_supporter",
       "overrideBkg": null,
       "stackIconId": null,
-      "sortId": 450006,
-      "usage": "Used to improve the Potential of ★6 Supporter Operators.",
-      "obtainApproach": "Store",
-      "classifyType": "MATERIAL",
-      "itemType": "MATERIAL",
-      "stageDropList": [],
-      "buildingProductList": []
-    },
-    "tier6_caster": {
-      "itemId": "tier6_caster",
-      "name": "Royal Caster Token",
-      "description": "A unique token. Is it really okay to just give away something this precious?",
-      "rarity": 5,
-      "iconId": "tier6_caster",
-      "overrideBkg": null,
-      "stackIconId": null,
       "sortId": 450007,
-      "usage": "Used to improve the Potential of ★6 Caster Operators.",
+      "usage": "Used to improve the Potential of ★6 Supporter Operators.",
       "obtainApproach": "Store",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -4449,7 +5547,7 @@
     "p_char_285_medic2": {
       "itemId": "p_char_285_medic2",
       "name": "Lancet-2's Token",
-      "description": "A first aid spray kit whose box has a label \"Effective Immediately.\" It can be added to medical equipment or used directly.",
+      "description": "A first aid spray kit whose box has a label 'Effective Immediately.' It can be added to medical equipment or used directly.",
       "rarity": 0,
       "iconId": "p_char_285_medic2",
       "overrideBkg": null,
@@ -4481,7 +5579,7 @@
     "p_char_376_therex": {
       "itemId": "p_char_376_therex",
       "name": "THRM-EX's Token",
-      "description": "A luminous heat storage core; The following is imprinted on the package in bold, black letters: \"FEEL THE PASSION!\"",
+      "description": "A luminous heat storage core; The following is imprinted on the package in bold, black letters: 'FEEL THE PASSION!'",
       "rarity": 0,
       "iconId": "p_char_376_therex",
       "overrideBkg": null,
@@ -4561,7 +5659,7 @@
     "p_char_009_12fce": {
       "itemId": "p_char_009_12fce",
       "name": "12F's Token",
-      "description": "A piece of chocolate wrapped in old packaging. The words \"Merry Christmas\" are written on the back, barely legible.",
+      "description": "A piece of chocolate wrapped in old packaging. The words 'Merry Christmas' are written on the back, barely legible.",
       "rarity": 1,
       "iconId": "p_char_009_12fce",
       "overrideBkg": null,
@@ -5041,7 +6139,7 @@
     "p_char_185_frncat": {
       "itemId": "p_char_185_frncat",
       "name": "Mousse's Token",
-      "description": "An album whose cover is decorated with golden floral patterns. The photos inside record the \"kitties\" that played with the photographer. Kitties!",
+      "description": "An album whose cover is decorated with golden floral patterns. The photos inside record the 'kitties' that played with the photographer. Kitties!",
       "rarity": 3,
       "iconId": "p_char_185_frncat",
       "overrideBkg": null,
@@ -5374,10 +6472,26 @@
       "stageDropList": [],
       "buildingProductList": []
     },
+    "p_char_385_finlpp": {
+      "itemId": "p_char_385_finlpp",
+      "name": "Purestream's Token",
+      "description": "A small bottle of fresh water taken from her hometown that can be worn as decoration. Take it with you - Purestream will be glad to share a portion of her hometown with you.",
+      "rarity": 3,
+      "iconId": "p_char_385_finlpp",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 800034,
+      "usage": "Used to improve the Potential of Purestream.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
     "p_char_337_utage": {
       "itemId": "p_char_337_utage",
       "name": "Utage's Token",
-      "description": "A black box. Inside it is another black box. Inside that is another black box. Inside that is… a manicure set?!",
+      "description": "A black box. Inside it is another black box. Inside that is another black box. Inside that is... a manicure set?!",
       "rarity": 3,
       "iconId": "p_char_337_utage",
       "overrideBkg": null,
@@ -5489,7 +6603,7 @@
     "p_char_381_bubble": {
       "itemId": "p_char_381_bubble",
       "name": "Bubble's Token",
-      "description": "A stump dug up from outside the city. She doesn’t know what to do with it either, but she thought you'd like it, so she dug it up for you.",
+      "description": "A stump dug up from outside the city. She doesn't know what to do with it either, but she thought you'd like it, so she dug it up for you.",
       "rarity": 3,
       "iconId": "p_char_381_bubble",
       "overrideBkg": null,
@@ -5512,6 +6626,70 @@
       "stackIconId": null,
       "sortId": 800043,
       "usage": "Used to improve the Potential of Jackie.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_440_pinecn": {
+      "itemId": "p_char_440_pinecn",
+      "name": "Pinecone's Token",
+      "description": "A very heavy toolbag, including a back-up nailgun, many spare parts, and a small figurine she's forgotten in there.",
+      "rarity": 3,
+      "iconId": "p_char_440_pinecn",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 800044,
+      "usage": "Used to improve the Potential of Pinecone.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_452_bstalk": {
+      "itemId": "p_char_452_bstalk",
+      "name": "Beanstalk's Token",
+      "description": "An exchange certificate for a pet Metal Crab. After the breeder pledges and stamps, and once the Beanstalk Breeding Company is officially established, this certificate can be exchanged for the adoption of an adorable baby Metal Crab.",
+      "rarity": 3,
+      "iconId": "p_char_452_bstalk",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 800045,
+      "usage": "Used to improve the Potential of Beanstalk.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_469_indigo": {
+      "itemId": "p_char_469_indigo",
+      "name": "Indigo's Token",
+      "description": "A beautiful glowskater. Its faint light can illuminate all throughout the night. By the next day, you're free to let it go.",
+      "rarity": 3,
+      "iconId": "p_char_469_indigo",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 800046,
+      "usage": "Used to improve the Potential of Indigo.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_484_robrta": {
+      "itemId": "p_char_484_robrta",
+      "name": "Roberta's Token",
+      "description": "A makeup brush of rough craftsmanship. Though it shows signs of age, each brown bristle is clean and very soft.",
+      "rarity": 3,
+      "iconId": "p_char_484_robrta",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 800047,
+      "usage": "Used to improve the Potential of Roberta.",
       "obtainApproach": "New Operator's gift",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -5681,7 +6859,7 @@
     "p_char_002_amiya": {
       "itemId": "p_char_002_amiya",
       "name": "Amiya's Token",
-      "description": "\"You will understand my choice one day... Forgive me.\"",
+      "description": "'You will understand my choice one day... Forgive me.'",
       "rarity": 4,
       "iconId": "p_char_002_amiya",
       "overrideBkg": null,
@@ -5809,7 +6987,7 @@
     "p_char_201_moeshd": {
       "itemId": "p_char_201_moeshd",
       "name": "Croissant's Token",
-      "description": "A business card with a cute style. Different from normal ones, it has a QR code for receiving money and a remark \"Thank You!\"",
+      "description": "A business card with a cute style. Different from normal ones, it has a QR code for receiving money and a remark 'Thank You!'",
       "rarity": 4,
       "iconId": "p_char_201_moeshd",
       "overrideBkg": null,
@@ -5937,7 +7115,7 @@
     "p_char_215_mantic": {
       "itemId": "p_char_215_mantic",
       "name": "Manticore's Token",
-      "description": "A violet envelope sealed with a morning glory sticker. Open it and you will find a piece of folded paper saying \"Please be my friend.\"",
+      "description": "A violet envelope sealed with a morning glory sticker. Open it and you will find a piece of folded paper saying 'Please be my friend.'",
       "rarity": 4,
       "iconId": "p_char_215_mantic",
       "overrideBkg": null,
@@ -6145,7 +7323,7 @@
     "p_char_243_waaifu": {
       "itemId": "p_char_243_waaifu",
       "name": "Waai Fu's Token",
-      "description": "An old martial arts scroll written in an undiscernable text. At least it'll have some value as a reference material… right?",
+      "description": "An old martial arts scroll written in an undiscernable text. At least it'll have some value as a reference material... right?",
       "rarity": 4,
       "iconId": "p_char_243_waaifu",
       "overrideBkg": null,
@@ -6401,7 +7579,7 @@
     "p_char_294_ayer": {
       "itemId": "p_char_294_ayer",
       "name": "Ayerscarpe's Token",
-      "description": "A self-authored reconnaissance and counter-reconnaissance manual. His thought process was, \"it's best to keep yourself protected under any circumstance.\"",
+      "description": "A self-authored reconnaissance and counter-reconnaissance manual. His thought process was, 'it's best to keep yourself protected under any circumstance.'",
       "rarity": 4,
       "iconId": "p_char_294_ayer",
       "overrideBkg": null,
@@ -6449,7 +7627,7 @@
     "p_char_349_chiave": {
       "itemId": "p_char_349_chiave",
       "name": "Chiave's Token",
-      "description": "A badge that he made himself, representing the \"Chiave Gang.\" Your name is also engraved upon it.",
+      "description": "A badge that he made himself, representing the 'Chiave Gang.' Your name is also engraved upon it.",
       "rarity": 4,
       "iconId": "p_char_349_chiave",
       "overrideBkg": null,
@@ -6529,7 +7707,7 @@
     "p_char_365_aprl": {
       "itemId": "p_char_365_aprl",
       "name": "April's Token",
-      "description": "An album including the song \"April,\" still freshly packaged and tied up in a lovely ribbon.",
+      "description": "An album including the song 'April,' still freshly packaged and tied up in a lovely ribbon.",
       "rarity": 4,
       "iconId": "p_char_365_aprl",
       "overrideBkg": null,
@@ -6561,7 +7739,7 @@
     "p_char_346_aosta": {
       "itemId": "p_char_346_aosta",
       "name": "Aosta's Token",
-      "description": "A Siracusan-style fedora handcrafted by the man himself. The fabric used in its construction is of very high quality, a clear example of his fine attention to detail. ",
+      "description": "A Siracusan-style fedora handcrafted by the man himself. The fabric used in its construction is of very high quality, a clear example of his fine attention to detail.",
       "rarity": 4,
       "iconId": "p_char_346_aosta",
       "overrideBkg": null,
@@ -6600,6 +7778,278 @@
       "stackIconId": null,
       "sortId": 700067,
       "usage": "Used to improve the Potential of Whisperain.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_214_kafka": {
+      "itemId": "p_char_214_kafka",
+      "name": "Kafka's Token",
+      "description": "An assiduously cared-for bonsai. Attached is a card, upon which is written: 'I buried a knife in here. It can peel apples, if you ever need.'",
+      "rarity": 4,
+      "iconId": "p_char_214_kafka",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700068,
+      "usage": "Used to improve the Potential of Kafka.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_451_robin": {
+      "itemId": "p_char_451_robin",
+      "name": "Robin's Token",
+      "description": "A still-sealed knife. Its design is exquisite, and there are letters engraved on the handle. It appears to be a limited-run tie-in for a movie.",
+      "rarity": 4,
+      "iconId": "p_char_451_robin",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700069,
+      "usage": "Used to improve the Potential of Robin.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_338_iris": {
+      "itemId": "p_char_338_iris",
+      "name": "Iris's Token",
+      "description": "A manually bound book of fairytales. A collection never released to the market, each illustration hand-drawn by its creator.",
+      "rarity": 4,
+      "iconId": "p_char_338_iris",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700070,
+      "usage": "Used to improve the Potential of Iris.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_402_tuye": {
+      "itemId": "p_char_402_tuye",
+      "name": "Tuye's Token",
+      "description": "A vial of nutritional fluid. Hand crafted by the outstanding medical operator Tuye, it gives off a peculiar smell. Whether and when to drink it remain questions you have to think over for yourself.",
+      "rarity": 4,
+      "iconId": "p_char_402_tuye",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700071,
+      "usage": "Used to improve the Potential of Tuye.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_455_nothin": {
+      "itemId": "p_char_455_nothin",
+      "name": "Mr. Nothing's Token",
+      "description": "A paper fan, its frame made of special materials, on it written 'nonexistent and nothing.'",
+      "rarity": 4,
+      "iconId": "p_char_455_nothin",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700072,
+      "usage": "Used to improve the Potential of Mr. Nothing.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_1011_lava2": {
+      "itemId": "p_char_1011_lava2",
+      "name": "Lava the Purgatory's Token",
+      "description": "A sheath covered in scars. The once distinctive patterns she'd engraved herself have been worn away through constant use, the lines now invisible.",
+      "rarity": 4,
+      "iconId": "p_char_1011_lava2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700073,
+      "usage": "Used to improve the Potential of Lava the Purgatory.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_457_blitz": {
+      "itemId": "p_char_457_blitz",
+      "name": "Blitz's Token",
+      "description": "A complete set of linguistics books and comprehensive, well-organized notes. They seem to annotate comparisons between nouns across different languages.",
+      "rarity": 4,
+      "iconId": "p_char_457_blitz",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700074,
+      "usage": "Used to improve the Potential of Blitz.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_458_rfrost": {
+      "itemId": "p_char_458_rfrost",
+      "name": "Frost's Token",
+      "description": " A set of handmade survival tools. She wants to convey to you that survival is a matter of skill, not brute force.",
+      "rarity": 4,
+      "iconId": "p_char_458_rfrost",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700075,
+      "usage": "Used to improve the Potential of Frost.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_459_tachak": {
+      "itemId": "p_char_459_tachak",
+      "name": "Tachanka's Token",
+      "description": "A set of dolls made from wood and the carapace of Originium slugs. Starting from the largest doll, they can be nestled within each other.",
+      "rarity": 4,
+      "iconId": "p_char_459_tachak",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700076,
+      "usage": "Used to improve the Potential of Tachanka.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_363_toddi": {
+      "itemId": "p_char_363_toddi",
+      "name": "Toddifons's Token",
+      "description": "A delicately cut icosahedral crystal gemstone. By her logic, things you slough off onto others in passing can't be called gifts.",
+      "rarity": 4,
+      "iconId": "p_char_363_toddi",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700077,
+      "usage": "Used to improve the Potential of Toddifons.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_304_zebra": {
+      "itemId": "p_char_304_zebra",
+      "name": "Heavyrain's Token",
+      "description": "A small-form shield, apparently personally forged under Vulcan's guidance. Very lightweight, but very firm.",
+      "rarity": 4,
+      "iconId": "p_char_304_zebra",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700078,
+      "usage": "Used to improve the Potential of Heavyrain.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_475_akafyu": {
+      "itemId": "p_char_475_akafyu",
+      "name": "Akafuyu's Token",
+      "description": "A helping of raw, worked meat. Only those who eat heartily and leave an empty plate can be called good buddies.",
+      "rarity": 4,
+      "iconId": "p_char_475_akafyu",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700079,
+      "usage": "Used to improve the Potential of Akafuyu.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_478_kirara": {
+      "itemId": "p_char_478_kirara",
+      "name": "Kirara's Token",
+      "description": "[Shinobi Ex Machina 2] Collector's Edition. The launch collector's edition of a classic Higashi game. She's dying to share all her favorites with you.",
+      "rarity": 4,
+      "iconId": "p_char_478_kirara",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700080,
+      "usage": "Used to improve the Potential of Kirara.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_369_bena": {
+      "itemId": "p_char_369_bena",
+      "name": "Bena's Token",
+      "description": "A set of fine pocket-sized clothing. Not wearable by humans, but they can be stood up on your desk as display items.",
+      "rarity": 4,
+      "iconId": "p_char_369_bena",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700081,
+      "usage": "Used to improve the Potential of Bena.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_421_crow": {
+      "itemId": "p_char_421_crow",
+      "name": "La Pluma's Token",
+      "description": "A copy of the 'Dossoles Guide to Cocktails,' with plenty of recipes full of her notes on the side. These all seem to be her specialties—if you've got time to spare, you can order a round from her.",
+      "rarity": 4,
+      "iconId": "p_char_421_crow",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700082,
+      "usage": "Used to improve the Potential of La Pluma.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_486_takila": {
+      "itemId": "p_char_486_takila",
+      "name": "Tequila's Token",
+      "description": "A nameplate with a full name and date inscribed. Ever since the day he obtained it, Tequila has always carried it on him. Now's the time for him to let it go.",
+      "rarity": 4,
+      "iconId": "p_char_486_takila",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700083,
+      "usage": "Used to improve the Potential of Tequila.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_473_mberry": {
+      "itemId": "p_char_473_mberry",
+      "name": "Mulberry's Token",
+      "description": "Adorned with Yan's characteristic red protective charms. Mulberry asked for this amulet back specifically for you. Incomprehensible Yan characters are written on it, and an almost imperceptible scent of incense seems to linger.",
+      "rarity": 4,
+      "iconId": "p_char_473_mberry",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 700084,
+      "usage": "Used to improve the Potential of Mulberry.",
       "obtainApproach": "New Operator's gift",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
@@ -6961,7 +8411,7 @@
     "p_char_400_weedy": {
       "itemId": "p_char_400_weedy",
       "name": "Weedy's Token",
-      "description": "A stack of Bionic Seadragon designs, including a lot of hand-written notes she made herself. \"Even a monkey could produce a new one,\" or something like that.",
+      "description": "A stack of Bionic Seadragon designs, including a lot of hand-written notes she made herself. 'Even a monkey could produce a new one,' or something like that.",
       "rarity": 5,
       "iconId": "p_char_400_weedy",
       "overrideBkg": null,
@@ -7073,7 +8523,7 @@
     "p_char_423_blemsh": {
       "itemId": "p_char_423_blemsh",
       "name": "Blemishine's Token",
-      "description": "A book of a knight’s tale; an absurd legend, legendary absurdity.",
+      "description": "A book of a knight's tale; an absurd legend, legendary absurdity.",
       "rarity": 5,
       "iconId": "p_char_423_blemsh",
       "overrideBkg": null,
@@ -7105,7 +8555,7 @@
     "p_char_311_mudrok": {
       "itemId": "p_char_311_mudrok",
       "name": "Mudrock's Token",
-      "description": "A tiny little rock sculture. It looks like it's \"gazing\" at you inquisitively.",
+      "description": "A tiny little rock sculture. It looks like it's 'gazing' at you inquisitively.",
       "rarity": 5,
       "iconId": "p_char_311_mudrok",
       "overrideBkg": null,
@@ -7115,6 +8565,262 @@
       "obtainApproach": "New Operator's gift",
       "classifyType": "MATERIAL",
       "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_264_f12yin": {
+      "itemId": "p_char_264_f12yin",
+      "name": "Mountain's Token",
+      "description": "A fine grape wine, all wrapped up. Its place of origin appears to be a very famed Columbian winery; we don't know by what means he obtained it.",
+      "rarity": 5,
+      "iconId": "p_char_264_f12yin",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600033,
+      "usage": "Used to improve the Potential of Mountain.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_332_archet": {
+      "itemId": "p_char_332_archet",
+      "name": "Archetto's Token",
+      "description": "A Monastery limited commemoration badge. Meant to be bought, but just call this one a gift of friendship!",
+      "rarity": 5,
+      "iconId": "p_char_332_archet",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600034,
+      "usage": "Used to improve the Potential of Archetto.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_2015_dusk": {
+      "itemId": "p_char_2015_dusk",
+      "name": "Dusk's Token",
+      "description": "A seemingly ordinary brush. Dusk's brushes can give rise to all life as well as brushstrokes. Be a little careful when using it.",
+      "rarity": 5,
+      "iconId": "p_char_2015_dusk",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600035,
+      "usage": "Used to improve the Potential of Dusk.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_362_saga": {
+      "itemId": "p_char_362_saga",
+      "name": "Saga's Token",
+      "description": "A wooden fish she carved by herself. When on edge, just chant the sutras with her.",
+      "rarity": 5,
+      "iconId": "p_char_362_saga",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600036,
+      "usage": "Used to improve the Potential of Saga.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_456_ash": {
+      "itemId": "p_char_456_ash",
+      "name": "Ash's Token",
+      "description": "A postcard, upon which is a proverb written in letters you've never seen before. It seems to say, 'the only thing that comes from waiting is old age.'",
+      "rarity": 5,
+      "iconId": "p_char_456_ash",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600037,
+      "usage": "Used to improve the Potential of Ash.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_472_pasngr": {
+      "itemId": "p_char_472_pasngr",
+      "name": "Passenger's Token",
+      "description": "An ancient Sargon gold coin. Sent to and fro by the long hands of fate, it now belongs to you.",
+      "rarity": 5,
+      "iconId": "p_char_472_pasngr",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600038,
+      "usage": "Used to improve the Potential of Passenger.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_1012_skadi2": {
+      "itemId": "p_char_1012_skadi2",
+      "name": "Skadi the Corrupting Heart's Token",
+      "description": "A curved quill formed of cartilage. A light blue liquid drips from the quill's point, violently transforming an experimental organism's physiological structure.",
+      "rarity": 5,
+      "iconId": "p_char_1012_skadi2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600039,
+      "usage": "Used to improve the Potential of Skadi the Corrupting Heart.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_003_kalts": {
+      "itemId": "p_char_003_kalts",
+      "name": "Kal'tsit's Token",
+      "description": "An unusual pocket watch, of a format never before seen in any country. Engraved on it are four dates across as many years, as well as a few crooked letters.",
+      "rarity": 5,
+      "iconId": "p_char_003_kalts",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600040,
+      "usage": "Used to improve the Potential of Kal'tsit.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_474_glady": {
+      "itemId": "p_char_474_glady",
+      "name": "Gladiia's Token",
+      "description": "A small, black device of incomprehensible makeup. The three buttons on it seem to respectively be a knife, a skull and some sort of design of a creature, and don't quite scream to be pushed.",
+      "rarity": 5,
+      "iconId": "p_char_474_glady",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600041,
+      "usage": "Used to improve the Potential of Gladiia.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_426_billro": {
+      "itemId": "p_char_426_billro",
+      "name": "Carnelian's Token",
+      "description": "A small souvenir collected by travelers. She's spoken of the place she bought this souvenir having such good views, and that next time, she'll take you with her to see them.",
+      "rarity": 5,
+      "iconId": "p_char_426_billro",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600042,
+      "usage": "Used to improve the Potential of Carnelian.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_485_pallas": {
+      "itemId": "p_char_485_pallas",
+      "name": "Pallas's Token",
+      "description": "A Minos hero's epic. 'The hero came from the commoners, and returned to amongst the commoners.' This line, at the head of the poem, has been circled.",
+      "rarity": 5,
+      "iconId": "p_char_485_pallas",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600043,
+      "usage": "Used to improve the Potential of Pallas.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_1013_chen2": {
+      "itemId": "p_char_1013_chen2",
+      "name": "Ch'en the Holungday's Token",
+      "description": "A notebook, densely packed with Ch'en's records of her investigation in Dossoles, and a few of her thoughts. She seems to be implying she's seeking your opinions, though of course, she hasn't said that outright.",
+      "rarity": 5,
+      "iconId": "p_char_1013_chen2",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600044,
+      "usage": "Used to improve the Potential of Ch'en the Holungday.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_437_mizuki": {
+      "itemId": "p_char_437_mizuki",
+      "name": "Mizuki's Token",
+      "description": "One of some classic video game's commemoration badges distributed for its 40th anniversary. The characters that appear on them each have completely different expressions, and are so cute you could just open wide and—",
+      "rarity": 5,
+      "iconId": "p_char_437_mizuki",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600045,
+      "usage": "Used to improve the Potential of Mizuki.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "p_char_479_sleach": {
+      "itemId": "p_char_479_sleach",
+      "name": "Saileach's Token",
+      "description": "A small segment of a dried willow branch. Each bud is still perfectly intact, as if it could grow once more if dipped into water.",
+      "rarity": 5,
+      "iconId": "p_char_479_sleach",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 600047,
+      "usage": "Used to improve the Potential of Saileach.",
+      "obtainApproach": "New Operator's gift",
+      "classifyType": "MATERIAL",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "voucher_full_ceylon": {
+      "itemId": "voucher_full_ceylon",
+      "name": "Ceylon's Personal Letter",
+      "description": "The letter makes mention of progress on a near-future Originium academic course, hopes for the new city of Siesta, and care for how Schwarz is doing.",
+      "rarity": 4,
+      "iconId": "voucher_full_ceylon",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": 690001,
+      "usage": "A personal letter sent to the Doctor, used to improve Ceylon to Max Potential.",
+      "obtainApproach": "Record Restoration",
+      "classifyType": "MATERIAL",
+      "itemType": "VOUCHER_FULL_POTENTIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "uni_set_guitar": {
+      "itemId": "uni_set_guitar",
+      "name": "Heart of Surging Flame Furniture Pack",
+      "description": "The Procurement Department's reconnected with its suppliers, and replenished stocks of initially limited pieces of furniture! Give your thanks to Closure!",
+      "rarity": 4,
+      "iconId": "uni_set_guitar",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Obtain all 'Rhodes Island Modern Music Rehearsal Room' furniture exclusive to the Heart of Surging Flame event not yet acquired.",
+      "obtainApproach": "Record Restoration",
+      "classifyType": "NONE",
+      "itemType": "UNI_COLLECTION",
       "stageDropList": [],
       "buildingProductList": []
     },
@@ -7313,7 +9019,7 @@
     "CRISIS_RUNE_COIN": {
       "itemId": "CRISIS_RUNE_COIN",
       "name": "Operation Agreement",
-      "description": "The elimination of chaos does not necessarily ensure the establishment of order. \"Natural disasters turn into man-made disasters,\" but the Contingency Contract system at least provides you with a solution.",
+      "description": "The elimination of chaos does not necessarily ensure the establishment of order. 'Natural disasters turn into man-made disasters,' but the Contingency Contract system at least provides you with a solution.",
       "rarity": 4,
       "iconId": "CRISIS_RUNE_COIN",
       "overrideBkg": null,
@@ -7642,7 +9348,7 @@
     "clue_Rap_3": {
       "itemId": "clue_Rap_3",
       "name": "Rap Trend 3",
-      "description": "Fight your battles with words, not with blades. Criminal activity won’t be tolerated in Siesta.",
+      "description": "Fight your battles with words, not with blades. Criminal activity won't be tolerated in Siesta.",
       "rarity": 3,
       "iconId": "clue_Rap_3",
       "overrideBkg": null,
@@ -7997,7 +9703,7 @@
     "clue_Rap_3_rep_1": {
       "itemId": "clue_Rap_3_rep_1",
       "name": "Rap Trend 3",
-      "description": "Fight your battles with words, not with blades. Criminal activity won’t be tolerated in Siesta.",
+      "description": "Fight your battles with words, not with blades. Criminal activity won't be tolerated in Siesta.",
       "rarity": 3,
       "iconId": "clue_Rap_3",
       "overrideBkg": null,
@@ -8095,6 +9801,22 @@
       "stageDropList": [],
       "buildingProductList": []
     },
+    "act5d0_point_medal_rep_1": {
+      "itemId": "act5d0_point_medal_rep_1",
+      "name": "Top Tier Penguin Medal",
+      "description": "A luxurious, but completely meaningless, golden medal created by the most esteemed goldsmiths in Lungmen. You'll be hard pressed to find anything more limited than this in all of Terra. It's clearly a cup, but still called a medal, and it symbolizes the highest praise of the Emperor. Each sip is worth a thousand bucks, but don't use it to make hot coffee!",
+      "rarity": 4,
+      "iconId": "act5d0_point_medal",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Collecting medals issued by Emperor himself? Probably a good idea.",
+      "obtainApproach": "Obtained through Rating Board missions",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
     "act5d1_point_conbounty": {
       "itemId": "act5d1_point_conbounty",
       "name": "Contract Bounty",
@@ -8114,7 +9836,7 @@
     "act5d1_point_opagrt": {
       "itemId": "act5d1_point_opagrt",
       "name": "Operation Agreement",
-      "description": "The elimination of chaos does not necessarily ensure the establishment of order. \"Natural disasters turn into man-made disasters,\" but the Contingency Contract system at least provides you with a solution.",
+      "description": "The elimination of chaos does not necessarily ensure the establishment of order. 'Natural disasters turn into man-made disasters,' but the Contingency Contract system at least provides you with a solution.",
       "rarity": 4,
       "iconId": "act5d1_point_opagrt",
       "overrideBkg": null,
@@ -8246,6 +9968,22 @@
       "obtainApproach": "Event Stage drop, Event mission reward",
       "classifyType": "NONE",
       "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act9d0_token_dogTag_rep_1": {
+      "itemId": "act9d0_token_dogTag_rep_1",
+      "name": "Anonymous Tags",
+      "description": "The major problem facing Kazdel's metalworking industries is that because metallic resources are mostly used for killing soldiers instead of remembering them, the rate of soldier deaths almost outpaces the ability to produce identification tags for them. This tragic scarcity has created a ripe market for perverse collectors.",
+      "rarity": 4,
+      "iconId": "act9d0_token_dogTag",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "These ID tags are generally intact, with only part of the text worn out. The Scar Market looks favorably upon this good fortune.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
       "stageDropList": [
         {
           "stageId": "act9d0_01",
@@ -8285,7 +10023,7 @@
     "act9d4_point_token": {
       "itemId": "act9d4_point_token",
       "name": "Guerilla Squad Member Badge",
-      "description": "\"Please return this to my motherland\"",
+      "description": "'Please return this to my motherland'",
       "rarity": 4,
       "iconId": "act9d4_point_token",
       "overrideBkg": null,
@@ -8356,6 +10094,22 @@
       "obtainApproach": "Limited Event Drop",
       "classifyType": "NONE",
       "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act11d0_token_currency_rep_1": {
+      "itemId": "act11d0_token_currency_rep_1",
+      "name": "Aristocrat's Antique Aureus",
+      "description": "The original owners of these antique coin have long departed from this remote land. However, the descendants of these decorated nobles still demanded Wolumonde's respect, and thus they passed into law the ability to circulate these coins for the purpose of satisfying their vanity.",
+      "rarity": 4,
+      "iconId": "act11d0_token_currency",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "An antique currency that is still in circulation in Wolumonde; Can be used to exchange for rewards at the August Fair.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
       "stageDropList": [
         {
           "stageId": "act11d0_01",
@@ -8402,7 +10156,7 @@
       "stackIconId": null,
       "sortId": -10000,
       "usage": "A warrant issued by Wolumonde's Gendarmerie, authorizing entry into occupied zones to hunt down ruffians who fled amidst the chaos.",
-      "obtainApproach": "Event mission reward",
+      "obtainApproach": "Event Mission Reward",
       "classifyType": "NONE",
       "itemType": "MATERIAL",
       "stageDropList": [],
@@ -8410,6 +10164,22 @@
     },
     "act12d0_token_components": {
       "itemId": "act12d0_token_components",
+      "name": "Mechanical Parts",
+      "description": "Originally seen only in Zumama's tribe, these eventually scattered throughout various places in the rainforests and wilds. Each one seems imaginative to the point of defying the laws of physics, but falls short of the industrial standards of any country.",
+      "rarity": 4,
+      "iconId": "act12d0_token_components",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Widely-used mechanical parts in Zumama's tribe, can be exchanged for various supplies.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12d0_token_components_rep_1": {
+      "itemId": "act12d0_token_components_rep_1",
       "name": "Mechanical Parts",
       "description": "Originally seen only in Zumama's tribe, these eventually scattered throughout various places in the rainforests and wilds. Each one seems imaginative to the point of defying the laws of physics, but falls short of the industrial standards of any country.",
       "rarity": 4,
@@ -8476,7 +10246,7 @@
     "act12d6_token_pancake": {
       "itemId": "act12d6_token_pancake",
       "name": "Delicious Honey Biscuit",
-      "description": "Ceobe's favorite food. She is willing to part with anything in exchange for these. ",
+      "description": "Ceobe's favorite food. She is willing to part with anything in exchange for these.",
       "rarity": 4,
       "iconId": "act12d6_token_pancake",
       "overrideBkg": null,
@@ -8540,7 +10310,7 @@
     },
     "act13d5_token_securities": {
       "itemId": "act13d5_token_securities",
-      "name": "Mieszko Match Ticket",
+      "name": "Mieszko Sports Securities",
       "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
       "rarity": 4,
       "iconId": "act13d5_token_securities",
@@ -8548,7 +10318,7 @@
       "stackIconId": null,
       "sortId": -10000,
       "usage": "A new securitized holding launched by the Mieszko Group that allows you to buy souvenirs at a Kazimierz duty free shop.",
-      "obtainApproach": "Limited Event Drop",
+      "obtainApproach": "Event Stage drop, Event mission reward",
       "classifyType": "NONE",
       "itemType": "ACTIVITY_ITEM",
       "stageDropList": [
@@ -8585,6 +10355,522 @@
           "occPer": "ALWAYS"
         }
       ],
+      "buildingProductList": []
+    },
+    "act13d5_token_securities_rep_1": {
+      "itemId": "act13d5_token_securities_rep_1",
+      "name": "Mieszko Sports Securities",
+      "description": "A couple blond Fortes are selling gold pieces of paper at three times the stated price. This voucher can be used to buy aid packages for competition knights in the arena, or as a bankroll to bet on, but be prepared to pay more than the number printed on it. A piece of paper, a huge sum, a knight's life of honor and shame.",
+      "rarity": 4,
+      "iconId": "act13d5_token_securities",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A new securitized holding launched by the Mieszko Group that allows you to buy souvenirs at a Kazimierz duty free shop.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act15d0_token_ironSheet": {
+      "itemId": "act15d0_token_ironSheet",
+      "name": "Factory Steel",
+      "description": "You can make them during factory work hours, but it's no easy thing to sneak them off. They work as weapons as well as currency, and act as one measure of status in the prison.",
+      "rarity": 4,
+      "iconId": "act15d0_token_ironSheet",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A currency universally recognized amongst the prisoners. Can be used through secret channels to obtain what you want.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act15d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d0_08",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act15d5_token_postcard": {
+      "itemId": "act15d5_token_postcard",
+      "name": "Wondrous Postcard",
+      "description": "Landscape postcards independently published by the people all over, known for their distinct and bold framing, all using photos chosen from personal submissions, with some small fame among a subset of collectors. Different stories take root in different lands, and the scenery is always there to tell without a word.",
+      "rarity": 4,
+      "iconId": "act15d5_token_postcard",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Postcards printed with unique landscapes from every part, allowing a taste of all their sceneries without having to set foot outside. Can be used to exchange for goods with the staff of branch offices everywhere.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act15d5_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act15d5_08",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act16d5_token_inker": {
+      "itemId": "act16d5_token_inker",
+      "name": "Dusk Inkstick",
+      "description": "On its front, 'starshrouded snow' is engraved in characters from ancient times. Just the talent to create these inksticks can be called rare. Dusk very rarely uses normal inksticks. If she's out of options, employing one to depict one and retrieving one fresh isn't impossible either.",
+      "rarity": 4,
+      "iconId": "act16d5_token_inker",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Dusk's handmade inkstick. Nobody knows how they're made. Perhaps you can make use of them to ask her about a few things.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act16d5_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_08",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_09",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act16d5_10",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act17d0_token_form": {
+      "itemId": "act17d0_token_form",
+      "name": "Rhodes Island Resource Allocation Certificate",
+      "description": "The certificate bears the signature of the administrator, an anti-counterfeiting watermark, and a detailed record of the supplies needed by the operators and for what reasons they are needed. After these three items have been verified, the responsible personnel will collect the voucher attached to the certificate and distribute the supplies to the field operator.",
+      "rarity": 4,
+      "iconId": "act17d0_token_form",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Rationing certificates issued by Rhodes Island to field operators, including vouchers. Can be used to exchange for supplies in Rhodes Island's landship, regional branches, and various safehouses.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act17d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act17d0_08",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act18d0_token_page": {
+      "itemId": "act18d0_token_page",
+      "name": "Scattered Sketches",
+      "description": "Mineral, flora, fauna, cities; vestiges of life, and even symbols of civilization. In the meanders of this time overflowing with Originium, countless things fade from Terra's boundless history of organic evolution. Disasters unfold unabatingly, and even the grandest cities all disappear in the end. But there will always be people to record it all. She will come in her slow walk with time.",
+      "rarity": 4,
+      "iconId": "act18d0_token_page",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Specimen sketches scattered all over the ground in a great gale. If you help tidy them up, you can earn some supplies.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act18d0_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d0_08",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act18d3_token_record": {
+      "itemId": "act18d3_token_record",
+      "name": "Corrupted Iberian Record",
+      "description": "The urge to accept it comes from a craving that knows no name.",
+      "rarity": 4,
+      "iconId": "act18d3_token_record",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Records already ravaged beyond playability. Can be exchanged with the long-time residents of the ruins for goods.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act18d3_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_07",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_08",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act18d3_09",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act7mini_token_permit": {
+      "itemId": "act7mini_token_permit",
+      "name": "Clearance Permit",
+      "description": "Used to prove the holder's legitimate entry credentials, as well as grant temporary right to remain. Absolutely essential when entering or exiting large nomadic cities. Some places don't check too thoroughly, but it's still best to have your papers on you.",
+      "rarity": 4,
+      "iconId": "act7mini_token_permit",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A customs certificate stamped with proof of border crossings from all over. Can be used to exchange for supplies at the Trading Station. Don't ask what purpose they have for taking these.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act7mini_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act7mini_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act7mini_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act7mini_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act7mini_05",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act1lock_point_reward": {
+      "itemId": "act1lock_point_reward",
+      "name": "Competition Medals",
+      "description": "Points gained for taking down OpFor troops, awarded to competitors in the form of medals. Owing to it being forged by Minos smiths, in each medal's engraving is the proverb 'all heroes arise from normal people.'",
+      "rarity": 4,
+      "iconId": "act1lock_point_reward",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A small medal made from metal. Gain certain amounts and receive corresponding competition rewards.",
+      "obtainApproach": "Event Stage drop, Event mission reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act8mini_token_vigilo": {
+      "itemId": "act8mini_token_vigilo",
+      "name": "'Imagini'",
+      "description": "Others will regard these as scrawls of unclear significance; Kal'tsit speculates on the Doctor's psychological state with these; in the Doctor's eyes, these fragments have come to piece together a present self.",
+      "rarity": 4,
+      "iconId": "act8mini_token_vigilo",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Irreal images disclosed by id, cognized by ego, constructed by superego.",
+      "obtainApproach": "Limited Event Drop",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [
+        {
+          "stageId": "act8mini_01",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_02",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_03",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_04",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_05",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_06",
+          "occPer": "ALWAYS"
+        },
+        {
+          "stageId": "act8mini_07",
+          "occPer": "ALWAYS"
+        }
+      ],
+      "buildingProductList": []
+    },
+    "act12side_token_coupon": {
+      "itemId": "act12side_token_coupon",
+      "name": "Mama John's Voucher",
+      "description": "Mama John's of Columbia has been offering industrial assembly-line products for all trades, all walks and all rhythms of life in a capacity Bolívar's native industry can't compare to, to the extent that all these vouchers, originally simply issued to promote sales, have become more and more truly valuable. At times, they even serve as the currency for dealings between local small-time gangs.",
+      "rarity": 4,
+      "iconId": "act12side_token_coupon",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Vouchers redeemable at all Mama John's in Dossoles.",
+      "obtainApproach": "Recycling Stickers during event",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12side_point_cmemomedal": {
+      "itemId": "act12side_point_cmemomedal",
+      "name": "Miss Ch'en Commemorative Medal",
+      "description": "Every medal represents Ch'en's swift mid-investigation resolution of incidents unrelated to her assignment from Ms. Candela. During the time she was retained in Dossoles, the city's crime rate reached a record low. As a warning for the local police department, these Ch'en medals have been displayed in the middle of the head office, where you can't miss them.",
+      "rarity": 4,
+      "iconId": "act12side_point_cmemomedal",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "Medals specially ordered by Ms. Candela to be cast to commend Ch'en's actions. Accumulate certain amounts and the Dossoles Police Station will issue rewards.",
+      "obtainApproach": "Event Mission Reward",
+      "classifyType": "NONE",
+      "itemType": "ACTIVITY_ITEM",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12side_token_key01": {
+      "itemId": "act12side_token_key01",
+      "name": "[Oni and Tiger Twinned Stars]",
+      "description": "At the time, Hoshiguma and Swire weren't aware of how they'd handily sorted out Ch'en's objective. The only reason they never ran into her was because Swire immediately dragged Hoshiguma off to go shopping.",
+      "rarity": 4,
+      "iconId": "act12side_token_key01",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A commemoration of Ch'en's special investigation in Dossoles.",
+      "obtainApproach": "Event Milestone Reward",
+      "classifyType": "NONE",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12side_token_key02": {
+      "itemId": "act12side_token_key02",
+      "name": "[Dragon and Rat in Conflict]",
+      "description": "That day, that moment Ch'en and Lin Yühsia came out of the A.H.C. Bar, the gunpowder tension between them had everyone following the championship excited beyond belief.",
+      "rarity": 4,
+      "iconId": "act12side_token_key02",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A commemoration of Ch'en's special investigation in Dossoles.",
+      "obtainApproach": "Event Milestone Reward",
+      "classifyType": "NONE",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12side_token_key03": {
+      "itemId": "act12side_token_key03",
+      "name": "['Golden Partner']",
+      "description": "In Swire's belief, she needs a partner just as Hoshiguma is to Ch'en, and simultaneously, she believes Lin Yühsia could become that partner. She's made no small effort to see that happen, and ultimately, you can tell how it turned out just by the look on their faces.",
+      "rarity": 4,
+      "iconId": "act12side_token_key03",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A commemoration of Ch'en's special investigation in Dossoles.",
+      "obtainApproach": "Event Milestone Reward",
+      "classifyType": "NONE",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
+      "buildingProductList": []
+    },
+    "act12side_token_key04": {
+      "itemId": "act12side_token_key04",
+      "name": "[Holiday's End]",
+      "description": "Though when she set off to return to Rhodes Island, Ch'en didn't fully understand the city of Dossoles, neither does she believe there'll come a day she truly does. That said, she'll always remember this place.",
+      "rarity": 4,
+      "iconId": "act12side_token_key04",
+      "overrideBkg": null,
+      "stackIconId": null,
+      "sortId": -10000,
+      "usage": "A commemoration of Ch'en's special investigation in Dossoles.",
+      "obtainApproach": "Event Milestone Reward",
+      "classifyType": "NONE",
+      "itemType": "MATERIAL",
+      "stageDropList": [],
       "buildingProductList": []
     }
   },
@@ -8848,10 +11134,103 @@
     "furni_prison_thermos_01": 1,
     "furni_prison_wallpaper_01": 1,
     "furni_prison_floor_01": 1,
+    "furni_inkArt_tube_01": 1,
+    "furni_inkArt_vase_01": 1,
+    "furni_inkArt_rack_01": 1,
+    "furni_inkArt_screen1_01": 1,
+    "furni_inkArt_bonsai_01": 1,
+    "furni_inkArt_table_01": 1,
+    "furni_inkArt_incenseStand_01": 1,
+    "furni_inkArt_bambooInkArt_01": 1,
+    "furni_inkArt_carpet_01": 1,
+    "furni_inkArt_aquarium_01": 1,
+    "furni_inkArt_bed_01": 1,
+    "furni_inkArt_floorLamp_01": 1,
+    "furni_inkArt_carpet2_01": 1,
+    "furni_inkArt_rollerBlind1_01": 1,
+    "furni_inkArt_rollerBlind2_01": 1,
+    "furni_inkArt_screen2_01": 1,
+    "furni_inkArt_fluorescentLamp_01": 2,
+    "furni_inkArt_ceilingLight_01": 2,
+    "furni_inkArt_wallpaper_01": 1,
+    "furni_inkArt_floor_01": 1,
+    "furni_R6_dirtyBomb_01": 1,
+    "furni_R6_ADS_01": 1,
+    "furni_R6_rtilaElectroclaw_01": 1,
+    "furni_R6_CCEShield_01": 1,
+    "furni_R6_desk_01": 1,
+    "furni_R6_seat_L_01": 1,
+    "furni_R6_seat_R_01": 1,
+    "furni_R6_carpet_01": 1,
+    "furni_R6_blackMirrors_01": 1,
+    "furni_R6_reinforceWall_01": 1,
+    "furni_R6_shockWire_01": 1,
+    "furni_R6_wood_01": 1,
+    "furni_R6_deployableShield_01": 1,
+    "furni_R6_shumikhaLauncher_01": 1,
+    "furni_R6_grzmotMine_01": 1,
+    "furni_R6_signalDisruptor_01": 1,
+    "furni_R6_downlight_R_01": 1,
+    "furni_R6_downlight_C_01": 2,
+    "furni_R6_downlight2_C_01": 2,
+    "furni_R6_newspaperRack_01": 1,
+    "furni_R6_emergencyLight_01": 1,
+    "furni_R6_camera_01": 1,
+    "furni_R6_wallpaper_01": 1,
+    "furni_R6_floor_01": 1,
+    "furni_icu_shadowlessLamp_01": 1,
+    "furni_icu_bed_01": 1,
+    "furni_icu_ventilator_01": 1,
+    "furni_icu_trolley_01": 1,
+    "furni_icu_projector_01": 1,
+    "furni_icu_screen_01": 1,
+    "furni_icu_curtain_01": 1,
+    "furni_icu_desk_01": 1,
+    "furni_icu_chair_01": 1,
+    "furni_icu_stool_01": 1,
+    "furni_icu_blackboard_01": 1,
+    "furni_icu_sampleStorage_01": 1,
+    "furni_icu_downlight1_01": 2,
+    "furni_icu_downlight2_01": 2,
+    "furni_icu_wallpaper_01": 1,
+    "furni_icu_floor_01": 1,
+    "furni_abyssal_showcase_01": 1,
+    "furni_abyssal_drum_01": 1,
+    "furni_abyssal_coffeeTable_01": 1,
+    "furni_abyssal_sofa_01": 1,
+    "furni_abyssal_carpet_01": 1,
+    "furni_abyssal_table_01": 1,
+    "furni_abyssal_chair_01": 1,
+    "furni_abyssal_handLamp_01": 1,
+    "furni_abyssal_screen_01": 1,
+    "furni_abyssal_equipment_01": 1,
+    "furni_abyssal_ceiling_01": 1,
+    "furni_abyssal_ceilingLamp_01": 2,
+    "furni_abyssal_decal_01": 1,
+    "furni_abyssal_wallpaper_01": 1,
+    "furni_abyssal_floor_01": 1,
+    "furni_westCoast_cabinet_01": 1,
+    "furni_westCoast_stool_01": 1,
+    "furni_westCoast_palm_01": 1,
+    "furni_westCoast_ceilingLight_01": 1,
+    "furni_westCoast_bath_01": 1,
+    "furni_westCoast_bed_01": 1,
+    "furni_westCoast_icedPool_01": 1,
+    "furni_westCoast_carpet_01": 1,
+    "furni_westCoast_cactus_01": 1,
+    "furni_westCoast_fireplace_01": 1,
+    "furni_westCoast_longBench_01": 1,
+    "furni_westCoast_blind_L_01": 1,
+    "furni_westCoast_blind_S_01": 1,
+    "furni_westCoast_curtain_01": 2,
+    "furni_westCoast_downlight_01": 4,
+    "furni_westCoast_wallpaper_01": 1,
+    "furni_westCoast_floor_01": 1,
     "furni_MA2020_rabbit_01": 1,
+    "furni_MA_teaTable_01": 1,
     "furni_oct1st_seating_01": 1,
+    "furni_oct1st_ladder_01": 1,
     "furni_duanwu_lazysofa_01": 1,
-    "furni_act14d0_arcadegame_01": 1,
     "furni_act12d0_throne_01": 1,
     "furni_act10d5_sideboard_01": 1,
     "furni_act10d5_coatRack_01": 1,
@@ -8862,12 +11241,29 @@
     "furni_act9d0_carpet_01": 1,
     "furni_act9d0_bed_01": 1,
     "furni_act9d0_walllamp_01": 1,
+    "furni_act18d0_cabinet_01": 1,
+    "furni_act18d0_cakeTower_01": 1,
     "furni_act7d5_bookshelf": 1,
     "furni_act7d5_atomicClock": 1,
     "furni_act7d5_weaponRack": 1,
     "furni_act7d5_wallSticker": 1,
     "furni_act7d5_petHouse": 1,
     "furni_act7d5_apron": 1,
+    "furni_act14d0_arcadegame_01": 1,
+    "furni_act15d0_carpet_01": 1,
+    "furni_act15d0_stool_01": 1,
+    "furni_act15d0_snowman_01": 1,
+    "furni_act16d0_floorLamp_01": 1,
+    "furni_act16d0_drum_01": 1,
+    "furni_act16d0_walldeco_01": 1,
+    "furni_act17d0_box_01": 1,
+    "furni_act17d0_acog_01": 1,
+    "furni_act19d0_showcase_01": 1,
+    "furni_act21d0_fan_01": 1,
+    "furni_act21d0_foodCart_01": 1,
+    "furni_act21d0_barrel_01": 1,
+    "furni_act21d0_motorcycle_01": 1,
+    "furni_act22d0_chair_01": 1,
     "furni_tangyuan_ceiling_01": 1,
     "furni_tangyuan_priceList_01": 1,
     "furni_NY2020_wallpaper_01": 1,
@@ -8906,17 +11302,35 @@
     "furni_dropS006_oceans12_01": 1,
     "furni_dropS007_repulsion_01": 1,
     "furni_dropS007_easyRider_01": 1,
+    "furni_dropS009_dasRheingold_01": 1,
     "furni_dropS009_carmen_01": 1,
+    "furni_dropS009_dieWalkure_01": 1,
     "furni_dropS009_faust_01": 1,
     "furni_dropS009_laBoheme_01": 1,
+    "furni_dropS009_gotterdammerung_01": 1,
     "furni_dropS009_siegfried_01": 1,
+    "furni_dropS009_suorAngelica_01": 1,
     "furni_dropS009_magicFlute_01": 1,
     "furni_dropS009_etudeOp10No12_01": 1,
     "furni_dropS009_fantaisieOp49_01": 1,
     "furni_dropS009_nocturnesOp9_01": 1,
+    "furni_dropS018_needlePhobia_01": 1,
+    "furni_dropS018_thalassophobia_01": 1,
+    "furni_dropS018_octopus_01": 1,
+    "furni_dropS018_claustrophobia_01": 1,
+    "furni_dropS022_aos_01": 1,
     "furni_contract_s0_01": 1,
     "furni_contract_s1_01": 1,
     "furni_contract_s2_01": 1,
+    "furni_contract_s3_01": 1,
+    "furni_contract_s4_01": 1,
+    "furni_contract_s5_01": 1,
+    "furni_contract_s6_01": 1,
+    "furni_annihilation_s2_01": 1,
+    "furni_annihilation_s4_01": 1,
+    "furni_annihilation_s5_01": 1,
+    "furni_annihilation_s6_01": 1,
+    "furni_annihilation_s7_01": 1,
     "furni_team001_blackSteel_target_01": 1,
     "furni_team001_followers_ceilingLight_01": 1,
     "furni_team001_ursus_baseballStand_01": 1,
@@ -8934,12 +11348,13 @@
     "char_002_amiya@winter#1": 1,
     "char_181_flower@daily#1": 1,
     "char_002_amiya@epoque#4": 1,
+    "char_202_demkni@test#1": 1,
     "char_208_melan@epoque#1": 1,
     "char_109_fmout@epoque#2": 1,
     "char_187_ccheal@epoque#2": 1,
     "char_128_plosis@epoque#3": 1,
-    "char_164_nightm@epoque#5": 1,
     "char_215_mantic@epoque#4": 1,
+    "char_164_nightm@epoque#5": 1,
     "char_213_mostma@epoque#5": 1,
     "char_274_astesi@epoque#5": 1,
     "char_220_grani@epoque#6": 1,
@@ -8947,12 +11362,21 @@
     "char_102_texas@epoque#7": 1,
     "char_130_doberm@epoque#7": 1,
     "char_355_ethan@epoque#7": 1,
+    "char_253_greyy@epoque#8": 1,
+    "char_344_beewax@epoque#9": 1,
+    "char_343_tknogi@epoque#9": 1,
+    "char_181_flower@epoque#9": 1,
+    "char_258_podego@epoque#9": 1,
     "char_120_hibisc@nian#1": 1,
     "char_010_chen@nian#2": 1,
     "char_308_swire@nian#2": 1,
     "char_107_liskam@nian#2": 1,
     "char_235_jesica@nian#2": 1,
     "char_136_hsguma@nian#3": 1,
+    "char_2014_nian@nian#4": 1,
+    "char_225_haak@nian#4": 1,
+    "char_226_hmau@nian#4": 1,
+    "char_436_whispr@nian#4": 1,
     "char_147_shining@summer#1": 1,
     "char_166_skfire@summer#1": 1,
     "char_290_vigna@summer#1": 1,
@@ -8971,20 +11395,37 @@
     "char_2013_cerber@summer#4": 1,
     "char_201_moeshd@summer#4": 1,
     "char_337_utage@summer#4": 1,
+    "char_180_amgoat@summer#5": 1,
+    "char_291_aglina@summer#5": 1,
+    "char_411_tomimi@summer#5": 1,
+    "char_298_susuro@summer#6": 1,
+    "char_144_red@summer#6": 1,
+    "char_311_mudrok@summer#6": 1,
+    "char_333_sidero@summer#6": 1,
+    "char_272_strong@summer#6": 1,
+    "char_171_bldsk@summer#7": 1,
     "char_241_panda@marthe#1": 1,
     "char_115_headbr@marthe#2": 1,
+    "char_129_bluep@marthe#3": 1,
     "char_179_cgbird@witch#1": 1,
     "char_171_bldsk@witch#1": 1,
     "char_236_rope@witch#1": 1,
     "char_124_kroos@witch#1": 1,
     "char_123_fang@winter#1": 1,
+    "char_102_texas@winter#1": 1,
     "char_143_ghost@winter#1": 1,
     "char_198_blackd@winter#1": 1,
-    "char_102_texas@winter#1": 1,
+    "char_252_bibeak@winter#2": 1,
+    "char_271_spikes@winter#2": 1,
+    "char_237_gravel@winter#2": 1,
+    "char_108_silent@winter#2": 1,
     "char_340_shwaz@snow#1": 1,
     "char_172_svrash@snow#1": 1,
     "char_174_slbell@snow#1": 1,
     "char_209_ardign@snow#1": 1,
+    "char_400_weedy@snow#2": 1,
+    "char_401_elysm@snow#2": 1,
+    "char_158_milu@snow#2": 1,
     "char_103_angel@wild#1": 1,
     "char_173_slchan@wild#1": 1,
     "char_150_snakek@wild#1": 1,
@@ -8995,9 +11436,12 @@
     "char_158_milu@wild#2": 1,
     "char_235_jesica@wild#2": 1,
     "char_112_siege@wild#2": 1,
+    "char_345_folnic@wild#4": 1,
+    "char_145_prove@wild#5": 1,
     "char_219_meteo@sweep#1": 1,
     "char_108_silent@sweep#1": 1,
     "char_235_jesica@sweep#1": 1,
+    "char_173_slchan@wwf#1": 1,
     "char_202_demkni@boc#1": 1,
     "char_291_aglina@boc#1": 1,
     "char_140_whitew@boc#1": 1,
@@ -9005,12 +11449,155 @@
     "char_367_swllow@boc#1": 1,
     "char_283_midn@boc#1": 1,
     "char_122_beagle@boc#1": 1,
+    "char_188_helage@boc#2": 1,
+    "char_118_yuki@boc#2": 1,
+    "char_264_f12yin@boc#3": 1,
+    "char_416_zumama@boc#3": 1,
+    "char_294_ayer@boc#3": 1,
+    "char_415_flint@boc#3": 1,
+    "char_284_spot@boc#3": 1,
     "char_248_mgllan@kitchen#1": 1,
     "char_195_glassb@kitchen#1": 1,
     "char_137_brownb@kitchen#1": 1,
     "char_250_phatom@ghost#1": 1,
     "char_242_otter@ghost#1": 1,
     "char_326_glacus@ghost#1": 1,
-    "char_277_sqrrel@ghost#1": 1
+    "char_277_sqrrel@ghost#1": 1,
+    "char_222_bpipe@race#1": 1,
+    "char_456_ash@rainbow6#1": 1,
+    "char_459_tachak@rainbow6#1": 1,
+    "char_340_shwaz@striker#1": 1,
+    "char_107_liskam@striker#1": 1,
+    "char_017_huang@as#1": 1,
+    "char_198_blackd@as#1": 1,
+    "char_290_vigna@as#1": 1,
+    "char_293_thorns@it#1": 1,
+    "char_350_surtr@it#1": 1,
+    "char_115_headbr@it#1": 1,
+    "char_332_archet@shining#1": 1,
+    "char_274_astesi@shining#1": 1,
+    "char_440_pinecn@shining#1": 1
+  },
+  "itemTimeLimit": {
+    "renamingCard_0_018": 180,
+    "renamingCard_30_018": 180
+  },
+  "uniCollectionInfo": {
+    "uni_set_guitar": {
+      "uniCollectionItemId": "uni_set_guitar",
+      "uniqueItem": [
+        {
+          "id": "furni_guitar_guitar1_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar2_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar3_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar4_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar5_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar6_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar7_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar8_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar9_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitar10_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_guitarCases_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_drumKit_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_longBench_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_reception_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_stool_01",
+          "count": 2,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_display_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_pegboard_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_pegboard2_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_poster1_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_poster2_01",
+          "count": 1,
+          "type": "FURN"
+        },
+        {
+          "id": "furni_guitar_carpet_01",
+          "count": 1,
+          "type": "FURN"
+        }
+      ]
+    }
+  },
+  "fullPotentialCharacters": {
+    "char_348_ceylon": {
+      "itemId": "voucher_full_ceylon",
+      "ts": 1646146800
+    }
   }
 }

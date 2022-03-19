@@ -1,6 +1,3 @@
-const { YTSearcher } = require("ytsearcher");
-const ytsearcher = new YTSearcher(process.env.yts_api);
-
 module.exports = {
   data: {
     name: "Youtube Search",

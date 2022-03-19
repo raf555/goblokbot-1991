@@ -6,7 +6,12 @@ module.exports = {
   STRING,
   DATE,
   ARRAY,
-  JSON: _JSON
+  JSON: _JSON,
+  decideType,
+  NULL,
+  NONE,
+  UNDEFINED,
+  NAN
 };
 
 BOOLEAN.toString = () => "Boolean";
@@ -15,6 +20,60 @@ STRING.toString = () => "String";
 DATE.toString = () => "Date";
 ARRAY.toString = () => "Array";
 _JSON.toString = () => "JSON";
+NULL.toString = () => "Null value";
+NONE.toString = () => "Empty string";
+UNDEFINED.toString = () => "Undefined value";
+NAN.toString = () => "NaN value";
+NOTYPE.toString = () => "No Type";
+
+function decideType(type) {
+  if (!type) return STRING;
+  if (type.recurrentArray) return type;
+  if (Array.isArray(type)) {
+    return type.map(t => decideType(t));
+  }
+  switch (type) {
+    case Boolean:
+    case BOOLEAN:
+      return BOOLEAN;
+    case Number:
+    case NUMBER:
+      return NUMBER;
+    case String:
+    case STRING:
+      return STRING;
+    case Date:
+    case DATE:
+      return DATE;
+    case Array:
+    case ARRAY:
+      return ARRAY;
+    case JSON:
+    case _JSON:
+      return _JSON;
+    default: return STRING;
+  }
+}
+
+function NONE() {
+  return "";
+}
+
+function NULL() {
+  return null;
+}
+
+function UNDEFINED() {
+  return undefined;
+}
+
+function NAN() {
+  return NaN;
+}
+
+function NOTYPE(name, string, args) {
+  return string;
+}
 
 function BOOLEAN(name, string, args) {
   return Boolean(string);
@@ -68,8 +127,14 @@ function ARRAY() {
     let func2 = function(name, string, args) {
       return toArray(name, string, args, func);
     };
+    if (Array.isArray(func)) {
+      func = func.map(t => decideType(t));
+    } else {
+      func = decideType(func);
+    }
     let tostr = Array.isArray(func) ? `Array[${func.join(", ")}]` : `Array(${func})`;
     func2.toString = () => tostr;
+    func2.recurrentArray = true;
 
     return func2;
   }

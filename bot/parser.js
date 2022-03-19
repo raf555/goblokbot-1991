@@ -68,7 +68,8 @@ function parse(message, caller) {
     arg: parsearg.arg.join(" ").replace(/\\(?!\\|\})/g, ""),
     fullMsg: message,
     parseTime: Date.now() - start,
-    rawParsed: parsearg.arg
+    rawParsed: parsearg.arg.map(w => w.replace(/\\(?!\\|\})/g, "")),
+    rawParse: parsearg.raw.map(w => w.replace(/\\(?!\\|\})/g, ""))
   };
 
   return parsed;
@@ -83,6 +84,7 @@ function parseArg(text) {
   let args1eqregex = new RegExp(args1format + "=");
 
   let args = parseArgsStringToArgv(text);
+  let raw = args.slice();
   let out = {};
   let arg = [];
 
@@ -137,7 +139,7 @@ function parseArg(text) {
   // delete out["b"];
   // console.log(out);
 
-  return { args: out, arg: arg };
+  return { args: out, arg: arg, raw: raw };
 }
 
 function getcustbracket(val) {

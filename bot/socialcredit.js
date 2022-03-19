@@ -230,7 +230,6 @@ function getranks() {
     });
   });
   out = out.sort((b, a) => a.xp - b.xp);
-  out.push(out.shift());
 
   return out;
 }

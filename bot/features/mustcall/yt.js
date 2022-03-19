@@ -1,6 +1,6 @@
 const { YTSearcher } = require("ytsearcher");
-const ytsearcher = new YTSearcher(process.env.yts_api);
 const { ArgsType } = require("@bot/command/args");
+const db = require("@utils/database");
 
 module.exports = {
   data: {
@@ -11,21 +11,26 @@ module.exports = {
     ALIASES: ["youtube"],
     ARGS: {
       "--random": {
-        description: "Random mode"
+        description: "Random mode",
       },
       "--search": {
-        description: "Search mode"
+        description: "Search mode",
       },
       "-n": {
         type: ArgsType.NUMBER,
-        description: "Jumlah hasil search"
-      }
-    }
+        description: "Jumlah hasil search",
+      },
+    },
   },
-  run: yt
+  run: yt,
 };
 
+let yt_api = process.env.yts_api.split(",");
+
 async function yt(parsed, event, bot) {
+  const setting = db.open("bot/setting.json").get();
+  const ytsearcher = new YTSearcher(yt_api[setting.ytsapi]);
+  
   let random = parsed.args.random;
   let search = parsed.args.search;
   let txt = parsed.arg;
@@ -37,14 +42,14 @@ async function yt(parsed, event, bot) {
     if (max === 0) max = 1;
   }
   let d = await ytsearcher.search(txt, {
-    maxResults: random || search ? max : 1
+    maxResults: random || search ? max : 1,
   });
-  
-  if (d.currentPage.length < 1 ) {
+
+  if (d.currentPage.length < 1) {
     return {
       type: "text",
-      text: "0 result"
-    }
+      text: "0 result",
+    };
   }
 
   let out;
@@ -53,7 +58,7 @@ async function yt(parsed, event, bot) {
   } else {
     out = {
       type: "carousel",
-      contents: d.currentPage.map(makeytbubble)
+      contents: d.currentPage.map(makeytbubble),
     };
   }
 
@@ -63,8 +68,8 @@ async function yt(parsed, event, bot) {
     contents: out,
     sender: {
       name: "Youtube",
-      iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png"
-    }
+      iconUrl: "https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png",
+    },
   };
 }
 
@@ -84,8 +89,8 @@ function makeytbubble(data) {
       action: {
         type: "uri",
         label: "action",
-        uri: data.url
-      }
+        uri: data.url,
+      },
     },
     body: {
       type: "box",
@@ -99,8 +104,8 @@ function makeytbubble(data) {
           action: {
             type: "uri",
             label: "action",
-            uri: data.url
-          }
+            uri: data.url,
+          },
         },
         {
           type: "box",
@@ -110,13 +115,13 @@ function makeytbubble(data) {
               type: "text",
               text: data.channelTitle,
               color: "#8c8c8c",
-              size: "xxs"
-            }
-          ]
-        }
+              size: "xxs",
+            },
+          ],
+        },
       ],
-      spacing: "sm"
-    }
+      spacing: "sm",
+    },
   };
   return bbl;
 }

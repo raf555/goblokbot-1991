@@ -15,6 +15,33 @@ module.exports = {
     ALIASES: []
   },
   run: (parsed, event, bot) => {
+    let uploader = parsed.args.imgbb ? "imgbb" : "discord";
+    if (uploader === "imgbb") {
+      return imgbbUploader(parsed, event);
+    }
+    return discordUploader(parsed, event);
+  }
+};
+
+function discordUploader(parsed, event) {
+    let name = parsed.args.n || parsed.args.name || null;
+    let jimp = parsed.args.jimp ? true : false;
+
+    let uploaddb = db.open("db/uploadimgq.json");
+
+    uploaddb.set(event.source.userId, {
+      name: name || event.message.id,
+      expire: Date.now() + 30000,
+      uploaded: false,
+      jimp: jimp,
+      discordCDN: true
+    });
+    uploaddb.save();
+
+    return { type: "text", text: "Waiting for image (30s)" };
+}
+
+function imgbbUploader(parsed, event) {
     let name = parsed.args.n || parsed.args.name || null;
     let exp = parsed.args.e || parsed.args.exp || null;
     let jimp = parsed.args.jimp ? true : false;
@@ -42,10 +69,10 @@ module.exports = {
       exp: exp,
       expire: Date.now() + 30000,
       uploaded: false,
-      jimp: jimp
+      jimp: jimp,
+      imgbb: true
     });
     uploaddb.save();
 
     return { type: "text", text: "Waiting for image (30s)" };
-  }
-};
+}

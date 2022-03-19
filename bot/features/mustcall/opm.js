@@ -1,6 +1,10 @@
 const axios = require("axios");
-const { angkaAcak } = require("@bot/utility");
+const { angkaAcak, shuffleArray } = require("@bot/utility");
 const { ArgsType } = require("@bot/command/args");
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+}
 
 module.exports = {
   data: {
@@ -12,14 +16,15 @@ module.exports = {
     ARGS: {
       chapter: {
         required: false,
-        type: ArgsType.STRING
+        type: ArgsType.STRING,
       },
       page: {
         required: false,
-        type: ArgsType.STRING
+        type: ArgsType.STRING,
       },
-      "--raw": {}
-    }
+      "--raw": {},
+    },
+    allowedRoles: ["opm reader"],
   },
   run: async (parsed, event, bot) => {
     let q = parsed.args.chapter;
@@ -29,7 +34,7 @@ module.exports = {
     let func = parsed.args.raw ? opmraw : opm;
 
     return func(...args);
-  }
+  },
 };
 
 async function opmraw(parsed, q, n) {
@@ -37,9 +42,9 @@ async function opmraw(parsed, q, n) {
     .get(
       "https://send-rss-get-json.herokuapp.com/convert/?u=https://tonarinoyj.jp/rss/series/13932016480028984490"
     )
-    .then(r => r.data.items);
+    .then((r) => r.data.items);
 
-  let chapters = data.map(c => {
+  let chapters = data.map((c) => {
     let out = {};
     out.chapter = /\[第(.+)話\]/.exec(c.title)[1];
     out.link = c.link + ".json";
@@ -47,7 +52,7 @@ async function opmraw(parsed, q, n) {
   });
 
   if (q) {
-    chapters = chapters.filter(c => c.chapter === q);
+    chapters = chapters.filter((c) => c.chapter === q);
     if (chapters.length < 1) {
       throw new Error("Chapter " + q + " not found");
     }
@@ -58,13 +63,13 @@ async function opmraw(parsed, q, n) {
   let chapterpage = await axios
     .get(chapters[i1].link, {
       headers: {
-        "User-Agent": `Mozilla/5.0 (iPod; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.163 Mobile/15E148 Safari/604.1`
-      }
+        "User-Agent": `Mozilla/5.0 (iPod; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.163 Mobile/15E148 Safari/604.1`,
+      },
     })
-    .then(r =>
+    .then((r) =>
       r.data.readableProduct.pageStructure.pages
-        .filter(d => d.type === "main")
-        .map(d => d.src)
+        .filter((d) => d.type === "main")
+        .map((d) => d.src)
     );
 
   let i2;
@@ -88,7 +93,7 @@ async function opmraw(parsed, q, n) {
       previewImageUrl: url,
       sender: {
         name: "OPM Chapter " + chapters[i1].chapter + "–" + (i2 + 1),
-        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg"
+        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg",
       },
       quickReply: {
         items: [
@@ -97,20 +102,20 @@ async function opmraw(parsed, q, n) {
             action: {
               type: "message",
               label: "More",
-              text: "!opm --raw"
-            }
+              text: "!opm --raw",
+            },
           },
           {
             type: "action",
             action: {
               type: "message",
               label: "More from this chapt",
-              text: "!opm --raw " + chapters[i1].chapter
-            }
-          }
-        ]
-      }
-    }
+              text: "!opm --raw " + chapters[i1].chapter,
+            },
+          },
+        ],
+      },
+    },
   ];
 
   if (parsed.args.info) {
@@ -127,7 +132,7 @@ async function opmraw(parsed, q, n) {
         ].chapter.replace(/\./g, "-")}/${i2 + 1}/`,
       sender: {
         name: "OPM Random Panel",
-        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg"
+        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg",
       },
       quickReply: {
         items: [
@@ -136,11 +141,11 @@ async function opmraw(parsed, q, n) {
             action: {
               type: "message",
               label: "More",
-              text: "!opm"
-            }
-          }
-        ]
-      }
+              text: "!opm",
+            },
+          },
+        ],
+      },
     });
   }
 
@@ -153,9 +158,9 @@ async function opm(parsed, q, n) {
       "https://gist.githubusercontent.com/funkyhippo/1d40bd5dae11e03a6af20e5a9a030d81/raw/?_" +
         Date.now()
     )
-    .then(r => r.data.chapters);
+    .then((r) => r.data.chapters);
 
-  let chapters = Object.entries(data).map(c => {
+  let chapters = Object.entries(data).map((c) => {
     let out = {};
     out.chapter = c[0];
 
@@ -169,10 +174,17 @@ async function opm(parsed, q, n) {
   });
 
   if (q) {
-    chapters = chapters.filter(c => c.chapter === q || c.title.toLowerCase().indexOf(q) !== -1);
+    chapters = chapters.filter(
+      (c) =>
+        c.chapter === q ||
+        (isNaN(q) &&
+          (c.title.toLowerCase().indexOf(q) !== -1 ||
+            new RegExp(q, "i").test(c.chapter)))
+    );
     if (chapters.length < 1) {
       throw new Error("Chapter " + q + " not found");
     }
+    shuffleArray(chapters);
   }
 
   let i1 = angkaAcak(0, chapters.length - 1);
@@ -198,7 +210,7 @@ async function opm(parsed, q, n) {
       previewImageUrl: url,
       sender: {
         name: "OPM Chapter " + chapters[i1].chapter + "–" + (i2 + 1),
-        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg"
+        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg",
       },
       quickReply: {
         items: [
@@ -207,20 +219,20 @@ async function opm(parsed, q, n) {
             action: {
               type: "message",
               label: "More",
-              text: "!opm"
-            }
+              text: "!opm",
+            },
           },
           {
             type: "action",
             action: {
               type: "message",
               label: "More from this chapt",
-              text: "!opm " + chapters[i1].chapter
-            }
-          }
-        ]
-      }
-    }
+              text: "!opm " + chapters[i1].chapter,
+            },
+          },
+        ],
+      },
+    },
   ];
 
   if (parsed.args.info) {
@@ -237,7 +249,7 @@ async function opm(parsed, q, n) {
         ].chapter.replace(/\./g, "-")}/${i2 + 1}/`,
       sender: {
         name: "OPM Random Panel",
-        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg"
+        iconUrl: "https://pbs.twimg.com/media/EXKhY6JWAAUmnJm.jpg",
       },
       quickReply: {
         items: [
@@ -246,11 +258,11 @@ async function opm(parsed, q, n) {
             action: {
               type: "message",
               label: "More",
-              text: "!opm"
-            }
-          }
-        ]
-      }
+              text: "!opm",
+            },
+          },
+        ],
+      },
     });
   }
 

@@ -8,6 +8,18 @@ module.exports = {
     CMD: "_",
     ALIASES: [],
     ARGS: {
+      "aa": {
+        type: Number,
+        "+": 2
+      },
+      "tes1": {
+        type: ArgsType.STRING,
+      },
+      "tes2": {
+        type: ArgsType.NUMBER,
+        "+": true,
+        toArray: true
+      },
       "-a": {
         type: ArgsType.ARRAY([
           ArgsType.ARRAY([
@@ -19,13 +31,17 @@ module.exports = {
           ])
         ])
       },
+      "-aa" : {
+        type: ArgsType.ARRAY([String, Date, Boolean])
+      },
       "-c": {
-        require: ["-d", "-e"]
+        require: ["-d", "-e"],
+        //modify: value => parseInt(value)
       },
       "-z" : {
-        type:ArgsType.STRING,
+        type: [ArgsType.DATE, ArgsType.NUMBER],
         modify(value) {
-          return value.toLowerCase() + "uuu"
+          return value.toString()
         }
       }
     }
