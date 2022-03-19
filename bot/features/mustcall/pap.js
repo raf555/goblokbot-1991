@@ -3,6 +3,7 @@ const imageSearch = require("google-images");
 const axios = require("axios");
 const stringSimilarity = require("string-similarity");
 const {ArgsType} = require("@bot/command/args");
+const { shuffleArray } = require("@bot/utility");
 
 // init
 let papkey = process.env.pap_key.split(",");
@@ -222,7 +223,7 @@ function nimages(parsed, he) {
       size: "micro",
       hero: {
         type: "image",
-        url: he[i].url.replace("http://", "https://"),
+        url: (he[i].thumbnail.url || he[i].url).replace("http://", "https://"),
         size: "full",
         aspectMode: "fit",
         action: {
@@ -238,21 +239,5 @@ function nimages(parsed, he) {
 
 //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
-  var currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex]
-    ];
-  }
-
-  return array;
+  return shuffleArray(array);
 }

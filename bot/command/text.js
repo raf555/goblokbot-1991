@@ -4,6 +4,7 @@ const { cekban, isAdmin } = require("@bot/utility");
 const { parse, removeParserArgs, restoreParserArgs } = require("@bot/parser");
 const regexbasedfeature = require("@bot/features/regex");
 const Args = require("./args");
+const rolesManagement = require("@bot/rolesManagement");
 
 module.exports = {
   exec: execMessage,
@@ -107,6 +108,7 @@ async function execMessage(text, event) {
   let cleanedcmd = (
     parsed.command + (parsed.arg ? " " + parsed.arg : "")
   ).toLowerCase();
+  let reply = null;
 
   /* exec start */
   let execstart = Date.now();
@@ -122,10 +124,13 @@ async function execMessage(text, event) {
     if (checkstatus === 0) {
       return null;
     }
-    return checkstatus;
+    reply = checkstatus;
   }
 
-  if ((parsed.called && keywords.includes(cmd)) || keywords2.includes(cmd)) {
+  if (
+    !reply &&
+    ((parsed.called && keywords.includes(cmd)) || keywords2.includes(cmd))
+  ) {
     let cmddata,
       mustcall = false;
     if (parsed.called) {
@@ -140,22 +145,28 @@ async function execMessage(text, event) {
     }
     if (cmddata) {
       if (parsed.args.help || parsed.args.h) {
-        return await executeCommand(Args.ArgsHelp, parsed, event, {
+        reply = await executeCommand(Args.ArgsHelp, parsed, event, {
           data: cmddata,
           mustcall,
         });
       }
-      Args.ArgsMiddleware(cmddata.ARGS, parsed);
+      if (!reply) {
+        rolesManagement.checkFeatureRoleRequirement(
+          event.source.userId,
+          cmddata.allowedRoles
+        );
+        Args.ArgsMiddleware(cmddata.ARGS, parsed);
+      }
     }
   }
 
   /* proceed the command */
-  let reply = null;
-  if (parsed.called) {
-    if (ccc[event.source.groupId || event.source.userId]) {
-      ccc[event.source.groupId || event.source.userId] = 0;
-    }
-    /*
+  if (!reply) {
+    if (parsed.called) {
+      if (ccc[event.source.groupId || event.source.userId]) {
+        ccc[event.source.groupId || event.source.userId] = 0;
+      }
+      /*
     if (cmd === "!") {
       // special case
       parsed = restoreParserArgs(parsed, removed);
@@ -169,38 +180,39 @@ async function execMessage(text, event) {
         }
       }
     } else {*/
-    if (keywords.includes(cmd)) {
-      reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
-    } else {
-      if (!parsed.shortcut && !parsed.arg && !cmd) {
-        reply = greeting(event);
-      }
-    }
-    //}
-  } else {
-    if (ccc[event.source.groupId || event.source.userId]) {
-      ccc[event.source.groupId || event.source.userId] = 0;
       if (keywords.includes(cmd)) {
         reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
       } else {
-        if (cmd === "gapapa" || cmd === "gpp" || cmd === "gajadi") {
-          reply = { type: "text", text: "oke" };
+        if (!parsed.shortcut && !parsed.arg && !cmd) {
+          reply = greeting(event);
         }
       }
+      //}
     } else {
-      if (keywords2.includes(cmd)) {
-        reply = await executeCommand(bot.mustntcall[cmd], parsed, event, bot);
-      } else {
-        if (customkeywords.includes(cleanedcmd)) {
-          reply = customfeature(cleanedcmd, event);
-          if (reply) {
-            reply.cmd = cleanedcmd;
-            reply.cmdtype = "other";
-          }
+      if (ccc[event.source.groupId || event.source.userId]) {
+        ccc[event.source.groupId || event.source.userId] = 0;
+        if (keywords.includes(cmd)) {
+          reply = await executeCommand(bot.mustcall[cmd], parsed, event, bot);
         } else {
-          reply = await executeCommand(regexbasedfeature, parsed, event, bot);
-          if (reply) {
-            reply.cmdtype = "other";
+          if (cmd === "gapapa" || cmd === "gpp" || cmd === "gajadi") {
+            reply = { type: "text", text: "oke" };
+          }
+        }
+      } else {
+        if (keywords2.includes(cmd)) {
+          reply = await executeCommand(bot.mustntcall[cmd], parsed, event, bot);
+        } else {
+          if (customkeywords.includes(cleanedcmd)) {
+            reply = customfeature(cleanedcmd, event);
+            if (reply) {
+              reply.cmd = cleanedcmd;
+              reply.cmdtype = "other";
+            }
+          } else {
+            reply = await executeCommand(regexbasedfeature, parsed, event, bot);
+            if (reply) {
+              reply.cmdtype = "other";
+            }
           }
         }
       }

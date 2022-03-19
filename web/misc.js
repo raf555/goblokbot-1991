@@ -114,7 +114,7 @@ async function handleNewChapt(source, chapters) {
       let chapter = chapters[i].chapter.toString();
       let thumb = chapters[i].thumbnail;
       let burl = chapters[i].url;
-      let pages = chapters[i].pageLength;
+      let pages = chapters[i].totalPages;
       let bdate = new Date(chapters[i].timestamp).toString();
       carousel.contents.push({
         type: "bubble",
@@ -177,7 +177,7 @@ async function handleNewChapt(source, chapters) {
       let chapter = chapters[i].chapter.toString();
       let thumb = chapters[i].thumbnail;
       let burl = chapters[i].url;
-      let pages = chapters[i].pageLength;
+      let pages = chapters[i].totalPages;
       let bdate = new Date(chapters[i].timestamp).toString();
       carousel.contents.push({
         type: "bubble",

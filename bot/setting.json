@@ -1,6 +1,7 @@
 {
   "bot": 1,
   "imgapi": 3,
+  "ytsapi": 1,
   "caller": {
     "normal": "@bot",
     "shortcut": "!",
@@ -11,8 +12,8 @@
   },
   "statemsg": 0,
   "saveMessage": {
-    "message": 1,
-    "image": 1
+    "message": 0,
+    "image": 0
   },
   "disabledftr": {
     "pap": 0,
@@ -20,7 +21,7 @@
     "yt": 0,
     "jimp": 0,
     "mashuppp": 1,
-    "opm": 1
+    "opm": 0
   },
   "timeout": 25
 }

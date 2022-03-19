@@ -143,17 +143,24 @@ async function makeJIMP(args, parentdata) {
     }
     delete args["new"];
   } else if (fromid) {
-    let dbimg = db.open("db/uploadimg.json");
+    let dc = false;
+    if (fromid.endsWith("_discord")) {
+      dc = true;
+      fromid = fromid.replace("_discord", "_");
+    }
+    let dbimg = !dc ? db.open("db/uploadimg.json") : db.open("db/discordCDN.json");
 
     if (!dbimg.get(fromid)) {
       throw Error("Invalid ID");
     }
-
-    if (dbimg.get(fromid).exp < Date.now()) {
-      throw Error("Image expired");
+    
+    if (!dc) {
+      if (dbimg.get(fromid).exp < Date.now()) {
+        throw Error("Image expired");
+      }
     }
 
-    return Jimp.read(dbimg.get(fromid).url);
+    return Jimp.read(!dc ? dbimg.get(fromid).url : dbimg.get(fromid).file.url);
   } else if (fromuser) {
     let dbuser = db.open("db/user.json").get();
 

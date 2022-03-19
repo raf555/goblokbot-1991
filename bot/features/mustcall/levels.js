@@ -5,8 +5,8 @@ module.exports = {
     name: "Levels Command",
     description: "Buat ngirim info leveling",
     usage: "[@bot/!] levels",
-    CMD: "leveling",
-    ALIASES: []
+    CMD: "levels",
+    ALIASES: ["leveling"]
   },
   run: leveling
 };
@@ -57,7 +57,7 @@ function makebubble(x) {
         },
         {
           type: "text",
-          text: "Credit needed to level up",
+          text: "Total credit required",
           wrap: true,
           size: "xxs"
         },
@@ -66,7 +66,7 @@ function makebubble(x) {
         },
         {
           type: "text",
-          text: "Total credit required",
+          text: "Credit needed to level up",
           wrap: true,
           size: "xxs"
         }
@@ -100,7 +100,7 @@ function makebubble(x) {
           },
           {
             type: "text",
-            text: getprog(i).toString(),
+            text: getxpbylevel(i).toString(),
             wrap: true
           },
           {
@@ -108,9 +108,9 @@ function makebubble(x) {
           },
           {
             type: "text",
-            text: getxpbylevel(i).toString(),
+            text: getprog(i).toString(),
             wrap: true
-          }
+          },
         ],
         spacing: "md"
       },

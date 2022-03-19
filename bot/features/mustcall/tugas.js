@@ -17,7 +17,7 @@ module.exports = {
 };
 
 function hasExcluded(name) {
-  const exclude = ["kripto"];
+  const exclude = ["visdat"];
   let con = true;
   exclude.forEach(e => {
     con = con && new RegExp(e, "i").test(name);

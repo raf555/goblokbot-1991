@@ -350,7 +350,8 @@ async function getdata(url) {
   })();
   let img = baseurl + $(".og-image").find("img").attr("src");
 
-  let summary = $(".field__item").eq(1).find("div.event-total-summary");
+  let summary = $(".field__item").eq(0).find("div.event-total-summary");
+  if (!summary.length) summary = $(".field__item").eq(1).find("div.event-total-summary");
 
   let out = [];
 
